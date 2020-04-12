@@ -7,5 +7,4 @@
  4) berkayinceisci (Berkay İnceişçi 21802088)
  5) boraaltinok (Bora Altınok 21902206)
  6) alierengunaltili (Ali Eren Günaltılı 21801897)
- //Let's see if I branching works!
- //I will wait for pullig up this branch untill someone makes a change on the main branch.>>>>>>> master
+ 
