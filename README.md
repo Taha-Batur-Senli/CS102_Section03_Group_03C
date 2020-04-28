@@ -19,11 +19,12 @@ _Include a concise description of your project here. Be sure to include the prop
 
 [Group Meetings Log](group/meetingslog.md)
 #### Group Members
-- [member1](group/member1_log.md)    _(full name & link to personal log file)_
-- [member2](group/member2_log.md)
-- member3
-- member4
-- member5
+ 1) Taha-Batur-Senli (Taha Batur Şenli 21901857) (group/Taha_log.md)
+ 2) ArdaTavusbay (Arda Tavusbay 21902722) (group/Arda_log.md)
+ 3) egeergul (Ege Ergül 21902240) (group/Ege_log.md)
+ 4) berkayinceisci (Berkay İnceişçi 21802088) (group/Berkay_log.md)
+ 5) boraaltinok (Bora Altınok 21902206) (group/Bora_log.md)
+ 6) alierengunaltili (Ali Eren Günaltılı 21801897) (group/Ali_Eren_log.md)
 
 ****
 **Instructor:** _(name)_   **TA:**  _(name)_
