@@ -2,7 +2,7 @@
 [Computer Engineering Department, Bilkent University](http://w3.cs.bilkent.edu.tr/en/).  
 The information and code in this repository are submitted in partial fulfillment of the CS102 Semester Design Project. Except where explicitly stated, the work is that of the group members listed below (who are expected to follow ethical academic & professional practice).
 ****
-## gSL ~~ Restaurant Reservation App ~~
+## g3C ~~ Restaurant Reservation App ~~
 ****
 ### ~ Colunbia ~
 
