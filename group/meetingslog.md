@@ -20,5 +20,5 @@ Today we discussed about the problems we encountered while using Android Studio,
 
 
 **ToDo:** 
-This weak we hope to make our app's log in/ sign up part on android Studio. This is essential and probably one of the most difficult part because we will need to generally construct most of the classes we have designed ( Customer class, AllCustomer Class...). We will try to store data on firebase as we log in. Once we can do this, we will finally have our first code including action listeners, java code, XML and firebase. 
+This week we hope to make our app's log in/ sign up part on android Studio. This is essential and probably one of the most difficult part because we will need to generally construct most of the classes we have designed ( Customer class, AllCustomer Class...). We will try to store data on firebase as we log in. Once we can do this, we will finally have our first code including action listeners, java code, XML and firebase. 
 ****
