@@ -8,6 +8,12 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnDeleteText" />
+
+    <Button
         android:id="@+id/button1"
         android:layout_width="397dp"
         android:layout_height="wrap_content"
@@ -40,8 +46,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/inputText1"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:inputType="textPersonName" />
 
     <ListView
         android:id="@+id/listview1"

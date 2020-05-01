@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     ListView listView1;
     EditText inputtext1;
-    Button btnAdd, btnUpdate;
+    Button btnAdd, btnUpdate, btnDelete;
 
     ArrayList<String> foods = new ArrayList<String>();
     ArrayAdapter myAdapter1;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         inputtext1 = (EditText)findViewById(R.id.editText);
         btnAdd = (Button)findViewById(R.id.button1);
         btnUpdate = (Button)findViewById(R.id.button2);
+        btnDelete = (Button) findViewById(R.id.btnDelete);
         reference = FirebaseDatabase.getInstance().getReference();
 
 
@@ -68,11 +72,28 @@ public class MainActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 String stringval = inputtext1.getText().toString();
 
                 foods.add(stringval);
-                reference.push().setValue(stringval);
+                //reference.push().setValue(stringval);
+                //id = stringval;
+                String id = reference.push().getKey();
+                reference.child(id).setValue(stringval);
                 myAdapter1.notifyDataSetChanged();
+                /*reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        stringval = dataSnapshot.getValue(String.class);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                })*/
 
 
             }
@@ -81,9 +102,10 @@ public class MainActivity extends AppCompatActivity {
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String string = dataSnapshot.getValue(String.class);
+                /*String string = dataSnapshot.getValue(String.class);
                 foods.add(string);
-                myAdapter1.notifyDataSetChanged();
+
+                myAdapter1.notifyDataSetChanged();*/
             }
 
             @Override
@@ -119,6 +141,50 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //DELETE MENU
+
+        /*btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                foods.remove(indexVal);
+
+                myAdapter1.notifyDataSetChanged();
+                Toast.makeText(MainActivity.this, "Selected item has been removed", Toast.LENGTH_SHORT).show();
+
+
+
+
+            }
+        });*/
+
+
+        listView1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                final int index;
+                index = position;
+
+                new AlertDialog.Builder(MainActivity.this)
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setTitle("Are you sure?")
+                        .setMessage("Do you want to delete this food")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                foods.remove(index);
+                                myAdapter1.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+
+                return true;
+            }
+        });
+
+
+
+
 
         //UPDATE MENU
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String stringval = inputtext1.getText().toString();
                 foods.set(indexVal, stringval);
+
 
                 myAdapter1.notifyDataSetChanged();
             }
