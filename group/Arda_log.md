@@ -15,4 +15,9 @@ In these two days, I created a branch in github for uploading my code, for versi
 Today I've created new activitiy pages for the gui, and implemented a demo menu system that shows the items in the menu and can also be scrolled down and up. I've learned how to create RecycleView and its classes in Android Studio.
 @TODO: Enhance the menu system so that it fits the theme of the gui, create a navigate button to open an options panel, create more pages and complete the gui.
 
+### 32.04.2020
+Today I enhanced the menu system so that it now fits the theme of the GUI, created a settings option button to open an options panel, linked more buttons with their pages. 
+
+Coming soon...
+
 ****
