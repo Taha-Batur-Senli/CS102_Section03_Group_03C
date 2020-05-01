@@ -11,7 +11,8 @@ This week I was thinking of creating a neat and good-looking graphical user inte
 ### 29.04.2020 / 30.04.2020
 In these two days, I created a branch in github for uploading my code, for version control. I've edited the gui in terms of its fonts, text colors e.g. In addition, I've watched hundreds of app development tutorials on youtube, and studied Android Studio. As a result, I've managed to link the buttons so that they open the wanted pages (for example: register button in login page now navigates user to the register page). I'm currently working on creating the main menu page, with a button that will open up general options when pressed.
 
-### ~ date ~
-Coming Soon!
+### 31.04.2020
+Today I've created new activitiy pages for the gui, and implemented a demo menu system that shows the items in the menu and can also be scrolled down and up. I've learned how to create RecycleView and its classes in Android Studio.
+@TODO: Enhance the menu system so that it fits the theme of the gui, create a navigate button to open an options panel, create more pages and complete the gui.
 
 ****
