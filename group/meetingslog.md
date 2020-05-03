@@ -27,7 +27,7 @@ This week we hope to make our app's log in/ sign up part on android Studio. This
 **Present:** Bora Altınok, Arda Tavusbay, Ali Eren Günaltılı, Ege Ergül, Berkay İnceişçi, Taha Batur Şenli  _**Absent:**_  
 
 **Discussion**
-In this meeting, we informed each other about what we have done so far and determined how we should proceed in the new week. We discussed how we should approach to the problem of connecting our app to real time - our app should somehow check the real time in order to control reservation durations. We ended the meeting by distributing tasks.
+In this meeting, we informed each other about what we have done so far and determined how we should proceed in the new week. Now we have a login screen in which the customers and restaurant owners are directed to the different pages according to how they are registered. Also, customers can now access to a transparent main menu by clicking on the option symbol, just as we indicated in our User Interface Report. We discussed how we should approach to the problem of connecting our app to real time - our app should somehow check the real time in order to control reservation durations. We ended the meeting by distributing tasks.
 
 **ToDo:** 
 This week we hope to finish reservation process, enabling all customers to reserve the time slot they desire and letting restaurant owners check and control the reservations made. 
