@@ -18,7 +18,6 @@ We reviewed what we have done so far about our tasks. Bora managed to get starte
 **Discussion**
 Today we discussed about the problems we encountered while using Android Studio, and tried to look for possible solutions as a group. We also decided on focusing more specific areas, such as designing and completing the gui, gathering more information on how we can create the required classes in Android Studio for our project. We divided our workload, and scheduled meetings for designing the code.
 
-
 **ToDo:** 
 This week we hope to make our app's log in/ sign up part on android Studio. This is essential and probably one of the most difficult part because we will need to generally construct most of the classes we have designed ( Customer class, AllCustomer Class...). We will try to store data on firebase as we log in. Once we can do this, we will finally have our first code including action listeners, java code, XML and firebase. 
 
@@ -30,4 +29,6 @@ This week we hope to make our app's log in/ sign up part on android Studio. This
 **Discussion**
 In this meeting, we informed each other about what we have done so far and determined how we should proceed in the new week. We discussed how we should approach to the problem of connecting our app to real time - our app should somehow check the real time in order to control reservation durations. We ended the meeting by distributing tasks.
 
+**ToDo:** 
+This week we hope to finish reservation process, enabling all customers to reserve the time slot they desire and letting restaurant owners check and control the reservations made. 
 ****
