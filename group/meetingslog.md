@@ -21,4 +21,13 @@ Today we discussed about the problems we encountered while using Android Studio,
 
 **ToDo:** 
 This week we hope to make our app's log in/ sign up part on android Studio. This is essential and probably one of the most difficult part because we will need to generally construct most of the classes we have designed ( Customer class, AllCustomer Class...). We will try to store data on firebase as we log in. Once we can do this, we will finally have our first code including action listeners, java code, XML and firebase. 
+
+****
+### Meeting ~ (3 May 2020, 1 Hour)
+****
+**Present:** Bora Altınok, Arda Tavusbay, Ali Eren Günaltılı, Ege Ergül, Berkay İnceişçi, Taha Batur Şenli  _**Absent:**_  
+
+**Discussion**
+In this meeting, we informed each other about what we have done so far and determined how we should proceed in the new week. We discussed how we should approach to the problem of connecting our app to real time - our app should somehow check the real time in order to control reservation durations. We ended the meeting by distributing tasks.
+
 ****
