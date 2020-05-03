@@ -12,7 +12,7 @@ I created the GitHub repositories and created the necessary log files for all my
 ### ~ 02.05.2020 ~
 Today I brainstormed with Arda regarding how to use Android Studio and how to create the necessary pages for our project (including how to use GitHuıb best for creating the pages of our project). In the end, after much study, I began to work on the buttons on each page and began writing their java code (since the XML code only allows you to design the page) to make sure that the buttons forwarded the user to the correct pages. 
 
-### ~ date ~
-blah, blah, blah...
+### ~ 03.05.2020 ~
+Today was mostly spent on choosing the pages I wanted to start with and getting a clear idea of which page linked to which other page(s). I began to work on our main menu and mostly completed its appearance. I also had a short brainstorming session with Arda that helped me get a more clear idea on how to use the searchview.
 
 ****
