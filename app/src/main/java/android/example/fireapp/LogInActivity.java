@@ -15,6 +15,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LogInActivity extends AppCompatActivity {
     Button logIn;
@@ -37,17 +42,35 @@ public class LogInActivity extends AppCompatActivity {
                 String email = etEmail.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
 
-                //TODO progressBar.setVisibility(View.VISIBLE);
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()){
                             FirebaseUser user = mAuth.getCurrentUser();
+                            String userID = user.getUid();
                             Toast.makeText(LogInActivity.this, "LOGGED IN", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LogInActivity.this, RestaurantProfile.class));
-                            finish();
-                        }
-                        else{
+
+                            //Distinquish User type
+                            DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("Customers");
+                            ref.orderByChild("uid").equalTo(userID).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.exists()) {
+                                        startActivity(new Intent(LogInActivity.this, CustomerProfile.class));
+                                        finish();
+                                    } else {
+                                        startActivity(new Intent(LogInActivity.this, RestaurantProfile.class));
+                                        finish();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+                        } else {
                             Toast.makeText(LogInActivity.this, "WRONG USER OR PASSWORD !!!", Toast.LENGTH_SHORT).show();
 
                         }
@@ -55,7 +78,6 @@ public class LogInActivity extends AppCompatActivity {
                 });
             }
         });
-
 
     }
 }

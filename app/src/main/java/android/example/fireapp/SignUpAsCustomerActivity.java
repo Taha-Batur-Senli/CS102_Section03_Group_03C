@@ -17,12 +17,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class SignUpAsCustomerActivity extends AppCompatActivity {
     Button signUp;
-    EditText etEmail, etPassword;
+    EditText etEmail, etPassword, etName, etPhone;
     private FirebaseAuth mAuth;
     ProgressBar pb;
+    FirebaseDatabase database;
+    DatabaseReference mRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +38,12 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
         signUp = (Button)findViewById(R.id.btnRegisterCustomer);
         etEmail = (EditText)findViewById(R.id.etEmailCustomer);
         etPassword = (EditText)findViewById(R.id.etPasswordCustomer);
+        etName = (EditText)findViewById(R.id.etNameCustomer);
+        etPhone = (EditText)findViewById(R.id.etPhoneCustomer);
         mAuth = FirebaseAuth.getInstance();
         pb = (ProgressBar)findViewById(R.id.progressBarCustomerSignUp);
+        database = FirebaseDatabase.getInstance();
+        mRef  = database.getReference( "Customers");
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,10 +56,24 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
     private void registerCustomer() {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
+        final String name = etName.getText().toString();
+        final String phone = etPhone.getText().toString();
 
         if( email.isEmpty()){
             etEmail.setError("Enter an email!");
             etEmail.requestFocus();
+            return;
+        }
+
+        if( name.isEmpty()){
+            etName.setError("Enter a name!");
+            etName.requestFocus();
+            return;
+        }
+
+        if( phone.isEmpty()){
+            etPhone.setError("Enter a phone!");
+            etPhone.requestFocus();
             return;
         }
 
@@ -72,6 +96,22 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
                 pb.setVisibility(View.GONE);
                 if( task.isSuccessful()){
                     FirebaseUser user = mAuth.getCurrentUser();
+
+                    //Get user's info
+                    String email = user.getEmail();
+                    String uid = user.getUid();
+
+                    //add data to database
+                    mRef.child(uid).child("isRestaurant").setValue(false);
+                    mRef.child(uid).child("uid").setValue(uid);
+                    mRef.child(uid).child("email").setValue(email);
+                    mRef.child(uid).child("reservations").setValue("");
+                    mRef.child(uid).child("notifications").setValue("");
+                    mRef.child(uid).child("name").setValue(name);
+                    mRef.child(uid).child("money").setValue(0);
+                    mRef.child(uid).child("points").setValue(0);
+                    mRef.child(uid).child("fav restaurants").setValue("");
+
                     Toast.makeText( SignUpAsCustomerActivity.this, "Restaurant Created", Toast.LENGTH_SHORT);
                     startActivity( new Intent(SignUpAsCustomerActivity.this, CustomerProfile.class));
                     finish();

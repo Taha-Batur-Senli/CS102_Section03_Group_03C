@@ -4,7 +4,11 @@
         <item>Fast food</item>
         <item>Breakfast</item>
         <item>Lunch</item>
-        <item>Dinner</item>
+        <item>Fish Restaurant</item>
+        <item>Kebab Restaurant</item>
+        <item>Coffee Shop</item>
+        <item>Bar</item>
+        <item>Steak House</item>
     </array>
     <string name="title_activity_restaurant_profile">RestaurantProfile</string>
     <!-- Strings used for fragments for navigation -->

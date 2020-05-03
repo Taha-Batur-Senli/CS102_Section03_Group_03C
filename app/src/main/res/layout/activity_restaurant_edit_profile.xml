@@ -4,110 +4,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpAsRestaurantActivity">
+    tools:context=".RestaurantEditProfileActivity">
 
     <TextView
-        android:id="@+id/deneme"
-        android:layout_width="179dp"
-        android:layout_height="69dp"
-        android:text="Welcome To Restaurant Sign Up Page"
+        android:id="@+id/txtEditRes"
+        android:layout_width="97dp"
+        android:layout_height="46dp"
+        android:text="Edit Your Profile!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.21" />
-
-    <EditText
-        android:id="@+id/etEmailSignUpAsRest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
-
-    <EditText
-        android:id="@+id/etPasswordSignUpAsRest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.644" />
+        app:layout_constraintVertical_bias="0.052" />
 
     <Button
-        android:id="@+id/btnRegisterSignUpAsRest"
+        android:id="@+id/btnSaveEditProfileRes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="Save Changes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.903" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.852" />
 
     <EditText
-        android:id="@+id/etNameResSignUp"
-        android:layout_width="wrap_content"
+        android:id="@+id/etResProfileDescription"
+        android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Name"
+        android:hint="Description"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.483" />
+        app:layout_constraintVertical_bias="0.383" />
 
     <EditText
-        android:id="@+id/etPhoneResSignUp"
-        android:layout_width="wrap_content"
+        android:id="@+id/etResProfilePhone"
+        android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Phone"
         android:inputType="phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.559" />
+        app:layout_constraintVertical_bias="0.469" />
 
-    <Spinner
-        android:id="@+id/spinnerGenre"
-        android:layout_width="210dp"
-        android:layout_height="41dp"
-        android:entries="@array/genres"
+    <EditText
+        android:id="@+id/etResProfileName"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="name"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.174"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764" />
+        app:layout_constraintVertical_bias="0.287" />
 
+    <EditText
+        android:id="@+id/etResProfileWH"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Working Hours"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.567" />
+
+    <EditText
+        android:id="@+id/etResProfileAdress"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="148dp"
+        android:ems="10"
+        android:hint="Adress"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etResProfileWH"
+        app:layout_constraintVertical_bias="0.173" />
+
+    <Spinner
+        android:id="@+id/spinnerEdit"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/genres"
+        app:layout_constraintBottom_toTopOf="@+id/btnSaveEditProfileRes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etResProfileAdress" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
