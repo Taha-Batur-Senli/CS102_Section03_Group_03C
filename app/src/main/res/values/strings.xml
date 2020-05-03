@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Reserve App</string>
+    <string name="name">Name</string>
+    <string name="button">SIGN UP</string>
+    <string name="button1">LOGIN</string>
+    <string name="title_activity_main3">Main3Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+    <string name="add_money_to_wallet">ADD MONEY TO WALLET</string>
+    <string name="change_informat_on">CHANGE INFORMATİON</string>
+    <string name="my_reserve_points">MY RESERVE POINTS</string>
+    <string name="ranking">RANKING</string>
+    <string name="todo">TODO</string>
+    <string-array name="dishes">
+        <item>Pizza Margharita</item>
+        <item>Pizza Marinara</item>
+        <item>Pizza Chicago</item>
+        <item>Vegaterian Pizza</item>
+        <item>New York Pizza</item>
+        <item>Pizza BBQ Chicken</item>
+        <item>Pizza Pepperoni</item>
+        <item>Pizza Bacon</item>
+    </string-array>
+    <string-array name="indexes">
+        <item>Tomata sauce, mozzarella,basil</item>
+        <item>Tomata sauce, mozzarella, garlic, oregone</item>
+        <item>beef, sausage, pepperoni, onion, mushrooms, and green peppers</item>
+        <item>onian, mushroom,goat cheese</item>
+        <item>Tomata sauce, mozzarella</item>
+        <item>Mozzarella, BBQ Sauce, Chicken, Parmesan </item>
+        <item>Tomata sauce, mozzarella, pepperoni</item>
+        <item>Tomata sauce, mozzarella, parmesan, bacon</item>
+    </string-array>
+</resources>
