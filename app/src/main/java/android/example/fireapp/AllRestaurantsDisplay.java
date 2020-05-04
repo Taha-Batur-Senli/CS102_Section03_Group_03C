@@ -28,37 +28,33 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
     ArrayList<String> allRestaurants = new ArrayList<String>();
     FirebaseDatabase database;
     DatabaseReference reference;
-    FirebaseAuth mAuth;
-    DatabaseReference mRef;
-    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_restaurants_display);
 
+        listViewAllRestaurants = (ListView)findViewById(R.id.lvAllRestaurants2);
         myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allRestaurants);
         listViewAllRestaurants.setAdapter(myAdapter);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
-        mAuth = FirebaseAuth.getInstance();
-        mRef = FirebaseDatabase.getInstance().getReference("Customers");
-        user = mAuth.getCurrentUser();
 
         displayAllRestaurants();
         listOnLongClickAction();
-    }
 
-    private void displayAllRestaurants() {
+
+    }
+    private void displayAllRestaurants () {
         reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
-                while (items.hasNext()){
+                while (items.hasNext()) {
 
                     DataSnapshot item = items.next();
                     String name, genre;
-                    name = "Name : " + item.child("name").getValue().toString() + "  Genre: "  + item.child("genre").getValue().toString();
+                    name = "Name : " + item.child("name").getValue().toString() + "  Genre: " + item.child("genre").getValue().toString();
 
                     allRestaurants.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -76,7 +72,8 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         listViewAllRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final int index = position;
+                final int index;
+                index = position;
 
                 new AlertDialog.Builder(AllRestaurantsDisplay.this)
                         .setIcon(android.R.drawable.ic_input_add)
@@ -86,7 +83,6 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //TODO  favorite restaurantsa  ekle
-                                mRef.child(user.getUid()).child("fav restaurants").child("restorant_uid").child("name").setValue("restaurant_name");
                                 myAdapter.notifyDataSetChanged();
                             }
                         })
@@ -97,4 +93,5 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
             }
         });
     }
+
 }

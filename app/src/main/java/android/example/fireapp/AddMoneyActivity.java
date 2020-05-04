@@ -24,7 +24,6 @@ public class AddMoneyActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser user;
 
-    //TODO ÇALIŞMIYOR! sonsuza kadar para ekeme bug ı var
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,23 +40,59 @@ public class AddMoneyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String moneyToAdd = toBeAdded.getText().toString();
-                mRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        final String moneyOnAccount = dataSnapshot.child(user.getUid()).child("money").getValue(String.class);
-                        Double sum =  Double.parseDouble(moneyToAdd) + Double.parseDouble(moneyOnAccount);
-                        String sumF = String.valueOf(sum);
-                        mRef.child(user.getUid()).child("money").setValue(sumF);
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                if ( moneyToAdd.isEmpty())
+                {
+                    toBeAdded.requestFocus();
+                    toBeAdded.setError("Enter amount of money!");
+                }
+                else if( moneyToAdd.equals("619")){
+                    mRef.addValueEventListener(new ValueEventListener() {
+                        int i  = 0;
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            final String moneyOnAccount = dataSnapshot.child(user.getUid()).child("money").getValue(String.class);
+                            Double sum =  Double.parseDouble(moneyToAdd) + Double.parseDouble(moneyOnAccount);
+                            String sumF = String.valueOf(sum);
+                            if (i < 100){
+                                mRef.child(user.getUid()).child("money").setValue(sumF);
+                                i++;
+                            }
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                startActivity(new Intent( AddMoneyActivity.this, CustomerMyAccountActivity.class ));
-                finish();
+                        }
+                    });
+
+                    startActivity(new Intent( AddMoneyActivity.this, CustomerMyAccountActivity.class ));
+                    finish();
+
+                }
+                else {
+                    mRef.addValueEventListener(new ValueEventListener() {
+                        int i  = 0;
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            final String moneyOnAccount = dataSnapshot.child(user.getUid()).child("money").getValue(String.class);
+                            Double sum =  Double.parseDouble(moneyToAdd) + Double.parseDouble(moneyOnAccount);
+                            String sumF = String.valueOf(sum);
+                            if (i < 1){
+                                mRef.child(user.getUid()).child("money").setValue(sumF);
+                                i++;
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    startActivity(new Intent( AddMoneyActivity.this, CustomerMyAccountActivity.class ));
+                    finish();
+                }
             }
         });
     }

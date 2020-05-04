@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RestaurantProfile extends AppCompatActivity {
     //PROPERTIES
-    Button logOut, editProfile, help, takeALookAtYourRestaurant;
+    Button logOut, editProfile, help, takeALookAtYourRestaurant, changeMenu;
     DatabaseReference mRef;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -41,13 +41,15 @@ public class RestaurantProfile extends AppCompatActivity {
         takeALookAtYourRestaurant = (Button)findViewById(R.id.takeALookAtYourRestaurant);
         editProfile =  (Button)findViewById(R.id.resEditProfile);
         help = (Button)findViewById(R.id.resHelp);
-        logOut = (Button) findViewById(R.id.logOutResProfile);
+        logOut = (Button)findViewById(R.id.logOutResProfile);
+        changeMenu = (Button)findViewById(R.id.btnChangeMenu);
 
         //Call methods
         takeALookAtYourRestaurantAction();
         logOffAction();
         helpAction();
         editTextAction();
+        changeMenuAction();
 
         //Get customer info and display
         mRef.addValueEventListener(new ValueEventListener() {
@@ -68,6 +70,15 @@ public class RestaurantProfile extends AppCompatActivity {
     }
 
     //METHODS
+    private void changeMenuAction() {
+        changeMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RestaurantProfile.this, ChangeMenuActivity.class));
+            }
+        });
+    }
+
     private void editTextAction() {
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override

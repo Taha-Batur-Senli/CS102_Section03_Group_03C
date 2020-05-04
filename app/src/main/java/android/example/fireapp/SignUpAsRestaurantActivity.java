@@ -30,7 +30,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
     Button btnRegister;
     Spinner spinner;
     FirebaseDatabase database;
-    DatabaseReference mRef;
+    DatabaseReference mRef, mRef2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
         btnRegister = (Button)findViewById(R.id.btnRegisterSignUpAsRest);
         database = FirebaseDatabase.getInstance();
         mRef = database.getReference( "Restaurants");
+        mRef2 = database.getReference("Best Restaurants");
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

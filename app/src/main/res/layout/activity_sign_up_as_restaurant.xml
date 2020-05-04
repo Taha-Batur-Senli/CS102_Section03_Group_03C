@@ -30,7 +30,7 @@
         app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
+        app:layout_constraintVertical_bias="0.467" />
 
     <EditText
         android:id="@+id/etPasswordSignUpAsRest"
@@ -81,7 +81,7 @@
         app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.483" />
+        app:layout_constraintVertical_bias="0.39" />
 
     <EditText
         android:id="@+id/etPhoneResSignUp"

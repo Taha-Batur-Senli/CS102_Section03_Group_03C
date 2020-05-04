@@ -27,7 +27,7 @@ import java.util.Iterator;
 
 public class CustomerProfile extends AppCompatActivity {
     //Properties
-    Button logOut, myAccount, help;
+    Button logOut, myAccount, help, allRestaurantsDisplay;;
     FirebaseAuth mAuth;
     DatabaseReference mRef;
     FirebaseUser user;
@@ -49,8 +49,11 @@ public class CustomerProfile extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         cusNameTV = (TextView)findViewById(R.id.txtNameCustomerProfile);
         listViewAllRestaurants = (ListView)findViewById(R.id.lvAllRestaurants);
+
         myAccount = (Button)findViewById(R.id.btnMyAccount);
         help = (Button)findViewById(R.id.btnHelpCustomer);
+        allRestaurantsDisplay = (Button)findViewById(R.id.btnAllRestaurants);
+
 
         myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allRestaurants);
         listViewAllRestaurants.setAdapter(myAdapter);
@@ -63,6 +66,8 @@ public class CustomerProfile extends AppCompatActivity {
         myAccountAction();
         logOutAction();
         helpActivity();
+        allRestaurantsDisplayActivity();
+
 
         //Get name and display a welcome message
         mRef.addValueEventListener(new ValueEventListener() {
@@ -83,6 +88,15 @@ public class CustomerProfile extends AppCompatActivity {
     }
 
     //METHODS
+    private void allRestaurantsDisplayActivity() {
+        allRestaurantsDisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomerProfile.this, AllRestaurantsDisplay.class));
+            }
+        });
+    }
+
     private void helpActivity() {
         help.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,14 +107,14 @@ public class CustomerProfile extends AppCompatActivity {
     }
 
     private void displayAllRestaurants() {
-        reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
+        reference.child("Best Restaurants").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
                 while (items.hasNext()){
 
                     DataSnapshot item = items.next();
-                    String name, genre;
+                    String name;
                     name = "Name : " + item.child("name").getValue().toString() + "  Genre: "  + item.child("genre").getValue().toString();
 
                     allRestaurants.add(name);
@@ -152,6 +166,7 @@ public class CustomerProfile extends AppCompatActivity {
             }
         });
     }
+
     private void myAccountAction() {
         myAccount.setOnClickListener(new View.OnClickListener() {
             @Override
