@@ -37,17 +37,38 @@ public class AddMoneyActivity extends AppCompatActivity {
         mRef = FirebaseDatabase.getInstance().getReference("Customers");
         user = mAuth.getCurrentUser();
 
+
+
+
         addMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String moneyToAdd = toBeAdded.getText().toString();
+                //final String moneyToAdd = toBeAdded.getText().toString();
+
+
                 mRef.addValueEventListener(new ValueEventListener() {
+                   String sumF;
+                    Double sum;
+                    int i = 0;
+
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        final String moneyOnAccount = dataSnapshot.child(user.getUid()).child("money").getValue(String.class);
-                        Double sum =  Double.parseDouble(moneyToAdd) + Double.parseDouble(moneyOnAccount);
-                        String sumF = String.valueOf(sum);
-                        mRef.child(user.getUid()).child("money").setValue(sumF);
+                        final String moneyToAdd = toBeAdded.getText().toString();
+
+                            final String moneyOnAccount = dataSnapshot.child(user.getUid()).child("money").getValue(String.class);
+                             sum = Double.parseDouble(moneyToAdd) + Double.parseDouble(moneyOnAccount);
+                             sumF = String.valueOf(sum);
+                             if( i<1 ) {
+                                 mRef.child(user.getUid()).child("money").setValue(sumF);
+                                 i++;
+                             }
+                            startActivity(new Intent(AddMoneyActivity.this, CustomerMyAccountActivity.class));
+
+
+
+
+
+                        finish();
                     }
 
                     @Override
@@ -55,8 +76,9 @@ public class AddMoneyActivity extends AppCompatActivity {
 
                     }
                 });
+                startActivity(new Intent(AddMoneyActivity.this, CustomerMyAccountActivity.class));
 
-                startActivity(new Intent( AddMoneyActivity.this, CustomerMyAccountActivity.class ));
+                //startActivity(new Intent( AddMoneyActivity.this, CustomerMyAccountActivity.class ));
                 finish();
             }
         });
