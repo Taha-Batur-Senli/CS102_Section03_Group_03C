@@ -108,9 +108,11 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
                     mRef.child(uid).child("reservations").setValue("");
                     mRef.child(uid).child("notifications").setValue("");
                     mRef.child(uid).child("name").setValue(name);
-                    mRef.child(uid).child("money").setValue(0);
-                    mRef.child(uid).child("points").setValue(0);
+                    mRef.child(uid).child("money").setValue("0");
+                    mRef.child(uid).child("points").setValue("0");
                     mRef.child(uid).child("fav restaurants").setValue("");
+                    mRef.child(uid).child("phone").setValue(phone);
+                    mRef.child(uid).child("ranking").setValue("0");
 
                     Toast.makeText( SignUpAsCustomerActivity.this, "Restaurant Created", Toast.LENGTH_SHORT);
                     startActivity( new Intent(SignUpAsCustomerActivity.this, CustomerProfile.class));

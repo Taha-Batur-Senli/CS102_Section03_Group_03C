@@ -5,14 +5,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,71 +22,31 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class CustomerProfile extends AppCompatActivity {
-    //Properties
-    Button logOut, myAccount, help;
-    FirebaseAuth mAuth;
-    DatabaseReference mRef;
-    FirebaseUser user;
-    TextView cusNameTV;
+public class AllRestaurantsDisplay extends AppCompatActivity {
     ListView listViewAllRestaurants;
     ArrayAdapter myAdapter;
     ArrayList<String> allRestaurants = new ArrayList<String>();
     FirebaseDatabase database;
     DatabaseReference reference;
+    FirebaseAuth mAuth;
+    DatabaseReference mRef;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_profile);
-
-        //Initialize
-        mAuth = FirebaseAuth.getInstance();
-        mRef = FirebaseDatabase.getInstance().getReference("Customers");
-        user = mAuth.getCurrentUser();
-        cusNameTV = (TextView)findViewById(R.id.txtNameCustomerProfile);
-        listViewAllRestaurants = (ListView)findViewById(R.id.lvAllRestaurants);
-        myAccount = (Button)findViewById(R.id.btnMyAccount);
-        help = (Button)findViewById(R.id.btnHelpCustomer);
+        setContentView(R.layout.activity_all_restaurants_display);
 
         myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allRestaurants);
         listViewAllRestaurants.setAdapter(myAdapter);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
+        mAuth = FirebaseAuth.getInstance();
+        mRef = FirebaseDatabase.getInstance().getReference("Customers");
+        user = mAuth.getCurrentUser();
 
-        //Methods called
         displayAllRestaurants();
         listOnLongClickAction();
-        myAccountAction();
-        logOutAction();
-        helpActivity();
-
-        //Get name and display a welcome message
-        mRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                final String userName = dataSnapshot.child(user.getUid()).child("name").getValue(String.class);
-                cusNameTV.setText("Welcome " + userName + "!");
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-    }
-
-    //METHODS
-    private void helpActivity() {
-        help.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CustomerProfile.this,CustHelpActivity.class));
-            }
-        });
     }
 
     private void displayAllRestaurants() {
@@ -115,26 +72,13 @@ public class CustomerProfile extends AppCompatActivity {
         });
     }
 
-    private void logOutAction() {
-        logOut = (Button) findViewById(R.id.btnLogOutCustomer);
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent( CustomerProfile.this, MainActivity.class));
-                finish();
-            }
-        });
-    }
-
     private void listOnLongClickAction() {
         listViewAllRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final int index;
-                index = position;
+                final int index = position;
 
-                new AlertDialog.Builder(CustomerProfile.this)
+                new AlertDialog.Builder(AllRestaurantsDisplay.this)
                         .setIcon(android.R.drawable.ic_input_add)
                         .setTitle("Are you sure?")
                         .setMessage("Do you want to add this restaurant to your favorite restaurants?")
@@ -142,6 +86,7 @@ public class CustomerProfile extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //TODO  favorite restaurantsa  ekle
+                                mRef.child(user.getUid()).child("fav restaurants").child("restorant_uid").child("name").setValue("restaurant_name");
                                 myAdapter.notifyDataSetChanged();
                             }
                         })
@@ -149,14 +94,6 @@ public class CustomerProfile extends AppCompatActivity {
                         .show();
 
                 return true;
-            }
-        });
-    }
-    private void myAccountAction() {
-        myAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CustomerProfile.this, CustomerMyAccountActivity.class));
             }
         });
     }

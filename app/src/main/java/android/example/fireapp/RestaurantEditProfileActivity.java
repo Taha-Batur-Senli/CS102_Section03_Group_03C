@@ -68,6 +68,7 @@ public class RestaurantEditProfileActivity extends AppCompatActivity {
                     mRef.child(user.getUid()).child("working hours").setValue(whUpdate);
                 if(!adressUpdate.isEmpty())
                     mRef.child(user.getUid()).child("adress").setValue(adressUpdate);
+                //TODO bug düzelt
                 if(!genreUpdate.isEmpty())
                     mRef.child(user.getUid()).child("genre").setValue(genreUpdate);
 
