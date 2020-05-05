@@ -18,6 +18,7 @@ Today I've created new activitiy pages for the gui, and implemented a demo menu 
 ### 02.05.2020
 Today I enhanced the menu system so that it now fits the theme of the GUI, created a settings option button to open an options panel, linked more buttons with their pages. 
 
-Coming soon...
+### 02.05.2020 - 05.05.2020
+In these 3 days, I've finished the menu system for customers, and added a new feature for restaurant owners so that they can now add dishes to their menu. In addition, we (me and Ali Eren) completed almost all of the GUI design, we only have 2-3 pages left while we've done approximately 19-20 pages. Other thing I worked on these days was implementing the design to the android studio java code that mainly Ege and Bora wrote. As a result, Log in and Register pages are now fully functioning and has their designs, almost finished.
 
 ****
