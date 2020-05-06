@@ -22,6 +22,6 @@ May the fourth be with you!
 Today I continued to wok on the GUI and kept designing the main menu and making sure the buttons on the completed pages were working properly. I learned how to use a ViewFlipper and applied it to the main menu successfully. The rest of my work time was spent on testing and brainstorming with the group on how the GUI would look. (Happy revenge of the fifth!)
 
 ### ~ 06.05.2020 ~
-Today we experienced several problems with the GitHub repository we are using. Namely, we weren't able to push our changes to GitHub. In the end, we decided to reorganize the repository by moving all the code in the seperate branches to the master branch and I spent time trying to solve the main problem while also working on the GUI (main menu).
+Today we experienced several problems with the GitHub repository we are using. Namely, we weren't able to push our changes to GitHub. In the end, we decided to reorganize the repository by moving all the code in the seperate branches to the master branch and I spent time trying to solve the main problem while also working on the GUI (main menu). In the end, me, Arda and Ege worked together to reorganize the main branch and we managed to combine the codes in the seperate branches into a single project which we uploaded to the master branch. With this somewhat painful but necessary reorganization process complete, I turned my attention back to the GUI.
 
 ****
