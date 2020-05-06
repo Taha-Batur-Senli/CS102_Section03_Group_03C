@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/CS102_Section03_Group_03C.iml" filepath="$PROJECT_DIR$/.idea/CS102_Section03_Group_03C.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FireApp.iml" filepath="$PROJECT_DIR$/FireApp.iml" group="FireApp" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="FireApp/app" />
     </modules>
   </component>
 </project>
