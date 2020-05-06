@@ -1,8 +1,10 @@
 package android.example.fireapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -97,7 +99,7 @@ public class RestaurantProfile extends AppCompatActivity {
         });
     }
 
-    private void logOffAction() {
+   /* private void logOffAction() {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,13 +109,36 @@ public class RestaurantProfile extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
+   private void logOffAction() {
+       logOut.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               new AlertDialog.Builder(RestaurantProfile.this)
+                       .setIcon(android.R.drawable.ic_dialog_alert)
+                       .setTitle("Are you sure?")
+                       .setMessage("Do you want to log out?")
+                       .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialog, int which) {
+                               FirebaseAuth.getInstance().signOut();
+                               startActivity(new Intent( RestaurantProfile.this, MainActivity.class));
+
+                           }
+                       })
+                       .setNegativeButton("No", null)
+                       .show();
+           }
+       });
+
+   }
 
     private void takeALookAtYourRestaurantAction() {
         takeALookAtYourRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity( new Intent(RestaurantProfile.this, RestaurantProfileDisplay.class));
+                finish();
             }
         });
     }
