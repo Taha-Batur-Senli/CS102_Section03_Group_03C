@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +29,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
     ArrayList<String> allRestaurants = new ArrayList<String>();
     FirebaseDatabase database;
     DatabaseReference reference;
+    SearchView searchViewRestaurant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,19 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         listViewAllRestaurants.setAdapter(myAdapter);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
+        searchViewRestaurant = (SearchView)findViewById(R.id.searchViewRestaurant);
+        searchViewRestaurant.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String text) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
         displayAllRestaurants();
         listOnLongClickAction();
@@ -54,7 +69,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
 
                     DataSnapshot item = items.next();
                     String name, genre;
-                    name = "Name : " + item.child("name").getValue().toString() + "  Genre: " + item.child("genre").getValue().toString();
+                    name =  item.child("name").getValue().toString() + "/  Genre: " + item.child("genre").getValue().toString();
 
                     allRestaurants.add(name);
                     myAdapter.notifyDataSetChanged();

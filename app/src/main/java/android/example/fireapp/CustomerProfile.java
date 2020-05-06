@@ -134,9 +134,23 @@ public class CustomerProfile extends AppCompatActivity {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent( CustomerProfile.this, MainActivity.class));
-                finish();
+                new AlertDialog.Builder(CustomerProfile.this)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Are you sure?")
+                        .setMessage("Do you want to log out?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                FirebaseAuth.getInstance().signOut();
+                                startActivity(new Intent( CustomerProfile.this, MainActivity.class));
+
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+
+
+                //finish();
             }
         });
     }
