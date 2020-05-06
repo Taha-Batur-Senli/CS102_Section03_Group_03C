@@ -156,6 +156,10 @@ public class CustomerProfile extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //TODO  favorite restaurantsa  ekle
+                                String item = allRestaurants.get(index);
+                                int index = item.indexOf(" ");
+                                String s = item.substring(5,index);
+                                mRef.child(user.getUid()).child("fav restaurants").child("name").setValue(s);
                                 myAdapter.notifyDataSetChanged();
                             }
                         })

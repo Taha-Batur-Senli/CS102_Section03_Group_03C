@@ -142,6 +142,23 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     mRef.child(uid).child("max seating duration").setValue(Integer.parseInt(maxDuration));
                     mRef.child(uid).child("min price to pre-order").setValue(Integer.parseInt(minPrice));
 
+                    mRef2.child(uid).child("rating").setValue(0);
+                    mRef2.child(uid).child("numOfTimesRated").setValue(0);
+                    mRef2.child(uid).child("isRestaurant").setValue(true);
+                    mRef2.child(uid).child("uid").setValue(uid);
+                    mRef2.child(uid).child("name").setValue(name);
+                    mRef2.child(uid).child("genre").setValue(genre);
+                    mRef2.child(uid).child("phone").setValue(phone);
+                    mRef2.child(uid).child("description").setValue("");
+                    mRef2.child(uid).child("reservations").setValue("");
+                    mRef2.child(uid).child("promotions").setValue("");
+                    mRef2.child(uid).child("menu").setValue("");
+                    mRef2.child(uid).child("email").setValue(user.getEmail());
+                    mRef2.child(uid).child("working hours").setValue("");
+                    mRef2.child(uid).child("adress").setValue("");
+                    mRef2.child(uid).child("max seating duration").setValue(Integer.parseInt(maxDuration));
+                    mRef2.child(uid).child("min price to pre-order").setValue(Integer.parseInt(minPrice));
+
                     Toast.makeText( SignUpAsRestaurantActivity.this, "Restaurant Created", Toast.LENGTH_SHORT).show();
                     startActivity( new Intent(SignUpAsRestaurantActivity.this, RestaurantProfile.class));
                     finish();

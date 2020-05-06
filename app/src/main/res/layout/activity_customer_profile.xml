@@ -22,7 +22,7 @@
         android:id="@+id/txtCustomerProfile"
         android:layout_width="119dp"
         android:layout_height="56dp"
-        android:text="RESSHUB!!"
+        android:text="REZERVATION APP"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,4 +89,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnMyAccount"
         app:layout_constraintVertical_bias="0.046" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Best Restaurants"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.408" />
 </androidx.constraintlayout.widget.ConstraintLayout>
