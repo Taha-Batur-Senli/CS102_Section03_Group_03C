@@ -15,4 +15,13 @@ Today I brainstormed with Arda regarding how to use Android Studio and how to cr
 ### ~ 03.05.2020 ~
 Today was mostly spent on choosing the pages I wanted to start with and getting a clear idea of which page linked to which other page(s). I began to work on our main menu and mostly completed its appearance. I also had a short brainstorming session with Arda that helped me get a more clear idea on how to use the searchview.
 
+### ~ 04.05.2020 ~
+May the fourth be with you!
+
+### ~ 05.05.2020 ~
+Today I continued to wok on the GUI and kept designing the main menu and making sure the buttons on the completed pages were working properly. I learned how to use a ViewFlipper and applied it to the main menu successfully. The rest of my work time was spent on testing and brainstorming with the group on how the GUI would look. (Happy revenge of the fifth!)
+
+### ~ 06.05.2020 ~
+Today we experienced several problems with the GitHub repository we are using. Namely, we weren't able to push our changes to GitHub. In the end, we decided to reorganize the repository by moving all the code in the seperate branches to the master branch and I spent time trying to solve the main problem while also working on the GUI (main menu).
+
 ****
