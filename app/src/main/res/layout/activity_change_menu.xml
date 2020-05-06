@@ -10,7 +10,7 @@
         android:id="@+id/textView7"
         android:layout_width="94dp"
         android:layout_height="30dp"
-        android:text="Edit Menu"
+        android:text="Edit Menu Trex"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
