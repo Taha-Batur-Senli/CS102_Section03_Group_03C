@@ -18,7 +18,7 @@
         <activity android:name=".EditCustomerAccountActivity" />
         <activity android:name=".AddMoneyActivity" />
         <activity android:name=".CustomerMyAccountActivity" />
-        <activity android:name=".CustomerEditActivity" />
+        <!--<activity android:name=".CustomerEditActivity" /> -->
         <activity android:name=".RestaurantProfileDisplay" />
         <activity android:name=".RestaurantEditProfileActivity" />
         <activity android:name=".HelpRestaurant" />
