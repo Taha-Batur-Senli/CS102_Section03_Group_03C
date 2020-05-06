@@ -34,9 +34,9 @@ public class LogInActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_log_in);
 
-        etEmail = (EditText)findViewById(R.id.etEmailLogIn);
-        etPassword = (EditText)findViewById(R.id.etPasswordLogIn);
-        logIn = (Button)findViewById(R.id.btnLogInActivity);
+        etEmail = findViewById(R.id.etEmailLogIn);
+        etPassword = findViewById(R.id.etPasswordLogIn);
+        logIn = findViewById(R.id.btnLogInActivity);
         mAuth = FirebaseAuth.getInstance();
 
         etEmail.setTextColor(ContextCompat.getColor(this, R.color.white));

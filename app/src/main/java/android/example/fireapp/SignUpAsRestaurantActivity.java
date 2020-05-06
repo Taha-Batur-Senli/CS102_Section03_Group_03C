@@ -2,10 +2,12 @@ package android.example.fireapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -35,19 +37,25 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up_as_restaurant);
 
-        etEmail = (EditText) findViewById(R.id.etEmailSignUpAsRest);
-        etPassword = (EditText)findViewById(R.id.etPasswordSignUpAsRest);
-        etName = (EditText)findViewById(R.id.etNameResSignUp);
-        etPhone = (EditText)findViewById(R.id.etPhoneResSignUp);
+        etEmail = findViewById(R.id.etEmailSignUpAsRest);
+        etPassword = findViewById(R.id.etPasswordSignUpAsRest);
+        etName = findViewById(R.id.etNameResSignUp);
+        etPhone = findViewById(R.id.etPhoneResSignUp);
 
-        spinner = (Spinner)findViewById(R.id.spinnerGenre);
+        spinner = findViewById(R.id.spinnerGenre);
         mAuth = FirebaseAuth.getInstance();
-        btnRegister = (Button)findViewById(R.id.btnRegisterSignUpAsRest);
+        btnRegister = findViewById(R.id.btnRegisterSignUpAsRest);
         database = FirebaseDatabase.getInstance();
         mRef = database.getReference( "Restaurants");
         mRef2 = database.getReference("Best Restaurants");
+
+        etEmail.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etPassword.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etName.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etPhone.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,10 +72,10 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
         final String name = etName.getText().toString();
         final String phone = etPhone.getText().toString();
         final String genre = spinner.getSelectedItem().toString();
-        /*
-        final String minPrice = etMinPrice.getText().toString();
-        final String maxDuration = etMaxDuration.getText().toString();
 
+        final int minPrice = 25;
+        final int maxDuration = 90;
+        /*
         if( minPrice.isEmpty()){
             etMinPrice.setError("You have to specify a lower limit for customers to pre-order from your restaurant! This choice can be changed later on.");
             etMinPrice.requestFocus();
@@ -110,11 +118,11 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
+        // progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                progressBar.setVisibility(View.GONE);
+                // progressBar.setVisibility(View.GONE);
                 if( task.isSuccessful()){
                     FirebaseUser user = mAuth.getCurrentUser();
 
@@ -137,8 +145,8 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     mRef.child(uid).child("email").setValue(user.getEmail());
                     mRef.child(uid).child("working hours").setValue("");
                     mRef.child(uid).child("adress").setValue("");
-                    /* mRef.child(uid).child("max seating duration").setValue(Integer.parseInt(maxDuration));
-                    mRef.child(uid).child("min price to pre-order").setValue(Integer.parseInt(minPrice)); */
+                    mRef.child(uid).child("max seating duration").setValue(maxDuration);
+                    mRef.child(uid).child("min price to pre-order").setValue(minPrice);
 
                     mRef2.child(uid).child("rating").setValue(0);
                     mRef2.child(uid).child("numOfTimesRated").setValue(0);
@@ -154,14 +162,16 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     mRef2.child(uid).child("email").setValue(user.getEmail());
                     mRef2.child(uid).child("working hours").setValue("");
                     mRef2.child(uid).child("adress").setValue("");
-                    /* mRef2.child(uid).child("max seating duration").setValue(Integer.parseInt(maxDuration));
-                    mRef2.child(uid).child("min price to pre-order").setValue(Integer.parseInt(minPrice)); */
+                    mRef2.child(uid).child("max seating duration").setValue(maxDuration);
+                    mRef2.child(uid).child("min price to pre-order").setValue(minPrice);
 
-                    Toast.makeText( SignUpAsRestaurantActivity.this, "Restaurant Created", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( SignUpAsRestaurantActivity.this, "Restaurant Created", Toast.LENGTH_SHORT);
                     startActivity( new Intent(SignUpAsRestaurantActivity.this, RestaurantProfile.class));
                     finish();
-                } else{
-                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                }
+                else {
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException)
+                    {
                         Toast.makeText(getApplicationContext(), "This email has an account!", Toast.LENGTH_SHORT).show();
                     }
                     else {
