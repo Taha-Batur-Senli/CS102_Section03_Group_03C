@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Iterator;
 
 public class ChangeFoodActivity extends AppCompatActivity {
-    Button save;
+    Button save, delete;
     EditText etName, etIngredients, etPrice;
     TextView nameTV;
     FirebaseAuth mAuth;
@@ -41,6 +41,7 @@ public class ChangeFoodActivity extends AppCompatActivity {
         etIngredients = (EditText)findViewById(R.id.etFoodIngredientChange);
         etPrice = (EditText)findViewById(R.id.etFoodPriceChange);
         save = (Button)findViewById(R.id.bttnSaveFoodChange);
+        delete = (Button)findViewById(R.id.btnDeleteFood); 
         nameTV = (TextView)findViewById(R.id.txtFoodNameChange);
 
         mAuth = FirebaseAuth.getInstance();
@@ -52,9 +53,41 @@ public class ChangeFoodActivity extends AppCompatActivity {
         nameTV.setText(name);
 
         saveChangesAction();
+        deleteAction();
 
     }
-    //TODO ikinci defa change ettiğimde bozuluyor
+
+    private void deleteAction() {
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                String name = intent.getStringExtra("NAME");
+                mRef.child(user.getUid()).child("menu").orderByChild("name").equalTo(name).addValueEventListener(new ValueEventListener() {
+                    int i, j, k = 0;
+                    @Override
+                    public void onDataChange (@NonNull DataSnapshot dataSnapshot){
+                        if ( i < 1) {
+                            mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
+                                    .removeValue();
+                            i++;
+                        }
+
+                        startActivity(new Intent(ChangeFoodActivity.this, RestaurantProfile.class));
+                        finish();
+                    }
+
+                    @Override
+                    public void onCancelled (@NonNull DatabaseError databaseError){
+
+                    }
+                });
+            }
+
+        });
+
+    }
+
     private void saveChangesAction() {
         save.setOnClickListener(new View.OnClickListener() {
             @Override

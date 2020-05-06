@@ -82,6 +82,7 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustomerMyAccountActivity.this, AddMoneyActivity.class));
+                finish();
             }
         });
 
@@ -92,6 +93,7 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustomerMyAccountActivity.this, EditCustomerAccountActivity.class));
+                finish();
 
             }
         });

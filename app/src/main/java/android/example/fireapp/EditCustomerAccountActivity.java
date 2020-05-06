@@ -46,8 +46,8 @@ public class EditCustomerAccountActivity extends AppCompatActivity {
                 if(!phoneUpdate.isEmpty())
                     mRef.child(user.getUid()).child("phone").setValue(phoneUpdate);
 
-                startActivity( new Intent(EditCustomerAccountActivity.this, CustomerMyAccountActivity.class));
-                //finish();
+                startActivity( new Intent(EditCustomerAccountActivity.this, CustomerProfile.class));
+                finish();
             }
         });
     }

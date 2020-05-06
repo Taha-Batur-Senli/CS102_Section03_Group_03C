@@ -90,7 +90,7 @@ public class AddMoneyActivity extends AppCompatActivity {
                         }
                     });
 
-                    startActivity(new Intent( AddMoneyActivity.this, CustomerMyAccountActivity.class ));
+                    startActivity(new Intent( AddMoneyActivity.this, CustomerProfile.class ));
                     finish();
                 }
             }
