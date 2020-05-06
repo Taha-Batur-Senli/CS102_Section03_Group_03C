@@ -3,11 +3,14 @@ package android.example.fireapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.core.view.Change;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -45,24 +49,23 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
-        menu.add("Deneme");
-        menu.add("Deneme2");
-        menu.add("Deneme3");
-        menu.add("Deneme4");
-        //TODO abi firebase e ekliyo yemeği ama listview da çağırmıyo
 
         //Display Menu
-        reference.child("Restaurants").child(user.getUid()).child("menu").addValueEventListener(new ValueEventListener() {
+        reference.child(user.getUid()).child("menu").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                menu.clear();
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
                 while (items.hasNext()) {
 
                     DataSnapshot item = items.next();
                     String name;
-                    name = "" + item.child("name").getValue().toString() + "_________________________________________"
+                    name = "" + item.child("name").getValue().toString() + ": " //Eğer burda değişiklik yaparsanız kod bozulabbilir
+                            //Bir değişiklik yapmdan önce beni arayın birlikte bakalım @Ege
+                            //name'den sonraki iki nokta üst üste orda olmak zorunda şuan, değiştircekseniz başka bi yerde
+                            //daha değiştirmeniz gerek. SubString alıyorum noktalı virgüle referansla
                             + item.child("ingredients").getValue().toString() +
-                            "                " + item.child("price").getValue().toString() + "TL";
+                            "___" + item.child("price").getValue().toString() + "TL";
 
                     menu.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -75,7 +78,25 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
             }
         });
 
+        editFoodAction();
         addDishAction();
+    }
+
+    private void editFoodAction() {
+        lvMenuRes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //gets the name of the dish
+                String item = menu.get(position);
+                int indexOfName = item.indexOf(":");
+                String name = item.substring(0,indexOfName);
+
+                Intent intent = new Intent(ChangeMenuActivity.this, ChangeFoodActivity.class);
+                intent.putExtra("NAME", name);
+                startActivity( intent);
+                finish();
+            }
+        });
     }
 
     private void addDishAction() {
@@ -94,16 +115,14 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
 
     @Override
     public void applyTexts(String name, String ingredients, String price) {
+
      String foodUid = reference.child(user.getUid()).child("menu").push().getKey();
-        reference.child(user.getUid()).child("menu").child(foodUid).child("name").setValue(name);
-        reference.child(user.getUid()).child("menu").child(foodUid).child("ingredients").setValue(ingredients);
-        reference.child(user.getUid()).child("menu").child(foodUid).child("price").setValue(price);
+        reference.child(user.getUid()).child("menu").child(foodUid).setValue(new Food(name, ingredients, Integer.parseInt(price)));
+        //reference.child(user.getUid()).child("menu").child(foodUid).child("ingredients").setValue(ingredients);
+        //reference.child(user.getUid()).child("menu").child(foodUid).child("price").setValue(price);
+        //reference.child(user.getUid()).child("menu").child(foodUid).child("uid").setValue(foodUid);
+        //reference.child(user.getUid()).child("menu").child(name).child("ingredients").setValue(ingredients);
+        //reference.child(user.getUid()).child("menu").child(name).child("price").setValue(price);
+
     }
-
-
-
-
-
-
-
 }

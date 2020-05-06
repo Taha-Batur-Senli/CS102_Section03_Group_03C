@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 public class RestaurantEditProfileActivity extends AppCompatActivity {
     //Properties
     Button save;
-    EditText etDescription, etPhone, etName, etWH,etAdress;
+    EditText etDescription, etPhone, etName, etWH,etAdress, etMaxDuration, etMinPrice;
     Spinner genre;
     DatabaseReference mRef;
     FirebaseAuth mAuth;
@@ -40,6 +40,8 @@ public class RestaurantEditProfileActivity extends AppCompatActivity {
         etName = (EditText)findViewById(R.id.etResProfileName);
         etWH = (EditText)findViewById(R.id.etResProfileWH);
         etAdress = (EditText)findViewById(R.id.etResProfileAdress);
+        etMaxDuration = (EditText)findViewById(R.id.etMaxDurationEdit);
+        etMinPrice = (EditText)findViewById(R.id.etMinPriceEdit);
         genre = (Spinner)findViewById(R.id.spinnerEdit);
 
         mAuth = FirebaseAuth.getInstance();
@@ -57,7 +59,13 @@ public class RestaurantEditProfileActivity extends AppCompatActivity {
                 final String whUpdate= etWH.getText().toString();
                 final String adressUpdate = etAdress.getText().toString();
                 final String genreUpdate = genre.getSelectedItem().toString();
+                final String minPriceUpdate = etMinPrice.getText().toString();
+                final String maxDurationUpdate = etMaxDuration.getText().toString();
 
+                if(!maxDurationUpdate.isEmpty())
+                    mRef.child(user.getUid()).child("max seating duration").setValue(Integer.parseInt(maxDurationUpdate));
+                if(!minPriceUpdate.isEmpty())
+                    mRef.child(user.getUid()).child("min price to pre-order").setValue(Integer.parseInt(minPriceUpdate));
                 if(!nameUpdate.isEmpty())
                     mRef.child(user.getUid()).child("name").setValue(nameUpdate);
                 if(!descriptionUpdate.isEmpty())

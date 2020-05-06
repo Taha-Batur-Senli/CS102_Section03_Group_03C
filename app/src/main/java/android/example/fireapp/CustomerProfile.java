@@ -167,6 +167,7 @@ public class CustomerProfile extends AppCompatActivity {
         });
     }
 
+    //TODO fav restorant olanların yanına * imgesi eklenir belki
     private void myAccountAction() {
         myAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,5 +175,10 @@ public class CustomerProfile extends AppCompatActivity {
                 startActivity(new Intent(CustomerProfile.this, CustomerMyAccountActivity.class));
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
     }
 }

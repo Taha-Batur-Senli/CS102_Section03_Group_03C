@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class RestaurantProfileDisplay extends AppCompatActivity {
-    TextView name, wh, adress, phone, description, genre, rating;
+    TextView name, wh, adress, phone, description, genre, rating, minPrice, maxDuration;
     DatabaseReference mRef;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -32,6 +32,8 @@ public class RestaurantProfileDisplay extends AppCompatActivity {
         description = (TextView)findViewById(R.id.txtResDisplayDescription);
         genre = (TextView)findViewById(R.id.txtResDisplayGenre);
         rating = (TextView)findViewById(R.id.txtRating);
+        minPrice = (TextView)findViewById(R.id.txtMinPriceResDisplay);
+        maxDuration = (TextView)findViewById(R.id.txtMaxDurationResDisplay);
 
         mAuth = FirebaseAuth.getInstance();
         mRef = FirebaseDatabase.getInstance().getReference("Restaurants");
@@ -47,6 +49,8 @@ public class RestaurantProfileDisplay extends AppCompatActivity {
                 final String descriptionString = dataSnapshot.child(user.getUid()).child("description").getValue(String.class);
                 final String genreString = dataSnapshot.child(user.getUid()).child("genre").getValue(String.class);
                 final int ratingString = dataSnapshot.child(user.getUid()).child("rating").getValue(Integer.class);
+                final int minPriceString = dataSnapshot.child(user.getUid()).child("min price to pre-order").getValue(Integer.class);
+                final int maxdurationString = dataSnapshot.child(user.getUid()).child("max seating duration").getValue(Integer.class);
 
                 name.setText( nameString );
                 wh.setText( "Working hours: " + whString );
@@ -55,6 +59,9 @@ public class RestaurantProfileDisplay extends AppCompatActivity {
                 description.setText( "Description: " + descriptionString );
                 genre.setText( "    Genre: " + genreString );
                 rating.setText(ratingString + "/5");
+                minPrice.setText("Minimum amount for customers to pre-order: " + minPriceString + " TL");
+                maxDuration.setText("Maximum seating duration (This data will not be seen by customers): " + maxdurationString + " minutes");
+
             }
 
             @Override

@@ -20,8 +20,8 @@
 
     <TextView
         android:id="@+id/txtResDisplayDescription"
-        android:layout_width="365dp"
-        android:layout_height="95dp"
+        android:layout_width="345dp"
+        android:layout_height="97dp"
         android:text="Description:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,21 +36,22 @@
         android:text="Working hours:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565" />
+        app:layout_constraintVertical_bias="0.476" />
 
     <TextView
         android:id="@+id/txtResDisplayGenre"
-        android:layout_width="360dp"
-        android:layout_height="53dp"
+        android:layout_width="338dp"
+        android:layout_height="50dp"
         android:text="Genre:"
         app:layout_constraintBottom_toTopOf="@+id/txtResDisplayWH"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtResDisplayDescription"
-        app:layout_constraintVertical_bias="0.487" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView6"
@@ -59,10 +60,10 @@
         android:text="Restaurant Information"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintHorizontal_bias="0.557"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtResDisplayWH"
-        app:layout_constraintVertical_bias="0.093" />
+        app:layout_constraintVertical_bias="0.326" />
 
     <TextView
         android:id="@+id/txtResDisplayPhone"
@@ -71,10 +72,10 @@
         android:text="GSM:"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.265" />
+        app:layout_constraintVertical_bias="0.049" />
 
     <TextView
         android:id="@+id/txtResDisplayAdress"
@@ -92,11 +93,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="47dp"
-        android:text="TextView"
+        android:text="rating"
         app:layout_constraintBottom_toTopOf="@+id/txtResDisplayDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.903"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtResDisplayName"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txtMaxDurationResDisplay"
+        android:layout_width="352dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="91dp"
+        android:text="max Duration"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.593"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtResDisplayWH"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txtMinPriceResDisplay"
+        android:layout_width="338dp"
+        android:layout_height="51dp"
+        android:text="Min Price"
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMaxDurationResDisplay" />
 </androidx.constraintlayout.widget.ConstraintLayout>

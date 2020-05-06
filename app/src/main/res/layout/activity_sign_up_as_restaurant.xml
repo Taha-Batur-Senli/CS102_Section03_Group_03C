@@ -30,7 +30,7 @@
         app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_bias="0.396" />
 
     <EditText
         android:id="@+id/etPasswordSignUpAsRest"
@@ -44,7 +44,7 @@
         app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.644" />
+        app:layout_constraintVertical_bias="0.533" />
 
     <Button
         android:id="@+id/btnRegisterSignUpAsRest"
@@ -56,7 +56,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.903" />
+        app:layout_constraintVertical_bias="0.922" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -81,7 +81,7 @@
         app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintVertical_bias="0.33" />
 
     <EditText
         android:id="@+id/etPhoneResSignUp"
@@ -95,7 +95,7 @@
         app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.559" />
+        app:layout_constraintVertical_bias="0.467" />
 
     <Spinner
         android:id="@+id/spinnerGenre"
@@ -104,10 +104,41 @@
         android:entries="@array/genres"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.174"
+        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764" />
+        app:layout_constraintVertical_bias="0.75" />
+
+    <EditText
+        android:id="@+id/etMaxSeatingSignUp"
+        android:layout_width="239dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="62dp"
+        android:ems="10"
+        android:hint="Max Seating Duration (mins)"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerGenre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etPasswordSignUpAsRest"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/etMinPriceSignUp"
+        android:layout_width="242dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:hint="Min Price for Pre-Order (TL)"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerGenre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintVertical_bias="0.47" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
