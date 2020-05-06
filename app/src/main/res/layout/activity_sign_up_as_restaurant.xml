@@ -4,141 +4,165 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpAsRestaurantActivity">
+    tools:context=".SignUpAsRestaurantActivity"
+    android:background="@drawable/background">
 
     <TextView
-        android:id="@+id/deneme"
-        android:layout_width="179dp"
-        android:layout_height="69dp"
-        android:text="Welcome To Restaurant Sign Up Page"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.21" />
-
-    <EditText
-        android:id="@+id/etEmailSignUpAsRest"
+        android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396" />
-
-    <EditText
-        android:id="@+id/etPasswordSignUpAsRest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.533" />
-
-    <Button
-        android:id="@+id/btnRegisterSignUpAsRest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
+        android:alpha="0.5"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="© 2020-2021  RESERVE\nAll Rights Reserved "
+        android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.922" />
+        app:layout_constraintVertical_bias="0.977" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="262dp"
+        android:layout_height="57dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:letterSpacing="0.2"
+        android:text="Register as a\nrestaurant owner"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.276" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etNameResSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.33" />
+        app:layout_constraintVertical_bias="0.172"
+        app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/btnRegisterSignUpAsRest"
+        android:layout_width="159dp"
+        android:layout_height="51dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/roboto_light"
+        android:text="Sign up"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.814" />
 
     <EditText
         android:id="@+id/etPhoneResSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="285dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button"
         android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
         android:hint="Phone"
         android:inputType="phone"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_bias="0.591" />
+
+    <EditText
+        android:id="@+id/etNameResSignUp"
+        android:layout_width="285dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.374" />
+
+    <EditText
+        android:id="@+id/etEmailSignUpAsRest"
+        android:layout_width="285dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.445" />
+
+    <EditText
+        android:id="@+id/etPasswordSignUpAsRest"
+        android:layout_width="285dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.519" />
 
     <Spinner
         android:id="@+id/spinnerGenre"
         android:layout_width="210dp"
         android:layout_height="41dp"
+        android:background="@drawable/button"
         android:entries="@array/genres"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.681" />
 
-    <EditText
-        android:id="@+id/etMaxSeatingSignUp"
-        android:layout_width="239dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginBottom="62dp"
-        android:ems="10"
-        android:hint="Max Seating Duration (mins)"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerGenre"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etPasswordSignUpAsRest"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/etMinPriceSignUp"
-        android:layout_width="242dp"
-        android:layout_height="43dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="Min Price for Pre-Order (TL)"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerGenre"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="0.47" />
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="12dp"
+        android:layout_height="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerGenre"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerGenre"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="@+id/spinnerGenre"
+        app:layout_constraintTop_toTopOf="@+id/spinnerGenre"
+        app:layout_constraintVertical_bias="0.55"
+        app:srcCompat="@drawable/polygon" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

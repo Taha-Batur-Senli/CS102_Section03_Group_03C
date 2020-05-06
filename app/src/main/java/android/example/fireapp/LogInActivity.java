@@ -2,10 +2,12 @@ package android.example.fireapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -29,12 +31,17 @@ public class LogInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_log_in);
 
         etEmail = (EditText)findViewById(R.id.etEmailLogIn);
         etPassword = (EditText)findViewById(R.id.etPasswordLogIn);
         logIn = (Button)findViewById(R.id.btnLogInActivity);
         mAuth = FirebaseAuth.getInstance();
+
+        etEmail.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etPassword.setTextColor(ContextCompat.getColor(this, R.color.white));
+
 
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class SignUpAsRestaurantActivity extends AppCompatActivity{
-    EditText etEmail, etPassword, etName, etPhone, etMaxDuration, etMinPrice;
+    EditText etEmail, etPassword, etName, etPhone;
     private FirebaseAuth mAuth;
     ProgressBar progressBar;
     Button btnRegister;
@@ -40,13 +40,10 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
         etEmail = (EditText) findViewById(R.id.etEmailSignUpAsRest);
         etPassword = (EditText)findViewById(R.id.etPasswordSignUpAsRest);
         etName = (EditText)findViewById(R.id.etNameResSignUp);
-        etPhone = (EditText)findViewById(R.id.etPasswordSignUpAsRest);
-        etMinPrice = (EditText)findViewById(R.id.etMinPriceSignUp);
-        etMaxDuration = (EditText)findViewById(R.id.etMaxSeatingSignUp);
+        etPhone = (EditText)findViewById(R.id.etPhoneResSignUp);
 
         spinner = (Spinner)findViewById(R.id.spinnerGenre);
         mAuth = FirebaseAuth.getInstance();
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         btnRegister = (Button)findViewById(R.id.btnRegisterSignUpAsRest);
         database = FirebaseDatabase.getInstance();
         mRef = database.getReference( "Restaurants");
@@ -66,9 +63,10 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
         String password = etPassword.getText().toString().trim();
         final String name = etName.getText().toString();
         final String phone = etPhone.getText().toString();
+        final String genre = spinner.getSelectedItem().toString();
+        /*
         final String minPrice = etMinPrice.getText().toString();
         final String maxDuration = etMaxDuration.getText().toString();
-        final String genre = spinner.getSelectedItem().toString();
 
         if( minPrice.isEmpty()){
             etMinPrice.setError("You have to specify a lower limit for customers to pre-order from your restaurant! This choice can be changed later on.");
@@ -80,7 +78,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
             etMaxDuration.setError("You need to enter an average seating duration for your customers! This choice can be changed later on.");
             etMaxDuration.requestFocus();
             return;
-        }
+        } */
 
         if( email.isEmpty()){
             etEmail.setError("Enter an email!");
@@ -139,8 +137,8 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     mRef.child(uid).child("email").setValue(user.getEmail());
                     mRef.child(uid).child("working hours").setValue("");
                     mRef.child(uid).child("adress").setValue("");
-                    mRef.child(uid).child("max seating duration").setValue(Integer.parseInt(maxDuration));
-                    mRef.child(uid).child("min price to pre-order").setValue(Integer.parseInt(minPrice));
+                    /* mRef.child(uid).child("max seating duration").setValue(Integer.parseInt(maxDuration));
+                    mRef.child(uid).child("min price to pre-order").setValue(Integer.parseInt(minPrice)); */
 
                     mRef2.child(uid).child("rating").setValue(0);
                     mRef2.child(uid).child("numOfTimesRated").setValue(0);
@@ -156,8 +154,8 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     mRef2.child(uid).child("email").setValue(user.getEmail());
                     mRef2.child(uid).child("working hours").setValue("");
                     mRef2.child(uid).child("adress").setValue("");
-                    mRef2.child(uid).child("max seating duration").setValue(Integer.parseInt(maxDuration));
-                    mRef2.child(uid).child("min price to pre-order").setValue(Integer.parseInt(minPrice));
+                    /* mRef2.child(uid).child("max seating duration").setValue(Integer.parseInt(maxDuration));
+                    mRef2.child(uid).child("min price to pre-order").setValue(Integer.parseInt(minPrice)); */
 
                     Toast.makeText( SignUpAsRestaurantActivity.this, "Restaurant Created", Toast.LENGTH_SHORT).show();
                     startActivity( new Intent(SignUpAsRestaurantActivity.this, RestaurantProfile.class));

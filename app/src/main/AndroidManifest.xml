@@ -24,11 +24,11 @@
         <activity android:name=".HelpRestaurant" />
         <activity android:name=".CustomerProfile" />
         <activity android:name=".SignUpAsCustomerActivity" />
-        <activity android:name=".LogInActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".RestaurantProfile" />
         <activity android:name=".SignUpAsRestaurantActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".LogInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
