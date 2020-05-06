@@ -4,96 +4,139 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpAsCustomerActivity">
+    tools:context=".SignUpAsCustomerActivity"
+    android:background="@drawable/background">
 
     <TextView
-        android:id="@+id/txtSignUpAsCus"
-        android:layout_width="185dp"
-        android:layout_height="69dp"
-        android:text="Customer Sign Up Page"
+        android:id="@+id/textView12"
+        android:layout_width="239dp"
+        android:layout_height="30dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:letterSpacing="0.2"
+        android:text="Register as a customer"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.276" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.553"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061" />
+        app:layout_constraintVertical_bias="0.172"
+        app:srcCompat="@drawable/logo" />
 
-    <Button
-        android:id="@+id/btnRegisterCustomer"
+    <TextView
+        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:alpha="0.5"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="© 2020-2021  RESERVE\nAll Rights Reserved "
+        android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.893" />
+        app:layout_constraintVertical_bias="0.977" />
 
-    <EditText
-        android:id="@+id/etEmailCustomer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
+    <Button
+        android:id="@+id/btnRegisterCustomer"
+        android:layout_width="159dp"
+        android:layout_height="51dp"
+        android:background="@drawable/button"
+        android:text="Sign up"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto_light"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.424"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.577" />
+        app:layout_constraintVertical_bias="0.772"  />
 
     <EditText
         android:id="@+id/etPasswordCustomer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="285dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button"
         android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.424"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.769" />
-
-    <ProgressBar
-        android:id="@+id/progressBarCustomerSignUp"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.538" />
 
     <EditText
-        android:id="@+id/etNameCustomer"
-        android:layout_width="211dp"
-        android:layout_height="50dp"
+        android:id="@+id/etEmailCustomer"
+        android:layout_width="285dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button"
         android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.42"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.464" />
+        app:layout_constraintVertical_bias="0.457" />
 
     <EditText
         android:id="@+id/etPhoneCustomer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="285dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button"
         android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
         android:hint="Phone"
         android:inputType="phone"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.424"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.661" />
+        app:layout_constraintVertical_bias="0.617" />
+
+    <EditText
+        android:id="@+id/etNameCustomer"
+        android:layout_width="285dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.377" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

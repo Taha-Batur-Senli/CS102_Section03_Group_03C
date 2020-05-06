@@ -1,8 +1,5 @@
 package android.example.fireapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,8 +19,6 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
 
 public class SignUpAsCustomerActivity extends AppCompatActivity {
     Button signUp;
@@ -35,13 +33,13 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_as_customer);
 
-        signUp = (Button)findViewById(R.id.btnRegisterCustomer);
-        etEmail = (EditText)findViewById(R.id.etEmailCustomer);
-        etPassword = (EditText)findViewById(R.id.etPasswordCustomer);
-        etName = (EditText)findViewById(R.id.etNameCustomer);
-        etPhone = (EditText)findViewById(R.id.etPhoneCustomer);
+        signUp = findViewById(R.id.btnRegisterCustomer);
+        etEmail = findViewById(R.id.etEmailCustomer);
+        etPassword = findViewById(R.id.etPasswordCustomer);
+        etName = findViewById(R.id.etNameCustomer);
+        etPhone = findViewById(R.id.etPhoneCustomer);
         mAuth = FirebaseAuth.getInstance();
-        pb = (ProgressBar)findViewById(R.id.progressBarCustomerSignUp);
+        // pb = (ProgressBar)findViewById(R.id.progressBarCustomerSignUp);
         database = FirebaseDatabase.getInstance();
         mRef  = database.getReference( "Customers");
 
@@ -114,7 +112,7 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
                     mRef.child(uid).child("phone").setValue(phone);
                     mRef.child(uid).child("ranking").setValue("0");
 
-                    Toast.makeText( SignUpAsCustomerActivity.this, "Restaurant Created", Toast.LENGTH_SHORT);
+                    Toast.makeText( SignUpAsCustomerActivity.this, "Restaurant Created", Toast.LENGTH_SHORT).show();
                     startActivity( new Intent(SignUpAsCustomerActivity.this, CustomerProfile.class));
                     finish();
                 } else{
