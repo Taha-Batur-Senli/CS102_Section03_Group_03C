@@ -27,7 +27,7 @@ import java.util.Iterator;
 
 public class CustomerProfile extends AppCompatActivity {
     //Properties
-    Button logOut, myAccount, help, allRestaurantsDisplay;;
+    Button logOut, myAccount, help, allRestaurantsDisplay, myFavRestaurants;
     FirebaseAuth mAuth;
     DatabaseReference mRef;
     FirebaseUser user;
@@ -49,6 +49,7 @@ public class CustomerProfile extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         cusNameTV = (TextView)findViewById(R.id.txtNameCustomerProfile);
         listViewAllRestaurants = (ListView)findViewById(R.id.lvAllRestaurants);
+        myFavRestaurants = (Button)findViewById(R.id.btnMyFavRestaurants);
 
         myAccount = (Button)findViewById(R.id.btnMyAccount);
         help = (Button)findViewById(R.id.btnHelpCustomer);
@@ -67,6 +68,7 @@ public class CustomerProfile extends AppCompatActivity {
         logOutAction();
         helpActivity();
         allRestaurantsDisplayActivity();
+        myFavRestaurantsActivity();
 
 
         //Get name and display a welcome message
@@ -85,6 +87,15 @@ public class CustomerProfile extends AppCompatActivity {
         });
 
 
+    }
+
+    private void myFavRestaurantsActivity() {
+        myFavRestaurants.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomerProfile.this, MyFavActivities.class));
+            }
+        });
     }
 
     //METHODS
@@ -115,7 +126,7 @@ public class CustomerProfile extends AppCompatActivity {
 
                     DataSnapshot item = items.next();
                     String name;
-                    name = "" + item.child("name").getValue().toString() + "/  Genre: "  + item.child("genre").getValue().toString();
+                    name = "" + item.child("name").getValue().toString() + " -"  + item.child("genre").getValue().toString();
 
                     allRestaurants.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -140,64 +151,14 @@ public class CustomerProfile extends AppCompatActivity {
             }
         });
     }
-    /*private void logOutAction() {
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AlertDialog.Builder(CustomerProfile.this)
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Are you sure?")
-                        .setMessage("Do you want to log out?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                FirebaseAuth.getInstance().signOut();
-                                startActivity(new Intent( CustomerProfile.this, MainActivity.class));
 
-                            }
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-            }
-        });
-
-    }*/
-
-   /* private void listOnLongClickAction() {
-        listViewAllRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final int index;
-                index = position;
-
-                new AlertDialog.Builder(CustomerProfile.this)
-                        .setIcon(android.R.drawable.ic_input_add)
-                        .setTitle("Are you sure?")
-                        .setMessage("Do you want to add this restaurant to your favorite restaurants?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //TODO  favorite restaurantsa  ekle
-                                String item = allRestaurants.get(index);
-                                int index = item.indexOf(" ");
-                                String s = item.substring(5,index);
-                                mRef.child(user.getUid()).child("fav restaurants").child("name").setValue(s);
-                                myAdapter.notifyDataSetChanged();
-                            }
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-
-                return true;
-            }
-        });
-    }*/
+    int index;
 
     private void listOnLongClickAction() {
         listViewAllRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final int index;
+                //final int index;
                 index = position;
 
                 new AlertDialog.Builder(CustomerProfile.this)
@@ -207,28 +168,31 @@ public class CustomerProfile extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                //TODO  favorite restaurantsa  ekle, düzelt
-                                String item = myAdapter.getItem(index).toString();
-                                int index1 = item.indexOf("/");
+                                final String item = myAdapter.getItem(index).toString();
+                                int index1 = item.indexOf(" ");
                                 final String s = item.substring(0,index1);
-                                mRef.child(user.getUid()).child("fav restaurants").child("name").setValue(s);
-                                /*final DatabaseReference refRestaurants = FirebaseDatabase.getInstance().getReference("Restaurants");
-                                //final String f = refRestaurants.orderByChild("name").equalTo(s).getRef().getKey();
-                                //mRef.child(user.getUid()).child("fav restaurants").child(f).child("name").setValue(s);
-                                DatabaseReference t3  = refRestaurants.orderByChild("name").equalTo(s).getRef();
-                                t3.addValueEventListener(new ValueEventListener() {
+                                reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        final String uid = dataSnapshot.child("uid").getValue(String.class);
-                                        mRef.child(user.getUid()).child("fav restaurants").child(uid).child("name").setValue(s);
-                                    }
+                                        Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                                        while(items.hasNext()) {
+                                            DataSnapshot item1 = items.next();
+                                            String searchName;
+                                            String searchedId;
+                                            if(item1.child("name").getValue().toString().equals(s)){
 
+                                                searchedId = item1.child("uid").getValue().toString();
+                                                mRef.child(user.getUid()).child("fav restaurants").child(searchedId).push();
+                                                mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("name").setValue(s);
+                                                //mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("genre").setValue(s2);
+                                                myAdapter.notifyDataSetChanged();
+                                            }
+                                        }
+                                    }
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                                     }
-                                });*/
-
+                                });
                                 myAdapter.notifyDataSetChanged();
                             }
                         })
@@ -239,6 +203,7 @@ public class CustomerProfile extends AppCompatActivity {
             }
         });
     }
+
 
     //TODO fav restorant olanların yanına * imgesi eklenir belki
     private void myAccountAction() {
@@ -250,10 +215,6 @@ public class CustomerProfile extends AppCompatActivity {
         });
     }
 
-   /* @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
-    }*/
 
     @Override
     public void onBackPressed() {

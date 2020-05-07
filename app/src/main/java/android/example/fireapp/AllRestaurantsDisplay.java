@@ -28,6 +28,9 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
     ArrayList<String> allRestaurants = new ArrayList<String>();
     FirebaseDatabase database;
     DatabaseReference reference;
+    FirebaseAuth mAuth;
+    DatabaseReference mRef;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,10 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         listViewAllRestaurants.setAdapter(myAdapter);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
+        mAuth = FirebaseAuth.getInstance();
+        mRef = FirebaseDatabase.getInstance().getReference("Customers");
+        user = mAuth.getCurrentUser();
+
 
         displayAllRestaurants();
         listOnLongClickAction();
@@ -54,7 +61,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
 
                     DataSnapshot item = items.next();
                     String name, genre;
-                    name = "Name : " + item.child("name").getValue().toString() + "  Genre: " + item.child("genre").getValue().toString();
+                    name = item.child("name").getValue().toString() + "  - " + item.child("genre").getValue().toString();
 
                     allRestaurants.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -68,11 +75,12 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         });
     }
 
+    int index;
     private void listOnLongClickAction() {
         listViewAllRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final int index;
+                //final int index;
                 index = position;
 
                 new AlertDialog.Builder(AllRestaurantsDisplay.this)
@@ -82,7 +90,31 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                //TODO  favorite restaurantsa  ekle
+                                final String item = myAdapter.getItem(index).toString();
+                                int index1 = item.indexOf(" ");
+                                final String s = item.substring(0,index1);
+                                reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                                        while(items.hasNext()) {
+                                            DataSnapshot item1 = items.next();
+                                            String searchName;
+                                            String searchedId;
+                                            if(item1.child("name").getValue().toString().equals(s)){
+
+                                                searchedId = item1.child("uid").getValue().toString();
+                                                mRef.child(user.getUid()).child("fav restaurants").child(searchedId).push();
+                                                mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("name").setValue(s);
+                                                //mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("genre").setValue(s2);
+                                                myAdapter.notifyDataSetChanged();
+                                            }
+                                        }
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    }
+                                });
                                 myAdapter.notifyDataSetChanged();
                             }
                         })
