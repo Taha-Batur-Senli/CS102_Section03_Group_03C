@@ -112,9 +112,20 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
                     mRef.child(uid).child("phone").setValue(phone);
                     mRef.child(uid).child("ranking").setValue("0");
 
-                    Toast.makeText( SignUpAsCustomerActivity.this, "Restaurant Created", Toast.LENGTH_SHORT).show();
-                    startActivity( new Intent(SignUpAsCustomerActivity.this, CustomerProfile.class));
-                    finish();
+                    Toast.makeText( SignUpAsCustomerActivity.this, "Customer Created", Toast.LENGTH_SHORT).show();
+
+
+                    if(name.equalsIgnoreCase("David")){
+                        Toast.makeText(getApplicationContext(),  "Welcome to the special page Mr. Davenport", Toast.LENGTH_SHORT).show();
+                        finish();
+                        startActivity( new Intent(SignUpAsCustomerActivity.this, EasterEggPage.class));
+
+
+                    }
+                    else {
+                        startActivity(new Intent(SignUpAsCustomerActivity.this, CustomerProfile.class));
+                        finish();
+                    }
                 } else{
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                         Toast.makeText(getApplicationContext(), "This email has an account!", Toast.LENGTH_SHORT).show();
