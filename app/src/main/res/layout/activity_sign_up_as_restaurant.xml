@@ -164,5 +164,4 @@
         app:layout_constraintVertical_bias="0.55"
         app:srcCompat="@drawable/polygon" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

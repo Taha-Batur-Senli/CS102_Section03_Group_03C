@@ -115,7 +115,7 @@ public class CustomerProfile extends AppCompatActivity {
 
                     DataSnapshot item = items.next();
                     String name;
-                    name = "Name : " + item.child("name").getValue().toString() + "  Genre: "  + item.child("genre").getValue().toString();
+                    name = "" + item.child("name").getValue().toString() + "/  Genre: "  + item.child("genre").getValue().toString();
 
                     allRestaurants.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -135,7 +135,7 @@ public class CustomerProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent( CustomerProfile.this, MainActivity.class));
+                startActivity(new Intent( CustomerProfile.this, LogInActivity.class));
                 finish();
             }
         });
@@ -163,7 +163,7 @@ public class CustomerProfile extends AppCompatActivity {
 
     }*/
 
-    private void listOnLongClickAction() {
+   /* private void listOnLongClickAction() {
         listViewAllRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -191,6 +191,53 @@ public class CustomerProfile extends AppCompatActivity {
                 return true;
             }
         });
+    }*/
+
+    private void listOnLongClickAction() {
+        listViewAllRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                final int index;
+                index = position;
+
+                new AlertDialog.Builder(CustomerProfile.this)
+                        .setIcon(android.R.drawable.ic_input_add)
+                        .setTitle("Are you sure?")
+                        .setMessage("Do you want to add this restaurant to your favorite restaurants?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //TODO  favorite restaurantsa  ekle, düzelt
+                                String item = myAdapter.getItem(index).toString();
+                                int index1 = item.indexOf("/");
+                                final String s = item.substring(0,index1);
+                                mRef.child(user.getUid()).child("fav restaurants").child("name").setValue(s);
+                                /*final DatabaseReference refRestaurants = FirebaseDatabase.getInstance().getReference("Restaurants");
+                                //final String f = refRestaurants.orderByChild("name").equalTo(s).getRef().getKey();
+                                //mRef.child(user.getUid()).child("fav restaurants").child(f).child("name").setValue(s);
+                                DatabaseReference t3  = refRestaurants.orderByChild("name").equalTo(s).getRef();
+                                t3.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        final String uid = dataSnapshot.child("uid").getValue(String.class);
+                                        mRef.child(user.getUid()).child("fav restaurants").child(uid).child("name").setValue(s);
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });*/
+
+                                myAdapter.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+
+                return true;
+            }
+        });
     }
 
     //TODO fav restorant olanların yanına * imgesi eklenir belki
@@ -203,8 +250,31 @@ public class CustomerProfile extends AppCompatActivity {
         });
     }
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         //super.onBackPressed();
+    }*/
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to log off?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(CustomerProfile.this, LogInActivity.class));
+                        finish();
+                        //CustomerProfile.this.finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 }

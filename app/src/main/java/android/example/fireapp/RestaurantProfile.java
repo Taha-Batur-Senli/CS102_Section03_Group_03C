@@ -122,7 +122,10 @@ public class RestaurantProfile extends AppCompatActivity {
                            @Override
                            public void onClick(DialogInterface dialog, int which) {
                                FirebaseAuth.getInstance().signOut();
-                               startActivity(new Intent( RestaurantProfile.this, MainActivity.class));
+                               //startActivity(new Intent( RestaurantProfile.this, MainActivity.class));
+                               startActivity(new Intent(RestaurantProfile.this, LogInActivity.class));
+                               finish();
+
 
                            }
                        })
@@ -138,13 +141,35 @@ public class RestaurantProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity( new Intent(RestaurantProfile.this, RestaurantProfileDisplay.class));
-                finish();
             }
         });
     }
 
-    @Override
+  /*  @Override
     public void onBackPressed() {
         //super.onBackPressed();
+    }*/
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to log off?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(RestaurantProfile.this, LogInActivity.class));
+                        finish();
+                        //RestaurantProfile.this.finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 }

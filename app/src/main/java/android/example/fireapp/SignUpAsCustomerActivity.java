@@ -87,11 +87,11 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
             return;
         }
 
-        pb.setVisibility(View.VISIBLE);
+        //pb.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                pb.setVisibility(View.GONE);
+          //      pb.setVisibility(View.GONE);
                 if( task.isSuccessful()){
                     FirebaseUser user = mAuth.getCurrentUser();
 
