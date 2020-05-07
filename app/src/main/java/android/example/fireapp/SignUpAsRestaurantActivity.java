@@ -31,7 +31,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
     Spinner spinner;
     FirebaseDatabase database;
     DatabaseReference mRef;
-    // DatabaseReference mRef2;
+    DatabaseReference mRef2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
         btnRegister = findViewById(R.id.btnRegisterSignUpAsRest);
         database = FirebaseDatabase.getInstance();
         mRef = database.getReference( "Restaurants");
-        // mRef2 = database.getReference("Best Restaurants");
+         mRef2 = database.getReference("Best Restaurants");
 
         etEmail.setTextColor(ContextCompat.getColor(this, R.color.white));
         etPassword.setTextColor(ContextCompat.getColor(this, R.color.white));
@@ -147,7 +147,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     mRef.child(uid).child("max seating duration").setValue(maxDuration);
                     mRef.child(uid).child("min price to pre-order").setValue(minPrice);
 
-                    /* mRef2.child(uid).child("rating").setValue(0);
+                     mRef2.child(uid).child("rating").setValue(0);
                     mRef2.child(uid).child("numOfTimesRated").setValue(0);
                     mRef2.child(uid).child("isRestaurant").setValue(true);
                     mRef2.child(uid).child("uid").setValue(uid);
@@ -162,7 +162,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     mRef2.child(uid).child("working hours").setValue("");
                     mRef2.child(uid).child("adress").setValue("");
                     mRef2.child(uid).child("max seating duration").setValue(maxDuration);
-                    mRef2.child(uid).child("min price to pre-order").setValue(minPrice); */
+                    mRef2.child(uid).child("min price to pre-order").setValue(minPrice);
 
                     Toast.makeText( SignUpAsRestaurantActivity.this, "Restaurant Created", Toast.LENGTH_SHORT);
                     startActivity( new Intent(SignUpAsRestaurantActivity.this, RestaurantProfile.class));

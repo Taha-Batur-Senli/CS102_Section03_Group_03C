@@ -146,17 +146,12 @@ public class MyFavActivities extends AppCompatActivity {
                                 finish();
                                 myAdapter .notifyDataSetChanged();
                             }
-
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
-
-
             }
         });
     }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,6 +50,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
 
         displayAllRestaurants();
         listOnLongClickAction();
+        displayRestProfileAction();
 
 
     }
@@ -122,6 +124,42 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
                         .show();
 
                 return true;
+            }
+        });
+    }
+
+    private void displayRestProfileAction() {
+        listViewAllRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //gets the name of the dish
+                String item = allRestaurants.get(position);
+                int indexOfName = item.indexOf(", ");
+                final String name = item.substring(0,indexOfName);
+
+                final DatabaseReference refRests = FirebaseDatabase.getInstance().getReference("Restaurants");
+                refRests.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                        while (items.hasNext()) {
+                            DataSnapshot item1 = items.next();
+                            String searchedId;
+                            if (item1.child("name").getValue().toString().equals(name)) {
+
+                                searchedId = item1.child("uid").getValue().toString();
+                                Intent intent = new Intent(AllRestaurantsDisplay.this, CustomerPOVRestaurant.class);
+                                intent.putExtra("UID", searchedId);
+                                startActivity( intent);
+                                finish();
+                                myAdapter .notifyDataSetChanged();
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
             }
         });
     }

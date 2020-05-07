@@ -47,7 +47,15 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String email = etEmail.getText().toString().trim();
+                if (email.isEmpty()){
+                    etEmail.setError("Enter an email!");
+                    etEmail.requestFocus();
+                }
                 String password = etPassword.getText().toString().trim();
+                if (password.isEmpty()){
+                    etPassword.setError("Enter a password!");
+                    etPassword.requestFocus();
+                }
 
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
