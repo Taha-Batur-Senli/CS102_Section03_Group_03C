@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,16 +22,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
 
 public class SignUpAsRestaurantActivity extends AppCompatActivity{
     EditText etEmail, etPassword, etName, etPhone;
     private FirebaseAuth mAuth;
-    ProgressBar progressBar;
+    // ProgressBar progressBar;
     Button btnRegister;
     Spinner spinner;
     FirebaseDatabase database;
-    DatabaseReference mRef, mRef2;
+    DatabaseReference mRef;
+    // DatabaseReference mRef2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +49,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
         btnRegister = findViewById(R.id.btnRegisterSignUpAsRest);
         database = FirebaseDatabase.getInstance();
         mRef = database.getReference( "Restaurants");
-        mRef2 = database.getReference("Best Restaurants");
+        // mRef2 = database.getReference("Best Restaurants");
 
         etEmail.setTextColor(ContextCompat.getColor(this, R.color.white));
         etPassword.setTextColor(ContextCompat.getColor(this, R.color.white));
@@ -148,7 +147,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     mRef.child(uid).child("max seating duration").setValue(maxDuration);
                     mRef.child(uid).child("min price to pre-order").setValue(minPrice);
 
-                    mRef2.child(uid).child("rating").setValue(0);
+                    /* mRef2.child(uid).child("rating").setValue(0);
                     mRef2.child(uid).child("numOfTimesRated").setValue(0);
                     mRef2.child(uid).child("isRestaurant").setValue(true);
                     mRef2.child(uid).child("uid").setValue(uid);
@@ -163,7 +162,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     mRef2.child(uid).child("working hours").setValue("");
                     mRef2.child(uid).child("adress").setValue("");
                     mRef2.child(uid).child("max seating duration").setValue(maxDuration);
-                    mRef2.child(uid).child("min price to pre-order").setValue(minPrice);
+                    mRef2.child(uid).child("min price to pre-order").setValue(minPrice); */
 
                     Toast.makeText( SignUpAsRestaurantActivity.this, "Restaurant Created", Toast.LENGTH_SHORT);
                     startActivity( new Intent(SignUpAsRestaurantActivity.this, RestaurantProfile.class));

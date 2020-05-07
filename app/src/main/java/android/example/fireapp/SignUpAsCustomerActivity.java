@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,6 +43,11 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
         // pb = (ProgressBar)findViewById(R.id.progressBarCustomerSignUp);
         database = FirebaseDatabase.getInstance();
         mRef  = database.getReference( "Customers");
+
+        etEmail.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etPassword.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etName.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etPhone.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
