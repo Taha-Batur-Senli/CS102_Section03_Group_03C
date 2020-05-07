@@ -115,7 +115,7 @@ public class CustomerProfile extends AppCompatActivity {
 
                     DataSnapshot item = items.next();
                     String name;
-                    name = "Name : " + item.child("name").getValue().toString() + "  Genre: "  + item.child("genre").getValue().toString();
+                    name =  item.child("name").getValue().toString() + "/  Genre: "  + item.child("genre").getValue().toString();
 
                     allRestaurants.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -154,12 +154,13 @@ public class CustomerProfile extends AppCompatActivity {
             }
         });
     }
+     int index;
 
     private void listOnLongClickAction() {
         listViewAllRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final int index;
+                //final int index;
                 index = position;
 
                 new AlertDialog.Builder(CustomerProfile.this)
@@ -170,10 +171,42 @@ public class CustomerProfile extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //TODO  favorite restaurantsa  ekle
-                                String item = allRestaurants.get(index);
-                                int index = item.indexOf(" ");
-                                String s = item.substring(5,index);
-                                mRef.child(user.getUid()).child("fav restaurants").child("name").setValue(s);
+                                final String item = myAdapter.getItem(index).toString();
+                                int index1 = item.indexOf("/");
+                                final String s = item.substring(0,index1);
+                                //mRef.child(user.getUid()).child("fav restaurants").child("name").setValue(s);
+                                    reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                                            while(items.hasNext()) {
+                                                DataSnapshot item1 = items.next();
+                                                String searchName;
+                                                String searchedId;
+                                                if(item1.child("name").getValue().toString().equals(s)){
+
+                                                    searchedId = item1.child("uid").getValue().toString();
+                                                    mRef.child(user.getUid()).child("fav restaurants").child(searchedId).push();
+                                                    mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("name").setValue(s);
+                                                    myAdapter.notifyDataSetChanged();
+
+
+
+                                                }
+
+
+                                            }
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+
+
                                 myAdapter.notifyDataSetChanged();
                             }
                         })
@@ -195,8 +228,51 @@ public class CustomerProfile extends AppCompatActivity {
         });
     }
 
+    /*public void getRestaurantId(){
+        reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                while(items.hasNext()) {
+                    DataSnapshot item = items.next();
+                    String searchName;
+                    String searchedId = "";
+                    if(item.child("name").toString().equals(myAdapter.getItem(index))){
+                        searchedId = item.child("uid").toString();
+
+
+                    }
+
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }*/
+
+
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to log off?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        CustomerProfile.this.finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 }

@@ -118,8 +118,10 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
 
      String foodUid = reference.child(user.getUid()).child("menu").push().getKey();
         reference.child(user.getUid()).child("menu").child(foodUid).setValue(new Food(name, ingredients, Integer.parseInt(price)));
-        //reference.child(user.getUid()).child("menu").child(foodUid).child("ingredients").setValue(ingredients);
-        //reference.child(user.getUid()).child("menu").child(foodUid).child("price").setValue(price);
+        reference.child(user.getUid()).child("menu").child(foodUid).child("ingredients").setValue(ingredients);
+        DatabaseReference reference1 = database.getReference( "Restaurants");;
+
+        reference1.child(user.getUid()).child("menu").child(foodUid).child("price").setValue(price);
         //reference.child(user.getUid()).child("menu").child(foodUid).child("uid").setValue(foodUid);
         //reference.child(user.getUid()).child("menu").child(name).child("ingredients").setValue(ingredients);
         //reference.child(user.getUid()).child("menu").child(name).child("price").setValue(price);
