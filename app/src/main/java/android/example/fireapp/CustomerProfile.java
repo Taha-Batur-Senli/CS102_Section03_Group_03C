@@ -75,9 +75,10 @@ public class CustomerProfile extends AppCompatActivity {
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 final String userName = dataSnapshot.child(user.getUid()).child("name").getValue(String.class);
                 cusNameTV.setText("Welcome " + userName + "!");
+               // if (userName.toLowerCase().equals("david"))
+                 //   cusNameTV.setText("Welcome hocam, we will miss you :(");
             }
 
             @Override
@@ -126,7 +127,7 @@ public class CustomerProfile extends AppCompatActivity {
 
                     DataSnapshot item = items.next();
                     String name;
-                    name = "" + item.child("name").getValue().toString() + " -"  + item.child("genre").getValue().toString();
+                    name = "" + item.child("name").getValue().toString() + ", "  + item.child("genre").getValue().toString();
 
                     allRestaurants.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -169,7 +170,7 @@ public class CustomerProfile extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 final String item = myAdapter.getItem(index).toString();
-                                int index1 = item.indexOf(" ");
+                                int index1 = item.indexOf(", ");
                                 final String s = item.substring(0,index1);
                                 reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
                                     @Override
@@ -184,7 +185,7 @@ public class CustomerProfile extends AppCompatActivity {
                                                 searchedId = item1.child("uid").getValue().toString();
                                                 mRef.child(user.getUid()).child("fav restaurants").child(searchedId).push();
                                                 mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("name").setValue(s);
-                                                //mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("genre").setValue(s2);
+                                                mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("uid").setValue(searchedId);
                                                 myAdapter.notifyDataSetChanged();
                                             }
                                         }

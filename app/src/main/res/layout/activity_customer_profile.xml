@@ -33,15 +33,15 @@
 
     <TextView
         android:id="@+id/txtNameCustomerProfile"
-        android:layout_width="91dp"
-        android:layout_height="34dp"
+        android:layout_width="170dp"
+        android:layout_height="56dp"
         android:text="Welcome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.434"
+        app:layout_constraintHorizontal_bias="0.363"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.206" />
+        app:layout_constraintVertical_bias="0.167" />
 
     <Button
         android:id="@+id/btnMyAccount"
