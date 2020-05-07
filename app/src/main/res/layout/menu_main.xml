@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2"
+    tools:context=".MainMenu">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="302dp"
+        android:layout_height="49dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:letterSpacing="0.2"
+        android:text="Welcome,"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view_flipper"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toEndOf="@+id/view_flipper"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.118" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="326dp"
+        android:layout_height="46dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:letterSpacing="0.2"
+        android:text="Favorite Restaurants ***"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.411"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.807" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="326dp"
+        android:layout_height="46dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center"
+        android:letterSpacing="0.2"
+        android:text="Best Restaurants***"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.572" />
+
+    <ViewFlipper
+        android:id="@+id/view_flipper"
+        android:layout_width="409dp"
+        android:layout_height="167dp"
+        android:fontFamily="@font/roboto_light"
+        android:inAnimation="@android:anim/slide_in_left"
+        android:outAnimation="@android:anim/slide_out_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.251" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.041"
+        app:srcCompat="@drawable/logo" />
+
+    <SearchView
+        android:id="@+id/search"
+        android:layout_width="309dp"
+        android:layout_height="53dp"
+        android:accessibilityPaneTitle="F"
+        android:background="@drawable/button"
+        android:backgroundTint="#FFFFFF"
+        android:clickable="true"
+        android:closeIcon="@drawable/ic_close_white_24dp"
+        android:fontFamily="@font/roboto_light"
+        android:goIcon="@drawable/ic_keyboard_arrow_right_white_24dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search restaurants... "
+        android:searchHintIcon="@drawable/ic_search_white_24dp"
+        android:searchIcon="@drawable/ic_search_white_24dp"
+        android:voiceIcon="@drawable/ic_mic_white_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.486" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="409dp"
+        android:layout_height="107dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.701" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="409dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.949" />
+</androidx.constraintlayout.widget.ConstraintLayout>
