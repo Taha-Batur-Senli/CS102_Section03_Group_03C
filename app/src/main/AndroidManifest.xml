@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FragmentMenu"></activity>
+        <activity android:name=".AddPromoActivity"></activity>
+        <activity android:name=".PromotionsDisplayActivity" />
+        <activity android:name=".ShowMenuPOV" />
         <activity android:name=".CustomerPOVRestaurant" />
         <activity android:name=".MyFavActivities" />
         <activity android:name=".ChangeFoodActivity" />

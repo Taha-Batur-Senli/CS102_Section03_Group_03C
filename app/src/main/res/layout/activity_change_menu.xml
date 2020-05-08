@@ -25,10 +25,10 @@
         android:text="Add Dish"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.812" />
+        app:layout_constraintVertical_bias="0.755" />
 
     <ListView
         android:id="@+id/lvMenuRes"
@@ -38,4 +38,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

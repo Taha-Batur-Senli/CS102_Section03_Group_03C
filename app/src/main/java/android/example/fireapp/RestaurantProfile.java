@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RestaurantProfile extends AppCompatActivity {
     //PROPERTIES
-    Button logOut, editProfile, help, takeALookAtYourRestaurant, changeMenu;
+    Button logOut, editProfile, help, takeALookAtYourRestaurant, changeMenu, promotions;
     DatabaseReference mRef;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -44,6 +44,7 @@ public class RestaurantProfile extends AppCompatActivity {
         editProfile =  (Button)findViewById(R.id.resEditProfile);
         help = (Button)findViewById(R.id.resHelp);
         logOut = (Button)findViewById(R.id.logOutResProfile);
+        promotions = (Button)findViewById(R.id.btnPromotionMenu);
         changeMenu = (Button)findViewById(R.id.btnChangeMenu);
 
         //Call methods
@@ -52,6 +53,7 @@ public class RestaurantProfile extends AppCompatActivity {
         helpAction();
         editTextAction();
         changeMenuAction();
+        promotionsActivity();
 
         //Get customer info and display
         mRef.addValueEventListener(new ValueEventListener() {
@@ -72,6 +74,15 @@ public class RestaurantProfile extends AppCompatActivity {
     }
 
     //METHODS
+    private void promotionsActivity() {
+        promotions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent(RestaurantProfile.this, PromotionsDisplayActivity.class));
+            }
+        });
+    }
+
     private void changeMenuAction() {
         changeMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,17 +110,6 @@ public class RestaurantProfile extends AppCompatActivity {
         });
     }
 
-   /* private void logOffAction() {
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent( RestaurantProfile.this, MainActivity.class));
-                finish();
-            }
-        });
-
-    }*/
    private void logOffAction() {
        logOut.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -144,11 +144,6 @@ public class RestaurantProfile extends AppCompatActivity {
             }
         });
     }
-
-  /*  @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
-    }*/
 
     @Override
     public void onBackPressed() {

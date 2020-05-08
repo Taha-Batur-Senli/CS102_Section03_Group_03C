@@ -8,6 +8,9 @@ import android.app.Application;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,6 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 public class CustomerPOVRestaurant extends AppCompatActivity {
     TextView tvName, tvRating, tvDescription, tvGenre, tvWorkingHours, tvMinPriceToPreOrder, tvPhone, tvAdress;
     DatabaseReference mRefRes;
+    Button showMenu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +39,27 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         tvMinPriceToPreOrder = (TextView)findViewById(R.id.txtMinPricePreOrderPOV);
         tvPhone = (TextView)findViewById(R.id.txtPhonePOV);
         tvAdress = (TextView)findViewById(R.id.txtAdressPOV);
+        showMenu = (Button)findViewById(R.id.btnShowMenuPOV);
 
         mRefRes = FirebaseDatabase.getInstance().getReference("Restaurants");
 
         placeDatatoTVs();
+        showMenuAction();
+    }
+
+
+    //METHODS
+    private void showMenuAction() {
+        showMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                String uid = intent.getStringExtra("UID");
+                Intent intent2 = new Intent(CustomerPOVRestaurant.this, ShowMenuPOV.class);
+                intent2.putExtra("UID", uid);
+                startActivity( intent2);
+            }
+        });
     }
 
     private void placeDatatoTVs() {
