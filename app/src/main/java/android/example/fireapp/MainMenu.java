@@ -25,6 +25,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+//Easter egg test
+
 public class MainMenu extends AppCompatActivity {
 
     private SearchView search;
