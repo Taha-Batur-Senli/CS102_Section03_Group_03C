@@ -90,6 +90,7 @@
         android:background="@drawable/button"
         android:backgroundTint="#FFFFFF"
         android:clickable="true"
+        android:focusable="true"
         android:closeIcon="@drawable/ic_close_white_24dp"
         android:fontFamily="@font/roboto_light"
         android:goIcon="@drawable/ic_keyboard_arrow_right_white_24dp"

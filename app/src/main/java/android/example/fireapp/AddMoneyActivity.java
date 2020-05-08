@@ -31,8 +31,8 @@ public class AddMoneyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_money);
 
-        addMoney = (Button)findViewById(R.id.addMoney3);
-        toBeAdded = (EditText) findViewById(R.id.etMoneyToAdded3);
+        addMoney = findViewById(R.id.addMoney3);
+        toBeAdded = findViewById(R.id.etMoneyToAdded3);
 
         mAuth = FirebaseAuth.getInstance();
         mRef = FirebaseDatabase.getInstance().getReference("Customers");
