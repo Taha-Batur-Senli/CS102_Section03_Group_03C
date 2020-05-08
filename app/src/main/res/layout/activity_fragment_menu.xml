@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CC000000"
+    tools:context=".FragmentMenu">
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/close_button"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.907"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.524" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.315">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:src="@drawable/my_account" />
+
+            <Button
+                android:id="@+id/my_account_button"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:background="@drawable/button2"
+                android:fontFamily="@font/roboto_light"
+                android:text="My Account"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="82dp"
+                tools:layout_editor_absoluteY="65dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:src="@drawable/my_reservations" />
+
+            <Button
+                android:id="@+id/reservation_button"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:background="@drawable/button2"
+                android:fontFamily="@font/roboto_light"
+                android:text="My Reservations"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="82dp"
+                tools:layout_editor_absoluteY="65dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:src="@drawable/heart" />
+
+            <Button
+                android:id="@+id/favourite_restaurants"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:background="@drawable/button2"
+                android:fontFamily="@font/roboto_light"
+                android:text="My Favourite Restaurants"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="82dp"
+                tools:layout_editor_absoluteY="65dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:src="@drawable/show_all_restaurants" />
+
+            <Button
+                android:id="@+id/show_all_button"
+                android:layout_width="250dp"
+                android:layout_height="30dp"
+                android:background="@drawable/button2"
+                android:fontFamily="@font/roboto_light"
+                android:text="Show All Restaurants"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="82dp"
+                tools:layout_editor_absoluteY="65dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:src="@drawable/help_call_us" />
+
+            <Button
+                android:id="@+id/help_call_us_button"
+                android:layout_width="175dp"
+                android:layout_height="30dp"
+                android:background="@drawable/button2"
+                android:fontFamily="@font/roboto_light"
+                android:text="Help / Call Us"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="82dp"
+                tools:layout_editor_absoluteY="65dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:src="@drawable/log_off" />
+
+            <Button
+                android:id="@+id/log_off_button"
+                android:layout_width="110dp"
+                android:layout_height="30dp"
+                android:background="@drawable/button2"
+                android:fontFamily="@font/roboto_light"
+                android:text="Log Off"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="82dp"
+                tools:layout_editor_absoluteY="65dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

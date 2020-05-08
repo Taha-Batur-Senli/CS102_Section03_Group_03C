@@ -2,10 +2,26 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_customer_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background2"
     tools:context=".MainMenu">
+
+    <Button
+        android:id="@+id/menu_button"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="124dp"
+        android:layout_marginLeft="124dp"
+        android:background="@drawable/menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.044" />
 
     <ViewFlipper
         android:id="@+id/view_flipper"
@@ -19,7 +35,9 @@
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintVertical_bias="0.24">
+
+    </ViewFlipper>
 
     <ImageView
         android:id="@+id/imageView9"
@@ -47,29 +65,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.016" />
 
-    <SearchView
-        android:id="@+id/search"
-        android:layout_width="310dp"
-        android:layout_height="44dp"
-        android:accessibilityPaneTitle="F"
-        android:background="@drawable/button"
-        android:backgroundTint="#FFFFFF"
-        android:clickable="true"
-        android:closeIcon="@drawable/ic_close_white_24dp"
-        android:fontFamily="@font/roboto_light"
-        android:goIcon="@drawable/ic_keyboard_arrow_right_white_24dp"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search restaurants... "
-        android:searchHintIcon="@drawable/ic_search_white_24dp"
-        android:searchIcon="@drawable/ic_search_white_24dp"
-        android:voiceIcon="@drawable/ic_mic_white_24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.478" />
-
     <TextView
         android:id="@+id/txtNameCustomerProfile"
         android:layout_width="263dp"
@@ -77,12 +72,12 @@
         android:text="Welcome, "
         android:textColor="@color/white"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/view_flipper"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.162"
+        app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.117" />
+        app:layout_constraintVertical_bias="0.828" />
 
     <Button
         android:id="@+id/btnMyAccount"
@@ -168,4 +163,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.564" />
+
+    <SearchView
+        android:id="@+id/search"
+        android:layout_width="310dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="192dp"
+        android:accessibilityPaneTitle="F"
+        android:background="@drawable/button"
+        android:backgroundTint="#FFFFFF"
+        android:clickable="true"
+        android:closeIcon="@drawable/ic_close_white_24dp"
+        android:fontFamily="@font/roboto_light"
+        android:goIcon="@drawable/ic_keyboard_arrow_right_white_24dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search restaurants... "
+        android:searchHintIcon="@drawable/ic_search_white_24dp"
+        android:searchIcon="@drawable/ic_search_white_24dp"
+        android:voiceIcon="@drawable/ic_mic_white_24dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view_flipper"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

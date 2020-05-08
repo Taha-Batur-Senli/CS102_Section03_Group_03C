@@ -1,8 +1,12 @@
 package android.example.fireapp;
 
+import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -80,6 +84,7 @@ public class CustomerProfile extends AppCompatActivity {
         allRestaurantsDisplayActivity();
         myFavRestaurantsActivity();
         displayRestProfileAction();
+        configureMenuButton();
         search.clearFocus();
 
         //Adding the images!
@@ -105,8 +110,22 @@ public class CustomerProfile extends AppCompatActivity {
 
             }
         });
+    }
 
-
+    public void configureMenuButton() {
+        final Button menuButton = findViewById(R.id.menu_button);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = manager.beginTransaction();
+                FragmentMenu menuFragment = new FragmentMenu();
+                fragmentTransaction.add(R.id.activity_customer_profile, menuFragment);
+                fragmentTransaction.commit();
+                menuButton.setVisibility(View.INVISIBLE);
+                menuButton.setClickable(false);
+            }
+        });
     }
 
     public void flipperImages (int image){
