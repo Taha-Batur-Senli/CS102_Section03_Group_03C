@@ -64,7 +64,7 @@ public class ChangeFoodActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 String name = intent.getStringExtra("NAME");
                 mRef.child(user.getUid()).child("menu").orderByChild("name").equalTo(name).addValueEventListener(new ValueEventListener() {
-                    int i, j, k = 0;
+                    int i = 0;
                     @Override
                     public void onDataChange (@NonNull DataSnapshot dataSnapshot){
                         if ( i < 1) {

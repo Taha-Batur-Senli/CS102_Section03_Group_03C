@@ -42,7 +42,7 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         // pb = (ProgressBar)findViewById(R.id.progressBarCustomerSignUp);
         database = FirebaseDatabase.getInstance();
-        mRef  = database.getReference( "Customers");
+        mRef = database.getReference( "Customers");
 
         etEmail.setTextColor(ContextCompat.getColor(this, R.color.white));
         etPassword.setTextColor(ContextCompat.getColor(this, R.color.white));
@@ -119,14 +119,10 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
                     mRef.child(uid).child("ranking").setValue("0");
 
                     Toast.makeText( SignUpAsCustomerActivity.this, "Customer Created", Toast.LENGTH_SHORT).show();
-
-
-                    if(name.equalsIgnoreCase("David")){
-                        Toast.makeText(getApplicationContext(),  "Welcome to the special page Mr. Davenport", Toast.LENGTH_SHORT).show();
-                        finish();
+                    if(name.toLowerCase().equals("david")){
+                      Toast.makeText(getApplicationContext(),  "Welcome to the special page Mr. Davenport", Toast.LENGTH_SHORT).show();
                         startActivity( new Intent(SignUpAsCustomerActivity.this, EasterEggPage.class));
-
-
+                        finish();
                     }
                     else {
                         startActivity(new Intent(SignUpAsCustomerActivity.this, CustomerProfile.class));

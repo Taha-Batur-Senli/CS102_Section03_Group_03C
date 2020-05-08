@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EasterEggPage"></activity>
+        <activity android:name=".CustomerPOVRestaurant"></activity>
         <activity android:name=".MyFavActivities" />
         <activity android:name=".ChangeFoodActivity" />
         <activity android:name=".ChangeMenuActivity" />
@@ -25,6 +25,7 @@
         <activity android:name=".HelpRestaurant" />
         <activity android:name=".CustomerProfile" />
         <activity android:name=".SignUpAsCustomerActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".RestaurantProfile" />
         <activity android:name=".SignUpAsRestaurantActivity" />
         <activity android:name=".SignUpActivity" />

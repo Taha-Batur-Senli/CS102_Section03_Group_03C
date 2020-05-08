@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,6 +50,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
 
         displayAllRestaurants();
         listOnLongClickAction();
+        displayRestProfileAction();
 
 
     }
@@ -61,7 +63,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
 
                     DataSnapshot item = items.next();
                     String name, genre;
-                    name = item.child("name").getValue().toString() + "  - " + item.child("genre").getValue().toString();
+                    name = item.child("name").getValue().toString() + ", " + item.child("genre").getValue().toString();
 
                     allRestaurants.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -91,7 +93,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 final String item = myAdapter.getItem(index).toString();
-                                int index1 = item.indexOf(" ");
+                                int index1 = item.indexOf(", ");
                                 final String s = item.substring(0,index1);
                                 reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
                                     @Override
@@ -106,7 +108,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
                                                 searchedId = item1.child("uid").getValue().toString();
                                                 mRef.child(user.getUid()).child("fav restaurants").child(searchedId).push();
                                                 mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("name").setValue(s);
-                                                //mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("genre").setValue(s2);
+                                                mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("uid").setValue(searchedId);
                                                 myAdapter.notifyDataSetChanged();
                                             }
                                         }
@@ -122,6 +124,42 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
                         .show();
 
                 return true;
+            }
+        });
+    }
+
+    private void displayRestProfileAction() {
+        listViewAllRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //gets the name of the dish
+                String item = allRestaurants.get(position);
+                int indexOfName = item.indexOf(", ");
+                final String name = item.substring(0,indexOfName);
+
+                final DatabaseReference refRests = FirebaseDatabase.getInstance().getReference("Restaurants");
+                refRests.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                        while (items.hasNext()) {
+                            DataSnapshot item1 = items.next();
+                            String searchedId;
+                            if (item1.child("name").getValue().toString().equals(name)) {
+
+                                searchedId = item1.child("uid").getValue().toString();
+                                Intent intent = new Intent(AllRestaurantsDisplay.this, CustomerPOVRestaurant.class);
+                                intent.putExtra("UID", searchedId);
+                                startActivity( intent);
+                                finish();
+                                myAdapter .notifyDataSetChanged();
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
             }
         });
     }
