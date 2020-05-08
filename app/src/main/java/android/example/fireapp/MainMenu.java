@@ -2,9 +2,12 @@ package android.example.fireapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 public class MainMenu extends AppCompatActivity {
@@ -17,10 +20,11 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView( R.layout.menu_main);
 
+        search = findViewById(R.id.search);
+
         mViewFlipper = findViewById(R.id.view_flipper);
         int[] images = { R.drawable.food_photo, R.drawable.pizza, R.drawable.steak};
 
-        search = (SearchView) findViewById(R.id.search);
         search.clearFocus();
 
         //Adding the images!
