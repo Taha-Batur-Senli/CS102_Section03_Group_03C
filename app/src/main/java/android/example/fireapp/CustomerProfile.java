@@ -11,8 +11,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,7 +29,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class CustomerProfile extends AppCompatActivity {
+
     //Properties
+    private SearchView search;
+    private ViewFlipper mViewFlipper;
     Button logOut, myAccount, help, allRestaurantsDisplay, myFavRestaurants;
     FirebaseAuth mAuth;
     DatabaseReference mRef;
@@ -44,12 +50,16 @@ public class CustomerProfile extends AppCompatActivity {
         setContentView(R.layout.activity_customer_profile);
 
         //Initialize
+        search = findViewById(R.id.search);
         mAuth = FirebaseAuth.getInstance();
         mRef = FirebaseDatabase.getInstance().getReference("Customers");
         user = mAuth.getCurrentUser();
         cusNameTV = (TextView)findViewById(R.id.txtNameCustomerProfile);
         listViewAllRestaurants = (ListView)findViewById(R.id.lvAllRestaurants);
         myFavRestaurants = (Button)findViewById(R.id.btnMyFavRestaurants);
+
+        mViewFlipper = findViewById(R.id.view_flipper);
+        int[] images = { R.drawable.food_photo, R.drawable.pizza, R.drawable.steak};
 
         myAccount = (Button)findViewById(R.id.btnMyAccount);
         help = (Button)findViewById(R.id.btnHelpCustomer);
@@ -70,14 +80,20 @@ public class CustomerProfile extends AppCompatActivity {
         allRestaurantsDisplayActivity();
         myFavRestaurantsActivity();
         displayRestProfileAction();
+        search.clearFocus();
 
+        //Adding the images!
+        for ( int x = 0; x < images.length; x++)
+        {
+            flipperImages( images[x]);
+        } //Done!
 
         //Get name and display a welcome message
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final String userName = dataSnapshot.child(user.getUid()).child("name").getValue(String.class);
-                cusNameTV.setText("Welcome " + userName + "!");
+                cusNameTV.setText("Welcome, " + userName + "!");
                 if (userName.toLowerCase().equals("david"))
                     cusNameTV.setText("Welcome hocam, we will miss you :(");
                 if ( userName.toLowerCase().equals("naz"))
@@ -90,6 +106,20 @@ public class CustomerProfile extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void flipperImages (int image){
+        ImageView imageView = new ImageView(this);
+        imageView.setBackgroundResource( image);
+
+        mViewFlipper.addView( imageView);
+        mViewFlipper.setFlipInterval( 3000);
+        mViewFlipper.setAutoStart( true);
+
+        //Time to slide!
+        mViewFlipper.setInAnimation( this, android.R.anim.slide_in_left);
+        mViewFlipper.setOutAnimation( this, android.R.anim.slide_out_right);
 
     }
 
