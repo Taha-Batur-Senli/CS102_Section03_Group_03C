@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,11 +23,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 
 public class SignUpAsRestaurantActivity extends AppCompatActivity{
     EditText etEmail, etPassword, etName, etPhone;
     private FirebaseAuth mAuth;
-    // ProgressBar progressBar;
+    ProgressBar progressBar;
     Button btnRegister;
     Spinner spinner;
     FirebaseDatabase database;
@@ -43,6 +47,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
         etPassword = findViewById(R.id.etPasswordSignUpAsRest);
         etName = findViewById(R.id.etNameResSignUp);
         etPhone = findViewById(R.id.etPhoneResSignUp);
+        progressBar = (ProgressBar)findViewById(R.id.progressBarResSignUp);
 
         spinner = findViewById(R.id.spinnerGenre);
         mAuth = FirebaseAuth.getInstance();
@@ -117,11 +122,11 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
             return;
         }
 
-        // progressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                // progressBar.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
                 if( task.isSuccessful()){
                     FirebaseUser user = mAuth.getCurrentUser();
 
@@ -147,6 +152,9 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     mRef.child(uid).child("adress").setValue("");
                     mRef.child(uid).child("max seating duration").setValue(maxDuration);
                     mRef.child(uid).child("min price to pre-order").setValue(minPrice);
+                    mRef.child(uid).child("seatPlan").child("seat1").setValue(
+                            new SeatCalendar(LocalDate.of(2020,5,9),
+                                    LocalTime.of(8,0),LocalTime.of(23,0)));
 
                      /*mRef2.child(uid).child("rating").setValue(0);
                     mRef2.child(uid).child("numOfTimesRated").setValue(0);

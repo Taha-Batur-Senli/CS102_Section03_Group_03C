@@ -21,21 +21,21 @@
         app:layout_constraintHorizontal_bias="0.173"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintVertical_bias="0.019" />
 
     <ViewFlipper
         android:id="@+id/view_flipper"
-        android:layout_width="408dp"
-        android:layout_height="176dp"
+        android:layout_width="418dp"
+        android:layout_height="130dp"
         android:fontFamily="@font/roboto_light"
         android:inAnimation="@android:anim/slide_in_left"
         android:outAnimation="@android:anim/slide_out_right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24">
+        app:layout_constraintVertical_bias="0.193">
 
     </ViewFlipper>
 
@@ -69,6 +69,7 @@
         android:id="@+id/txtNameCustomerProfile"
         android:layout_width="263dp"
         android:layout_height="34dp"
+        android:layout_marginTop="23dp"
         android:text="Welcome, "
         android:textColor="@color/white"
         android:textSize="25sp"
@@ -76,8 +77,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.108"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.828" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnMyAccount"
@@ -96,14 +97,14 @@
 
     <ListView
         android:id="@+id/lvAllRestaurants"
-        android:layout_width="340dp"
-        android:layout_height="225dp"
+        android:layout_width="403dp"
+        android:layout_height="170dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.968" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnHelpCustomer"
@@ -133,7 +134,7 @@
         app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnMyAccount"
-        app:layout_constraintVertical_bias="0.475" />
+        app:layout_constraintVertical_bias="0.343" />
 
     <TextView
         android:id="@+id/textView10"
@@ -147,7 +148,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637" />
+        app:layout_constraintVertical_bias="0.513" />
 
     <Button
         android:id="@+id/btnMyFavRestaurants"
@@ -162,13 +163,12 @@
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.564" />
+        app:layout_constraintVertical_bias="0.454" />
 
     <SearchView
         android:id="@+id/search"
         android:layout_width="310dp"
         android:layout_height="44dp"
-        android:layout_marginTop="192dp"
         android:accessibilityPaneTitle="F"
         android:background="@drawable/button"
         android:backgroundTint="#FFFFFF"
@@ -185,6 +185,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view_flipper"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/view_flipper"
+        app:layout_constraintVertical_bias="0.147" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

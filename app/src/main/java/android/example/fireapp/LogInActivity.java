@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 public class LogInActivity extends AppCompatActivity {
     Button logIn;
     EditText etEmail, etPassword;
+    ProgressBar pb;
     private FirebaseAuth mAuth;
 
     @Override
@@ -41,6 +43,7 @@ public class LogInActivity extends AppCompatActivity {
 
         etEmail.setTextColor(ContextCompat.getColor(this, R.color.white));
         etPassword.setTextColor(ContextCompat.getColor(this, R.color.white));
+        pb = (ProgressBar)findViewById(R.id.progressBarLogIn);
 
 
         logIn.setOnClickListener(new View.OnClickListener() {
@@ -57,9 +60,11 @@ public class LogInActivity extends AppCompatActivity {
                     etPassword.requestFocus();
                 }
 
+                pb.setVisibility(View.VISIBLE);
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                       pb.setVisibility(View.GONE);
                         if (task.isSuccessful()){
                             FirebaseUser user = mAuth.getCurrentUser();
                             String userID = user.getUid();

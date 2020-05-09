@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 public class CustomerPOVRestaurant extends AppCompatActivity {
     TextView tvName, tvRating, tvDescription, tvGenre, tvWorkingHours, tvMinPriceToPreOrder, tvPhone, tvAdress;
     DatabaseReference mRefRes;
-    Button showMenu;
+    Button showMenu, makeReservation;
 
 
     @Override
@@ -40,11 +40,22 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         tvPhone = (TextView)findViewById(R.id.txtPhonePOV);
         tvAdress = (TextView)findViewById(R.id.txtAdressPOV);
         showMenu = (Button)findViewById(R.id.btnShowMenuPOV);
+        makeReservation = (Button)findViewById(R.id.btnMakeReservationCustomer);
 
         mRefRes = FirebaseDatabase.getInstance().getReference("Restaurants");
 
         placeDatatoTVs();
         showMenuAction();
+        makeReservationAction();
+    }
+
+    private void makeReservationAction() {
+        makeReservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomerPOVRestaurant.this, MakeReservationCustomerP1.class));
+            }
+        });
     }
 
 

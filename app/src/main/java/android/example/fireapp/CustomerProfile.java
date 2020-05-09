@@ -48,6 +48,11 @@ public class CustomerProfile extends AppCompatActivity {
     ArrayList<String> allRestaurants = new ArrayList<String>();
     FirebaseDatabase database;
     DatabaseReference reference;
+   /* DatabaseReference reference2;
+    ArrayList<String> promotions = new ArrayList<String>();
+    ArrayAdapter  myAdapter2;
+    ListView listViewPromotions;*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,21 @@ public class CustomerProfile extends AppCompatActivity {
         cusNameTV = (TextView)findViewById(R.id.txtNameCustomerProfile);
         listViewAllRestaurants = (ListView)findViewById(R.id.lvAllRestaurants);
         myFavRestaurants = (Button)findViewById(R.id.btnMyFavRestaurants);
+
+        /*listViewPromotions = (ListView)findViewById(R.id.lvPromotionsPOV);
+        <ListView
+        android:id="@+id/lvPromotionsPOV"
+        android:layout_width="409dp"
+        android:layout_height="167dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvAllRestaurants" />
+         */
+        /*reference2 = database.getReference();
+        myAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, promotions);
+        listViewPromotions.setAdapter(myAdapter2);
+        promotions.add("Promotions");*/
 
         mViewFlipper = findViewById(R.id.view_flipper);
         int[] images = { R.drawable.food_photo, R.drawable.pizza, R.drawable.steak};
@@ -88,6 +108,7 @@ public class CustomerProfile extends AppCompatActivity {
         displayRestProfileAction();
         configureMenuButton();
         search.clearFocus();
+        //displayPromotions();
 
         //Adding the images!
         for ( int x = 0; x < images.length; x++)
@@ -153,6 +174,37 @@ public class CustomerProfile extends AppCompatActivity {
         });
     }
 
+   /* private void displayPromotions() {
+        reference2.child("Promotions").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    final String key = ds.getKey();
+                    DatabaseReference mRef2 = FirebaseDatabase.getInstance().getReference("Promotions");
+                    mRef2.child(key).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot ds2 : dataSnapshot.getChildren()) {
+                                final String name = ds2.child("name").getValue().toString();
+                                //fianl String resName = ds2.child("re")
+                                promotions.add(name);
+                                myAdapter2.notifyDataSetChanged();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }*/
     //METHODS
     private void allRestaurantsDisplayActivity() {
         allRestaurantsDisplay.setOnClickListener(new View.OnClickListener() {

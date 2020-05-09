@@ -164,4 +164,15 @@
         app:layout_constraintVertical_bias="0.55"
         app:srcCompat="@drawable/polygon" />
 
+    <ProgressBar
+        android:id="@+id/progressBarResSignUp"
+        style="?android:attr/progressBarStyle"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

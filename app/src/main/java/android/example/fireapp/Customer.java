@@ -4,7 +4,7 @@ public class Customer {
     //Properties
     String uid;
     String email;
-    Boolean isRestaurant;
+    boolean isRestaurant;
 
     public Customer(String uid, String email) {
         this.email = email;

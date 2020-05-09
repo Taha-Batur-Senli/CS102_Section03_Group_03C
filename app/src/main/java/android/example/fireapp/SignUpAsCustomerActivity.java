@@ -42,7 +42,7 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
         etName = findViewById(R.id.etNameCustomer);
         etPhone = findViewById(R.id.etPhoneCustomer);
         mAuth = FirebaseAuth.getInstance();
-        // pb = (ProgressBar)findViewById(R.id.progressBarCustomerSignUp);
+         pb = (ProgressBar)findViewById(R.id.progressBar);
         database = FirebaseDatabase.getInstance();
         mRef = database.getReference( "Customers");
 
@@ -95,11 +95,11 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
             return;
         }
 
-        //pb.setVisibility(View.VISIBLE);
+        pb.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-          //      pb.setVisibility(View.GONE);
+                pb.setVisibility(View.GONE);
                 if( task.isSuccessful()){
                     FirebaseUser user = mAuth.getCurrentUser();
 
