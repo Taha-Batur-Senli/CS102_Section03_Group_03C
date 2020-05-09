@@ -48,21 +48,6 @@
         app:layout_constraintVertical_bias="0.026"
         app:srcCompat="@drawable/logo" />
 
-    <Button
-        android:id="@+id/btnLogOutCustomer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Log out"
-        android:background="@drawable/button"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.965"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.016" />
-
     <TextView
         android:id="@+id/txtNameCustomerProfile"
         android:layout_width="263dp"
@@ -77,21 +62,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.11" />
 
-    <Button
-        android:id="@+id/btnMyAccount"
-        android:layout_width="101dp"
-        android:layout_height="46dp"
-        android:background="@drawable/button"
-        android:text="My Account"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/lvAllRestaurants"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.983"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.14999999" />
-
     <ListView
         android:id="@+id/lvAllRestaurants"
         android:layout_width="403dp"
@@ -102,36 +72,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.971" />
-
-    <Button
-        android:id="@+id/btnHelpCustomer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button"
-        android:text="HELP"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.195"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026" />
-
-    <Button
-        android:id="@+id/btnAllRestaurants"
-        android:layout_width="147dp"
-        android:layout_height="47dp"
-        android:background="@drawable/button"
-        android:text="All Restaurants"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.958"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.635" />
 
     <TextView
         android:id="@+id/textView10"
@@ -146,21 +86,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.714" />
-
-    <Button
-        android:id="@+id/btnMyFavRestaurants"
-        android:layout_width="147dp"
-        android:layout_height="47dp"
-        android:background="@drawable/button"
-        android:text="Your favourıtes"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.635" />
 
     <SearchView
         android:id="@+id/search"

@@ -1,5 +1,6 @@
 package android.example.fireapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 
 /**
@@ -25,7 +28,7 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
     private String mParam1;
     private String mParam2;
     View view;
-    Button logOffButton;
+    Button logOff, myAccount, allRestaurants, favRestaurants, myReservations, help;
 
     public FragmentMenu() {
         // Required empty public constructor
@@ -63,17 +66,46 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.activity_fragment_menu, container, false);
-        logOffButton = view.findViewById(R.id.log_off_button);
-        logOffButton.setOnClickListener(this);
+        logOff = view.findViewById(R.id.log_off_button);
+        logOff.setOnClickListener(this);
+        myReservations = view.findViewById(R.id.reservation_button);
+        myReservations.setOnClickListener(this);
+        myAccount = view.findViewById(R.id.my_account_button);
+        myAccount.setOnClickListener(this);
+        allRestaurants = view.findViewById(R.id.show_all_button);
+        allRestaurants.setOnClickListener(this);
+        favRestaurants = view.findViewById(R.id.favourite_restaurants);
+        favRestaurants.setOnClickListener(this);
+        help = view.findViewById(R.id.help_call_us_button);
+        help.setOnClickListener(this);
+
         return view;
     }
+
 
     @Override
     public void onClick(View v) {
         switch (v.getId())
         {
             case R.id.log_off_button:
-                getActivity().onBackPressed();
+                FirebaseAuth.getInstance().signOut();
+                startActivity( new Intent(getActivity(), LogInActivity.class));
+                break;
+            case R.id.my_account_button:
+                startActivity( new Intent(getActivity(), CustomerMyAccountActivity.class));
+                break;
+            case R.id.show_all_button:
+                startActivity( new Intent(getActivity(), AllRestaurantsDisplay.class));
+                break;
+            case R.id.favourite_restaurants:
+                startActivity(new Intent(getActivity(), MyFavActivities.class));
+                break;
+            case R.id.reservation_button:
+                startActivity(new Intent(getActivity(), MyReservations.class));
+                break;
+            case R.id.help_call_us_button:
+                startActivity(new Intent(getActivity(), CustHelpActivity.class));
+                break;
 
         }
     }

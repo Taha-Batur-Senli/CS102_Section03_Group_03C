@@ -47,7 +47,7 @@ public class CustomerProfile extends AppCompatActivity {
     TextView cusNameTV;
     ListView listViewAllRestaurants;
     ArrayAdapter myAdapter;
-    ArrayList<String> allRestaurants = new ArrayList<String>();
+    ArrayList<String> allRestaurants = new ArrayList<>();
     FirebaseDatabase database;
     DatabaseReference reference;
    /* DatabaseReference reference2;
@@ -69,7 +69,7 @@ public class CustomerProfile extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         cusNameTV = (TextView)findViewById(R.id.txtNameCustomerProfile);
         listViewAllRestaurants = (ListView)findViewById(R.id.lvAllRestaurants);
-        myFavRestaurants = (Button)findViewById(R.id.btnMyFavRestaurants);
+
 
         /*listViewPromotions = (ListView)findViewById(R.id.lvPromotionsPOV);
         <ListView
@@ -89,9 +89,10 @@ public class CustomerProfile extends AppCompatActivity {
         mViewFlipper = findViewById(R.id.view_flipper);
         int[] images = { R.drawable.food_photo, R.drawable.pizza, R.drawable.steak};
 
-        myAccount = (Button)findViewById(R.id.btnMyAccount);
-        help = (Button)findViewById(R.id.btnHelpCustomer);
-        allRestaurantsDisplay = (Button)findViewById(R.id.btnAllRestaurants);
+        /* myAccount = findViewById(R.id.btnMyAccount);
+        help = findViewById(R.id.btnHelpCustomer);
+        allRestaurantsDisplay = findViewById(R.id.btnAllRestaurants);
+        myFavRestaurants = (Button)findViewById(R.id.btnMyFavRestaurants); */
 
 
         myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allRestaurants);
@@ -102,11 +103,13 @@ public class CustomerProfile extends AppCompatActivity {
         //Methods called
         displayAllRestaurants();
         listOnLongClickAction();
-        myAccountAction();
+
+        /* myAccountAction();
         logOutAction();
         helpActivity();
         allRestaurantsDisplayActivity();
-        myFavRestaurantsActivity();
+        myFavRestaurantsActivity(); */
+
         displayRestProfileAction();
         configureMenuButton();
         search.clearFocus();
@@ -167,14 +170,14 @@ public class CustomerProfile extends AppCompatActivity {
 
     }
 
-    private void myFavRestaurantsActivity() {
+    /* private void myFavRestaurantsActivity() {
         myFavRestaurants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustomerProfile.this, MyFavActivities.class));
             }
         });
-    }
+    } */
 
    /* private void displayPromotions() {
         reference2.child("Promotions").addValueEventListener(new ValueEventListener() {
@@ -207,8 +210,10 @@ public class CustomerProfile extends AppCompatActivity {
             }
         });
     }*/
-    //METHODS
-    private void allRestaurantsDisplayActivity() {
+
+    //  METHODS
+
+     /* private void allRestaurantsDisplayActivity() {
         allRestaurantsDisplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -217,14 +222,14 @@ public class CustomerProfile extends AppCompatActivity {
         });
     }
 
-    private void helpActivity() {
+     private void helpActivity() {
         help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustomerProfile.this,CustHelpActivity.class));
             }
         });
-    }
+    } */
 
     private void displayAllRestaurants() {
         reference.child("Best Restaurants").addValueEventListener(new ValueEventListener() {
@@ -249,7 +254,7 @@ public class CustomerProfile extends AppCompatActivity {
         });
     }
 
-    private void logOutAction() {
+    /* private void logOutAction() {
         logOut = (Button) findViewById(R.id.btnLogOutCustomer);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -259,7 +264,7 @@ public class CustomerProfile extends AppCompatActivity {
                 finish();
             }
         });
-    }
+    } */
 
     int index;
 
@@ -314,15 +319,15 @@ public class CustomerProfile extends AppCompatActivity {
     }
 
 
-    //TODO fav restorant olanların yanına * imgesi eklenir belki
-    private void myAccountAction() {
+    // TODO fav restorant olanların yanına * imgesi eklenir belki
+    /* private void myAccountAction() {
         myAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustomerProfile.this, CustomerMyAccountActivity.class));
             }
         });
-    }
+    } */
 
 
     @Override
