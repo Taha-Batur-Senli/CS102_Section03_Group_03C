@@ -4,12 +4,10 @@ import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.fragment.app.FragmentActivity;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -42,7 +40,7 @@ public class CustomerProfile extends AppCompatActivity {
     //Properties
     private SearchView search;
     private ViewFlipper mViewFlipper;
-    ImageView imageView;
+    Button logOut, myAccount, help, allRestaurantsDisplay, myFavRestaurants;
     FirebaseAuth mAuth;
     DatabaseReference mRef;
     FirebaseUser user;
@@ -96,6 +94,7 @@ public class CustomerProfile extends AppCompatActivity {
         allRestaurantsDisplay = findViewById(R.id.btnAllRestaurants);
         myFavRestaurants = (Button)findViewById(R.id.btnMyFavRestaurants); */
 
+
         myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allRestaurants);
         listViewAllRestaurants.setAdapter(myAdapter);
         database = FirebaseDatabase.getInstance();
@@ -140,8 +139,6 @@ public class CustomerProfile extends AppCompatActivity {
             }
         });
     }
-
-
 
     public void configureMenuButton() {
         final Button menuButton = findViewById(R.id.menu_button);

@@ -108,7 +108,7 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
                     String uid = user.getUid();
 
                     //add data to database
-                    mRef.child(uid).child("isRestaurant").setValue(false);
+                    /*mRef.child(uid).child("isRestaurant").setValue(false);
                     mRef.child(uid).child("uid").setValue(uid);
                     mRef.child(uid).child("email").setValue(email);
                     mRef.child(uid).child("reservations").setValue("");
@@ -118,9 +118,10 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
                     mRef.child(uid).child("points").setValue("0");
                     mRef.child(uid).child("fav restaurants").setValue("");
                     mRef.child(uid).child("phone").setValue(phone);
-                    mRef.child(uid).child("ranking").setValue("0");
+                    mRef.child(uid).child("ranking").setValue("0");*/
+                    mRef.child(uid).setValue(new Customer(name, user.getEmail(), phone, user.getUid()));
 
-                    Toast.makeText( SignUpAsCustomerActivity.this, "Customer Created", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( SignUpAsCustomerActivity.this, "Welcome " + name, Toast.LENGTH_SHORT).show();
                     if(name.toLowerCase().equals("david")){
                       Toast.makeText(getApplicationContext(),  "Welcome to the special page Mr. Davenport", Toast.LENGTH_SHORT).show();
                         startActivity( new Intent(SignUpAsCustomerActivity.this, EasterEggPage.class));

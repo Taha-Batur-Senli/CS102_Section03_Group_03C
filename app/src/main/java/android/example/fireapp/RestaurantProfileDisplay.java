@@ -43,14 +43,17 @@ public class RestaurantProfileDisplay extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final String nameString = dataSnapshot.child(user.getUid()).child("name").getValue(String.class);
-                final String whString = dataSnapshot.child(user.getUid()).child("working hours").getValue(String.class);
+                //final String whString = dataSnapshot.child(user.getUid()).child("working hours").getValue(String.class);
+                final String whString = dataSnapshot.child(user.getUid()).child("workingHours").getValue(String.class);
                 final String adressString = dataSnapshot.child(user.getUid()).child("adress").getValue(String.class);
                 final String phoneString = dataSnapshot.child(user.getUid()).child("phone").getValue(String.class);
                 final String descriptionString = dataSnapshot.child(user.getUid()).child("description").getValue(String.class);
                 final String genreString = dataSnapshot.child(user.getUid()).child("genre").getValue(String.class);
                 final int ratingString = dataSnapshot.child(user.getUid()).child("rating").getValue(Integer.class);
-                final int minPriceString = dataSnapshot.child(user.getUid()).child("min price to pre-order").getValue(Integer.class);
-                final int maxdurationString = dataSnapshot.child(user.getUid()).child("max seating duration").getValue(Integer.class);
+                //final int minPriceString = dataSnapshot.child(user.getUid()).child("min price to pre-order").getValue(Integer.class);
+                final int minPriceString = dataSnapshot.child(user.getUid()).child("minPriceToPreOrder").getValue(Integer.class);
+                final int maxdurationString = dataSnapshot.child(user.getUid()).child("maxSeatingDuration").getValue(Integer.class);
+                //final int maxdurationString = dataSnapshot.child(user.getUid()).child("max seating duration").getValue(Integer.class);
 
                 name.setText( nameString );
                 wh.setText( "Working hours: " + whString );

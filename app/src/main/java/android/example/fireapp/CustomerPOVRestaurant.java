@@ -83,8 +83,10 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                 final double resRating = dataSnapshot.child("rating").getValue(Double.class);
                 final String resDescription = dataSnapshot.child("description").getValue(String.class);
                 final String resGenre = dataSnapshot.child("genre").getValue(String.class);
-                final String resWH = dataSnapshot.child("working hours").getValue(String.class);
-                final double resMinPrice = dataSnapshot.child("min price to pre-order").getValue(Double.class);
+                //final String resWH = dataSnapshot.child("working hours").getValue(String.class);
+                final String resWH = dataSnapshot.child("workingHours").getValue(String.class);
+                final double resMinPrice = dataSnapshot.child("minPriceToPreOrder").getValue(Double.class);
+                //final double resMinPrice = dataSnapshot.child("min price to pre-order").getValue(Double.class);
                 final String resPhone = dataSnapshot.child("phone").getValue(String.class);
                 final String resAdress = dataSnapshot.child("adress").getValue(String.class);
 

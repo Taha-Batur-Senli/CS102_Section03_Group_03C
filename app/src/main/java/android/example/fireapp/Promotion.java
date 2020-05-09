@@ -9,8 +9,6 @@ public class Promotion {
         this.name = name;
         this.uid = uid;
         this.restaurantName = restaurantName;
-        //tahaya selam
-
     }
 
     public String getName() {
