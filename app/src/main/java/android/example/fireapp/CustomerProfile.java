@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.fonts.Font;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -123,7 +125,7 @@ public class CustomerProfile extends AppCompatActivity {
                 final String userName = dataSnapshot.child(user.getUid()).child("name").getValue(String.class);
                 cusNameTV.setText("Welcome, " + userName + "!");
                 if (userName.toLowerCase().equals("david"))
-                    cusNameTV.setText("Welcome hocam, we will miss you :(");
+                    cusNameTV.setText("Welcome sir, we will miss you :(");
                 if ( userName.toLowerCase().equals("naz"))
                     cusNameTV.setText("Selam Kuzu!");
             }
