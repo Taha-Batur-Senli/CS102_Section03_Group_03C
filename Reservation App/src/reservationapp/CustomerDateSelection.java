@@ -38,11 +38,6 @@ public class CustomerDateSelection extends JPanel {
 			rs = st.executeQuery("SELECT * FROM 'All Restaurants' WHERE Name = '" + restaurantName + "'");
 			int durationOfMeal = rs.getInt("DurationOfMeal");
 			
-//			String opening = rs.getString("OpeningHour");
-//			String closing = rs.getString("ClosingHour");
-//			
-//			LocalTime openingHour = LocalTime.parse(opening);
-//			LocalTime closingHour = LocalTime.parse(closing);
 			
 			rs = st.executeQuery("SELECT * FROM '@SA" + restaurantName + "'");
 			LocalDate dateControl = LocalDate.of(2000, 1, 1);
