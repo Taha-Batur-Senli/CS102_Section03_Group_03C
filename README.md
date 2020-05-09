@@ -2,12 +2,12 @@
 [Computer Engineering Department, Bilkent University](http://w3.cs.bilkent.edu.tr/en/).  
 The information and code in this repository are submitted in partial fulfillment of the CS102 Semester Design Project. Except where explicitly stated, the work is that of the group members listed below (who are expected to follow ethical academic & professional practice).
 ****
-## g3C ~~ Restaurant Reservation App ~~
+## g3C ~~ ResAPP ~~
 ****
 ### ~ Colunbia ~
 
 ## Project Description
-_Include a concise description of your project here. Be sure to include the proposed users, the architecture (eg. desktop, web, mobile, embedded, etc.) & screenshots when available._
+_ResApp is a platform that enables customers to make reservations from wished restaurants. Also, if they want to, they also can pre-order ass well. This platform is even more useful in Corona times since it makes the process of getting to a restaurant and eating food faster and more transparent._
    
 ## Project Status
 + **Group/project Selection:** completed (date)
