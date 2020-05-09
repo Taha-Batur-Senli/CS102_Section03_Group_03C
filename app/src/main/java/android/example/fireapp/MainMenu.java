@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 //Easter egg test
+//easter egg test 2
 
 public class MainMenu extends AppCompatActivity {
 
