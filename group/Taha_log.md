@@ -24,4 +24,7 @@ Today I continued to wok on the GUI and kept designing the main menu and making 
 ### ~ 06.05.2020 ~
 Today we experienced several problems with the GitHub repository we are using. Namely, we weren't able to push our changes to GitHub. In the end, we decided to reorganize the repository by moving all the code in the seperate branches to the master branch and I spent time trying to solve the main problem while also working on the GUI (main menu). In the end, me, Arda and Ege worked together to reorganize the main branch and we managed to combine the codes in the seperate branches into a single project which we uploaded to the master branch. With this somewhat painful but necessary reorganization process complete, I turned my attention back to the GUI.
 
+### ~ 07.05.2020 and 08.05.2020~
+These two days were mostly spent on working on the GUI. We had small brainstorming sessions with Arda, delegating the work while I completed my part on the main menu, passing it to Arda to make the necessary adjustments. From this moment on, my time will be dedicated to reviewing the pages we have made and gradually updating their appearance.
+
 ****
