@@ -42,6 +42,14 @@ This week we hope to finish reservation process, enabling all customers to reser
 In the lab session, we meet with our TA. We showed him our progress with our app and the problems we were experiencing at gGitHub. He informed us that we were using GitHub wrong! He advised us to add some functionality to the back button as well and some other tips similar to this. After our meeting with TA, we immideatley zoomed again and started to discuss solutions for fixing GitHub.
 
 **ToDo:** 
-Next, we will hopefully get GitHub working correctly. Than, we will make the changes TA adviced us to do. Also we will move on with our app. We will finalize the java code mostly and implement GUI to our app as much as we can.
+Next, we will hopefully get GitHub working correctly. Then, we will make the changes TA advised us to do. Also, we will move on with our app. We will finalize the java code mostly and implement GUI to our app as much as we can.
 
 ****
+
+****
+### Meeting ~ (9 May 2020, )
+****
+**Present:** Bora Altınok, Arda Tavusbay, Ali Eren Günaltılı, Ege Ergül, Berkay İnceişçi, Taha Batur Şenli, TA  _**Absent:**_ 
+
+**Discussion**
+...
