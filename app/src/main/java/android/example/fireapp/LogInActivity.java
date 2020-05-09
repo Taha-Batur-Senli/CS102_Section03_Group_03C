@@ -53,11 +53,13 @@ public class LogInActivity extends AppCompatActivity {
                 if (email.isEmpty()){
                     etEmail.setError("Enter an email!");
                     etEmail.requestFocus();
+                    return;
                 }
                 String password = etPassword.getText().toString().trim();
                 if (password.isEmpty()){
                     etPassword.setError("Enter a password!");
                     etPassword.requestFocus();
+                    return;
                 }
 
                 pb.setVisibility(View.VISIBLE);
@@ -68,7 +70,7 @@ public class LogInActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             FirebaseUser user = mAuth.getCurrentUser();
                             String userID = user.getUid();
-                            Toast.makeText(LogInActivity.this, "LOGGED IN", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LogInActivity.this, "Welcome back!", Toast.LENGTH_SHORT).show();
 
                             //Distinquish User type
                             DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("Customers");
@@ -86,13 +88,11 @@ public class LogInActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
                                 }
                             });
 
                         } else {
-                            Toast.makeText(LogInActivity.this, "WRONG USER OR PASSWORD !!!", Toast.LENGTH_SHORT).show();
-
+                            Toast.makeText(LogInActivity.this, "WRONG USER OR PASSWORD!!!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

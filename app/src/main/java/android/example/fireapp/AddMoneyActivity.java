@@ -25,8 +25,6 @@ public class AddMoneyActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser user;
 
-    // deneme
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

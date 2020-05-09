@@ -10,6 +10,5 @@ public class Customer {
         this.email = email;
         this.uid = uid;
         isRestaurant = false;
-
     }
 }

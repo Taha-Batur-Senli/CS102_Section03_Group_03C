@@ -120,7 +120,7 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
                     mRef.child(uid).child("phone").setValue(phone);
                     mRef.child(uid).child("ranking").setValue("0");
 
-                    Toast.makeText( SignUpAsCustomerActivity.this, "Customer Created", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( SignUpAsCustomerActivity.this, "Welcome " + name, Toast.LENGTH_SHORT).show();
                     if(name.toLowerCase().equals("david")){
                       Toast.makeText(getApplicationContext(),  "Welcome to the special page Mr. Davenport", Toast.LENGTH_SHORT).show();
                         startActivity( new Intent(SignUpAsCustomerActivity.this, EasterEggPage.class));
