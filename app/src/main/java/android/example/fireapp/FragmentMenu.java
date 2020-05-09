@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -29,6 +31,7 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
     private String mParam2;
     View view;
     Button logOff, myAccount, allRestaurants, favRestaurants, myReservations, help;
+    ImageView imageView;
 
     public FragmentMenu() {
         // Required empty public constructor
@@ -51,6 +54,8 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
         fragment.setArguments(args);
         return fragment;
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,10 +83,11 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
         favRestaurants.setOnClickListener(this);
         help = view.findViewById(R.id.help_call_us_button);
         help.setOnClickListener(this);
+        imageView = view.findViewById(R.id.cross_button);
+        imageView.setOnClickListener(this);
 
         return view;
     }
-
 
     @Override
     public void onClick(View v) {
@@ -105,6 +111,9 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
                 break;
             case R.id.help_call_us_button:
                 startActivity(new Intent(getActivity(), CustHelpActivity.class));
+                break;
+            case R.id.cross_button:
+                startActivity( new Intent(getActivity(), CustomerProfile.class));
                 break;
 
         }

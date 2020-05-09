@@ -5,12 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CC000000"
-    tools:context=".FragmentMenu">
+    tools:context=".FragmentMenu"
+    android:id="@+id/fragment_menu">
 
     <ImageView
+        android:id="@+id/cross_button"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/close_button"
+        android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.907"
