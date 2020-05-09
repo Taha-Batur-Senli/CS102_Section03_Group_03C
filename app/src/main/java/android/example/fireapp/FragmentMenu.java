@@ -15,7 +15,7 @@ import android.widget.Button;
  * Use the {@link FragmentMenu#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentMenu extends Fragment {
+public class FragmentMenu extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -24,7 +24,8 @@ public class FragmentMenu extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    Button logOut, myAccount, help, allRestaurantsDisplay, myFavRestaurants;
+    View view;
+    Button logOffButton;
 
     public FragmentMenu() {
         // Required empty public constructor
@@ -51,6 +52,7 @@ public class FragmentMenu extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -58,11 +60,21 @@ public class FragmentMenu extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.activity_fragment_menu, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        view = inflater.inflate(R.layout.activity_fragment_menu, container, false);
+        logOffButton = view.findViewById(R.id.log_off_button);
+        logOffButton.setOnClickListener(this);
+        return view;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.log_off_button:
+                getActivity().onBackPressed();
 
+        }
+    }
 }
