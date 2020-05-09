@@ -7,7 +7,6 @@ import java.time.LocalTime;
 
 public class TimeSlot{ // implements Reservable {
 
-    // asdsaf
 
     // properties
 
