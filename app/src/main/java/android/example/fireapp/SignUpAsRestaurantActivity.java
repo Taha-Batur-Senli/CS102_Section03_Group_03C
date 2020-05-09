@@ -136,7 +136,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
 
                     Toast.makeText( SignUpAsRestaurantActivity.this, "Welcome " + name, Toast.LENGTH_SHORT);
                     //Setting Firebase realtime database
-                    mRef.child(uid).child("rating").setValue(0);
+                   /* mRef.child(uid).child("rating").setValue(0);
                     mRef.child(uid).child("numOfTimesRated").setValue(0);
                     mRef.child(uid).child("isRestaurant").setValue(true);
                     mRef.child(uid).child("uid").setValue(uid);
@@ -151,7 +151,8 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     mRef.child(uid).child("working hours").setValue("");
                     mRef.child(uid).child("adress").setValue("");
                     mRef.child(uid).child("max seating duration").setValue(maxDuration);
-                    mRef.child(uid).child("min price to pre-order").setValue(minPrice);
+                    mRef.child(uid).child("min price to pre-order").setValue(minPrice);*/
+                    mRef.child(uid).setValue(new Restaurant(name, email, genre, phone, uid));
                  //   mRef.child(uid).child("seatPlan").child("seat1").setValue(
                            // new SeatCalendar(LocalDate.of(2020,5,9),
                             //LocalTime.of(8,0),LocalTime.of(23,0)));

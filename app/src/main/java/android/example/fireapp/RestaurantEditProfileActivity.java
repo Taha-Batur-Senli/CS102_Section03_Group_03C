@@ -63,9 +63,11 @@ public class RestaurantEditProfileActivity extends AppCompatActivity {
                 final String maxDurationUpdate = etMaxDuration.getText().toString();
 
                 if(!maxDurationUpdate.isEmpty())
-                    mRef.child(user.getUid()).child("max seating duration").setValue(Integer.parseInt(maxDurationUpdate));
+                    mRef.child(user.getUid()).child("maxSeatingDuration").setValue(Integer.parseInt(maxDurationUpdate));
+                    // mRef.child(user.getUid()).child("max seating duration").setValue(Integer.parseInt(maxDurationUpdate));
                 if(!minPriceUpdate.isEmpty())
-                    mRef.child(user.getUid()).child("min price to pre-order").setValue(Integer.parseInt(minPriceUpdate));
+                    mRef.child(user.getUid()).child("minPriceToPreOrder").setValue(Integer.parseInt(minPriceUpdate));
+                    //mRef.child(user.getUid()).child("min price to pre-order").setValue(Integer.parseInt(minPriceUpdate));
                 if(!nameUpdate.isEmpty())
                     mRef.child(user.getUid()).child("name").setValue(nameUpdate);
                 if(!descriptionUpdate.isEmpty())
@@ -73,7 +75,8 @@ public class RestaurantEditProfileActivity extends AppCompatActivity {
                 if(!phoneUpdate.isEmpty())
                     mRef.child(user.getUid()).child("phone").setValue(phoneUpdate);
                 if(!whUpdate.isEmpty())
-                    mRef.child(user.getUid()).child("working hours").setValue(whUpdate);
+                    mRef.child(user.getUid()).child("workingHours").setValue(whUpdate);
+                    //mRef.child(user.getUid()).child("working hours").setValue(whUpdate);
                 if(!adressUpdate.isEmpty())
                     mRef.child(user.getUid()).child("adress").setValue(adressUpdate);
                 //TODO bug düzelt
