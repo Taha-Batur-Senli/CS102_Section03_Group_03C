@@ -13,12 +13,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.fonts.Font;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -68,8 +70,22 @@ public class CustomerProfile extends AppCompatActivity {
         mRef = FirebaseDatabase.getInstance().getReference("Customers");
         user = mAuth.getCurrentUser();
         cusNameTV = (TextView)findViewById(R.id.txtNameCustomerProfile);
-        listViewAllRestaurants = (ListView)findViewById(R.id.lvAllRestaurants);
+        listViewAllRestaurants = findViewById(R.id.lvAllRestaurants);
         listViewPromotions = (ListView)findViewById(R.id.listViewAllPromotionsPOV);
+
+        LinearLayout layout = findViewById(R.id.promotions_gallery);
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+        for (int i = 0; i < 16; i++)
+        {
+            View view1 = inflater.inflate(R.layout.promotions_items, layout ,false);
+            TextView textView1 = view1.findViewById(R.id.textView20);
+            textView1.setText("Seb's" + i);
+            ImageView imageView1 = view1.findViewById(R.id.promotions_images);
+            imageView1.setImageResource(R.drawable.pizza);
+
+            layout.addView(view1);
+        }
 
 
         mViewFlipper = findViewById(R.id.view_flipper);
@@ -81,10 +97,10 @@ public class CustomerProfile extends AppCompatActivity {
         myFavRestaurants = (Button)findViewById(R.id.btnMyFavRestaurants); */
 
         database = FirebaseDatabase.getInstance();
-        myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allRestaurants);
+        myAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allRestaurants);
         listViewAllRestaurants.setAdapter(myAdapter);
         reference = database.getReference();
-        myAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, promotions);
+        myAdapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, promotions);
         listViewPromotions.setAdapter(myAdapter2);
         reference2 = database.getReference();
 

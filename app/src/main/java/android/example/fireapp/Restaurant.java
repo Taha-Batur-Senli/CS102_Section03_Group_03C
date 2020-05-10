@@ -1,10 +1,13 @@
 package android.example.fireapp;
 
+import android.widget.ImageView;
+
 public class Restaurant {
     //Properties
     String uid, email, name, genre, phone, description, reservations, menu, adress, workingHours;
     int numOfTimesRated, maxSeatingDuration, minPriceToPreOrder;
     double rating;
+    ImageView restaurantImage;
 
     public Restaurant(){}
 
@@ -135,5 +138,10 @@ public class Restaurant {
 
     public void setWorkingHours(String workingHours) {
         this.workingHours = workingHours;
+    }
+
+    public ImageView getImage()
+    {
+        return restaurantImage;
     }
 }
