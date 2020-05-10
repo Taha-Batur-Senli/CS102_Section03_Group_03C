@@ -14,28 +14,35 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.common.util.concurrent.HandlerExecutor;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.Iterator;
 
 
 public class SignUpAsRestaurantActivity extends AppCompatActivity{
-    EditText etEmail, etPassword, etName, etPhone;
+    EditText etEmail, etPassword, etName, etPhone, etNumOfTables;
     private FirebaseAuth mAuth;
     ProgressBar progressBar;
     Button btnRegister;
     Spinner spinner;
     FirebaseDatabase database;
     DatabaseReference mRef;
-    //DatabaseReference mRef2;
+    DatabaseReference mRefSeatPlans;
+    DatabaseReference mRef2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
         etPassword = findViewById(R.id.etPasswordSignUpAsRest);
         etName = findViewById(R.id.etNameResSignUp);
         etPhone = findViewById(R.id.etPhoneResSignUp);
+        etNumOfTables = findViewById(R.id.etNumOfTablesSignUp);
         progressBar = (ProgressBar)findViewById(R.id.progressBarResSignUp);
 
         spinner = findViewById(R.id.spinnerGenre);
@@ -54,7 +62,8 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
         btnRegister = findViewById(R.id.btnRegisterSignUpAsRest);
         database = FirebaseDatabase.getInstance();
         mRef = database.getReference( "Restaurants");
-        // mRef2 = database.getReference("Best Restaurants");
+        mRefSeatPlans = database.getReference("SeatPlans");
+        mRef2 = database.getReference("Best Restaurants");
 
         etEmail.setTextColor(ContextCompat.getColor(this, R.color.white));
         etPassword.setTextColor(ContextCompat.getColor(this, R.color.white));
@@ -76,6 +85,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
         final String name = etName.getText().toString();
         final String phone = etPhone.getText().toString();
         final String genre = spinner.getSelectedItem().toString();
+        final String numOfTables = etNumOfTables.getText().toString();
 
         final int minPrice = 25;
         final int maxDuration = 90;
@@ -91,6 +101,18 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
             etMaxDuration.requestFocus();
             return;
         } */
+
+        if (numOfTables.isEmpty()){
+            etNumOfTables.setError("Enter numbers of tables you have");
+            etNumOfTables.requestFocus();
+            return;
+        }
+
+        //if (Integer.parseInt(numOfTables) > 10){
+            //etNumOfTables.setError("You cannot have more than 10 tables");
+            //etNumOfTables.requestFocus();
+          //  return;
+        //}
 
         if( email.isEmpty()){
             etEmail.setError("Enter an email!");
@@ -134,58 +156,34 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     String email = user.getEmail();
                     String uid = user.getUid();
 
-                    Toast.makeText( SignUpAsRestaurantActivity.this, "Welcome " + name, Toast.LENGTH_SHORT);
                     //Setting Firebase realtime database
-                   /* mRef.child(uid).child("rating").setValue(0);
-                    mRef.child(uid).child("numOfTimesRated").setValue(0);
-                    mRef.child(uid).child("isRestaurant").setValue(true);
-                    mRef.child(uid).child("uid").setValue(uid);
-                    mRef.child(uid).child("name").setValue(name);
-                    mRef.child(uid).child("genre").setValue(genre);
-                    mRef.child(uid).child("phone").setValue(phone);
-                    mRef.child(uid).child("description").setValue("");
-                    mRef.child(uid).child("reservations").setValue("");
-                    mRef.child(uid).child("promotions").setValue("");
-                    mRef.child(uid).child("menu").setValue("");
-                    mRef.child(uid).child("email").setValue(user.getEmail());
-                    mRef.child(uid).child("working hours").setValue("");
-                    mRef.child(uid).child("adress").setValue("");
-                    mRef.child(uid).child("max seating duration").setValue(maxDuration);
-                    mRef.child(uid).child("min price to pre-order").setValue(minPrice);*/
-
-                    DatabaseReference ref02 = FirebaseDatabase.getInstance().getReference("SeatPlans");
-                    SeatCalendar xd = new SeatCalendar( LocalDate.of(2020,5,10),
-                            LocalTime.of(8,0),LocalTime.of(23,0));
-                    System.out.println(xd);
-
                     mRef.child(uid).setValue(new Restaurant(name, email, genre, phone, uid));
-                    mRef.child(uid).child("seatPlan").child("seat1").child("TimeSlots").setValue( xd);
+                    //mRef2.child(uid).setValue(new Restaurant(name, email, genre, phone, uid));
 
-//                    ref02.child(uid).child("seat1").setValue(new SeatCalendar(LocalDate.of(2020,5,9),
-//                                   LocalTime.of(8,0),LocalTime.of(23,0)));
+                    //add num of seats
+                    HashMap<String, HashMap<String, HashMap>> seats = new HashMap();
 
-//                    mRef.child(uid).child("seatPlan").child("seat1").setValue(
-//                            new SeatCalendar(LocalDate.of(2020,5,9),
-//                            LocalTime.of(8,0),LocalTime.of(23,0)));
+                    for (int i = 0; i < Integer.parseInt(numOfTables); i++){
+                        String seat = "seat" + (i + 1);
 
-                    /*mRef2.child(uid).child("rating").setValue(0);
-                    mRef2.child(uid).child("numOfTimesRated").setValue(0);
-                    mRef2.child(uid).child("isRestaurant").setValue(true);
-                    mRef2.child(uid).child("uid").setValue(uid);
-                    mRef2.child(uid).child("name").setValue(name);
-                    mRef2.child(uid).child("genre").setValue(genre);
-                    mRef2.child(uid).child("phone").setValue(phone);
-                    mRef2.child(uid).child("description").setValue("");
-                    mRef2.child(uid).child("reservations").setValue("");
-                    mRef2.child(uid).child("promotions").setValue("");
-                    mRef2.child(uid).child("menu").setValue("");
-                    mRef2.child(uid).child("email").setValue(user.getEmail());
-                    mRef2.child(uid).child("working hours").setValue("");
-                    mRef2.child(uid).child("adress").setValue("");
-                    mRef2.child(uid).child("max seating duration").setValue(maxDuration);
-                    mRef2.child(uid).child("min price to pre-order").setValue(minPrice);*/
+                        //add 7 days
+                        HashMap <String, HashMap> days = new HashMap();
+                        for (int k = 0; k < 7; k++){
+
+                            String day = LocalDate.now().toString();
+                            if (k > 0)
+                               day = LocalDate.now().plusDays(k).toString();
+                            //add timeslots
+                            SeatCalendar sc = new SeatCalendar(LocalDate.parse(day),
+                                    LocalTime.of(8,0),LocalTime.of(23,0));
+                            days.put(day, sc);
+                        }
+                        seats.put(seat, days);
+                    }
+                    mRefSeatPlans.child(uid).setValue(seats);
 
 
+                    Toast.makeText( SignUpAsRestaurantActivity.this, "Welcome " + name, Toast.LENGTH_SHORT);
                     startActivity( new Intent(SignUpAsRestaurantActivity.this, RestaurantProfile.class));
                     finish();
                 }
@@ -197,7 +195,6 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     else {
                         Toast.makeText(getApplicationContext(),  task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
-
                 }
             }
         });

@@ -53,7 +53,11 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         makeReservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustomerPOVRestaurant.this, MakeReservationCustomerP1.class));
+                Intent intent = getIntent();
+                String uid = intent.getStringExtra("UID");
+                Intent intent2 = new Intent(CustomerPOVRestaurant.this, MakeReservationCustomerP1.class);
+                intent2.putExtra("UID", uid);
+                startActivity( intent2);
             }
         });
     }

@@ -44,19 +44,15 @@ public class CustomerProfile extends AppCompatActivity {
     private ViewFlipper mViewFlipper;
     Button logOut, myAccount, help, allRestaurantsDisplay, myFavRestaurants;
     FirebaseAuth mAuth;
-    DatabaseReference mRef;
+    FirebaseDatabase database;
     FirebaseUser user;
     TextView cusNameTV;
-    ListView listViewAllRestaurants;
-    ArrayAdapter myAdapter;
+    ListView listViewAllRestaurants, listViewPromotions;
+    ArrayAdapter myAdapter,  myAdapter2;
     ArrayList<String> allRestaurants = new ArrayList<>();
-    FirebaseDatabase database;
-    DatabaseReference reference;
-    DatabaseReference reference2;
-    ArrayList<String> promotions = new ArrayList<String>();
-    ArrayAdapter  myAdapter2;
-    ListView listViewPromotions;
 
+    DatabaseReference reference, reference2, mRef;
+    ArrayList<String> promotions = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
