@@ -47,9 +47,10 @@ Next, we will hopefully get GitHub working correctly. Then, we will make the cha
 ****
 
 ****
-### Meeting ~ (9 May 2020, )
+### Meeting ~ (9 May 2020, 2 Hours)
 ****
 **Present:** Bora Altınok, Arda Tavusbay, Ali Eren Günaltılı, Ege Ergül, Berkay İnceişçi, Taha Batur Şenli, TA  _**Absent:**_ 
 
 **Discussion**
+In this meeting, we discussed how should we integrate reservation making process with our mobile app. Currently, there are two seperate projects: our mobile app that uses Firebase and a java project that uses SQL to make reservations. We decided to proceed step by step. Fistly, we decided how should we arrange Firebase so that it can store restaurants availability efficiently. The first task is to implement this. Then, we will start manuplating that data and hopefully, our project will be done. Meanwhile, our GUI team will keep working on the appereance of our app. 
 ...
