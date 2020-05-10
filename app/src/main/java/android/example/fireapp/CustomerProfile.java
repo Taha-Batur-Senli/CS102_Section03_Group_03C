@@ -50,10 +50,10 @@ public class CustomerProfile extends AppCompatActivity {
     ArrayList<String> allRestaurants = new ArrayList<>();
     FirebaseDatabase database;
     DatabaseReference reference;
-   /* DatabaseReference reference2;
+    DatabaseReference reference2;
     ArrayList<String> promotions = new ArrayList<String>();
     ArrayAdapter  myAdapter2;
-    ListView listViewPromotions;*/
+    ListView listViewPromotions;
 
 
     @Override
@@ -69,22 +69,8 @@ public class CustomerProfile extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         cusNameTV = (TextView)findViewById(R.id.txtNameCustomerProfile);
         listViewAllRestaurants = (ListView)findViewById(R.id.lvAllRestaurants);
+        listViewPromotions = (ListView)findViewById(R.id.listViewAllPromotionsPOV);
 
-
-        /*listViewPromotions = (ListView)findViewById(R.id.lvPromotionsPOV);
-        <ListView
-        android:id="@+id/lvPromotionsPOV"
-        android:layout_width="409dp"
-        android:layout_height="167dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvAllRestaurants" />
-         */
-        /*reference2 = database.getReference();
-        myAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, promotions);
-        listViewPromotions.setAdapter(myAdapter2);
-        promotions.add("Promotions");*/
 
         mViewFlipper = findViewById(R.id.view_flipper);
         int[] images = { R.drawable.food_photo, R.drawable.pizza, R.drawable.steak};
@@ -94,26 +80,27 @@ public class CustomerProfile extends AppCompatActivity {
         allRestaurantsDisplay = findViewById(R.id.btnAllRestaurants);
         myFavRestaurants = (Button)findViewById(R.id.btnMyFavRestaurants); */
 
-
+        database = FirebaseDatabase.getInstance();
         myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allRestaurants);
         listViewAllRestaurants.setAdapter(myAdapter);
-        database = FirebaseDatabase.getInstance();
         reference = database.getReference();
+        myAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, promotions);
+        listViewPromotions.setAdapter(myAdapter2);
+        reference2 = database.getReference();
 
         //Methods called
         displayAllRestaurants();
         listOnLongClickAction();
+        displayPromotions();
+        displayRestProfileAction();
+        configureMenuButton();
+        search.clearFocus();
 
         /* myAccountAction();
         logOutAction();
         helpActivity();
         allRestaurantsDisplayActivity();
         myFavRestaurantsActivity(); */
-
-        displayRestProfileAction();
-        configureMenuButton();
-        search.clearFocus();
-        //displayPromotions();
 
         //Adding the images!
         for ( int x = 0; x < images.length; x++)
@@ -179,7 +166,7 @@ public class CustomerProfile extends AppCompatActivity {
         });
     } */
 
-   /* private void displayPromotions() {
+    private void displayPromotions() {
         reference2.child("Promotions").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -191,7 +178,6 @@ public class CustomerProfile extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for (DataSnapshot ds2 : dataSnapshot.getChildren()) {
                                 final String name = ds2.child("name").getValue().toString();
-                                //fianl String resName = ds2.child("re")
                                 promotions.add(name);
                                 myAdapter2.notifyDataSetChanged();
                             }
@@ -209,7 +195,7 @@ public class CustomerProfile extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-    }*/
+    }
 
     //  METHODS
 
