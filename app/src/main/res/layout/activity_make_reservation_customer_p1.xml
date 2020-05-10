@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
     tools:context=".MakeReservationCustomerP1">
 
     <TextView
@@ -11,11 +12,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Make a reservation easily!"
+        android:textColor="@color/white"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.071" />
 
     <CalendarView
         android:id="@+id/calendarView"
@@ -23,22 +27,25 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.573"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17"
-        app:layout_constraintVertical_bias="0.027" />
+        app:layout_constraintVertical_bias="0.151" />
 
     <TextView
         android:id="@+id/txtDate"
         android:layout_width="345dp"
         android:layout_height="46dp"
-        android:text="Select a date!"
+        android:text="Please select a date!"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.199" />
 
     <ListView
         android:id="@+id/lvSeatSelection"

@@ -4,19 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background2"
     tools:context=".ShowMenuPOV">
 
     <TextView
         android:id="@+id/txtNameShowMenuPOV"
-        android:layout_width="281dp"
-        android:layout_height="71dp"
-        android:text="Rest Name"
+        android:layout_width="239dp"
+        android:layout_height="42dp"
+        android:text="Restaurant Name"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintVertical_bias="0.071" />
 
     <ListView
         android:id="@+id/lvMenuResPOV"
@@ -31,13 +33,16 @@
 
     <TextView
         android:id="@+id/textView16"
-        android:layout_width="108dp"
-        android:layout_height="64dp"
+        android:layout_width="86dp"
+        android:layout_height="42dp"
         android:text="Menu"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.59"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.262" />
+        app:layout_constraintVertical_bias="0.226" />
 </androidx.constraintlayout.widget.ConstraintLayout>
