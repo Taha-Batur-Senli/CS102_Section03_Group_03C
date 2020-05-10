@@ -27,4 +27,7 @@ Today we experienced several problems with the GitHub repository we are using. N
 ### ~ 07.05.2020 and 08.05.2020~
 These two days were mostly spent on working on the GUI. We had small brainstorming sessions with Arda, delegating the work while I completed my part on the main menu, passing it to Arda to make the necessary adjustments. From this moment on, my time will be dedicated to reviewing the pages we have made and gradually updating their appearance.
 
+### ~ 07.05.2020 and 08.05.2020~
+I spent the weekend overhauling the appearance of all the pages we have on the app and completed most of the changes for each page (adding background, buttons, adjusting the page format, fonts, text colors, outlines etc). My plan is to continue reworking the page appearances for the rest of the week and complete the whole ordeal by the end of the week.
+
 ****
