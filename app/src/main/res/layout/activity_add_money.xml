@@ -21,23 +21,31 @@
 
     <Button
         android:id="@+id/addMoney3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add money"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button"
+        android:text="Add Money"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etMoneyToAdded3"
-        app:layout_constraintVertical_bias="0.315" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.695" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="312dp"
-        android:layout_height="113dp"
-        android:text="The specified amount of money will be billed after your credit card. Please enter the amount of money you want to add to your account."
-        app:layout_constraintBottom_toTopOf="@+id/etMoneyToAdded3"
+        android:layout_width="325dp"
+        android:layout_height="124dp"
+        android:text="The specified amount of money will be billed retracted from your credit card. Please enter the amount of money you want to add to your account."
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.227" />
 </androidx.constraintlayout.widget.ConstraintLayout>
