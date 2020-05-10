@@ -2,19 +2,19 @@ package android.example.fireapp;
 
 import android.os.Build;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class SeatCalendar {
+public class SeatCalendar extends HashMap<String, TimeSlot> {
 
     // properties
     LocalTime availableHoursStart;
     LocalTime availableHoursEnd;
     LocalDate currentDate;
-    private HashMap<Integer, TimeSlot> timeSlots;
 
     // constructors
     public SeatCalendar(LocalDate date, LocalTime start, LocalTime end) {
@@ -28,6 +28,7 @@ public class SeatCalendar {
             for ( i = start; i.isBefore(LocalTime.now()); i = i.plusMinutes(10))
             {
                 // do nothing
+                System.out.println("eğer girilen tarih eşitse buraya giriyorum - time: " + i);
             }
             availableHoursStart = i;
         }
@@ -36,20 +37,24 @@ public class SeatCalendar {
             availableHoursStart = start;
         }
         createTimeSlots( availableHoursStart, getLastReservationTime());
+        System.out.println("Bir sıkıntı yokk");
     }
 
     // methods
     private void createTimeSlots( LocalTime start, LocalTime end)
     {
+        System.out.println("Son rezervasyon zamanını da sıkıntısız veriyorum  " + end);
         TimeSlot ts;
-        timeSlots = new HashMap<Integer, TimeSlot>();
 
         for( LocalTime i = start; i.isBefore(end); i = i.plusMinutes(10)) // 10 represent intervals, we can change if needed
         {
             ts = new TimeSlot( currentDate, i);
             ts.setReserved(false);
-            timeSlots.put(i.getHour()*60 + i.getMinute(), ts);
+            this.put("" + (i.getHour()*60 + i.getMinute()), ts);
+            System.out.println("zaman aralıklarını oluşturuyorum :))   " + ts.toString() );
         }
+
+        System.out.println("Zaman aralıklarını oluşturdum");
 		/*
 		String[] endHourMinute = end.split(":");
 
@@ -72,56 +77,56 @@ public class SeatCalendar {
 		*/
     }
 
-    public boolean isTimeSlotAvailable(LocalTime time) {
-        return !timeSlots.get(time.getHour()*60 + time.getMinute()).isReserved();
-    }
+//    public boolean isTimeSlotAvailable(LocalTime time) {
+//        return !this.get(time.getHour()*60 + time.getMinute()).isReserved();
+//    }
+//
+//    public void setRelatedSlotsReserved(LocalDateTime dateAndTime, boolean b) {
+//        for ( int i = dateAndTime.getHour()*60 + dateAndTime.getMinute();
+//              (i < getLastReservationTime().getHour()*60 + getLastReservationTime().getMinute() + 1) && (i < dateAndTime.getHour()*60 + dateAndTime.getMinute() + TimeSlot.durationOfMeal);
+//              i++)
+//        {
+//            this.get(i).setReserved(b);
+//        }
+//
+//
+//		/*int startIndex = timeSlots.indexOf( getTimeSlotByStartTime(ts.getFirstTime()));
+//		System.out.println("start Index: " + startIndex );
+//		for(int i = startIndex; i < startIndex + TimeSlot.durationOfMeal - 1; i++)
+//		{
+//			timeSlots.get(i).setReserved(b);
+//		}
+//		System.out.println("Related timeslots reserved");
+//		*/
+//    }
 
-    public void setRelatedSlotsReserved(LocalDateTime dateAndTime, boolean b) {
-        for ( int i = dateAndTime.getHour()*60 + dateAndTime.getMinute();
-              (i < getLastReservationTime().getHour()*60 + getLastReservationTime().getMinute() + 1) && (i < dateAndTime.getHour()*60 + dateAndTime.getMinute() + TimeSlot.durationOfMeal);
-              i++)
-        {
-            timeSlots.get(i).setReserved(b);
-        }
-
-
-		/*int startIndex = timeSlots.indexOf( getTimeSlotByStartTime(ts.getFirstTime()));
-		System.out.println("start Index: " + startIndex );
-		for(int i = startIndex; i < startIndex + TimeSlot.durationOfMeal - 1; i++)
-		{
-			timeSlots.get(i).setReserved(b);
-		}
-		System.out.println("Related timeslots reserved");
-		*/
-    }
-
-    public String printReservedTimeSlots()
-    {
-        String str = "";
-
-        for( int i = availableHoursStart.getHour()*60 + availableHoursStart.getMinute(); i < getLastReservationTime().getHour()*60 + getLastReservationTime().getMinute(); i++ )
-        {
-            if( timeSlots.get(i).isReserved())
-            {
-                str += timeSlots.get(i);
-                str += "\n";
-                i = i + TimeSlot.durationOfMeal;
-            }
-        }
-        return str;
-
-		/*
-		for( Integer key : timeSlots.keySet())
-		{
-			if( timeSlots.get(key).isReserved())
-			{
-				str += timeSlots.get(key);
-				str += "\n";
-			}
-		}
-		return str;
-		*/
-    }
+//    public String printReservedTimeSlots()
+//    {
+//        String str = "";
+//
+//        for( int i = availableHoursStart.getHour()*60 + availableHoursStart.getMinute(); i < getLastReservationTime().getHour()*60 + getLastReservationTime().getMinute(); i++ )
+//        {
+//            if( this.get(i).isReserved())
+//            {
+//                str += this.get(i);
+//                str += "\n";
+//                i = i + TimeSlot.durationOfMeal;
+//            }
+//        }
+//        return str;
+//
+//		/*
+//		for( Integer key : timeSlots.keySet())
+//		{
+//			if( timeSlots.get(key).isReserved())
+//			{
+//				str += timeSlots.get(key);
+//				str += "\n";
+//			}
+//		}
+//		return str;
+//		*/
+//    }
 
     /*public TimeSlot getTimeSlotByStartTime(int time)
     {
@@ -140,5 +145,6 @@ public class SeatCalendar {
     public LocalTime getLastReservationTime() {
         // TODO Auto-generated method stub
         return availableHoursEnd.minusMinutes(TimeSlot.durationOfMeal);
+
     }
 }

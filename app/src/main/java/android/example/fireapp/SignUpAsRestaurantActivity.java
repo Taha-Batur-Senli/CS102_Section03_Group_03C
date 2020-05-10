@@ -152,10 +152,21 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     mRef.child(uid).child("adress").setValue("");
                     mRef.child(uid).child("max seating duration").setValue(maxDuration);
                     mRef.child(uid).child("min price to pre-order").setValue(minPrice);*/
+
+                    DatabaseReference ref02 = FirebaseDatabase.getInstance().getReference("SeatPlans");
+                    SeatCalendar xd = new SeatCalendar( LocalDate.of(2020,5,10),
+                            LocalTime.of(8,0),LocalTime.of(23,0));
+                    System.out.println(xd);
+
                     mRef.child(uid).setValue(new Restaurant(name, email, genre, phone, uid));
-                 //   mRef.child(uid).child("seatPlan").child("seat1").setValue(
-                           // new SeatCalendar(LocalDate.of(2020,5,9),
-                            //LocalTime.of(8,0),LocalTime.of(23,0)));
+                    mRef.child(uid).child("seatPlan").child("seat1").child("TimeSlots").setValue( xd);
+
+//                    ref02.child(uid).child("seat1").setValue(new SeatCalendar(LocalDate.of(2020,5,9),
+//                                   LocalTime.of(8,0),LocalTime.of(23,0)));
+
+//                    mRef.child(uid).child("seatPlan").child("seat1").setValue(
+//                            new SeatCalendar(LocalDate.of(2020,5,9),
+//                            LocalTime.of(8,0),LocalTime.of(23,0)));
 
                     /*mRef2.child(uid).child("rating").setValue(0);
                     mRef2.child(uid).child("numOfTimesRated").setValue(0);

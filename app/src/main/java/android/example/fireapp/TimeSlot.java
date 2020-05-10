@@ -22,11 +22,7 @@ public class TimeSlot{ // implements Reservable {
     {
         this.date = date;
         this.firstTime = firstTime;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            this.endTime = this.firstTime.plusMinutes(durationOfMeal);
-        }
-
-
+        this.endTime = this.firstTime.plusMinutes(durationOfMeal);
     }
 
     // methods
@@ -50,4 +46,10 @@ public class TimeSlot{ // implements Reservable {
     {
         return firstTime;
     }
+
+    public LocalTime getEndTime()
+    {
+        return endTime;
+    }
+
 }
