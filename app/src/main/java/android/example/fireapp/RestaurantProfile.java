@@ -9,7 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +30,7 @@ public class RestaurantProfile extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser user;
     TextView resNameTV;
+    private ViewFlipper mViewFlipper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,8 @@ public class RestaurantProfile extends AppCompatActivity {
         logOut = (Button)findViewById(R.id.logOutResProfile);
         promotions = (Button)findViewById(R.id.btnPromotionMenu);
         changeMenu = (Button)findViewById(R.id.btnChangeMenu);
+        mViewFlipper = findViewById(R.id.view_flipper);
+        int[] images = { R.drawable.food_photo, R.drawable.pizza, R.drawable.steak};
 
         //Call methods
         takeALookAtYourRestaurantAction();
@@ -54,6 +59,12 @@ public class RestaurantProfile extends AppCompatActivity {
         editTextAction();
         changeMenuAction();
         promotionsActivity();
+
+        //Adding the images for the flipper!
+        for ( int x = 0; x < images.length; x++)
+        {
+            flipperImages( images[x]);
+        } //Done!
 
         //Get customer info and display
         mRef.addValueEventListener(new ValueEventListener() {
@@ -165,6 +176,20 @@ public class RestaurantProfile extends AppCompatActivity {
                 });
         AlertDialog alert = builder.create();
         alert.show();
+
+    }
+
+    public void flipperImages (int image){
+        ImageView imageView = new ImageView(this);
+        imageView.setBackgroundResource( image);
+
+        mViewFlipper.addView( imageView);
+        mViewFlipper.setFlipInterval( 3000);
+        mViewFlipper.setAutoStart( true);
+
+        //Time to slide!
+        mViewFlipper.setInAnimation( this, android.R.anim.slide_in_left);
+        mViewFlipper.setOutAnimation( this, android.R.anim.slide_out_right);
 
     }
 }
