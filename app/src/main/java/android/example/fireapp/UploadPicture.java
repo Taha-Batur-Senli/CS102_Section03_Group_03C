@@ -42,6 +42,7 @@ public class UploadPicture extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_picture);
+
         choose = findViewById(R.id.choose);
         upload = findViewById(R.id.upload);
         imageView = findViewById(R.id.image);

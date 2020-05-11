@@ -45,7 +45,19 @@ public class ShowMenuPOV extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         reference = database.getReference( "Restaurants");
 
-        tvName.setText(uid);
+        reference.child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final String nameof = dataSnapshot.child("name").getValue().toString();
+                tvName.setText(nameof);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        //tvName.setText(uid);
 
         //Display Menu
         reference.child(uid).child("menu").addValueEventListener(new ValueEventListener() {

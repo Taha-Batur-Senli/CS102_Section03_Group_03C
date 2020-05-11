@@ -162,6 +162,33 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
 
                     //add num of seats
                     HashMap<String, HashMap<String, HashMap>> seats = new HashMap();
+                    String day = LocalDate.now().toString();
+                    String seat = "";
+                    HashMap <String, HashMap> days;
+                    for (int i = 0; i < Integer.parseInt(numOfTables); i++){
+
+                        seat = "seat" + (i + 1);
+                        //add 7 days
+
+                        days  = new HashMap();
+                        for (int k = 0; k < 7; k++){
+
+                            if (k > 0)
+                            {
+                                day = LocalDate.now().plusDays(k).toString();
+                            }
+
+                            System.out.println((k + 1) + ". day : " + day);
+                            //add timeslots
+                            SeatCalendar sc = new SeatCalendar(LocalDate.parse(day),
+                                    LocalTime.of(0,5),LocalTime.of(23,0));
+                            days.put(day, sc);
+                        }
+                        seats.put(seat, days);
+                    }
+                    mRefSeatPlans.child(uid).setValue(seats);
+                    //add num of seats
+                    /*HashMap<String, HashMap<String, HashMap>> seats = new HashMap();
 
                     for (int i = 0; i < Integer.parseInt(numOfTables); i++){
                         String seat = "seat" + (i + 1);
@@ -180,7 +207,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                         }
                         seats.put(seat, days);
                     }
-                    mRefSeatPlans.child(uid).setValue(seats);
+                    mRefSeatPlans.child(uid).setValue(seats);*/
 
 
                     Toast.makeText( SignUpAsRestaurantActivity.this, "Welcome " + name, Toast.LENGTH_SHORT);

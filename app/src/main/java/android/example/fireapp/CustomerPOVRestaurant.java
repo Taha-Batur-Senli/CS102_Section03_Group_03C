@@ -55,9 +55,26 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = getIntent();
                 String uid = intent.getStringExtra("UID");
-                Intent intent2 = new Intent(CustomerPOVRestaurant.this, MakeReservationCustomerP1.class);
-                intent2.putExtra("UID", uid);
-                startActivity( intent2);
+
+                mRefRes.child(uid).child("minPriceToPreOrder").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        final String minPrice = dataSnapshot.getValue().toString();
+                        Intent intent = getIntent();
+                        String uid = intent.getStringExtra("UID");
+                        Intent intent2 = new Intent(CustomerPOVRestaurant.this, MakeReservationCustomerP1.class);
+                        intent2.putExtra("UID", uid);
+                        intent2.putExtra("MINPRICE", minPrice);
+                        startActivity( intent2);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
             }
         });
     }

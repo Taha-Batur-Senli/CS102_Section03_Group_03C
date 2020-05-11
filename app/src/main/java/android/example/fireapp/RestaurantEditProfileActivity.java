@@ -55,7 +55,7 @@ public class RestaurantEditProfileActivity extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RestaurantEditProfileActivity.this,UploadPicture.class);
+                Intent intent = new Intent(RestaurantEditProfileActivity.this, UploadPicture.class);
                 startActivity(intent);
             }
         });
