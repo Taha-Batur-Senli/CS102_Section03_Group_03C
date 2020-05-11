@@ -7,6 +7,21 @@
     android:background="@drawable/background2"
     tools:context=".RestaurantEditProfileActivity">
 
+    <Button
+        android:id="@+id/upload_image"
+        android:background="@drawable/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="66dp"
+        android:textColor="@color/white"
+        android:text="@string/upload"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toEndOf="@+id/btnSaveEditProfileRes"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerEdit"
+        app:layout_constraintVertical_bias="0.038" />
+
     <TextView
         android:id="@+id/txtEditRes"
         android:layout_width="195dp"
@@ -32,6 +47,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.211"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etResProfileAdress"
         app:layout_constraintVertical_bias="0.0" />

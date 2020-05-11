@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 public class RestaurantEditProfileActivity extends AppCompatActivity {
     //Properties
     Button save;
+    Button upload;
     EditText etDescription, etPhone, etName, etWH,etAdress, etMaxDuration, etMinPrice;
     Spinner genre;
     DatabaseReference mRef;
@@ -34,6 +35,7 @@ public class RestaurantEditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant_edit_profile);
 
         //Initialize properties
+        upload = (Button)findViewById(R.id.upload_image);
         save = (Button)findViewById(R.id.btnSaveEditProfileRes);
         etDescription = (EditText)findViewById(R.id.etResProfileDescription);
         etPhone = (EditText)findViewById(R.id.etResProfilePhone);
@@ -48,6 +50,15 @@ public class RestaurantEditProfileActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference("Restaurants");
         user = mAuth.getCurrentUser();
+
+        //setting onClickListener update button
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RestaurantEditProfileActivity.this,UploadPicture.class);
+                startActivity(intent);
+            }
+        });
 
         //Save button  function to update firebase database
         save.setOnClickListener(new View.OnClickListener() {
