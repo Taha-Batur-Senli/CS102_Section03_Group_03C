@@ -1,8 +1,10 @@
 package android.example.fireapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -80,6 +82,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
 
         editFoodAction();
         addDishAction();
+        listOnLongClickAction();
     }
 
     private void editFoodAction() {
@@ -118,5 +121,55 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
 
      String foodUid = reference.child(user.getUid()).child("menu").push().getKey();
         reference.child(user.getUid()).child("menu").child(foodUid).setValue(new Food(name, ingredients, Integer.parseInt(price)));
+    }
+
+
+    int index;
+    private void listOnLongClickAction() {
+        lvMenuRes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                index = position;
+
+                new AlertDialog.Builder(ChangeMenuActivity.this)
+                        .setIcon(android.R.drawable.ic_input_add)
+                        .setTitle("This dish will be deleted from your menu!")
+                        .setMessage("Do you want to proceed?")
+                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String food = menu.get(position);
+                                int index = food.indexOf(":");
+                                String foodName = food.substring(0, index);
+                                final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Restaurants");
+                                mRef.child(user.getUid()).child("menu").orderByChild("name").equalTo(foodName).addValueEventListener(new ValueEventListener() {
+                                    int i = 0;
+                                    @Override
+                                    public void onDataChange (@NonNull DataSnapshot dataSnapshot){
+                                        if ( i < 1) {
+                                            mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
+                                                    .removeValue();
+                                            i++;
+                                        }
+
+                                        startActivity(new Intent(ChangeMenuActivity.this, RestaurantProfile.class));
+                                        finish();
+                                    }
+
+                                    @Override
+                                    public void onCancelled (@NonNull DatabaseError databaseError){
+
+                                    }
+                                });
+
+
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
+
+                return true;
+            }
+        });
     }
 }

@@ -41,7 +41,22 @@ public class ChangeFoodActivity extends AppCompatActivity {
         etIngredients = (EditText)findViewById(R.id.etFoodIngredientChange);
         etPrice = (EditText)findViewById(R.id.etFoodPriceChange);
         save = (Button)findViewById(R.id.bttnSaveFoodChange);
-        delete = (Button)findViewById(R.id.btnDeleteFood); 
+        //delete = (Button)findViewById(R.id.btnDeleteFood);
+        /* <Button
+        android:id="@+id/btnDeleteFood"
+        android:layout_width="115dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/button"
+        android:text="Delete Food"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bttnSaveFoodChange"
+        app:layout_constraintVertical_bias="0.388" />*/
         nameTV = (TextView)findViewById(R.id.txtFoodNameChange);
 
         mAuth = FirebaseAuth.getInstance();
@@ -53,7 +68,7 @@ public class ChangeFoodActivity extends AppCompatActivity {
         nameTV.setText(name);
 
         saveChangesAction();
-        deleteAction();
+        //deleteAction();
 
     }
 
