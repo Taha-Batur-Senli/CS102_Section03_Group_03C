@@ -12,27 +12,42 @@
         android:id="@+id/menu_button"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="24dp"
         android:background="@drawable/menu"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.025" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtNameCustomerProfile"
+        android:layout_width="263dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="45dp"
+        android:text="Welcome, "
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/view_flipper"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view_flipper"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+
 
     <ViewFlipper
         android:id="@+id/view_flipper"
-        android:layout_width="399dp"
-        android:layout_height="127dp"
+        android:layout_width="404dp"
+        android:layout_height="184dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/roboto_light"
         android:inAnimation="@android:anim/slide_in_left"
         android:outAnimation="@android:anim/slide_out_right"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.263">
+        app:layout_constraintTop_toBottomOf="@+id/imageView9">
 
     </ViewFlipper>
 
@@ -40,57 +55,43 @@
         android:id="@+id/imageView9"
         android:layout_width="60dp"
         android:layout_height="45dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="24dp"
+        android:contentDescription="logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026"
         app:srcCompat="@drawable/logo" />
-
-    <TextView
-        android:id="@+id/txtNameCustomerProfile"
-        android:layout_width="263dp"
-        android:layout_height="34dp"
-        android:text="Welcome, "
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.11" />
-
 
     <ListView
         android:id="@+id/lvAllRestaurants"
-        android:layout_width="399dp"
-        android:layout_height="102dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="305dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.377"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.818" />
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="496dp"
         android:text="Best Restaurants"
         android:textColor="@color/white"
         android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.287"
+        app:layout_constraintHorizontal_bias="0.273"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SearchView
         android:id="@+id/search"
         android:layout_width="310dp"
         android:layout_height="44dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="20dp"
         android:accessibilityPaneTitle="F"
         android:background="@drawable/button"
         android:backgroundTint="#FFFFFF"
@@ -105,30 +106,30 @@
         android:voiceIcon="@drawable/ic_mic_white_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_flipper"
+        app:layout_constraintTop_toTopOf="@+id/view_flipper"
         app:layout_constraintVertical_bias="0.0" />
 
     <ListView
         android:id="@+id/listViewAllPromotionsPOV"
         android:layout_width="409dp"
         android:layout_height="96dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="136dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search"
-        app:layout_constraintVertical_bias="0.947" />
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
     <HorizontalScrollView
-        android:layout_width="404dp"
-        android:layout_height="149dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="405dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search"
-        app:layout_constraintVertical_bias="0.196">
+        app:layout_constraintTop_toBottomOf="@+id/view_flipper">
 
         <LinearLayout
             android:id="@+id/promotions_gallery"
