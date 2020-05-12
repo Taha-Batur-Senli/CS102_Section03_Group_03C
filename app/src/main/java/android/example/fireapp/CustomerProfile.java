@@ -107,6 +107,7 @@ public class CustomerProfile extends AppCompatActivity {
         displayRestProfileAction();
         configureMenuButton();
         search.clearFocus();
+        promotionsClick();
 
         /* myAccountAction();
         logOutAction();
@@ -176,7 +177,7 @@ public class CustomerProfile extends AppCompatActivity {
                 startActivity(new Intent(CustomerProfile.this, MyFavActivities.class));
             }
         });
-    } */
+    }*/
 
     private void displayPromotions() {
         reference2.child("Promotions").addValueEventListener(new ValueEventListener() {
@@ -189,8 +190,10 @@ public class CustomerProfile extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for (DataSnapshot ds2 : dataSnapshot.getChildren()) {
+                                final String resName = ds2.child("restaurantName").getValue().toString();
                                 final String name = ds2.child("name").getValue().toString();
-                                promotions.add(name);
+                                String promo = resName + "   " + name;
+                                promotions.add(promo);
                                 myAdapter2.notifyDataSetChanged();
                             }
                         }
@@ -312,6 +315,43 @@ public class CustomerProfile extends AppCompatActivity {
                         .show();
 
                 return true;
+            }
+        });
+    }
+
+    private void promotionsClick(){
+        listViewPromotions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Get restaurants name
+                String promo = promotions.get(position);
+                int index = promo.indexOf("   ");
+                final String resName = promo.substring(0, index);
+
+                //Go to restaurants profile
+                final DatabaseReference refRests = FirebaseDatabase.getInstance().getReference("Restaurants");
+                refRests.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                        while (items.hasNext()) {
+                            DataSnapshot item1 = items.next();
+                            String searchedId;
+                            if (item1.child("name").getValue().toString().equals(resName)) {
+
+                                searchedId = item1.child("uid").getValue().toString();
+                                Intent intent = new Intent(CustomerProfile.this, CustomerPOVRestaurant.class);
+                                intent.putExtra("UID", searchedId);
+                                startActivity( intent);
+                                finish();
+                                //myAdapter .notifyDataSetChanged();
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+                });
             }
         });
     }

@@ -62,17 +62,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.11" />
 
+
     <ListView
         android:id="@+id/lvAllRestaurants"
-        android:layout_width="403dp"
-        android:layout_height="170dp"
+        android:layout_width="399dp"
+        android:layout_height="102dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.971" />
-
+        app:layout_constraintVertical_bias="0.818" />
 
     <TextView
         android:id="@+id/textView10"
@@ -83,10 +82,10 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.351"
+        app:layout_constraintHorizontal_bias="0.287"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.733" />
+        app:layout_constraintVertical_bias="0.69" />
 
     <SearchView
         android:id="@+id/search"
@@ -112,18 +111,18 @@
 
     <ListView
         android:id="@+id/listViewAllPromotionsPOV"
-        android:layout_width="126dp"
-        android:layout_height="30dp"
+        android:layout_width="409dp"
+        android:layout_height="96dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintVertical_bias="0.947" />
 
     <HorizontalScrollView
-        android:layout_width="409dp"
-        android:layout_height="200dp"
+        android:layout_width="404dp"
+        android:layout_height="149dp"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

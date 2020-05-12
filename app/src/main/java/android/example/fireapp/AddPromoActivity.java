@@ -1,5 +1,6 @@
 package android.example.fireapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,8 +11,11 @@ import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddPromoActivity extends AppCompatActivity {
     EditText etPromo;
@@ -40,11 +44,24 @@ public class AddPromoActivity extends AppCompatActivity {
                     etPromo.setError("Enter your promotion!");
                     etPromo.requestFocus();
                 } else{
-                    String uid = mRef.child(user.getUid()).push().getKey();
+                    final String uid = mRef.child(user.getUid()).push().getKey();
 
-                    mRef.child(user.getUid()).child(uid).setValue(new Promotion(promo, "restaurantsName",uid));
-                    startActivity(new Intent(AddPromoActivity.this, RestaurantProfile.class));
-                    finish();
+                    DatabaseReference mRefRes = FirebaseDatabase.getInstance().getReference("Restaurants");
+                    mRefRes.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String restaurantsName =  dataSnapshot.child(user.getUid()).child("name").getValue().toString();
+                            mRef.child(user.getUid()).child(uid).setValue(new Promotion(promo, restaurantsName,uid));
+                            startActivity(new Intent(AddPromoActivity.this, RestaurantProfile.class));
+                            finish();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
                 }
             }
         });
