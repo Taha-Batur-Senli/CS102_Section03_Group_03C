@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/*
+/**
 In this class, customers are displayed the available timeslots of the table they have selected on
 a specified date. Then they select a time slot and can either finish their reservation or can pre-order.
  */
@@ -44,7 +44,7 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
 
         //Initialize
         lvAvailableTimeSlots = (ListView)findViewById(R.id.listViewAvailableTimeSlots);
-        myAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allTimes);
+        myAdapter = new ArrayAdapter<>(this, R.layout.listrow, R.id.textView2, allTimes);
         lvAvailableTimeSlots.setAdapter(myAdapter);
         reference = FirebaseDatabase.getInstance().getReference();
 
@@ -84,7 +84,7 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
          selectTime();
     }
 
-    /*
+    /**
     This method makes timeslots clickable. When customer selects a time slot, they are asked if they
     want to pre-order or finish their reservation.
      */
@@ -127,7 +127,7 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
         });
     }
 
-    /*
+    /**
     This method prevents some bugs.
      */
     @Override

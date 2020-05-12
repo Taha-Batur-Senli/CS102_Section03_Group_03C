@@ -5,6 +5,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,6 +18,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -35,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class CustomerProfile extends AppCompatActivity {
+
     private ViewFlipper mViewFlipper;
     TextView cusNameTV;
     ListView listViewAllRestaurants, listViewPromotions;
@@ -45,7 +49,9 @@ public class CustomerProfile extends AppCompatActivity {
     FirebaseDatabase database;
     FirebaseUser user;
     DatabaseReference reference, reference2, mRef;
+    SearchView search;
     int index;
+
 
 
     @Override
@@ -54,11 +60,28 @@ public class CustomerProfile extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_customer_profile);
 
+
+        /* TODO RECYCLERVIEW
+
+        int[] images = {R.drawable.pizza, R.drawable.pizza, R.drawable.pizza, R.drawable.pizza};
+        MyPromotionsAdapter myPromotionsAdapter;
+        RecyclerView recyclerView;
+
+        recyclerView = findViewById(R.id.recyclerView);
+        myPromotionsAdapter = new MyPromotionsAdapter(this, allRestaurants, images);
+        recyclerView.setAdapter(myPromotionsAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.smoothScrollToPosition(0);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager); */
+
+
         //variables
 
-        SearchView search;
+        /*
         LinearLayout layout;
-        LayoutInflater inflater;
+        LayoutInflater inflater; */
 
         //Initialize
 
@@ -69,32 +92,19 @@ public class CustomerProfile extends AppCompatActivity {
         cusNameTV = findViewById(R.id.txtNameCustomerProfile);
         listViewAllRestaurants = findViewById(R.id.lvAllRestaurants);
         listViewPromotions = findViewById(R.id.listViewAllPromotionsPOV);
-        layout = findViewById(R.id.promotions_gallery);
-        inflater = LayoutInflater.from(this);
+        // inflater = LayoutInflater.from(this);
         mViewFlipper = findViewById(R.id.view_flipper);
 
         //Adapters & References
 
+
         database = FirebaseDatabase.getInstance();
-        myAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allRestaurants);
+        myAdapter = new ArrayAdapter<>(this, R.layout.listrow, R.id.textView2, allRestaurants);
         listViewAllRestaurants.setAdapter(myAdapter);
         reference = database.getReference();
-        myAdapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, promotions);
+        myAdapter2 = new ArrayAdapter<>(this, R.layout.listrow, R.id.textView2, promotions);
         listViewPromotions.setAdapter(myAdapter2);
         reference2 = database.getReference();
-
-        //Adding items to scrollView, will be deleted
-
-        for (int i = 0; i < 16; i++)
-        {
-            View view1 = inflater.inflate(R.layout.promotions_items, layout ,false);
-            TextView textView1 = view1.findViewById(R.id.textView20);
-            textView1.setText("Seb's" + i);
-            ImageView imageView1 = view1.findViewById(R.id.promotions_images);
-            imageView1.setImageResource(R.drawable.pizza);
-
-            layout.addView(view1);
-        }
 
         //Text color of searchView
         int id = search.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
@@ -113,10 +123,10 @@ public class CustomerProfile extends AppCompatActivity {
 
         //Adding the images to viewFlipper
 
-        int[] images = { R.drawable.food_photo, R.drawable.pizza, R.drawable.steak};
-        for ( int x = 0; x < images.length; x++)
+        int[] imgs = { R.drawable.food_photo, R.drawable.pizza, R.drawable.steak};
+        for ( int x = 0; x < imgs.length; x++)
         {
-            flipperImages( images[x]);
+            flipperImages( imgs[x]);
         }
 
         //Get name and display a welcome message
@@ -211,7 +221,6 @@ public class CustomerProfile extends AppCompatActivity {
     restaurant, they will be asked if they want to add that restaurant to their favorite restaurants
     list. They can choose yes or no.
      */
-
     private void addToFavRestaurants() {
         listViewAllRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
         {
@@ -220,8 +229,7 @@ public class CustomerProfile extends AppCompatActivity {
             {
                 index = position;
                 new AlertDialog.Builder(CustomerProfile.this)
-                        .setIcon(android.R.drawable.ic_input_add)
-                        .setTitle("Are you sure?")
+                        .setIcon(android.R.drawable.ic_input_add).setTitle("Are you sure?")
                         .setMessage("Do you want to add this restaurant to your favorite restaurants?")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                         {

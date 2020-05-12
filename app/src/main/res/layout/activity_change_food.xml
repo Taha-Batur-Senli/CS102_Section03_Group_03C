@@ -16,57 +16,73 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintVertical_bias="0.071" />
 
     <EditText
         android:id="@+id/etFoodNameChange"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button"
         android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
         android:hint="Name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/etFoodIngredientChange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFoodNameChange"
-        app:layout_constraintVertical_bias="0.091" />
+        app:layout_constraintVertical_bias="0.891" />
 
     <EditText
         android:id="@+id/etFoodIngredientChange"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button"
         android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
         android:hint="Ingredients"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/etFoodPriceChange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.301" />
+        app:layout_constraintVertical_bias="0.955" />
 
     <EditText
         android:id="@+id/etFoodPriceChange"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button"
         android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
         android:hint="Price"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/bttnSaveFoodChange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintVertical_bias="0.767" />
 
     <Button
         android:id="@+id/bttnSaveFoodChange"
         android:layout_width="130dp"
         android:layout_height="51dp"
+        android:layout_marginBottom="156dp"
         android:background="@drawable/button"
         android:text="Save Changes"
         android:textAllCaps="false"
@@ -74,8 +90,8 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFoodPriceChange" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

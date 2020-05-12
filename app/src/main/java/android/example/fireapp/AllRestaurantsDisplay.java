@@ -40,7 +40,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
 
         //Initialize
         listViewAllRestaurants = (ListView)findViewById(R.id.lvAllRestaurants2);
-        myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allRestaurants);
+        myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, allRestaurants);
         listViewAllRestaurants.setAdapter(myAdapter);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();

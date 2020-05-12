@@ -51,7 +51,7 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
         tvDate = (TextView)findViewById(R.id.txtDate);
         lvTables = (ListView)findViewById(R.id.lvSeatSelection);
 
-        myAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allSeats);
+        myAdapter = new ArrayAdapter<>(this, R.layout.listrow, R.id.textView2, allSeats);
         lvTables.setAdapter(myAdapter);
         reference = FirebaseDatabase.getInstance().getReference();
 

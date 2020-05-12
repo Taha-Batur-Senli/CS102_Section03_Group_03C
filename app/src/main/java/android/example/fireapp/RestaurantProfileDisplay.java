@@ -54,7 +54,7 @@ public class RestaurantProfileDisplay extends AppCompatActivity {
                 final String phoneString = dataSnapshot.child(user.getUid()).child("phone").getValue(String.class);
                 final String descriptionString = dataSnapshot.child(user.getUid()).child("description").getValue(String.class);
                 final String genreString = dataSnapshot.child(user.getUid()).child("genre").getValue(String.class);
-                final int ratingString = dataSnapshot.child(user.getUid()).child("rating").getValue(Integer.class);
+                final double ratingString = dataSnapshot.child(user.getUid()).child("rating").getValue(Double.class);
                 final int minPriceString = dataSnapshot.child(user.getUid()).child("minPriceToPreOrder").getValue(Integer.class);
                 final int maxdurationString = dataSnapshot.child(user.getUid()).child("maxSeatingDuration").getValue(Integer.class);
 

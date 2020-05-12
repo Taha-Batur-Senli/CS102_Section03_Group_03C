@@ -20,4 +20,17 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="upload">UPLOAD</string>
+
+    <string-array name="menu_items">
+        <item>Pizza Margarita</item>
+        <item>Pizza Pepperoni</item>
+        <item>Pizza BBQ Chicken</item>
+        <item>Pizza Smoked Ribs</item>
+    </string-array>
+    <string-array name="item_descriptions">
+    <item>Pizza with cheese</item>
+    <item>Pizza with mege mergül</item>
+    <item>Pizza with mora maltınok</item>
+    <item>Pizza with mali meren</item>
+    </string-array>
 </resources>

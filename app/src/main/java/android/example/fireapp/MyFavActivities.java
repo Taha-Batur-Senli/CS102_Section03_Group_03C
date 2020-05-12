@@ -43,7 +43,7 @@ public class MyFavActivities extends AppCompatActivity {
         setContentView(R.layout.activity_my_fav_activities);
 
         listViewFavRestaurants = (ListView)findViewById(R.id.lvMyFavRestaurants);
-        myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, favRestaurants);
+        myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, favRestaurants);
         listViewFavRestaurants.setAdapter(myAdapter);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Customers");

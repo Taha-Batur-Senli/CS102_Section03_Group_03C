@@ -26,16 +26,17 @@
 
     <EditText
         android:id="@+id/editTextPromoAdd"
-        android:layout_width="363dp"
-        android:layout_height="324dp"
+        android:layout_width="350dp"
+        android:layout_height="334dp"
+        android:background="@drawable/button"
         android:ems="10"
-        android:hint="Promotion"
+        android:gravity="center"
+        android:hint="Add Promotion Here"
         android:inputType="textMultiLine"
         android:minLines="3"
-        android:gravity="bottom"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.216" />

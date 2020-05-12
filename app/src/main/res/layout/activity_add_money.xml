@@ -9,15 +9,19 @@
 
     <EditText
         android:id="@+id/etMoneyToAdded3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="263dp"
+        android:layout_height="53dp"
+        android:background="@drawable/button"
         android:ems="10"
-        android:hint="Money"
+        android:gravity="center"
+        android:hint="Enter the amount"
         android:inputType="numberDecimal"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.469" />
 
     <Button
         android:id="@+id/addMoney3"
