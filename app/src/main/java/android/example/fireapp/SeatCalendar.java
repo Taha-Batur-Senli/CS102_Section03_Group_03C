@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SeatCalendar extends HashMap<String, TimeSlot> {
-
     // properties
     LocalTime availableHoursStart;
     LocalTime availableHoursEnd;

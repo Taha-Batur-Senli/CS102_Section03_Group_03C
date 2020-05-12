@@ -32,8 +32,12 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Iterator;
 
-
+/*
+This class enables restaurant owners to sign up to our app. Their info are stored both on authentic
+firebase and realtime database for different purposes.
+ */
 public class SignUpAsRestaurantActivity extends AppCompatActivity{
+    //Properties
     EditText etEmail, etPassword, etName, etPhone, etNumOfTables;
     private FirebaseAuth mAuth;
     ProgressBar progressBar;
@@ -50,6 +54,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up_as_restaurant);
 
+        //Initialize
         etEmail = findViewById(R.id.etEmailSignUpAsRest);
         etPassword = findViewById(R.id.etPasswordSignUpAsRest);
         etName = findViewById(R.id.etNameResSignUp);
@@ -79,6 +84,7 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
 
     }
 
+    //METHODS
     private void registerRestaurant() {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
@@ -89,30 +95,12 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
 
         final int minPrice = 25;
         final int maxDuration = 90;
-        /*
-        if( minPrice.isEmpty()){
-            etMinPrice.setError("You have to specify a lower limit for customers to pre-order from your restaurant! This choice can be changed later on.");
-            etMinPrice.requestFocus();
-            return;
-        }
-
-        if( maxDuration.isEmpty()){
-            etMaxDuration.setError("You need to enter an average seating duration for your customers! This choice can be changed later on.");
-            etMaxDuration.requestFocus();
-            return;
-        } */
 
         if (numOfTables.isEmpty()){
             etNumOfTables.setError("Enter numbers of tables you have");
             etNumOfTables.requestFocus();
             return;
         }
-
-        //if (Integer.parseInt(numOfTables) > 10){
-            //etNumOfTables.setError("You cannot have more than 10 tables");
-            //etNumOfTables.requestFocus();
-          //  return;
-        //}
 
         if( email.isEmpty()){
             etEmail.setError("Enter an email!");
@@ -168,8 +156,8 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                     for (int i = 0; i < Integer.parseInt(numOfTables); i++){
 
                         seat = "seat" + (i + 1);
-                        //add 7 days
 
+                        //add 7 days
                         days  = new HashMap();
                         for (int k = 0; k < 7; k++){
 
@@ -187,27 +175,6 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
                         seats.put(seat, days);
                     }
                     mRefSeatPlans.child(uid).setValue(seats);
-                    //add num of seats
-                    /*HashMap<String, HashMap<String, HashMap>> seats = new HashMap();
-
-                    for (int i = 0; i < Integer.parseInt(numOfTables); i++){
-                        String seat = "seat" + (i + 1);
-
-                        //add 7 days
-                        HashMap <String, HashMap> days = new HashMap();
-                        for (int k = 0; k < 7; k++){
-
-                            String day = LocalDate.now().toString();
-                            if (k > 0)
-                               day = LocalDate.now().plusDays(k).toString();
-                            //add timeslots
-                            SeatCalendar sc = new SeatCalendar(LocalDate.parse(day),
-                                    LocalTime.of(8,0),LocalTime.of(23,0));
-                            days.put(day, sc);
-                        }
-                        seats.put(seat, days);
-                    }
-                    mRefSeatPlans.child(uid).setValue(seats);*/
 
 
                     Toast.makeText( SignUpAsRestaurantActivity.this, "Welcome " + name, Toast.LENGTH_SHORT);

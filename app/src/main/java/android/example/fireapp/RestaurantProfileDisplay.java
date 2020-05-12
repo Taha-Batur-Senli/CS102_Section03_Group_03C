@@ -14,7 +14,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/*
+This class enavles restaurants to display their own profiles from the perspective of a customer.
+ */
 public class RestaurantProfileDisplay extends AppCompatActivity {
+    //Properties
     TextView name, wh, adress, phone, description, genre, rating, minPrice, maxDuration;
     DatabaseReference mRef;
     FirebaseAuth mAuth;
@@ -25,6 +29,7 @@ public class RestaurantProfileDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_profile_display);
 
+        //Initialize
         name = (TextView)findViewById(R.id.txtResDisplayName);
         wh = (TextView)findViewById(R.id.txtResDisplayWH);
         adress = (TextView)findViewById(R.id.txtResDisplayAdress);
@@ -39,21 +44,19 @@ public class RestaurantProfileDisplay extends AppCompatActivity {
         mRef = FirebaseDatabase.getInstance().getReference("Restaurants");
         user = mAuth.getCurrentUser();
 
+        //Get the data from firebase and place related data to related text views.
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final String nameString = dataSnapshot.child(user.getUid()).child("name").getValue(String.class);
-                //final String whString = dataSnapshot.child(user.getUid()).child("working hours").getValue(String.class);
                 final String whString = dataSnapshot.child(user.getUid()).child("workingHours").getValue(String.class);
                 final String adressString = dataSnapshot.child(user.getUid()).child("adress").getValue(String.class);
                 final String phoneString = dataSnapshot.child(user.getUid()).child("phone").getValue(String.class);
                 final String descriptionString = dataSnapshot.child(user.getUid()).child("description").getValue(String.class);
                 final String genreString = dataSnapshot.child(user.getUid()).child("genre").getValue(String.class);
                 final int ratingString = dataSnapshot.child(user.getUid()).child("rating").getValue(Integer.class);
-                //final int minPriceString = dataSnapshot.child(user.getUid()).child("min price to pre-order").getValue(Integer.class);
                 final int minPriceString = dataSnapshot.child(user.getUid()).child("minPriceToPreOrder").getValue(Integer.class);
                 final int maxdurationString = dataSnapshot.child(user.getUid()).child("maxSeatingDuration").getValue(Integer.class);
-                //final int maxdurationString = dataSnapshot.child(user.getUid()).child("max seating duration").getValue(Integer.class);
 
                 name.setText( nameString );
                 wh.setText( "Working hours: " + whString );

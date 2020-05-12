@@ -24,9 +24,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Iterator;
 
 public class ChangeFoodActivity extends AppCompatActivity {
+    //Properties
     Button save, delete;
     EditText etName, etIngredients, etPrice;
     TextView nameTV;
+
     FirebaseAuth mAuth;
     FirebaseUser user;
     DatabaseReference mRef;
@@ -63,16 +65,70 @@ public class ChangeFoodActivity extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference("Restaurants");
 
+        //Get data from previous activity
         Intent intent = getIntent();
         String name = intent.getStringExtra("NAME");
         nameTV.setText(name);
 
+        //Methods called
         saveChangesAction();
         //deleteAction();
 
     }
 
-    private void deleteAction() {
+    //METHODS
+
+    /*
+    This method saves the changes made on dish on firebase.
+     */
+    private void saveChangesAction() {
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                String name = intent.getStringExtra("NAME");
+                mRef.child(user.getUid()).child("menu").orderByChild("name").equalTo(name).addValueEventListener(new ValueEventListener() {
+                    int i, j, k = 0;
+                    final String nameUpdate = etName.getText().toString();
+                    final String ingredientsUpdate = etIngredients.getText().toString();
+                    final String priceUpdate = etPrice.getText().toString();
+
+                    @Override
+                    public void onDataChange (@NonNull DataSnapshot dataSnapshot){
+                        //Saves changes of name only if it is not empty
+                        if ( i < 1 && !nameUpdate.isEmpty()) {
+                            mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
+                                    .child("name").setValue(nameUpdate);
+                            i++;
+                        }
+
+                        //Saves changes of ingredients only if it is not empty
+                        if (j < 1 && !ingredientsUpdate.isEmpty()) {
+                          mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
+                                    .child("ingredients").setValue(ingredientsUpdate);
+                            j++;
+                        }
+
+                        //Saves changes of price only if it is not empty
+                        if (k < 1 && !priceUpdate.isEmpty()) {
+                           mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
+                                   .child("price").setValue(priceUpdate);
+                           k++;
+                        }
+                        startActivity(new Intent(ChangeFoodActivity.this, RestaurantProfile.class));
+                        finish();
+                    }
+
+                    @Override
+                    public void onCancelled (@NonNull DatabaseError databaseError){
+
+                    }
+                });
+            }
+        });
+    }
+
+     /*private void deleteAction() {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,48 +157,6 @@ public class ChangeFoodActivity extends AppCompatActivity {
 
         });
 
-    }
-
-    private void saveChangesAction() {
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = getIntent();
-                String name = intent.getStringExtra("NAME");
-                mRef.child(user.getUid()).child("menu").orderByChild("name").equalTo(name).addValueEventListener(new ValueEventListener() {
-                    int i, j, k = 0;
-                    final String nameUpdate = etName.getText().toString();
-                    final String ingredientsUpdate = etIngredients.getText().toString();
-                    final String priceUpdate = etPrice.getText().toString();
-
-                    @Override
-                    public void onDataChange (@NonNull DataSnapshot dataSnapshot){
-                        if ( i < 1 && !nameUpdate.isEmpty()) {
-                            mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
-                                    .child("name").setValue(nameUpdate);
-                            i++;
-                        }
-                        if (j < 1 && !ingredientsUpdate.isEmpty()) {
-                          mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
-                                    .child("ingredients").setValue(ingredientsUpdate);
-                            j++;
-                        }
-                        if (k < 1 && !priceUpdate.isEmpty()) {
-                           mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
-                                   .child("price").setValue(priceUpdate);
-                           k++;
-                        }
-                        startActivity(new Intent(ChangeFoodActivity.this, RestaurantProfile.class));
-                        finish();
-                    }
-
-                    @Override
-                    public void onCancelled (@NonNull DatabaseError databaseError){
-
-                    }
-                });
-            }
-        });
-    }
+    }*/
 }
 

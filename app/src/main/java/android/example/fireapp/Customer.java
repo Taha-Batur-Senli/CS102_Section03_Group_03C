@@ -1,10 +1,14 @@
 package android.example.fireapp;
 
+/*
+A class that creates customer objects which facilitates the process of signing customer data up to firebase.
+ */
 public class Customer {
     //Properties
     String uid, email, name, reservations, notifications,
             favRestaurants, money, points, phone, ranking;
 
+    //Constructors
     public Customer(){}
     public Customer(String name, String email, String phone,String uid ) {
         this.email = email;
@@ -19,7 +23,7 @@ public class Customer {
         ranking = "0";
     }
 
-
+    //SET & GET METHODS
     public String getUid() {
         return uid;
     }

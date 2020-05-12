@@ -18,8 +18,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class AddPromoActivity extends AppCompatActivity {
+    //Properties
     EditText etPromo;
     Button add;
+
     FirebaseUser user;
     FirebaseAuth mAuth;
     DatabaseReference mRef;
@@ -29,21 +31,25 @@ public class AddPromoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_promo);
 
+        //Initialize
         etPromo = (EditText)findViewById(R.id.editTextPromoAdd);
         add = (Button)findViewById(R.id.btnAddPromoAdd);
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference("Promotions");
 
+        //Adds promotion to firebase
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String promo = etPromo.getText().toString();
 
+                //Ensures that promotion is not empty
                 if(promo.isEmpty()){
                     etPromo.setError("Enter your promotion!");
                     etPromo.requestFocus();
-                } else{
+                } else {
+                    //Adds promotion to firebase and returns to restaurants profile
                     final String uid = mRef.child(user.getUid()).push().getKey();
 
                     DatabaseReference mRefRes = FirebaseDatabase.getInstance().getReference("Restaurants");

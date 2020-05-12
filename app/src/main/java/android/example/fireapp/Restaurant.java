@@ -2,6 +2,9 @@ package android.example.fireapp;
 
 import android.widget.ImageView;
 
+/*
+This class creates restaurant objects to facilitate adding restaurants to firebase.
+ */
 public class Restaurant {
     //Properties
     String uid, email, name, genre, phone, description, reservations, menu, adress, workingHours;
@@ -9,6 +12,7 @@ public class Restaurant {
     double rating;
     ImageView restaurantImage;
 
+    //Constructors
     public Restaurant(){}
 
     public Restaurant(String name, String email, String genre, String phone, String uid) {
@@ -28,6 +32,7 @@ public class Restaurant {
         rating = 0.0;
     }
 
+    //GET & SET METHODS
     public String getName() {
         return name;
     }

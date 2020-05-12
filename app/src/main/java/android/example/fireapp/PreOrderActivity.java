@@ -25,7 +25,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/*
+In this class, customers can pre-order and finalize their reservation.
+ */
 public class PreOrderActivity extends AppCompatActivity {
+    //Properties
     TextView minPricetv, yourMoneyTv, totalTv;
     Button pay;
     ListView lvMenu, lvMyOrder;
@@ -54,7 +58,6 @@ public class PreOrderActivity extends AppCompatActivity {
         totalTv = (TextView)findViewById(R.id.txtTotal);
         yourMoneyTv = (TextView)findViewById(R.id.txtYourMoney);
 
-
         myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu);
         myAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, preOrder);
         lvMenu.setAdapter(myAdapter);
@@ -64,13 +67,13 @@ public class PreOrderActivity extends AppCompatActivity {
         mRefUser = database.getReference("Customers");
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        //Methoods
+        //Methods called
         displayMenu(resUid, minPrice);
         removeFromMyOrder(minPrice);
         finishAndPay();
 
 
-        //Set requires textviews
+        //Set requires text views
         minPricetv.setText(minPrice + " TL left to satisfy the minimum limit to pre-order.");
         mRefUser.child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -87,6 +90,11 @@ public class PreOrderActivity extends AppCompatActivity {
     }
 
     //METHODS
+
+    /*
+    This method displays the menu of the restaurant. It iterates trough restaurant's menu and places
+    each dish to the related list view.
+     */
     private void displayMenu(String uid, final String minPrice) {
         reference.child(uid).child("menu").addValueEventListener(new ValueEventListener() {
             @Override
@@ -95,10 +103,7 @@ public class PreOrderActivity extends AppCompatActivity {
                 while (items.hasNext()) {
                     DataSnapshot item = items.next();
                     String name;
-                    name = "" + item.child("name").getValue().toString() + ": " //Eğer burda değişiklik yaparsanız kod bozulabbilir
-                            //Bir değişiklik yapmdan önce beni arayın birlikte bakalım @Ege
-                            //name'den sonraki iki nokta üst üste orda olmak zorunda şuan, değiştircekseniz başka bi yerde
-                            //daha değiştirmeniz gerek. SubString alıyorum noktalı virgüle referansla
+                    name = "" + item.child("name").getValue().toString() + ": "
                             + item.child("ingredients").getValue().toString() +
                             "___" + item.child("price").getValue().toString() + "TL";
 
@@ -116,7 +121,11 @@ public class PreOrderActivity extends AppCompatActivity {
         });
     }
 
-
+    /*
+    This method makes each dish on the menu clickable. When a customer selects a dish, it is displayed
+    on their order as well. Also, the total price is updated and the minimum limit to pre-order is
+    decreased.
+     */
     private void addToMyOrder(final String minPrice) {
         lvMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -145,6 +154,11 @@ public class PreOrderActivity extends AppCompatActivity {
         });
     }
 
+    /*
+    This method makes 'my order' long clickable. If a customer wishes to remove a dish from their order,
+    they can long-click on it and select 'remove' option. When a dish is removed from order, total
+    price is reduced and minimum limit to pre-order is checked again.
+     */
     private void removeFromMyOrder(final String minPrice) {
         lvMyOrder.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -189,6 +203,10 @@ public class PreOrderActivity extends AppCompatActivity {
         });
     }
 
+    /*
+    This method finalizes the pre-order process. If customer doesn't have enough money, they are
+    directed to an activity in which they add money to their wallet. Else, their reservation is finalized.
+     */
     private void finishAndPay() {
         pay.setOnClickListener(new View.OnClickListener() {
             @Override

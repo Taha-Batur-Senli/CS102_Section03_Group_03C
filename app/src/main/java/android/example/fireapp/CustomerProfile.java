@@ -38,21 +38,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class CustomerProfile extends AppCompatActivity {
-
     //Properties
     private SearchView search;
     private ViewFlipper mViewFlipper;
-    Button logOut, myAccount, help, allRestaurantsDisplay, myFavRestaurants;
-    FirebaseAuth mAuth;
-    FirebaseDatabase database;
-    FirebaseUser user;
+
     TextView cusNameTV;
     ListView listViewAllRestaurants, listViewPromotions;
     ArrayAdapter myAdapter,  myAdapter2;
     ArrayList<String> allRestaurants = new ArrayList<>();
-
-    DatabaseReference reference, reference2, mRef;
     ArrayList<String> promotions = new ArrayList<String>();
+
+    FirebaseAuth mAuth;
+    FirebaseDatabase database;
+    FirebaseUser user;
+    DatabaseReference reference, reference2, mRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,11 +87,6 @@ public class CustomerProfile extends AppCompatActivity {
         mViewFlipper = findViewById(R.id.view_flipper);
         int[] images = { R.drawable.food_photo, R.drawable.pizza, R.drawable.steak};
 
-        /* myAccount = findViewById(R.id.btnMyAccount);
-        help = findViewById(R.id.btnHelpCustomer);
-        allRestaurantsDisplay = findViewById(R.id.btnAllRestaurants);
-        myFavRestaurants = (Button)findViewById(R.id.btnMyFavRestaurants); */
-
         database = FirebaseDatabase.getInstance();
         myAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allRestaurants);
         listViewAllRestaurants.setAdapter(myAdapter);
@@ -101,25 +96,19 @@ public class CustomerProfile extends AppCompatActivity {
         reference2 = database.getReference();
 
         //Methods called
-        displayAllRestaurants();
-        listOnLongClickAction();
+        displayBestRestaurants();
+        addToFavRestaurants();
         displayPromotions();
         displayRestProfileAction();
         configureMenuButton();
         search.clearFocus();
         promotionsClick();
 
-        /* myAccountAction();
-        logOutAction();
-        helpActivity();
-        allRestaurantsDisplayActivity();
-        myFavRestaurantsActivity(); */
-
         //Adding the images!
         for ( int x = 0; x < images.length; x++)
         {
             flipperImages( images[x]);
-        } //Done!
+        }
 
         //Get name and display a welcome message
         mRef.addValueEventListener(new ValueEventListener() {
@@ -129,8 +118,6 @@ public class CustomerProfile extends AppCompatActivity {
                 cusNameTV.setText("Welcome, " + userName + "!");
                 if (userName.toLowerCase().equals("david"))
                     cusNameTV.setText("Welcome sir, we will miss you :(");
-                if ( userName.toLowerCase().equals("naz"))
-                    cusNameTV.setText("Selam Kuzu!");
             }
 
             @Override
@@ -140,45 +127,12 @@ public class CustomerProfile extends AppCompatActivity {
         });
     }
 
-    public void configureMenuButton() {
-        final Button menuButton = findViewById(R.id.menu_button);
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager manager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = manager.beginTransaction();
-                FragmentMenu menuFragment = new FragmentMenu();
-                fragmentTransaction.add(R.id.activity_customer_profile, menuFragment);
-                fragmentTransaction.commit();
-                menuButton.setVisibility(View.INVISIBLE);
-                menuButton.setClickable(false);
-            }
-        });
-    }
+    //Methods
 
-    public void flipperImages (int image){
-        ImageView imageView = new ImageView(this);
-        imageView.setBackgroundResource( image);
-
-        mViewFlipper.addView( imageView);
-        mViewFlipper.setFlipInterval( 3000);
-        mViewFlipper.setAutoStart( true);
-
-        //Time to slide!
-        mViewFlipper.setInAnimation( this, android.R.anim.slide_in_left);
-        mViewFlipper.setOutAnimation( this, android.R.anim.slide_out_right);
-
-    }
-
-    /* private void myFavRestaurantsActivity() {
-        myFavRestaurants.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CustomerProfile.this, MyFavActivities.class));
-            }
-        });
-    }*/
-
+    /**
+     * This method prints all of the promotions to related list view. It iterates trough firebase and
+     * adds each promotion to promotions list view.
+     */
     private void displayPromotions() {
         reference2.child("Promotions").addValueEventListener(new ValueEventListener() {
             @Override
@@ -212,27 +166,11 @@ public class CustomerProfile extends AppCompatActivity {
         });
     }
 
-    //  METHODS
-
-     /* private void allRestaurantsDisplayActivity() {
-        allRestaurantsDisplay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CustomerProfile.this, AllRestaurantsDisplay.class));
-            }
-        });
-    }
-
-     private void helpActivity() {
-        help.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CustomerProfile.this,CustHelpActivity.class));
-            }
-        });
-    } */
-
-    private void displayAllRestaurants() {
+    /*
+     * This method prints all of the est restaurants on the related listview. It iterates trough firebase
+     * and adds best restaurants to best restaurant list view.
+     */
+    private void displayBestRestaurants() {
         reference.child("Best Restaurants").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -255,21 +193,13 @@ public class CustomerProfile extends AppCompatActivity {
         });
     }
 
-    /* private void logOutAction() {
-        logOut = (Button) findViewById(R.id.btnLogOutCustomer);
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent( CustomerProfile.this, LogInActivity.class));
-                finish();
-            }
-        });
-    } */
-
+    /*
+    This method enables best restaurants list view long-clickable. If a customer long-clicks to a best
+    restaurant, they will be asked if they want to add that restaurant to their favorite restaurants
+    list. They can choose yes or no.
+     */
     int index;
-
-    private void listOnLongClickAction() {
+    private void addToFavRestaurants() {
         listViewAllRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -319,6 +249,10 @@ public class CustomerProfile extends AppCompatActivity {
         });
     }
 
+    /*
+    This method makes promotions clickable. When a customer presses on a promotion, they are directed
+    to the profile of restaurant who owns that promotion.
+     */
     private void promotionsClick(){
         listViewPromotions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -344,7 +278,6 @@ public class CustomerProfile extends AppCompatActivity {
                                 intent.putExtra("UID", searchedId);
                                 startActivity( intent);
                                 finish();
-                                //myAdapter .notifyDataSetChanged();
                             }
                         }
                     }
@@ -356,18 +289,11 @@ public class CustomerProfile extends AppCompatActivity {
         });
     }
 
-
-    // TODO fav restorant olanların yanına * imgesi eklenir belki
-    /* private void myAccountAction() {
-        myAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CustomerProfile.this, CustomerMyAccountActivity.class));
-            }
-        });
-    } */
-
-
+    /*
+    This method prevents a bug. When customer presses to back button, instead of logging off, they
+    are asked whether they want to log off or not. If they choose not to log off, they will continue
+    displaying their profile. If they log out, they will be directed to login page.
+     */
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -378,7 +304,6 @@ public class CustomerProfile extends AppCompatActivity {
                         FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(CustomerProfile.this, LogInActivity.class));
                         finish();
-                        //CustomerProfile.this.finish();
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -391,6 +316,10 @@ public class CustomerProfile extends AppCompatActivity {
 
     }
 
+    /*
+    This method makes best restaurants list view clickable. When customer clicks on one best restaurant
+    they are directed to that restaurant's profile.
+     */
     private void displayRestProfileAction() {
         listViewAllRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -425,5 +354,35 @@ public class CustomerProfile extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    public void configureMenuButton() {
+        final Button menuButton = findViewById(R.id.menu_button);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = manager.beginTransaction();
+                FragmentMenu menuFragment = new FragmentMenu();
+                fragmentTransaction.add(R.id.activity_customer_profile, menuFragment);
+                fragmentTransaction.commit();
+                menuButton.setVisibility(View.INVISIBLE);
+                menuButton.setClickable(false);
+            }
+        });
+    }
+
+    public void flipperImages (int image){
+        ImageView imageView = new ImageView(this);
+        imageView.setBackgroundResource( image);
+
+        mViewFlipper.addView( imageView);
+        mViewFlipper.setFlipInterval( 3000);
+        mViewFlipper.setAutoStart( true);
+
+        //Time to slide!
+        mViewFlipper.setInAnimation( this, android.R.anim.slide_in_left);
+        mViewFlipper.setOutAnimation( this, android.R.anim.slide_out_right);
+
     }
 }

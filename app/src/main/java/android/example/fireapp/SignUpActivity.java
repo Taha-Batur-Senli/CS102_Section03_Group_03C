@@ -8,7 +8,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
+/*
+This class enables our users to distinquish their profile. If they are a regular customer, they
+select 'I'm a customer' button and proceed with customer sign up activity. Else, they proceed with
+restaurant sign up activity.
+ */
 public class SignUpActivity extends AppCompatActivity {
+    //Properties
     Button signUpAsRestaurant, signUpAsCustomer;
 
     @Override
@@ -17,9 +23,11 @@ public class SignUpActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up);
 
+        //Initialize
         signUpAsRestaurant =  (Button) findViewById(R.id.signUpAsRestaurant);
         signUpAsCustomer =  (Button) findViewById(R.id.signUpAsCustomer);
 
+        //Methods
         signUpAsRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

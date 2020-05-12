@@ -20,7 +20,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/*
+ This class a class that enables customers to see the restaurants profiles. They can see the menu of
+ restaurants in another activity directed from here or they can initiate the reservation making
+ process by clicking to the related button.
+ */
 public class CustomerPOVRestaurant extends AppCompatActivity {
+   //Properities
     TextView tvName, tvRating, tvDescription, tvGenre, tvWorkingHours, tvMinPriceToPreOrder, tvPhone, tvAdress;
     DatabaseReference mRefRes;
     Button showMenu, makeReservation;
@@ -31,6 +37,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_p_o_v_restaurant);
 
+        //Initialize
         tvName = (TextView)findViewById(R.id.txtNamePOV);
         tvRating = (TextView)findViewById(R.id.txtRatingPOV);
         tvDescription = (TextView)findViewById(R.id.txtDescriptionPOV);
@@ -44,11 +51,17 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
 
         mRefRes = FirebaseDatabase.getInstance().getReference("Restaurants");
 
+        //Methods called
         placeDatatoTVs();
         showMenuAction();
         makeReservationAction();
     }
 
+    //METHODS
+
+    /*
+    This method initalizes reservation making process. The requires data are passed to the next activity.
+     */
     private void makeReservationAction() {
         makeReservation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,21 +92,9 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         });
     }
 
-
-    //METHODS
-    private void showMenuAction() {
-        showMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = getIntent();
-                String uid = intent.getStringExtra("UID");
-                Intent intent2 = new Intent(CustomerPOVRestaurant.this, ShowMenuPOV.class);
-                intent2.putExtra("UID", uid);
-                startActivity( intent2);
-            }
-        });
-    }
-
+    /*
+    This method retrieves data from firebase and puts the related data to related text views.
+     */
     private void placeDatatoTVs() {
         Intent intent = getIntent();
         String uid = intent.getStringExtra("UID");
@@ -104,10 +105,8 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                 final double resRating = dataSnapshot.child("rating").getValue(Double.class);
                 final String resDescription = dataSnapshot.child("description").getValue(String.class);
                 final String resGenre = dataSnapshot.child("genre").getValue(String.class);
-                //final String resWH = dataSnapshot.child("working hours").getValue(String.class);
                 final String resWH = dataSnapshot.child("workingHours").getValue(String.class);
                 final double resMinPrice = dataSnapshot.child("minPriceToPreOrder").getValue(Double.class);
-                //final double resMinPrice = dataSnapshot.child("min price to pre-order").getValue(Double.class);
                 final String resPhone = dataSnapshot.child("phone").getValue(String.class);
                 final String resAdress = dataSnapshot.child("adress").getValue(String.class);
 
@@ -133,10 +132,28 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         });
     }
 
+    /*
+    This overriden method prevents some bugs. It is crucial to finish this activity if customer
+    presses to the back button. Else, multiple times of back button may lead back again to this activity.
+     */
     @Override
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(),CustomerProfile.class));
         finish();
 
     }
+
+    private void showMenuAction() {
+        showMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                String uid = intent.getStringExtra("UID");
+                Intent intent2 = new Intent(CustomerPOVRestaurant.this, ShowMenuPOV.class);
+                intent2.putExtra("UID", uid);
+                startActivity( intent2);
+            }
+        });
+    }
+
 }

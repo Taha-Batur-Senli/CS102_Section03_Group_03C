@@ -24,7 +24,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/*
+In this class, customers are displayed the available timeslots of the table they have selected on
+a specified date. Then they select a time slot and can either finish their reservation or can pre-order.
+ */
 public class MakeReservationCustomerP2 extends AppCompatActivity {
+   //Properties
     TextView askPreOrder;
     Button yes, no;
     ListView lvAvailableTimeSlots;
@@ -37,59 +42,18 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_reservation_customer_p2);
 
+        //Initialize
         lvAvailableTimeSlots = (ListView)findViewById(R.id.listViewAvailableTimeSlots);
-        //no = (Button)findViewById(R.id.btnNO);
-        //yes = (Button)findViewById(R.id.btnYES);
-        //askPreOrder = (TextView)findViewById(R.id.txtDouYouWantToPreOrder);
-        /*
-        *  <TextView
-        android:id="@+id/txtDouYouWantToPreOrder"
-        android:layout_width="236dp"
-        android:layout_height="81dp"
-        android:text="Do you want to pre-order?"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
-
-    <Button
-        android:id="@+id/btnYES"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginEnd="127dp"
-        android:text="YES"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnNO"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.903" />
-
-    <Button
-        android:id="@+id/btnNO"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NO"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.839"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.903" />*/
-
         myAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allTimes);
         lvAvailableTimeSlots.setAdapter(myAdapter);
         reference = FirebaseDatabase.getInstance().getReference();
-
 
         Intent i = getIntent();
         String uidRestaurant = i.getStringExtra("UID");
         String seat = i.getStringExtra("SEAT");
         String date = i.getStringExtra("DATE");
 
-
+        //Print out only the non reserved time slots.
          final DatabaseReference refAvailableHours = FirebaseDatabase.getInstance().getReference("SeatPlans")
                         .child(uidRestaurant).child(seat).child(date);
 
@@ -120,8 +84,11 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
          selectTime();
     }
 
+    /*
+    This method makes timeslots clickable. When customer selects a time slot, they are asked if they
+    want to pre-order or finish their reservation.
+     */
     private void selectTime(){
-
         lvAvailableTimeSlots.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -160,6 +127,9 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
         });
     }
 
+    /*
+    This method prevents some bugs.
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();

@@ -23,7 +23,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/*
+This class allows customers to see their favorite restaurants. They also can remove a restaurant from
+this list.
+ */
 public class MyFavActivities extends AppCompatActivity {
+   //Initialize
     ListView listViewFavRestaurants;
     ArrayAdapter myAdapter;
     ArrayList<String> favRestaurants = new ArrayList<String>();
@@ -45,12 +50,16 @@ public class MyFavActivities extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user =  mAuth.getCurrentUser();
 
+        //Methods called
         displayFavRestaurants();
         listOnLongClickAction();
         displayRestProfileAction();
 
     }
 
+    /*
+    This method prints out the favorite restaurants of a customer by retrieving data from database.
+     */
     private void displayFavRestaurants () {
         reference.child(user.getUid()).child("fav restaurants").addValueEventListener(new ValueEventListener() {
             @Override
@@ -75,6 +84,11 @@ public class MyFavActivities extends AppCompatActivity {
         });
     }
 
+    /*
+    This method makes favorite restaurants long-clickable. When a customer long-clicks to a favorite
+    restaurant of theris, an alert dialog is displayed asking them whether they want to remove the
+    specified restaurant from  their list or not.
+     */
     int index;
     private void listOnLongClickAction() {
         listViewFavRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -120,6 +134,11 @@ public class MyFavActivities extends AppCompatActivity {
         });
     }
 
+    /*
+    This method makes favorite restaurants clickable. If a customer selects a favorite restaurant,
+    by clicking on it, they can display restaurants profile and can continue with reservation making
+    process.
+     */
     private void displayRestProfileAction() {
         listViewFavRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

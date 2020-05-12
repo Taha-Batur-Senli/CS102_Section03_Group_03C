@@ -26,10 +26,12 @@ import com.google.firebase.database.ValueEventListener;
 public class RestaurantProfile extends AppCompatActivity {
     //PROPERTIES
     Button logOut, editProfile, help, takeALookAtYourRestaurant, changeMenu, promotions;
+
     DatabaseReference mRef;
     FirebaseAuth mAuth;
     FirebaseUser user;
     TextView resNameTV;
+
     private ViewFlipper mViewFlipper;
 
     @Override
@@ -64,9 +66,9 @@ public class RestaurantProfile extends AppCompatActivity {
         for ( int x = 0; x < images.length; x++)
         {
             flipperImages( images[x]);
-        } //Done!
+        }
 
-        //Get customer info and display
+        //Get customer name and display
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -121,6 +123,18 @@ public class RestaurantProfile extends AppCompatActivity {
         });
     }
 
+    private void takeALookAtYourRestaurantAction() {
+        takeALookAtYourRestaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity( new Intent(RestaurantProfile.this, RestaurantProfileDisplay.class));
+            }
+        });
+    }
+
+    /*
+    Restaurant owners are asked if they want to log off or not.
+     */
    private void logOffAction() {
        logOut.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -147,15 +161,10 @@ public class RestaurantProfile extends AppCompatActivity {
 
    }
 
-    private void takeALookAtYourRestaurantAction() {
-        takeALookAtYourRestaurant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity( new Intent(RestaurantProfile.this, RestaurantProfileDisplay.class));
-            }
-        });
-    }
-
+   /*
+   This method prevents a bug. If a restaurant owner clicks to back button accidentally, they are
+   asked whether they want to log off or not. They can choose yes or no.
+    */
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

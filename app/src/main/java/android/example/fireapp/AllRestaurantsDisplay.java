@@ -24,13 +24,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class AllRestaurantsDisplay extends AppCompatActivity {
+   //Properties
     ListView listViewAllRestaurants;
     ArrayAdapter myAdapter;
     ArrayList<String> allRestaurants = new ArrayList<String>();
     FirebaseDatabase database;
-    DatabaseReference reference;
+    DatabaseReference reference, mRef;
     FirebaseAuth mAuth;
-    DatabaseReference mRef;
     FirebaseUser user;
 
     @Override
@@ -38,6 +38,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_restaurants_display);
 
+        //Initialize
         listViewAllRestaurants = (ListView)findViewById(R.id.lvAllRestaurants2);
         myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, allRestaurants);
         listViewAllRestaurants.setAdapter(myAdapter);
@@ -47,13 +48,20 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         mRef = FirebaseDatabase.getInstance().getReference("Customers");
         user = mAuth.getCurrentUser();
 
-
+        //Methods called
         displayAllRestaurants();
         listOnLongClickAction();
         displayRestProfileAction();
 
 
     }
+
+    //METHODS
+
+    /*
+    Prints all of the restaurants on the related listview. Iterates trough firebase and adds each
+    restaurant to all restaurants list view.
+     */
     private void displayAllRestaurants () {
         reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
             @Override
@@ -77,6 +85,10 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         });
     }
 
+    /*
+    This method makes restaurants long-clickable. If a customers long-clicks on a restaurant, they are
+    asked if they want to add that restaurant to favorite restaurants list.
+     */
     int index;
     private void listOnLongClickAction() {
         listViewAllRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -128,6 +140,10 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         });
     }
 
+    /*
+    This method makes all restaurants clickable. If a customer clicks on a restaurant, they are directed
+    to the profile of that restaurant.
+     */
     private void displayRestProfileAction() {
         listViewAllRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

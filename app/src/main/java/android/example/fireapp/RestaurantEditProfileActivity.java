@@ -17,7 +17,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
+/*
+This class enables restaurants to edit their data ny updating them on firebase.
+ */
 public class RestaurantEditProfileActivity extends AppCompatActivity {
     //Properties
     Button save;
@@ -73,12 +75,11 @@ public class RestaurantEditProfileActivity extends AppCompatActivity {
                 final String minPriceUpdate = etMinPrice.getText().toString();
                 final String maxDurationUpdate = etMaxDuration.getText().toString();
 
+                //Only the fields that are not empty will be updated. This prevents a bug.
                 if(!maxDurationUpdate.isEmpty())
                     mRef.child(user.getUid()).child("maxSeatingDuration").setValue(Integer.parseInt(maxDurationUpdate));
-                    // mRef.child(user.getUid()).child("max seating duration").setValue(Integer.parseInt(maxDurationUpdate));
                 if(!minPriceUpdate.isEmpty())
                     mRef.child(user.getUid()).child("minPriceToPreOrder").setValue(Integer.parseInt(minPriceUpdate));
-                    //mRef.child(user.getUid()).child("min price to pre-order").setValue(Integer.parseInt(minPriceUpdate));
                 if(!nameUpdate.isEmpty())
                     mRef.child(user.getUid()).child("name").setValue(nameUpdate);
                 if(!descriptionUpdate.isEmpty())
@@ -87,10 +88,9 @@ public class RestaurantEditProfileActivity extends AppCompatActivity {
                     mRef.child(user.getUid()).child("phone").setValue(phoneUpdate);
                 if(!whUpdate.isEmpty())
                     mRef.child(user.getUid()).child("workingHours").setValue(whUpdate);
-                    //mRef.child(user.getUid()).child("working hours").setValue(whUpdate);
                 if(!adressUpdate.isEmpty())
                     mRef.child(user.getUid()).child("adress").setValue(adressUpdate);
-                //TODO bug düzelt
+                //TODO bug should be fixed
                 if(!genreUpdate.isEmpty())
                     mRef.child(user.getUid()).child("genre").setValue(genreUpdate);
 

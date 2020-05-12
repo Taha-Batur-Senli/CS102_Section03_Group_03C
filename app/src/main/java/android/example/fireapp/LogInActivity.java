@@ -24,7 +24,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/*
+This class is the class users face for the first time when they run our app. They can login to their
+account or create a new account if they don't have one.
+ */
 public class LogInActivity extends AppCompatActivity {
+    //Properties
     Button logIn;
     EditText etEmail, etPassword;
     ProgressBar pb;
@@ -36,6 +41,7 @@ public class LogInActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_log_in);
 
+        //Initialize
         etEmail = findViewById(R.id.etEmailLogIn);
         etPassword = findViewById(R.id.etPasswordLogIn);
         logIn = findViewById(R.id.btnLogInActivity);
@@ -45,7 +51,7 @@ public class LogInActivity extends AppCompatActivity {
         etPassword.setTextColor(ContextCompat.getColor(this, R.color.white));
         pb = (ProgressBar)findViewById(R.id.progressBarLogIn);
 
-
+        //Make login button functional.
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +113,7 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
     }
+
     public void openActivity2()
     {
         Intent intent;

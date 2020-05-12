@@ -27,10 +27,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ChangeMenuActivity extends AppCompatActivity implements addFoodDialog.addFoodListener {
+    //Properties
     Button addDish;
     ListView lvMenuRes;
     ArrayAdapter myAdapter;
     ArrayList<String> menu = new ArrayList<String>();
+
     FirebaseDatabase database;
     DatabaseReference reference;
     FirebaseUser user;
@@ -41,6 +43,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_menu);
 
+        //Initialize
         addDish = (Button)findViewById(R.id.btnAddFood);
         lvMenuRes = (ListView)findViewById(R.id.lvMenuRes);
 
@@ -62,10 +65,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
 
                     DataSnapshot item = items.next();
                     String name;
-                    name = "" + item.child("name").getValue().toString() + ": " //Eğer burda değişiklik yaparsanız kod bozulabbilir
-                            //Bir değişiklik yapmdan önce beni arayın birlikte bakalım @Ege
-                            //name'den sonraki iki nokta üst üste orda olmak zorunda şuan, değiştircekseniz başka bi yerde
-                            //daha değiştirmeniz gerek. SubString alıyorum noktalı virgüle referansla
+                    name = "" + item.child("name").getValue().toString() + ": "
                             + item.child("ingredients").getValue().toString() +
                             "___" + item.child("price").getValue().toString() + "TL";
 
@@ -80,11 +80,16 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
             }
         });
 
+        //Methods called
         editFoodAction();
         addDishAction();
         listOnLongClickAction();
     }
 
+    /*
+    This method makes each dish clickable. When restaurant owners click to a dish on their menu,
+    they are directed to a page in which they can edit their dish's name, şngredients and price.
+     */
     private void editFoodAction() {
         lvMenuRes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -94,6 +99,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
                 int indexOfName = item.indexOf(":");
                 String name = item.substring(0,indexOfName);
 
+                //passes the name of te food to the next activity
                 Intent intent = new Intent(ChangeMenuActivity.this, ChangeFoodActivity.class);
                 intent.putExtra("NAME", name);
                 startActivity( intent);
@@ -123,7 +129,11 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         reference.child(user.getUid()).child("menu").child(foodUid).setValue(new Food(name, ingredients, Integer.parseInt(price)));
     }
 
-
+    /*
+    This method makes menu long-clickable. When a restaurant owner long-clicks on a dish on their menu
+    an alert dialog pop outs and asks if they want to delete the dish from their menu or not. If they
+    select "delete" option, the dish is deleted from database.
+     */
     int index;
     private void listOnLongClickAction() {
         lvMenuRes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {

@@ -27,41 +27,32 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 
+/*
+This class is the first page for reservation making process. Here, customers can see the available
+days that they can make a reservation to. After they select a date, they are asked to select a table
+as well. If a restaurant has five tables, customers will be asked to choose one from five.
+ */
 public class MakeReservationCustomerP1 extends AppCompatActivity {
+    //Properties
     CalendarView calendar;
     TextView tvDate;
-    ListView lvTables;//, lvTimes;
-    ArrayAdapter myAdapter;//, myAdapter2;
+    ListView lvTables;
+    ArrayAdapter myAdapter;
     ArrayList<String> allSeats = new ArrayList<>();
-    //ArrayList<String> allTimes = new ArrayList<>();
     DatabaseReference reference;
 
-    //TODO https://www.youtube.com/watch?v=yrpimdBRk5Q
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_reservation_customer_p1);
 
+        //Initialize
         calendar = (CalendarView)findViewById(R.id.calendarView);
         tvDate = (TextView)findViewById(R.id.txtDate);
         lvTables = (ListView)findViewById(R.id.lvSeatSelection);
-        //lvTimes = (ListView)findViewById(R.id.lvTimesSelection);
-
 
         myAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allSeats);
-        //myAdapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, allTimes);
-        /*  <ListView
-        android:id="@+id/lvTimesSelection"
-        android:layout_width="409dp"
-        android:layout_height="185dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />*/
         lvTables.setAdapter(myAdapter);
-        //lvTimes.setAdapter(myAdapter2);
         reference = FirebaseDatabase.getInstance().getReference();
 
         //Make previous dates unclickable
@@ -79,12 +70,17 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
                 date += "\n Please select a table now!";
                 tvDate.setText(date);
 
-                //LocalDate date1 = new LocalDate(year, month, dayOfMonth);
                 displaySeats( year, month, dayOfMonth);
             }
         });
     }
 
+    //METHODS
+
+    /*
+    Gets the data of restaurant from database and creates a list view accordingly. Prints out
+    all of the tables a restaurant have on the related list view.
+     */
     public void displaySeats( final int year, final int month, final int dayOfMonth){
         //get restaurants uid from previous class
         Intent intent = getIntent();
@@ -115,18 +111,21 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
         });
     }
 
+    /*
+    This method makes the tables selectable. If a customer selects a table, then they are directed
+    to the next activity. This method passes the data of selected date & table to next acitivity as well.
+     */
     private void selectTime(final int year, final int month, final int dayOfMonth){
         lvTables.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String seatName = allSeats.get(position);
                 String seat  = "seat" + seatName.charAt(seatName.length()-1);
-                //deneme1.setText(seat);
+
                 String date = year + "-" + (month + 1 )+ "-"  + dayOfMonth ;
                 if ( (month + 1) < 10 )
                     date =  year + "-0" + (month + 1 )+ "-"  + dayOfMonth ;
 
-                //deneme2.setText(date);
                 Intent intent = getIntent();
                 String uidRestaurant = intent.getStringExtra("UID");
                 String minPrice = intent.getStringExtra("MINPRICE");
@@ -138,35 +137,6 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
                 intent2.putExtra("MINPRICE", minPrice);
 
                 startActivity(intent2);
-
-
-                /*final DatabaseReference refAvailableHours = FirebaseDatabase.getInstance().getReference("SeatPlans")
-                        .child(uidRestaurant).child(seat).child(date);
-                refAvailableHours.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
-                        while(items.hasNext()) {
-                            DataSnapshot item1 = items.next();
-                            if (item1.child("reserved").getValue().toString().equals("false") ){
-
-                                String timeSlot =  item1.child("firstTime").child("hour").getValue().toString() + ":" +
-                                        item1.child("firstTime").child("minute").getValue().toString() + " - " +
-                                        item1.child("endTime").child("hour").getValue().toString() + ":" +
-                                        item1.child("endTime").child("minute").getValue().toString();
-                                allTimes.add(timeSlot);
-                                myAdapter2.notifyDataSetChanged();
-
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });*/
-
             }
         });
     }

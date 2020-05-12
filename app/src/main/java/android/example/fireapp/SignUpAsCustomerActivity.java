@@ -22,6 +22,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+/*
+Customers sign up to our app on this page. Their info are stored both on authentic firebase
+ and realtime database for different purposes.
+ */
 public class SignUpAsCustomerActivity extends AppCompatActivity {
     Button signUp;
     EditText etEmail, etPassword, etName, etPhone;
@@ -36,13 +40,14 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up_as_customer);
 
+        //Initialize
         signUp = findViewById(R.id.btnRegisterCustomer);
         etEmail = findViewById(R.id.etEmailCustomer);
         etPassword = findViewById(R.id.etPasswordCustomer);
         etName = findViewById(R.id.etNameCustomer);
         etPhone = findViewById(R.id.etPhoneCustomer);
         mAuth = FirebaseAuth.getInstance();
-         pb = (ProgressBar)findViewById(R.id.progressBar);
+        pb = (ProgressBar)findViewById(R.id.progressBar);
         database = FirebaseDatabase.getInstance();
         mRef = database.getReference( "Customers");
 
@@ -59,6 +64,7 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
         });
     }
 
+    //METHODS
     private void registerCustomer() {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
@@ -107,18 +113,6 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
                     String email = user.getEmail();
                     String uid = user.getUid();
 
-                    //add data to database
-                    /*mRef.child(uid).child("isRestaurant").setValue(false);
-                    mRef.child(uid).child("uid").setValue(uid);
-                    mRef.child(uid).child("email").setValue(email);
-                    mRef.child(uid).child("reservations").setValue("");
-                    mRef.child(uid).child("notifications").setValue("");
-                    mRef.child(uid).child("name").setValue(name);
-                    mRef.child(uid).child("money").setValue("0");
-                    mRef.child(uid).child("points").setValue("0");
-                    mRef.child(uid).child("fav restaurants").setValue("");
-                    mRef.child(uid).child("phone").setValue(phone);
-                    mRef.child(uid).child("ranking").setValue("0");*/
                     mRef.child(uid).setValue(new Customer(name, user.getEmail(), phone, user.getUid()));
 
                     Toast.makeText( SignUpAsCustomerActivity.this, "Welcome " + name, Toast.LENGTH_SHORT).show();

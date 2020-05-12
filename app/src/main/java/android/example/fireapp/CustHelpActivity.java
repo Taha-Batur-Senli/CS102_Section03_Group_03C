@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+//A class that functions no more? To be deleted later on!
+
 public class CustHelpActivity extends AppCompatActivity {
 
     @Override

@@ -20,8 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class CustomerMyAccountActivity extends AppCompatActivity {
+    //Properties
     TextView name, phone, points, money, email, ranking;
     Button addMoney, editAccount;
+
     Dialog addMoneyPopUp;
     DatabaseReference mRef;
     FirebaseAuth mAuth;
@@ -32,6 +34,7 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_my_account);
 
+        //Initialize
         phone = (TextView)findViewById(R.id.txtCustomerAccountPhone);
         ranking = (TextView)findViewById(R.id.txtCustomerAccountRanking);
         name = (TextView)findViewById(R.id.txtCustomerAccountName);
@@ -46,10 +49,12 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
         mRef = FirebaseDatabase.getInstance().getReference("Customers");
         user = mAuth.getCurrentUser();
 
+        //Methods called
         addMoneyAction();
         editAccountAction();
 
 
+        //Get data from database and place them to text views
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

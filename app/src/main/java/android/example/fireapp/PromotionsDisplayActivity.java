@@ -23,8 +23,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
+/*
+This class enables restaurant owners to manage their promotions. They can add or delete promotions
+in this activity.
+ */
 public class PromotionsDisplayActivity extends AppCompatActivity {
+    //Properties
     Button add;
     ListView listViewResPromotions;
     ArrayAdapter myAdapter;
@@ -40,6 +44,7 @@ public class PromotionsDisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promotions_display);
 
+        //Initialize
         add = (Button)findViewById(R.id.btnAddPromotion);
         listViewResPromotions = (ListView)findViewById(R.id.lvResPromotions);
         myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resPromotions);
@@ -50,12 +55,16 @@ public class PromotionsDisplayActivity extends AppCompatActivity {
         mRef = FirebaseDatabase.getInstance().getReference("Promotions");
         user = mAuth.getCurrentUser();
 
+        //Methods called
         addPromoActivity();
         displayRestPromo();
         listOnLongClickAction();
 
     }
 
+    /*
+    This method directs restaurant owners to an activity where they can add a new promotion.
+     */
     private void addPromoActivity() {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +74,10 @@ public class PromotionsDisplayActivity extends AppCompatActivity {
         });
     }
 
+    /*
+    This method prints out all of the promotions a restaurant have on the related list view by
+    iterating trough firebase.
+     */
     private void displayRestPromo () {
         reference.child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -89,6 +102,11 @@ public class PromotionsDisplayActivity extends AppCompatActivity {
         });
     }
 
+    /*
+    This method makes promotions long-clickable. When an owner wishes to delete a promotion, they
+    can long-click on that promotion. Then, they are asked if they want to remove that promotion or not.
+    If they choose to remove, that promotion is removed from firebase as well.
+     */
     int index;
     private void listOnLongClickAction() {
         listViewResPromotions.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
