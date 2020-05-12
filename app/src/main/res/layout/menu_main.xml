@@ -7,22 +7,6 @@
     android:background="@drawable/background2"
     tools:context=".MainMenu">
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="302dp"
-        android:layout_height="49dp"
-        android:fontFamily="@font/roboto_regular"
-        android:gravity="center"
-        android:letterSpacing="0.2"
-        android:text="Welcome,"
-        android:textColor="@color/white"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/view_flipper"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toEndOf="@+id/view_flipper"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.118" />
 
     <TextView
         android:id="@+id/textView8"
@@ -69,7 +53,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.251" />
+        app:layout_constraintVertical_bias="0.251">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="302dp"
+            android:layout_height="49dp"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:letterSpacing="0.2"
+            android:text="Welcome,"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/view_flipper"
+            app:layout_constraintHorizontal_bias="0.499"
+            app:layout_constraintStart_toEndOf="@+id/view_flipper"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.118" />
+
+    </ViewFlipper>
 
     <ImageView
         android:id="@+id/imageView2"

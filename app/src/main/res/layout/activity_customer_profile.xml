@@ -20,36 +20,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtNameCustomerProfile"
-        android:layout_width="263dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="45dp"
-        android:text="Welcome, "
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/view_flipper"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/view_flipper"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
-
-
-    <ViewFlipper
-        android:id="@+id/view_flipper"
-        android:layout_width="404dp"
-        android:layout_height="184dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/roboto_light"
-        android:inAnimation="@android:anim/slide_in_left"
-        android:outAnimation="@android:anim/slide_out_right"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.18">
 
-    </ViewFlipper>
+        <ViewFlipper
+            android:id="@+id/view_flipper"
+            android:layout_width="411dp"
+            android:layout_height="167dp"
+            android:fontFamily="@font/roboto_light"
+            android:inAnimation="@android:anim/slide_in_left"
+            android:outAnimation="@android:anim/slide_out_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.171">
+
+        </ViewFlipper>
+
+        <TextView
+            android:id="@+id/txtNameCustomerProfile"
+            android:layout_width="match_parent"
+            android:layout_height="114dp"
+            android:gravity="center"
+            android:text="Welcome, "
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.19999999" />
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:layout_marginBottom="20dp"
+            android:accessibilityPaneTitle="F"
+            android:background="@drawable/button"
+            android:backgroundTint="#FFFFFF"
+            android:clickable="true"
+            android:closeIcon="@drawable/ic_close_white_24dp"
+            android:fontFamily="@font/roboto_light"
+            android:goIcon="@drawable/ic_keyboard_arrow_right_white_24dp"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search restaurants... "
+            android:searchHintIcon="@drawable/ic_search_white_24dp"
+            android:searchIcon="@drawable/ic_search_white_24dp"
+            android:voiceIcon="@drawable/ic_mic_white_24dp" />
+
+    </FrameLayout>
 
     <ImageView
         android:id="@+id/imageView9"
@@ -63,6 +92,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
+
     <ListView
         android:id="@+id/lvAllRestaurants"
         android:layout_width="415dp"
@@ -73,13 +103,13 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.714" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="296dp"
+        android:layout_marginTop="288dp"
         android:text="Best Restaurants"
         android:textColor="@color/white"
         android:textSize="25sp"
@@ -92,38 +122,13 @@
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="488dp"
+        android:layout_marginTop="476dp"
         android:text="Promotions"
         android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <SearchView
-        android:id="@+id/search"
-        android:layout_width="310dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginBottom="20dp"
-        android:accessibilityPaneTitle="F"
-        android:background="@drawable/button"
-        android:backgroundTint="#FFFFFF"
-        android:clickable="true"
-        android:closeIcon="@drawable/ic_close_white_24dp"
-        android:fontFamily="@font/roboto_light"
-        android:goIcon="@drawable/ic_keyboard_arrow_right_white_24dp"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search restaurants... "
-        android:searchHintIcon="@drawable/ic_search_white_24dp"
-        android:searchIcon="@drawable/ic_search_white_24dp"
-        android:voiceIcon="@drawable/ic_mic_white_24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view_flipper"
-        app:layout_constraintVertical_bias="0.0" />
 
     <ListView
         android:id="@+id/listViewAllPromotionsPOV"
@@ -133,8 +138,10 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+        app:layout_constraintTop_toBottomOf="@+id/textView26"
+        app:layout_constraintVertical_bias="1.0" />
 
     <!--<androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
