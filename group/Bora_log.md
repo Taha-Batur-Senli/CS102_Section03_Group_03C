@@ -17,7 +17,9 @@ I succesfully registered the user with custom fields for the first time. Authant
 We spotted a bug when trying to add more than one food to menu. We were not storing the food as an object. I assumed that not storing the foods as objects created this problem. I again created a mini project to see if this was the problem. I created another menu but this time it stores the food as an object. I quickly find out that this was the problem. I told Ege about it. And we changed the code. So now, the code was storing the foods as an objects in the real time database. This time the GitHub started to create some problems. The codes that we pulled from github started to crush. We started to work on it.
 
 ### ~ 8 May 2020 ~
-As we store the restaurant in our database. Problems started to occur. The registers became inconsistent(Sometimes it authenticated the user, sometimes it did not) I  realized that as we did the same thing when storing food. We did not created restaurant as an object. So we were storing all of restaurant's custom fields individually. This was a lot of unnecessary code and also caused the firebase to crush. So Ege and I wrote a basic restaurant class with properties and set get methods. And it started to work properly. 
+As we store the restaurant in our database. Problems started to occur. The registers became inconsistent(Sometimes it authenticated the user, sometimes it did not) I  realized that as we did the same thing when storing food. We did not created restaurant as an object. So we were storing all of restaurant's custom fields individually. This was a lot of unnecessary code and also caused the firebase to crush. So Ege and I wrote a basic restaurant class with properties and set get methods. And it started to work properly.
+### ~ 13 May 2020 ~
+I can not run the app because my phones sdkVersion can not match with the new sdk version( a new method and libraries that we added forced it to update the sdk version). 
 
 
 ****
