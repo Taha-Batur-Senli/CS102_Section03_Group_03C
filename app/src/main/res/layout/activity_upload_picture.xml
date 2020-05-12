@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="@drawable/background2"
     tools:context=".UploadPicture">
 
     <LinearLayout
@@ -22,13 +23,21 @@
             android:layout_width="8dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="choose"></Button>
+            android:background="@drawable/button"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:text="Choose"></Button>
         <Button
             android:id="@+id/upload"
             android:layout_width="8dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="upload"></Button>
+            android:background="@drawable/button"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="Upload"></Button>
     </LinearLayout>
     <ImageView
         android:layout_width="match_parent"

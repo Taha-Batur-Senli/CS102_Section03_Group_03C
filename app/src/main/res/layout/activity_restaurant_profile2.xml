@@ -36,7 +36,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.306" />
+        app:layout_constraintVertical_bias="0.309" />
 
     <TextView
         android:id="@+id/txtRestProfile"
@@ -54,8 +54,8 @@
 
     <TextView
         android:id="@+id/txtNameRestaurantProfile"
-        android:layout_width="128dp"
-        android:layout_height="45dp"
+        android:layout_width="273dp"
+        android:layout_height="35dp"
         android:text="Welcome!"
         android:textColor="@color/white"
         android:textSize="25sp"
