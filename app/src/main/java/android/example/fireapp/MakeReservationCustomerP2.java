@@ -1,6 +1,7 @@
 package android.example.fireapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +38,7 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
     ArrayAdapter myAdapter;
     ArrayList<String> allTimes = new ArrayList<>();
     DatabaseReference reference;
-
+TextView tvDeneme;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,7 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
         myAdapter = new ArrayAdapter<>(this, R.layout.listrow, R.id.textView2, allTimes);
         lvAvailableTimeSlots.setAdapter(myAdapter);
         reference = FirebaseDatabase.getInstance().getReference();
+        tvDeneme = (TextView)findViewById(R.id.deneme6);
 
         Intent i = getIntent();
         String uidRestaurant = i.getStringExtra("UID");
@@ -66,9 +69,10 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                      if (item1.child("reserved").getValue().toString().equals("false") ){
 
                          String timeSlot =  item1.child("firstTime").child("hour").getValue().toString() + ":" +
-                                 item1.child("firstTime").child("minute").getValue().toString() + " - " +
+                               item1.child("firstTime").child("minute").getValue().toString() + "-" +
                                  item1.child("endTime").child("hour").getValue().toString() + ":" +
                                  item1.child("endTime").child("minute").getValue().toString();
+                         //String timeSlot = item1.getKey();
                          allTimes.add(timeSlot);
                          myAdapter.notifyDataSetChanged();
                      }
@@ -91,7 +95,7 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
     private void selectTime(){
         lvAvailableTimeSlots.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 new AlertDialog.Builder(MakeReservationCustomerP2.this)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setTitle("There is a minimum price limit to pre-order! ")
@@ -99,8 +103,6 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                         .setPositiveButton("Pre-order", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                //FirebaseAuth.getInstance().signOut();
-                                //startActivity(new Intent( RestaurantProfile.this, MainActivity.class));
                                 Intent intent = getIntent();
                                 String resUid = intent.getStringExtra("UID");
                                 String minPrice = intent.getStringExtra("MINPRICE");
@@ -118,6 +120,64 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //TODO finish reservation
+                                Intent i = getIntent();
+                                String uidRestaurant = i.getStringExtra("UID");
+                                String seat = i.getStringExtra("SEAT");
+                                String date = i.getStringExtra("DATE");
+                               final DatabaseReference mRefRez = FirebaseDatabase.getInstance().getReference("SeatPlans");
+
+//                                Determine timeslots numeric value
+                                String ts = allTimes.get(position);
+                                String[] temp = ts.split("-");
+                                String[] temp2 = temp[0].split(":");
+                                int timeSlot = ((Integer.parseInt(temp2[0]) * 60 ) + Integer.parseInt(temp2[1]));
+                                mRefRez.child(uidRestaurant).child(seat).child(date).child(String.valueOf(timeSlot)).child("reserved").setValue("true");
+
+                                /*Intent i = getIntent();
+                                String uidRestaurant = i.getStringExtra("UID");
+                                String seat = i.getStringExtra("SEAT");
+                                String date = i.getStringExtra("DATE");
+                                final DatabaseReference mRefRez = FirebaseDatabase.getInstance().getReference("SeatPlans").child(uidRestaurant)
+                                        .child(seat).child(date);
+
+                                //Determine timeslots numeric value
+                                String ts = allTimes.get(position);
+                                String[] temp = ts.split("-");
+                                String[] temp2 = temp[0].split(":");
+                                int timeSlot = ((Integer.parseInt(temp2[0]) * 60 ) + Integer.parseInt(temp2[1]));
+                                mRefRez.child(uidRestaurant).child(seat).child(date).child(String.valueOf(timeSlot)).child("reserved").setValue("true");
+
+                                final ArrayList<String> mKeys = new ArrayList<>();
+                                mRefRez.addChildEventListener(new ChildEventListener() {
+                                    @Override
+                                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                        String key = dataSnapshot.getKey();
+                                        mKeys.add(key);
+                                    }
+
+                                    @Override
+                                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                    }
+
+                                    @Override
+                                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                                    }
+
+                                    @Override
+                                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
+                                System.out.println(mKeys);*/
                                 startActivity(new Intent(MakeReservationCustomerP2.this, MyReservations.class));
                                 finish();
                             }

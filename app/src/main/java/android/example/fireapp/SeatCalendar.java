@@ -76,28 +76,27 @@ public class SeatCalendar extends HashMap<String, TimeSlot> {
 		*/
     }
 
-//    public boolean isTimeSlotAvailable(LocalTime time) {
-//        return !this.get(time.getHour()*60 + time.getMinute()).isReserved();
-//    }
-//
-//    public void setRelatedSlotsReserved(LocalDateTime dateAndTime, boolean b) {
-//        for ( int i = dateAndTime.getHour()*60 + dateAndTime.getMinute();
-//              (i < getLastReservationTime().getHour()*60 + getLastReservationTime().getMinute() + 1) && (i < dateAndTime.getHour()*60 + dateAndTime.getMinute() + TimeSlot.durationOfMeal);
-//              i++)
-//        {
-//            this.get(i).setReserved(b);
-//        }
-//
-//
-//		/*int startIndex = timeSlots.indexOf( getTimeSlotByStartTime(ts.getFirstTime()));
-//		System.out.println("start Index: " + startIndex );
-//		for(int i = startIndex; i < startIndex + TimeSlot.durationOfMeal - 1; i++)
-//		{
-//			timeSlots.get(i).setReserved(b);
-//		}
-//		System.out.println("Related timeslots reserved");
-//		*/
-//    }
+    public boolean isTimeSlotAvailable(LocalTime time) {
+        return !this.get(time.getHour()*60 + time.getMinute()).isReserved();
+    }
+
+    public void setRelatedSlotsReserved(LocalDateTime dateAndTime, boolean b) {
+        for ( int i = dateAndTime.getHour()*60 + dateAndTime.getMinute();
+              (i < getLastReservationTime().getHour()*60 + getLastReservationTime().getMinute() + 1) && (i < dateAndTime.getHour()*60 + dateAndTime.getMinute() + TimeSlot.durationOfMeal);
+              i++)
+        {
+            this.get(i).setReserved(b);
+        }
+
+		/*int startIndex = timeSlots.indexOf( getTimeSlotByStartTime(ts.getFirstTime()));
+		System.out.println("start Index: " + startIndex );
+		for(int i = startIndex; i < startIndex + TimeSlot.durationOfMeal - 1; i++)
+		{
+			timeSlots.get(i).setReserved(b);
+		}
+		System.out.println("Related timeslots reserved");
+		*/
+    }
 
 //    public String printReservedTimeSlots()
 //    {
