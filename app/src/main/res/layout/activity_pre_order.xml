@@ -141,7 +141,6 @@
         android:id="@+id/textView28"
         android:layout_width="45dp"
         android:layout_height="28dp"
-        android:background="@drawable/button"
         android:gravity="center"
         android:text="TL"
         android:textAllCaps="false"
@@ -156,8 +155,8 @@
 
     <Button
         android:id="@+id/btnFinishAndPay"
-        android:layout_width="408dp"
-        android:layout_height="71dp"
+        android:layout_width="328dp"
+        android:layout_height="60dp"
         android:background="@drawable/button"
         android:text="Finish and Pay"
         android:textAllCaps="false"
@@ -165,10 +164,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.976" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

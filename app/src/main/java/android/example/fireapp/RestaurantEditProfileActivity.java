@@ -2,6 +2,7 @@ package android.example.fireapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,6 +48,14 @@ public class RestaurantEditProfileActivity extends AppCompatActivity {
         etMaxDuration = (EditText)findViewById(R.id.etMaxDurationEdit);
         etMinPrice = (EditText)findViewById(R.id.etMinPriceEdit);
         genre = (Spinner)findViewById(R.id.spinnerEdit);
+
+        etDescription.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etPhone.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etName.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etWH.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etAdress.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etMaxDuration.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etMinPrice.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();

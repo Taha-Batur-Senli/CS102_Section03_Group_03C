@@ -2,6 +2,7 @@ package android.example.fireapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,6 +44,11 @@ public class ChangeFoodActivity extends AppCompatActivity {
         etIngredients = (EditText)findViewById(R.id.etFoodIngredientChange);
         etPrice = (EditText)findViewById(R.id.etFoodPriceChange);
         save = (Button)findViewById(R.id.bttnSaveFoodChange);
+
+        etName.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etIngredients.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etPrice.setTextColor(ContextCompat.getColor(this, R.color.white));
+
         //delete = (Button)findViewById(R.id.btnDeleteFood);
         /* <Button
         android:id="@+id/btnDeleteFood"

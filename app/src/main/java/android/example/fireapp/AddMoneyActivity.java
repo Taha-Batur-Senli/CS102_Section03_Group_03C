@@ -2,6 +2,7 @@ package android.example.fireapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +37,8 @@ public class AddMoneyActivity extends AppCompatActivity {
         //Initialize
         addMoney = findViewById(R.id.addMoney3);
         toBeAdded = findViewById(R.id.etMoneyToAdded3);
+
+        toBeAdded.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         mAuth = FirebaseAuth.getInstance();
         mRef = FirebaseDatabase.getInstance().getReference("Customers");

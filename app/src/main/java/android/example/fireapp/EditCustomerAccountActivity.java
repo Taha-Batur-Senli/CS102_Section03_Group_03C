@@ -2,6 +2,7 @@ package android.example.fireapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.ActionMenuItemView;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,6 +36,9 @@ public class EditCustomerAccountActivity extends AppCompatActivity {
         save = (Button)findViewById(R.id.btnSaveCustomerAccount);
         phone = (EditText)findViewById(R.id.etNewPhoneCustomer);
         name = (EditText)findViewById(R.id.etNewNameCustomer);
+
+        phone.setTextColor(ContextCompat.getColor(this, R.color.white));
+        name.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         mAuth = FirebaseAuth.getInstance();
         mRef = FirebaseDatabase.getInstance().getReference("Customers");

@@ -2,6 +2,7 @@ package android.example.fireapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,6 +38,8 @@ public class AddPromoActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference("Promotions");
+
+        etPromo.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         //Adds promotion to firebase
         add.setOnClickListener(new View.OnClickListener() {

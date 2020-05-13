@@ -47,7 +47,7 @@ public class PromotionsDisplayActivity extends AppCompatActivity {
         //Initialize
         add = (Button)findViewById(R.id.btnAddPromotion);
         listViewResPromotions = (ListView)findViewById(R.id.lvResPromotions);
-        myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resPromotions);
+        myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, resPromotions);
         listViewResPromotions.setAdapter(myAdapter);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("Promotions");

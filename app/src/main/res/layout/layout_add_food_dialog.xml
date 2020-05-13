@@ -8,45 +8,60 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/etNameFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.388"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
-
-    <EditText
         android:id="@+id/etIngrediends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button"
         android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
         android:hint="Ingredients"
         android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.388"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNameFood"
-        app:layout_constraintVertical_bias="0.027" />
+        app:layout_constraintVertical_bias="0.044" />
+
+    <EditText
+        android:id="@+id/etNameFood"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.26" />
 
     <EditText
         android:id="@+id/etPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="332dp"
+        android:background="@drawable/button"
         android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
         android:hint="Price"
         android:inputType="numberDecimal"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.388"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etIngrediends"
-        app:layout_constraintVertical_bias="0.283" />
+        app:layout_constraintVertical_bias="0.31" />
 </androidx.constraintlayout.widget.ConstraintLayout>

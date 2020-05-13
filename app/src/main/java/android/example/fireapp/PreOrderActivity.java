@@ -58,8 +58,8 @@ public class PreOrderActivity extends AppCompatActivity {
         totalTv = (TextView)findViewById(R.id.txtTotal);
         yourMoneyTv = (TextView)findViewById(R.id.txtYourMoney);
 
-        myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu);
-        myAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, preOrder);
+        myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, menu);
+        myAdapter2 = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, preOrder);
         lvMenu.setAdapter(myAdapter);
         lvMyOrder.setAdapter(myAdapter2);
         database = FirebaseDatabase.getInstance();
