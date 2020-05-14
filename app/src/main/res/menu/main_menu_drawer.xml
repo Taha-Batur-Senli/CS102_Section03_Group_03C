@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home_icon"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/nav_show_all"
+            android:icon="@drawable/home_icon"
+            android:title="Show All Restaurants" />
+
+        <item
+            android:id="@+id/nav_favourite_restaurants"
+            android:icon="@drawable/home_icon"
+            android:title="My Favourite Restaurants" />
+
+        <item
+            android:id="@+id/nav_my_reservations"
+            android:icon="@drawable/home_icon"
+            android:title="My Reservations" />
+
+        <item
+            android:id="@+id/nav_help_call_us"
+            android:icon="@drawable/home_icon"
+            android:title="Help / Call Us" />
+
+
+    </group>
+
+
+
+        <item android:title="Profile">
+
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_profile"
+                        android:icon="@drawable/home_icon"
+                        android:title="My Account" />
+                    <item
+                        android:id="@+id/nav_log_out"
+                        android:icon="@drawable/home_icon"
+                        android:title="Log Out" />
+                </group>
+            </menu>
+
+        </item>
+
+</menu>

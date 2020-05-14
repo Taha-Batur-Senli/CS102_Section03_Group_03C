@@ -97,7 +97,6 @@ public class CustomerProfile extends AppCompatActivity {
 
         //Adapters & References
 
-
         database = FirebaseDatabase.getInstance();
         myAdapter = new ArrayAdapter<>(this, R.layout.listrow, R.id.textView2, allRestaurants);
         listViewAllRestaurants.setAdapter(myAdapter);

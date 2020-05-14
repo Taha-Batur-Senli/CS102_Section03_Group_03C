@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,6 +36,8 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_customer_p_o_v_restaurant);
 
         //Initialize
@@ -135,10 +138,10 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
     /*
     This overriden method prevents some bugs. It is crucial to finish this activity if customer
     presses to the back button. Else, multiple times of back button may lead back again to this activity.
-     */
+*/
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(getApplicationContext(),CustomerProfile.class));
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
         finish();
 
     }

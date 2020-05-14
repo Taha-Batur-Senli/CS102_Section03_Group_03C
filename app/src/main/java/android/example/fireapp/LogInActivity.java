@@ -84,7 +84,7 @@ public class LogInActivity extends AppCompatActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
-                                        startActivity(new Intent(LogInActivity.this, CustomerProfile.class));
+                                        startActivity(new Intent(LogInActivity.this, MainActivity.class));
                                         finish();
                                     } else {
                                         startActivity(new Intent(LogInActivity.this, RestaurantProfile.class));
@@ -117,6 +117,7 @@ public class LogInActivity extends AppCompatActivity {
     public void openActivity2()
     {
         Intent intent;
+        // CHANGE THE MAIN ACTIVITY TO SIGNUPACTIVITY ONCE YOU FINISH THE DRAWER
         intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }

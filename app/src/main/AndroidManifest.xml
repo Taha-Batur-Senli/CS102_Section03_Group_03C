@@ -12,8 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UploadPicture"></activity>
-        <activity android:name=".PreOrderActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".UploadPicture" />
+        <activity android:name=".PreOrderActivity" />
         <activity android:name=".MakeReservationCustomerP2" />
         <activity android:name=".MyReservations" />
         <activity android:name=".MakeReservationCustomerP1" />
