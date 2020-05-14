@@ -15,7 +15,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:alpha="0"
         android:foregroundGravity="left"
         app:headerLayout="@layout/header"
         app:menu="@menu/main_menu_drawer" />
