@@ -36,4 +36,7 @@ Was a normal day spent with only a couple brainstorming sessions. All was quiet 
 ### ~ 11.05.2020 and 12.05.2020~
 These two days were straining, to say the least. However, I believe I have prevailed in the end. I began the second phase of my GUI reform plan by adding all the remaining backgrounds to the xml pages. Then, after fixing some of the GitHub problems my friends encountered, I reworked the pages they created by adjusting the fonts etc. and applied the appropriate constraints to them. Finally, after what felt like a perilous journey, I managed to update the ViewFlipper by fixing some of the issues we've encountered and added the "Welcome" text as well as the "SearchView" on top of it and made sure that this time they did not disappear when a new image appeared! I also contributed to our advanced report, albeit my contributions were mainly fluff-wise (such as the introduction) since I am on the GUI team. Finally, I brainstormed with my group on WhatsApp over a small issue we encountered, which was using the ListView since we couldn't figure out how to adjust it to our GUI due to design issues.
 
+### ~ 14.05.2020 and 15.05.2020~
+I spent these two days with continously working on the GUI and handling some of the minor issues the ViewFlipper caused. Moreover, I began working on the SearcView in order to make it funtion properly. In addition, I also experienced a major problem on Friday (15 March) and had to re-download the project after spending considerable amount of time trying to correct the issue.
+
 ****
