@@ -21,17 +21,25 @@ import android.widget.ViewFlipper;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    Toolbar toolbar;
-    Menu menu;
     TextView textView;
     SearchView search;
     ViewFlipper mViewFlipper;
-    TextView cusNameTV;
+    TextView cusNameTV, cusNameMenu;
+    FirebaseUser user;
+    DatabaseReference mRef;
+    FirebaseDatabase database;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         textView = findViewById(R.id.text);
         search = findViewById(R.id.search);
         mViewFlipper = findViewById(R.id.view_flipper);
+        cusNameMenu = findViewById(R.id.nav_customer_name);
 
         //setSupportActionBar(toolbar);
         //toolbar.setTitle("");
@@ -66,8 +75,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         search.clearFocus();
 
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        cusNameTV = findViewById(R.id.customer_name_txt);
+        mRef = FirebaseDatabase.getInstance().getReference("Customers");
+        database = FirebaseDatabase.getInstance();
+
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final String userName = dataSnapshot.child(user.getUid()).child("name").getValue(String.class);
+                cusNameTV.setText("Welcome, " + userName + "!");
+                if (userName.toLowerCase().equals("david"))
+                    cusNameTV.setText("Welcome sir, we will miss you :(");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         //giving images to flipperview
-        int[] imgs = { R.drawable.food_photo, R.drawable.pizza, R.drawable.steak};
+        int[] imgs = { R.drawable.food_photo, R.drawable.flipper_img};
         for ( int x = 0; x < imgs.length; x++)
         {
             flipperImages( imgs[x]);

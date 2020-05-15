@@ -10,22 +10,22 @@
 
         <item
             android:id="@+id/nav_show_all"
-            android:icon="@drawable/home_icon"
+            android:icon="@drawable/show_all_restaurants"
             android:title="Show All Restaurants" />
 
         <item
             android:id="@+id/nav_favourite_restaurants"
-            android:icon="@drawable/home_icon"
+            android:icon="@drawable/favorite_restaurants"
             android:title="My Favourite Restaurants" />
 
         <item
             android:id="@+id/nav_my_reservations"
-            android:icon="@drawable/home_icon"
+            android:icon="@drawable/my_reservations"
             android:title="My Reservations" />
 
         <item
             android:id="@+id/nav_help_call_us"
-            android:icon="@drawable/home_icon"
+            android:icon="@drawable/help_call_us"
             android:title="Help / Call Us" />
 
 
@@ -39,11 +39,11 @@
                 <group android:checkableBehavior="single">
                     <item
                         android:id="@+id/nav_profile"
-                        android:icon="@drawable/home_icon"
+                        android:icon="@drawable/my_account"
                         android:title="My Account" />
                     <item
                         android:id="@+id/nav_log_out"
-                        android:icon="@drawable/home_icon"
+                        android:icon="@drawable/log_off"
                         android:title="Log Out" />
                 </group>
             </menu>
