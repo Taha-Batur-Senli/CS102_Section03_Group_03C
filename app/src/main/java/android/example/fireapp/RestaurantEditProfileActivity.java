@@ -108,8 +108,8 @@ public class RestaurantEditProfileActivity extends AppCompatActivity{
                     res = true;
                 }
                 if (!minPriceUpdate.isEmpty()) {
-                mRef.child(user.getUid()).child("minPriceToPreOrder").setValue(Integer.parseInt(minPriceUpdate));
-                res = true;
+                    mRef.child(user.getUid()).child("minPriceToPreOrder").setValue(Integer.parseInt(minPriceUpdate));
+                    res = true;
                 }
                 if(!nameUpdate.isEmpty()) {
                     mRef.child(user.getUid()).child("name").setValue(nameUpdate);

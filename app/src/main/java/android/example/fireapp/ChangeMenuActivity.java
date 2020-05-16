@@ -36,7 +36,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
     ImageView removeDish, addDish;
     ListView lvMenuRes;
     ArrayAdapter myAdapter;
-    ArrayList<String> menu = new ArrayList<String>();
+    ArrayList<String> menu = new ArrayList<>();
 
     FirebaseDatabase database;
     DatabaseReference reference;
@@ -64,7 +64,6 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         removeDish = findViewById(R.id.remove_dish);
         addDish = findViewById(R.id.add_new_dish);
 
-
         //Display Menu
         reference.child(user.getUid()).child("menu").addValueEventListener(new ValueEventListener() {
             @Override
@@ -72,7 +71,6 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
                 menu.clear();
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
                 while (items.hasNext()) {
-
                     DataSnapshot item = items.next();
                     String name;
                     name = "" + item.child("name").getValue().toString() + ": "

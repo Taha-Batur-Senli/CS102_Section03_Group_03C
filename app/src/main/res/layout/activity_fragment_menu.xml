@@ -101,7 +101,7 @@
         android:background="@drawable/button"
         android:ems="10"
         android:gravity="center"
-        android:inputType="textPersonName"
+        android:inputType="numberSigned"
         android:fontFamily="@font/roboto_light"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
