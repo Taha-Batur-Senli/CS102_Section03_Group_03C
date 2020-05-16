@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,6 +33,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
     DatabaseReference reference, mRef;
     FirebaseAuth mAuth;
     FirebaseUser user;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +49,33 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mRef = FirebaseDatabase.getInstance().getReference("Customers");
         user = mAuth.getCurrentUser();
+        searchView = (SearchView) findViewById(R.id.searchView);
 
         //Methods called
         displayAllRestaurants();
         listOnLongClickAction();
         displayRestProfileAction();
+        searchRestaurant();
 
 
     }
 
     //METHODS
+
+    public void searchRestaurant(){
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String text) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+    }
 
     /*
     Prints all of the restaurants on the related listview. Iterates trough firebase and adds each
