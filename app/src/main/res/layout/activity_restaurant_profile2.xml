@@ -16,22 +16,111 @@
         android:text="Log Out"
         android:textAllCaps="false"
         android:textColor="@color/white"
+        android:textSize="15sp"
+        android:fontFamily="@font/roboto_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.863" />
+
+    <Button
+        android:id="@+id/resHelp"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_rosa"
+        android:fontFamily="@font/roboto_light"
+        android:text="Help"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.989"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintTop_toBottomOf="@+id/btnPromotionMenu"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+    <Button
+        android:id="@+id/resEditProfile"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_rosa"
+        android:fontFamily="@font/roboto_light"
+        android:text="Edit Restaurant Profile"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
+
+    <Button
+        android:id="@+id/btnChangeMenu"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_rosa"
+        android:fontFamily="@font/roboto_light"
+        android:text="Change Menu"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resEditProfile"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnPromotionMenu"
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_rosa"
+        android:fontFamily="@font/roboto_light"
+        android:text="Promotions"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnChangeMenu"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/takeALookAtYourRestaurant"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/roboto_light"
+        android:text="Take A Look At Your Restaurant"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23000002">
+        app:layout_constraintVertical_bias="0.001">
 
         <ViewFlipper
             android:id="@+id/view_flipper"
@@ -39,121 +128,24 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/roboto_light"
             android:inAnimation="@android:anim/slide_in_left"
-            android:outAnimation="@android:anim/slide_out_right"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.309" />
+            android:outAnimation="@android:anim/slide_out_right" />
 
         <TextView
             android:id="@+id/txtNameRestaurantProfile"
             android:layout_width="match_parent"
             android:layout_height="129dp"
+            android:fontFamily="@font/roboto_light"
             android:gravity="center"
             android:text="Welcome!"
             android:textColor="@color/white"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.148"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.139" />
+            app:layout_constraintVertical_bias="0.001" />
 
     </FrameLayout>
-
-    <TextView
-        android:id="@+id/txtRestProfile"
-        android:layout_width="140dp"
-        android:layout_height="62dp"
-        android:text="Restaurant Profile"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
-    <Button
-        android:id="@+id/resEditProfile"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button"
-        android:text="Edit Your Profile"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.673" />
-
-    <Button
-        android:id="@+id/resHelp"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button"
-        android:text="Help"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.959" />
-
-    <Button
-        android:id="@+id/takeALookAtYourRestaurant"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button"
-        android:text="Take A Look At Your Restaurant"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.579" />
-
-    <Button
-        android:id="@+id/btnChangeMenu"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button"
-        android:text="Change Menu"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.77" />
-
-    <Button
-        android:id="@+id/btnPromotionMenu"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button"
-        android:text="Promotions"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.865" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

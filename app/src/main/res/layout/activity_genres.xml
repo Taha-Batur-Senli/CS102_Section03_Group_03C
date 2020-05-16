@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Genres"
+    android:background="@drawable/background2">
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.014"
+        app:srcCompat="@drawable/logo" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="100dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/pizza_cardview"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/background2"
+            android:clickable="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/pizza_real_main">
+
+                <TextView
+                    android:id="@+id/pizza"
+                    android:layout_width="101dp"
+                    android:layout_height="92dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="35dp"
+                    android:layout_marginBottom="30dp"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center"
+                    android:text="Pizza"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    app:fontFamily="@font/roboto_light" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/background2"
+            app:cardElevation="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/steak_real_main">
+
+                <TextView
+                    android:id="@+id/steakTxt"
+                    android:layout_width="100dp"
+                    android:layout_height="92dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="44dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="44dp"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center"
+                    android:text="Steak"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    app:fontFamily="@font/roboto_light" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="175dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/dessert_real_main">
+
+                <TextView
+                    android:id="@+id/dessertTxt"
+                    android:layout_width="122dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginEnd="26dp"
+                    android:layout_marginBottom="50dp"
+                    android:gravity="center"
+                    android:text="Dessert"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    app:fontFamily="@font/roboto_light" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/chicken_real_main">
+
+                <TextView
+                    android:id="@+id/chickenTxt"
+                    android:layout_width="110dp"
+                    android:layout_height="64dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginTop="47dp"
+                    android:layout_marginEnd="33dp"
+                    android:layout_marginBottom="45dp"
+                    android:gravity="center"
+                    android:text="Chicken"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    app:fontFamily="@font/roboto_light" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="175dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/sushi_real_main">
+
+                <TextView
+                    android:id="@+id/sushiTxt"
+                    android:layout_width="97dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginBottom="35dp"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center"
+                    android:text="Sushi"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    app:fontFamily="@font/roboto_light" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/hamburger_real_main">
+
+                <TextView
+                    android:id="@+id/hamburgerTxt"
+                    android:layout_width="156dp"
+                    android:layout_height="67dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="45dp"
+                    android:gravity="center"
+                    android:text="Hamburger"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    app:fontFamily="@font/roboto_light" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_light"
+        android:text="Edit Restaurant Genre"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView19" />
+
+    <ImageView
+        android:id="@+id/imageView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView34"
+        app:srcCompat="@drawable/line_28" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

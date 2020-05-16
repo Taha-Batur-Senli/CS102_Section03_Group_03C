@@ -90,7 +90,7 @@
         android:alpha="0.5"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
-        android:text="© 2020-2021  RESERVE\nAll Rights Reserved "
+        android:text="© 2020-2021  RESERVED\nAll Rights Reserved "
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"

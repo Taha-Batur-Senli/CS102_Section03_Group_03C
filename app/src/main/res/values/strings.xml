@@ -2,7 +2,7 @@
     <string name="navigation_drawer_open">Open navigation</string>
     <string name="navigation_drawer_close">Close navigation</string>
     <string name="app_name">FireApp</string>
-    <array name="genres">
+    <string-array name="genres">
         <item>Fast food</item>
         <item>Breakfast</item>
         <item>Lunch</item>
@@ -11,7 +11,7 @@
         <item>Coffee Shop</item>
         <item>Bar</item>
         <item>Steak House</item>
-    </array>
+    </string-array>
     <string name="title_activity_restaurant_profile">RestaurantProfile</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

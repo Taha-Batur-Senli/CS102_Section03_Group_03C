@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,6 +38,7 @@ public class RestaurantProfile extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_restaurant_profile2);
 
         //Initialization
@@ -52,7 +54,7 @@ public class RestaurantProfile extends AppCompatActivity {
         promotions = (Button)findViewById(R.id.btnPromotionMenu);
         changeMenu = (Button)findViewById(R.id.btnChangeMenu);
         mViewFlipper = findViewById(R.id.view_flipper);
-        int[] images = { R.drawable.food_photo, R.drawable.pizza, R.drawable.steak};
+        int[] images = { R.drawable.food_photo, R.drawable.flipper_img};
 
         //Call methods
         takeALookAtYourRestaurantAction();
@@ -74,7 +76,7 @@ public class RestaurantProfile extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 final String userName = dataSnapshot.child(user.getUid()).child("name").getValue(String.class);
-                resNameTV.setText("Welcome " + userName + "!");
+                resNameTV.setText(("Welcome, \n" + userName + "!").toUpperCase());
 
             }
 

@@ -1,15 +1,21 @@
 package android.example.fireapp;
+import android.os.Bundle;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,10 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 /*
 This class enables restaurants to edit their data ny updating them on firebase.
  */
-public class RestaurantEditProfileActivity extends AppCompatActivity {
+public class RestaurantEditProfileActivity extends AppCompatActivity{
     //Properties
-    Button save;
-    Button upload;
+    Button save, upload, changeGenre;
     EditText etDescription, etPhone, etName, etWH,etAdress, etMaxDuration, etMinPrice;
     Spinner genre;
     DatabaseReference mRef;
@@ -35,6 +40,7 @@ public class RestaurantEditProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_restaurant_edit_profile);
 
         //Initialize properties
@@ -48,6 +54,7 @@ public class RestaurantEditProfileActivity extends AppCompatActivity {
         etMaxDuration = (EditText)findViewById(R.id.etMaxDurationEdit);
         etMinPrice = (EditText)findViewById(R.id.etMinPriceEdit);
         genre = (Spinner)findViewById(R.id.spinnerEdit);
+        changeGenre = findViewById(R.id.genre_button);
 
         etDescription.setTextColor(ContextCompat.getColor(this, R.color.white));
         etPhone.setTextColor(ContextCompat.getColor(this, R.color.white));
@@ -71,38 +78,67 @@ public class RestaurantEditProfileActivity extends AppCompatActivity {
             }
         });
 
+        //onClickListener for genre button
+        changeGenre.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity( new Intent(RestaurantEditProfileActivity.this, Genres.class));
+            }
+
+        });
+
         //Save button  function to update firebase database
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean res;
                 final String nameUpdate = etName.getText().toString();
                 final String descriptionUpdate = etDescription.getText().toString();
                 final String phoneUpdate = etPhone.getText().toString();
-                final String whUpdate= etWH.getText().toString();
+                final String whUpdate = etWH.getText().toString();
                 final String adressUpdate = etAdress.getText().toString();
                 final String genreUpdate = genre.getSelectedItem().toString();
                 final String minPriceUpdate = etMinPrice.getText().toString();
                 final String maxDurationUpdate = etMaxDuration.getText().toString();
+                res = false;
 
                 //Only the fields that are not empty will be updated. This prevents a bug.
-                if(!maxDurationUpdate.isEmpty())
+                if (!maxDurationUpdate.isEmpty()) {
                     mRef.child(user.getUid()).child("maxSeatingDuration").setValue(Integer.parseInt(maxDurationUpdate));
-                if(!minPriceUpdate.isEmpty())
-                    mRef.child(user.getUid()).child("minPriceToPreOrder").setValue(Integer.parseInt(minPriceUpdate));
-                if(!nameUpdate.isEmpty())
+                    res = true;
+                }
+                if (!minPriceUpdate.isEmpty()) {
+                mRef.child(user.getUid()).child("minPriceToPreOrder").setValue(Integer.parseInt(minPriceUpdate));
+                res = true;
+                }
+                if(!nameUpdate.isEmpty()) {
                     mRef.child(user.getUid()).child("name").setValue(nameUpdate);
-                if(!descriptionUpdate.isEmpty())
+                    res = true;
+                }
+                if(!descriptionUpdate.isEmpty()) {
                     mRef.child(user.getUid()).child("description").setValue(descriptionUpdate);
-                if(!phoneUpdate.isEmpty())
+                    res = true;
+                }
+                if(!phoneUpdate.isEmpty()) {
                     mRef.child(user.getUid()).child("phone").setValue(phoneUpdate);
-                if(!whUpdate.isEmpty())
+                    res = true;
+                }
+                if(!whUpdate.isEmpty()) {
                     mRef.child(user.getUid()).child("workingHours").setValue(whUpdate);
-                if(!adressUpdate.isEmpty())
+                    res = true;
+                }
+                if(!adressUpdate.isEmpty()) {
                     mRef.child(user.getUid()).child("adress").setValue(adressUpdate);
+                    res = true;
+                }
                 //TODO bug should be fixed
-                if(!genreUpdate.isEmpty())
+                if(!genreUpdate.isEmpty()) {
                     mRef.child(user.getUid()).child("genre").setValue(genreUpdate);
+                }
 
+                if( res ) {
+                    Toast.makeText(RestaurantEditProfileActivity.this, "Changes Saved", Toast.LENGTH_SHORT).show();
+                }
                 startActivity( new Intent(RestaurantEditProfileActivity.this, RestaurantProfile.class));
                 finish();
             }

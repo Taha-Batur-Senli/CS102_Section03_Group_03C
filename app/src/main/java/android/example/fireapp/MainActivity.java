@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -85,9 +84,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final String userName = dataSnapshot.child(user.getUid()).child("name").getValue(String.class);
-                cusNameTV.setText("Welcome, " + userName + "!");
+                cusNameTV.setText(("Welcome,\n" + userName + "!").toUpperCase());
                 if (userName.toLowerCase().equals("david"))
-                    cusNameTV.setText("Welcome sir, we will miss you :(");
+                    cusNameTV.setText("Welcome David, thank you for everything sir :)");
             }
 
             @Override
