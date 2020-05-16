@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RestaurantReservationsActivity"></activity>
+        <activity android:name=".RateReservation"></activity>
+        <activity android:name=".RestaurantReservationsActivity" />
         <activity android:name=".Genres" />
         <activity android:name=".AnimationActivity">
             <intent-filter>

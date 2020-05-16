@@ -3,7 +3,10 @@ package android.example.fireapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -52,9 +55,42 @@ public class MyReservations extends AppCompatActivity {
         updatePastReservations();
         displayCurrentReservations();
         displayPastReservations();
+        ratePastReservations();
     }
 
     //METHODS
+    private void ratePastReservations() {
+        lvPastReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                /*String toString = resName + "\n" + date + "   " + timeSlotString + " " + "" + table + "\n" +
+                            proOrder + "___" + totalPrice + "TL\nRestaurant info: +90 " + resPhone;*/
+                String reservationText = pastReservations.get(position);
+                int indexOfResName = reservationText.indexOf("\n");
+                String resName = reservationText.substring(0, indexOfResName);
+                /*int indexOfDate = reservationText.indexOf("   ");
+                String date = reservationText.substring(indexOfResName + 2, indexOfDate);
+                int indexOfTimeSlot = reservationText.indexOf( " ", indexOfDate);
+                String timeSlot = reservationText.substring(indexOfDate + 3, indexOfTimeSlot );
+                String[] ts = timeSlot.split(":");
+                int h = Integer.parseInt(ts[0]);
+                int m = Integer.parseInt(ts[1]);
+                int timeSlotF = ((h * 60) + m);
+                String timeSlotFinal = String.valueOf(timeSlotF);
+                int indexOfTable = reservationText.indexOf("table");
+                char seatNum = timeSlot.charAt(indexOfTable + 7);
+                String seat = "seat" + seatNum;*/
+                Intent i = new Intent(MyReservations.this, RateReservation.class);
+                i.putExtra("RESTNAME", resName);
+                i.putExtra("RESERVTEXT", reservationText);
+                /*i.putExtra("DATE",date );
+                i.putExtra("TIMESLOT", timeSlotFinal);
+                i.putExtra("SEAT" , seat);*/
+                startActivity(i);
+            }
+        });
+    }
+
     private void updatePastReservations() {
         refCurrentReservations.orderByChild("cusID").equalTo(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
