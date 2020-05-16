@@ -35,16 +35,15 @@
         android:id="@+id/txtDate"
         android:layout_width="345dp"
         android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
         android:text="Select a date!"
         android:textColor="@color/white"
         android:textSize="25sp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
     <ListView
         android:id="@+id/lvSeatSelection"
@@ -54,8 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.933" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

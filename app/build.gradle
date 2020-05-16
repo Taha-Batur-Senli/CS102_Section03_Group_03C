@@ -8,12 +8,11 @@ android {
         applicationId "android.example.fireapp"
         //minSdkVersion 16
         minSdkVersion 26
+        applicationId "android.example.fireapp"
         targetSdkVersion 29
-        //minSdkVersion 16
-
-
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -40,6 +39,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.2.2'
     implementation 'com.google.firebase:firebase-storage:19.1.1'
     implementation 'com.mikhaellopez:circularimageview:4.2.0'
+    implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.airbnb.android:lottie:3.4.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
