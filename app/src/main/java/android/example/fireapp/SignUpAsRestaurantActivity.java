@@ -146,7 +146,6 @@ public class SignUpAsRestaurantActivity extends AppCompatActivity{
 
                     //Setting Firebase realtime database
                     mRef.child(uid).setValue(new Restaurant(name, email, genre, phone, uid));
-
                     //mRef2.child(uid).setValue(new Restaurant(name, email, genre, phone, uid));
 
                     //add num of seats

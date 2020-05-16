@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RestaurantProfile extends AppCompatActivity {
     //PROPERTIES
-    Button logOut, editProfile, help, takeALookAtYourRestaurant, changeMenu, promotions;
+    Button logOut, editProfile, help, takeALookAtYourRestaurant, changeMenu, promotions,  myReservations;
 
     DatabaseReference mRef;
     FirebaseAuth mAuth;
@@ -51,6 +51,7 @@ public class RestaurantProfile extends AppCompatActivity {
         editProfile =  (Button)findViewById(R.id.resEditProfile);
         help = (Button)findViewById(R.id.resHelp);
         logOut = (Button)findViewById(R.id.logOutResProfile);
+        myReservations = (Button)findViewById(R.id.RestaurantReservations);
         promotions = (Button)findViewById(R.id.btnPromotionMenu);
         changeMenu = (Button)findViewById(R.id.btnChangeMenu);
         mViewFlipper = findViewById(R.id.view_flipper);
@@ -63,6 +64,7 @@ public class RestaurantProfile extends AppCompatActivity {
         editTextAction();
         changeMenuAction();
         promotionsActivity();
+        myReservationsActivity();
 
         //Adding the images for the flipper!
         for ( int x = 0; x < images.length; x++)
@@ -89,6 +91,15 @@ public class RestaurantProfile extends AppCompatActivity {
     }
 
     //METHODS
+    private void myReservationsActivity() {
+        myReservations.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RestaurantProfile.this, RestaurantReservationsActivity.class));
+            }
+        });
+    }
+
     private void promotionsActivity() {
         promotions.setOnClickListener(new View.OnClickListener() {
             @Override
