@@ -117,7 +117,6 @@ public class LogInActivity extends AppCompatActivity {
     public void openActivity2()
     {
         Intent intent;
-        // CHANGE THE MAIN ACTIVITY TO SIGNUPACTIVITY ONCE YOU FINISH THE DRAWER
         intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }

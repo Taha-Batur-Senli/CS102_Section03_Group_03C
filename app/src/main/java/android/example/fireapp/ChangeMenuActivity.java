@@ -3,14 +3,19 @@ package android.example.fireapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -28,7 +33,7 @@ import java.util.Iterator;
 
 public class ChangeMenuActivity extends AppCompatActivity implements addFoodDialog.addFoodListener {
     //Properties
-    Button addDish;
+    ImageView removeDish, addDish;
     ListView lvMenuRes;
     ArrayAdapter myAdapter;
     ArrayList<String> menu = new ArrayList<String>();
@@ -38,13 +43,16 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
     FirebaseUser user;
     FirebaseAuth mAuth;
 
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_change_menu);
 
         //Initialize
-        addDish = (Button)findViewById(R.id.btnAddFood);
         lvMenuRes = (ListView)findViewById(R.id.lvMenuRes);
 
         myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu);
@@ -53,6 +61,8 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         reference = database.getReference( "Restaurants");
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        removeDish = findViewById(R.id.remove_dish);
+        addDish = findViewById(R.id.add_new_dish);
 
 
         //Display Menu
@@ -80,9 +90,15 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
             }
         });
 
+        addDish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addFragment();
+            }
+        });
+
         //Methods called
         editFoodAction();
-        addDishAction();
         listOnLongClickAction();
     }
 
@@ -108,18 +124,27 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         });
     }
 
-    private void addDishAction() {
-        addDish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDialog();
-            }
-        });
+    public void addFragment()
+    {
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentMenu fragmentMenu = new FragmentMenu();
+        fragmentTransaction.add( R.id.change_menu, fragmentMenu );
+        fragmentTransaction.commit();
     }
 
-    public void openDialog(){
-        addFoodDialog addFoodDialog = new addFoodDialog();
-        addFoodDialog.show(getSupportFragmentManager(), "Add Dish To Menu");
+    @Override
+    public void onBackPressed() {
+        Fragment fragment = fragmentManager.findFragmentById(R.id.change_menu);
+        if( fragment != null)
+        {
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.remove(fragment);
+            fragmentTransaction.commit();
+        }
+        else {
+            super.onBackPressed();
+        }
     }
 
     @Override
