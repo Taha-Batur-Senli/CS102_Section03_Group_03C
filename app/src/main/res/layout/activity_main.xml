@@ -354,7 +354,7 @@
                     app:navigationIcon="@drawable/menu" /> -->
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btnBestRestaurants"
                     android:layout_width="175dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="200dp"
@@ -395,11 +395,11 @@
                     android:layout_height="20dp"
                     android:layout_marginStart="7dp"
                     android:foregroundGravity="center"
-                    app:layout_constraintBottom_toBottomOf="@+id/button"
-                    app:layout_constraintEnd_toEndOf="@+id/button"
+                    app:layout_constraintBottom_toBottomOf="@+id/btnBestRestaurants"
+                    app:layout_constraintEnd_toEndOf="@+id/btnBestRestaurants"
                     app:layout_constraintHorizontal_bias="0.058"
-                    app:layout_constraintStart_toStartOf="@+id/button"
-                    app:layout_constraintTop_toTopOf="@+id/button"
+                    app:layout_constraintStart_toStartOf="@+id/btnBestRestaurants"
+                    app:layout_constraintTop_toTopOf="@+id/btnBestRestaurants"
                     app:layout_constraintVertical_bias="0.5"
                     app:srcCompat="@drawable/thumbs_up" />
 

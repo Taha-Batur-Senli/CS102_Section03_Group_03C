@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseDatabase database;
     FirebaseAuth mAuth;
     CardView steak, sushi, hamburger, chicken, dessert, pizza;
-    Button promotions;
+    Button promotions, bestRestaurants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mViewFlipper = findViewById(R.id.view_flipper);
         cusNameMenu = findViewById(R.id.nav_customer_name);
         promotions = (Button)findViewById(R.id.btnPromotions);
+        bestRestaurants = (Button)findViewById(R.id.btnBestRestaurants);
 
         steak = (CardView) findViewById(R.id.steakCardView);
         sushi = (CardView) findViewById(R.id.sushiCardView);
@@ -90,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent i = new Intent(MainActivity.this, GenreSpecialRes.class);
                 i.putExtra("GENRE", "Chicken");
                 startActivity(i);
-
             }
         });
 
@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent i = new Intent(MainActivity.this, GenreSpecialRes.class);
                 i.putExtra("GENRE", "Hamburger");
                 startActivity(i);
-
             }
         });
 
@@ -131,6 +130,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        bestRestaurants.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent( MainActivity.this, BestRestaurantsDisplay.class));
+            }
+        });
         //setSupportActionBar(toolbar);
         //toolbar.setTitle("");
 
