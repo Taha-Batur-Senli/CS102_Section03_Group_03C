@@ -35,7 +35,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
     //Properties
     ImageView removeDish, addDish;
     ListView lvMenuRes;
-    ArrayAdapter myAdapter;
+    MyCustomAdapter myAdapter;
     ArrayList<String> menu = new ArrayList<>();
 
     FirebaseDatabase database;
@@ -55,13 +55,12 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         //Initialize
         lvMenuRes = (ListView)findViewById(R.id.lvMenuRes);
 
-        myAdapter = new ArrayAdapter<String>(this, R.layout.listrow_edit_menu, R.id.itemtv_listrow_edit_menu, menu);
+        myAdapter = new MyCustomAdapter(menu, this);
         lvMenuRes.setAdapter(myAdapter);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference( "Restaurants");
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        removeDish = findViewById(R.id.remove_dish);
         addDish = findViewById(R.id.add_new_dish);
 
         //Display Menu
@@ -95,7 +94,6 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         });
 
         //Methods called
-        editFoodAction();
         listOnLongClickAction();
     }
 
@@ -103,23 +101,6 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
     This method makes each dish clickable. When restaurant owners click to a dish on their menu,
     they are directed to a page in which they can edit their dish's name, şngredients and price.
      */
-    private void editFoodAction() {
-        lvMenuRes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //gets the name of the dish
-                String item = menu.get(position);
-                int indexOfName = item.indexOf(",");
-                String name = item.substring(0,indexOfName);
-
-                //passes the name of te food to the next activity
-                Intent intent = new Intent(ChangeMenuActivity.this, ChangeFoodActivity.class);
-                intent.putExtra("NAME", name);
-                startActivity( intent);
-                finish();
-            }
-        });
-    }
 
     public void addFragment()
     {

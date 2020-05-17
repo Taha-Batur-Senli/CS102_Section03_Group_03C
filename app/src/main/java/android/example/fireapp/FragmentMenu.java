@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -230,7 +231,7 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
                                     .child("price").setValue(priceValue);
                             k++;
                         }*/
-                        Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Dish added", Toast.LENGTH_SHORT).show();
                         getActivity().finish();
                     }
 

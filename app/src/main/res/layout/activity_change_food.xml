@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background2"
+    android:background="@color/black"
     tools:context=".ChangeFoodActivity">
 
     <ImageView
@@ -72,7 +72,7 @@
         android:ems="10"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
-        android:hint="Price"
+        android:hint="Description"
         android:inputType="textPersonName"
         android:textColorHint="@color/white"
         android:textSize="14sp"
@@ -86,12 +86,12 @@
     <EditText
         android:id="@+id/etFoodPriceChange"
         android:layout_width="250dp"
-        android:layout_height="75dp"
+        android:layout_height="50dp"
         android:background="@drawable/button"
         android:ems="10"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
-        android:hint="Description"
+        android:hint="Price"
         android:inputType="numberDecimal"
         android:textColorHint="@color/white"
         android:textSize="14sp"
