@@ -170,6 +170,8 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                                                 mReservation.child(rezID).child("preOrderText").setValue("No pre-order!");
                                                 mCustomer.child("reservations").child(rezID).setValue(rezID);
                                                 mRestaurant.child("reservations").child(rezID).setValue(rezID);
+                                                startActivity(new Intent(MakeReservationCustomerP2.this, MainActivity.class));
+                                                finish();
                                             }
 
                                             @Override
@@ -184,8 +186,7 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
 
                                     }
                                 });
-                                startActivity(new Intent(MakeReservationCustomerP2.this, MainActivity.class));
-                                finish();
+
                             }
                         }).show();
             }

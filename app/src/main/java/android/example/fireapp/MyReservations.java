@@ -59,6 +59,7 @@ public class MyReservations extends AppCompatActivity {
         showCurrentReservation();
     }
 
+    //METHODS
     private void showCurrentReservation() {
         lvCurrentReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -71,7 +72,6 @@ public class MyReservations extends AppCompatActivity {
         });
     }
 
-    //METHODS
     private void ratePastReservations() {
         lvPastReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
