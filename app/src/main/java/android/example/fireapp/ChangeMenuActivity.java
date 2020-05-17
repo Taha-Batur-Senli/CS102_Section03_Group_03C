@@ -55,7 +55,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         //Initialize
         lvMenuRes = (ListView)findViewById(R.id.lvMenuRes);
 
-        myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu);
+        myAdapter = new ArrayAdapter<String>(this, R.layout.listrow_edit_menu, R.id.itemtv_listrow_edit_menu, menu);
         lvMenuRes.setAdapter(myAdapter);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference( "Restaurants");
@@ -73,9 +73,8 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
                 while (items.hasNext()) {
                     DataSnapshot item = items.next();
                     String name;
-                    name = "" + item.child("name").getValue().toString() + ": "
-                            + item.child("ingredients").getValue().toString() +
-                            "___" + item.child("price").getValue().toString() + "TL";
+                    name = "" + item.child("name").getValue().toString() + " " + item.child("price").getValue().toString()
+                            + "$\n" + item.child("ingredients").getValue().toString();
 
                     menu.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -110,7 +109,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //gets the name of the dish
                 String item = menu.get(position);
-                int indexOfName = item.indexOf(":");
+                int indexOfName = item.indexOf(" ");
                 String name = item.substring(0,indexOfName);
 
                 //passes the name of te food to the next activity
