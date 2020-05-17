@@ -11,13 +11,91 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Customer Help"
+        android:layout_marginTop="120dp"
+        android:text="@string/customer_help"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/how_to_use_app"
+        android:layout_width="310dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="76dp"
+        android:background="@drawable/button"
+        android:text="@string/how_to_use_app"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Button
+        android:id="@+id/how_to_make_reservation"
+        android:layout_width="310dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:text="@string/how_to_make_reservations"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/how_to_use_app" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="93dp"
+        android:layout_height="67dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.099" />
+        app:layout_constraintVertical_bias="0.603"
+        app:srcCompat="@drawable/logo"
+        android:contentDescription="@string/todo" />
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="283dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:srcCompat="@drawable/line"
+        android:contentDescription="@string/todo1" />
+
+    <Button
+        android:id="@+id/how_to_pre_order"
+        android:layout_width="310dp"
+        android:layout_height="87dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button"
+        android:text="@string/how_to_pre_order_meals"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/how_to_make_reservation" />
+
+    <Button
+        android:id="@+id/FAQ"
+        android:layout_width="310dp"
+        android:layout_height="87dp"
+        android:background="@drawable/button"
+        android:text="@string/faq"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/how_to_pre_order"
+        app:layout_constraintVertical_bias="0.163" />
 </androidx.constraintlayout.widget.ConstraintLayout>

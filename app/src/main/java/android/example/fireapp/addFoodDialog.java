@@ -14,7 +14,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class addFoodDialog extends AppCompatDialogFragment {
-    private EditText etName, etIngredients, etPrice;
+
+    //adding food class directly updated the menu
+    private EditText etName;
+    private EditText etIngredients;
+    private EditText etPrice;
     private addFoodListener listener;
 
     @NonNull
@@ -41,7 +45,6 @@ public class addFoodDialog extends AppCompatDialogFragment {
             }
         });
 
-        //Initialize
         etName = view.findViewById(R.id.etNameFood);
         etIngredients = view.findViewById(R.id.etIngrediends);
         etPrice = view.findViewById(R.id.etPrice);

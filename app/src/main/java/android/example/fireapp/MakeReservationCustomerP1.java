@@ -56,7 +56,7 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference();
 
         //Make previous dates unclickable
-        calendar.setMinDate((new Date().getTime()));
+        //calendar.setMinDate((new Date().getTime()));
 
         //Make dates after one week unclickable
         Date today = new Date();
@@ -66,6 +66,7 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                allSeats.clear();
                 String date = dayOfMonth + "/" + month + "/" + year;
                 date += "\n Please select a table now!";
                 tvDate.setText(date);
@@ -89,6 +90,7 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
         reference.child("SeatPlans").child(uidRestaurant).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                allSeats.clear();
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
                 while (items.hasNext()){
 

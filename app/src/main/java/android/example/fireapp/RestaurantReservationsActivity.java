@@ -3,10 +3,7 @@ package android.example.fireapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -19,12 +16,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class MyReservations extends AppCompatActivity {
+public class RestaurantReservationsActivity extends AppCompatActivity {
     //Properties
     ListView lvCurrentReservations, lvPastReservations;
     ArrayAdapter myAdapter, myAdapter2;
@@ -37,11 +33,10 @@ public class MyReservations extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_reservations);
+        setContentView(R.layout.activity_restaurant_reservations);
 
-        //Initialization
-        lvCurrentReservations = (ListView)findViewById(R.id.lvCurrentRezCustomer);
-        lvPastReservations = (ListView)findViewById(R.id.lvPastRezCustomer);
+        lvCurrentReservations = (ListView)findViewById(R.id.lvCurrentRezRestaurant);
+        lvPastReservations = (ListView)findViewById(R.id.lvPastRezRestaurant);
         myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, currentReservations);
         myAdapter2 = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, pastReservations);
         lvCurrentReservations.setAdapter(myAdapter);
@@ -55,44 +50,10 @@ public class MyReservations extends AppCompatActivity {
         updatePastReservations();
         displayCurrentReservations();
         displayPastReservations();
-        ratePastReservations();
-    }
-
-    //METHODS
-    private void ratePastReservations() {
-        lvPastReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*String toString = resName + "\n" + date + "   " + timeSlotString + " " + "" + table + "\n" +
-                            proOrder + "___" + totalPrice + "TL\nRestaurant info: +90 " + resPhone;*/
-                String reservationText = pastReservations.get(position);
-                int indexOfResName = reservationText.indexOf("\n");
-                String resName = reservationText.substring(0, indexOfResName);
-                /*int indexOfDate = reservationText.indexOf("   ");
-                String date = reservationText.substring(indexOfResName + 2, indexOfDate);
-                int indexOfTimeSlot = reservationText.indexOf( " ", indexOfDate);
-                String timeSlot = reservationText.substring(indexOfDate + 3, indexOfTimeSlot );
-                String[] ts = timeSlot.split(":");
-                int h = Integer.parseInt(ts[0]);
-                int m = Integer.parseInt(ts[1]);
-                int timeSlotF = ((h * 60) + m);
-                String timeSlotFinal = String.valueOf(timeSlotF);
-                int indexOfTable = reservationText.indexOf("table");
-                char seatNum = timeSlot.charAt(indexOfTable + 7);
-                String seat = "seat" + seatNum;*/
-                Intent i = new Intent(MyReservations.this, RateReservation.class);
-                i.putExtra("RESTNAME", resName);
-                i.putExtra("RESERVTEXT", reservationText);
-                /*i.putExtra("DATE",date );
-                i.putExtra("TIMESLOT", timeSlotFinal);
-                i.putExtra("SEAT" , seat);*/
-                startActivity(i);
-            }
-        });
     }
 
     private void updatePastReservations() {
-        refCurrentReservations.orderByChild("cusID").equalTo(user.getUid()).addValueEventListener(new ValueEventListener() {
+        refCurrentReservations.orderByChild("restaurantID").equalTo(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
@@ -114,9 +75,9 @@ public class MyReservations extends AppCompatActivity {
                     {
                         //Clone the reservation & add it to past reservations & remove from current reservations
                         String resName = item.child("restaurantName").getValue().toString();
-                        String cusID = item.child("cusID").getValue().toString();
                         String resID = item.child("restaurantID").getValue().toString();
                         String cusName = item.child("cusName").getValue().toString();
+                        String cusID = item.child("cusID").getValue().toString();
                         String resPhone = item.child("restaurantPhone").getValue().toString();
                         String cusPhone = item.child("cusPhone").getValue().toString();
                         String proOrder = item.child("preOrder").getValue().toString();
@@ -144,19 +105,18 @@ public class MyReservations extends AppCompatActivity {
             }
         });
     }
-
     private void displayPastReservations() {
-        refPastReservations.orderByChild("cusID").equalTo(user.getUid()).addValueEventListener(new ValueEventListener() {
+        refPastReservations.orderByChild("restaurantID").equalTo(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 pastReservations.clear();
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
                 while (items.hasNext()) {
                     DataSnapshot item = items.next();
-                    String resName = item.child("restaurantName").getValue().toString();
-                    //String cusName = item.child("cusName").getValue().toString();
-                    String resPhone = item.child("restaurantPhone").getValue().toString();
-                    //String cusPhone = item.child("cusPhone").getValue().toString();
+                    //String resName = item.child("restaurantName").getValue().toString();
+                    String cusName = item.child("cusName").getValue().toString();
+                    //String resPhone = item.child("restaurantPhone").getValue().toString();
+                    String cusPhone = item.child("cusPhone").getValue().toString();
                     String proOrder = item.child("preOrder").getValue().toString();
                     String seat = item.child("seat").getValue().toString();
                     String totalPrice = item.child("totalPrice").getValue().toString();
@@ -173,11 +133,10 @@ public class MyReservations extends AppCompatActivity {
                         mS = "00";
                     String timeSlotString = hS + ":" + mS;
 
-                    String toString = resName + "\n" + date + "   " + timeSlotString + " " + "" + table + "\n" +
-                            proOrder + "___" + totalPrice + "TL\nRestaurant info: +90 " + resPhone;
+                    String toString = cusName + "\n" + date + "   " + timeSlotString + " " + "" + table + "\n" +
+                            proOrder + "___" + totalPrice + "TL\nRestaurant info: +90 " + cusPhone;
 
                     pastReservations.add(toString);
-                    myAdapter.notifyDataSetChanged();
                     myAdapter2.notifyDataSetChanged();
                 }
 
@@ -191,25 +150,24 @@ public class MyReservations extends AppCompatActivity {
     }
 
     private void displayCurrentReservations() {
-
-        refCurrentReservations.orderByChild("cusID").equalTo(user.getUid()).addValueEventListener(new ValueEventListener() {
+        refCurrentReservations.orderByChild("restaurantID").equalTo(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentReservations.clear();
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
                 while (items.hasNext()) {
                     DataSnapshot item = items.next();
-                    String resName = item.child("restaurantName").getValue().toString();
-                    //String cusName = item.child("cusName").getValue().toString();
-                    String resPhone = item.child("restaurantPhone").getValue().toString();
-                    //String cusPhone = item.child("cusPhone").getValue().toString();
+                    //String resName = item.child("restaurantName").getValue().toString();
+                    String cusName = item.child("cusName").getValue().toString();
+                    //String resPhone = item.child("restaurantPhone").getValue().toString();
+                    String cusPhone = item.child("cusPhone").getValue().toString();
                     String proOrder = item.child("preOrder").getValue().toString();
                     String seat = item.child("seat").getValue().toString();
                     String totalPrice = item.child("totalPrice").getValue().toString();
                     String timeSlot = item.child("timeSlot").getValue().toString();
                     String date = item.child("date").getValue().toString();
                     String table = "Table " + seat.substring(4);
-                    int h = (int)(Integer.parseInt(timeSlot) / 60);
+                    int h = (int) (Integer.parseInt(timeSlot) / 60);
                     int m = Integer.parseInt(timeSlot) % 60;
                     String hS = String.valueOf(h);
                     if (h == 0)
@@ -219,13 +177,13 @@ public class MyReservations extends AppCompatActivity {
                         mS = "00";
                     String timeSlotString = hS + ":" + mS;
 
-                    String toString = resName + "\n" + date + "   " +  timeSlotString + " "+ ""+ table +  "\n"+
-                            proOrder + "___" + totalPrice + "TL\nRestaurant info: +90 " + resPhone;
+                    String toString = cusName + "\n" + date + "   " + timeSlotString + " " + "" + table + "\n" +
+                            proOrder + "___" + totalPrice + "TL\nCustomer info: +90 " + cusPhone;
 
                     currentReservations.add(toString);
                     myAdapter.notifyDataSetChanged();
-                    myAdapter2.notifyDataSetChanged();
                 }
+
             }
 
             @Override

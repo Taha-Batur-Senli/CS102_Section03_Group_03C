@@ -12,14 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Genres"/>
-        <activity android:name=".AnimationActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".HowToMakeReservation"></activity>
+        <activity android:name=".HowToUseApp" />
         <activity android:name=".MainActivity" />
         <activity android:name=".UploadPicture" />
         <activity android:name=".PreOrderActivity" />
@@ -50,7 +44,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
