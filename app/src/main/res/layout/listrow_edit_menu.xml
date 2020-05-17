@@ -34,7 +34,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/line_155" />
+        app:srcCompat="@drawable/line_155"
+        android:clickable="true"/>
 
     <ImageView
         android:id="@+id/imageView21"
@@ -45,7 +46,8 @@
         app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/edit1" />
+        app:srcCompat="@drawable/edit1"
+        android:clickable="true"/>
 
     <ImageView
         android:id="@+id/imageView23"

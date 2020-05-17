@@ -73,7 +73,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
                 while (items.hasNext()) {
                     DataSnapshot item = items.next();
                     String name;
-                    name = "" + item.child("name").getValue().toString() + " " + item.child("price").getValue().toString()
+                    name = "" + item.child("name").getValue().toString() + ", " + item.child("price").getValue().toString()
                             + "$\n" + item.child("ingredients").getValue().toString();
 
                     menu.add(name);
@@ -109,7 +109,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //gets the name of the dish
                 String item = menu.get(position);
-                int indexOfName = item.indexOf(" ");
+                int indexOfName = item.indexOf(",");
                 String name = item.substring(0,indexOfName);
 
                 //passes the name of te food to the next activity
@@ -171,7 +171,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String food = menu.get(position);
-                                int index = food.indexOf(":");
+                                int index = food.indexOf(",");
                                 String foodName = food.substring(0, index);
                                 final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Restaurants");
                                 mRef.child(user.getUid()).child("menu").orderByChild("name").equalTo(foodName).addValueEventListener(new ValueEventListener() {
