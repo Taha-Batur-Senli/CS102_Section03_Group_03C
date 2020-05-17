@@ -19,7 +19,7 @@ public class EasterEggPage extends AppCompatActivity {
         btnSkip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity( new Intent(EasterEggPage.this, CustomerProfile.class));
+                startActivity( new Intent(EasterEggPage.this, MainActivity.class));
                 finish();
 
             }

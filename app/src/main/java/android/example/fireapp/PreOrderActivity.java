@@ -40,6 +40,8 @@ public class PreOrderActivity extends AppCompatActivity {
     DatabaseReference reference, mRefUser;
     FirebaseUser user;
 
+    //TextView denemeA1, denemeA2, denemeA3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +59,46 @@ public class PreOrderActivity extends AppCompatActivity {
         lvMyOrder = (ListView)findViewById(R.id.lvMyOrder);
         totalTv = (TextView)findViewById(R.id.txtTotal);
         yourMoneyTv = (TextView)findViewById(R.id.txtYourMoney);
+
+        //denemeA1 = (TextView)findViewById(R.id.denemeA1);
+        //denemeA2 = (TextView)findViewById(R.id.denemeA2);
+        //denemeA3 = (TextView)findViewById(R.id.denemeA3);
+        /*<TextView
+        android:id="@+id/denemeA2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029" />
+
+    <TextView
+        android:id="@+id/denemeA1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.789"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029" />
+
+    <TextView
+        android:id="@+id/denemeA3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.176" />
+*/
 
         myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, menu);
         myAdapter2 = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, preOrder);
@@ -241,9 +283,70 @@ public class PreOrderActivity extends AppCompatActivity {
                                 .setCancelable(false)
                                 .setPositiveButton("OK!", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
+                                        Intent i = getIntent();
+                                        final String uidRestaurant = i.getStringExtra("UID");
+                                        final String seat = i.getStringExtra("SEAT");
+                                        final String date = i.getStringExtra("DATE");
+                                        String ts = i.getStringExtra("TIMESLOT");
+                                        DatabaseReference mRefRez = FirebaseDatabase.getInstance().getReference("SeatPlans");
+
+                                        //Determine timeslot's numeric value
+                                        String[] temp = ts.split("-");
+                                        String[] temp2 = temp[0].split(":");
+                                        final int timeSlot = ((Integer.parseInt(temp2[0]) * 60 ) + Integer.parseInt(temp2[1]));
+
+                                        //Make timeslot reserved
+                                        mRefRez.child(uidRestaurant).child(seat).child(date).child(String.valueOf(timeSlot)).child("reserved").setValue("true");
+
+                                        final DatabaseReference mCustomer = FirebaseDatabase.getInstance().getReference("Customers").child(user.getUid());
+                                        final DatabaseReference mRestaurant = FirebaseDatabase.getInstance().getReference("Restaurants").child(uidRestaurant);
+                                        final DatabaseReference mReservation = FirebaseDatabase.getInstance().getReference("Reservations").child("CurrentReservations");
+
+                                        final String rezID = mReservation.push().getKey();
+
+                                        mRestaurant.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                final String restaurantName = dataSnapshot.child("name").getValue().toString();
+                                                final String restaurantPhone = dataSnapshot.child("phone").getValue().toString();
+
+                                                mCustomer.addValueEventListener(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                        String cusName = dataSnapshot.child("name").getValue().toString();
+                                                        String cusPhone = dataSnapshot.child("phone").getValue().toString();
+
+                                                        Reservation reservation = new Reservation( rezID, user.getUid(), uidRestaurant, cusName, restaurantName,
+                                                                cusPhone, restaurantPhone, "Pre-order cost", date, String.valueOf(timeSlot),
+                                                                String.valueOf(priceTotal), seat );
+                                                        mReservation.child(rezID).setValue(reservation);
+                                                        String preOrderText = "";
+                                                        for (int i = 0; i < preOrder.size(); i++){
+                                                            preOrderText += preOrder.get(i) + "\n";
+                                                        }
+                                                        mReservation.child(rezID).child("preOrderText").setValue(preOrderText);
+                                                        mCustomer.child("reservations").child(rezID).setValue(rezID);
+                                                        mRestaurant.child("reservations").child(rezID).setValue(rezID);
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                    }
+                                                });
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                        startActivity(new Intent(PreOrderActivity.this, MainActivity.class));
+                                        finish();
+
                                         double remainingMoney = moneyOnAccount - priceTotal;
                                         mRefUser.child(user.getUid()).child("money").setValue(String.valueOf(remainingMoney));
-                                        startActivity(new Intent(PreOrderActivity.this, CustomerProfile.class));
+                                        startActivity(new Intent(PreOrderActivity.this, MainActivity.class));
                                         finish();
                                     }
                                 });

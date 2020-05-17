@@ -41,6 +41,7 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
     DatabaseReference reference;
     FirebaseUser user;
     TextView tvDeneme;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,8 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
         lvAvailableTimeSlots.setAdapter(myAdapter);
         reference = FirebaseDatabase.getInstance().getReference();
         tvDeneme = (TextView)findViewById(R.id.deneme6);
+
+
         user = FirebaseAuth.getInstance().getCurrentUser();
 
         Intent i = getIntent();
@@ -109,10 +112,16 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                                 Intent intent = getIntent();
                                 String resUid = intent.getStringExtra("UID");
                                 String minPrice = intent.getStringExtra("MINPRICE");
+                                String seat = intent.getStringExtra("SEAT");
+                                String date = intent.getStringExtra("DATE");
 
                                 Intent intent2 = new Intent(MakeReservationCustomerP2.this, PreOrderActivity.class);
                                 intent2.putExtra("UID", resUid);
                                 intent2.putExtra("MINPRICE", minPrice);
+                                intent2.putExtra("SEAT", seat);
+                                intent2.putExtra("DATE", date);
+                                String ts = allTimes.get(position);
+                                intent2.putExtra("TIMESLOT", ts);
                                 startActivity(intent2);
                                 finish();
 
@@ -122,7 +131,6 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                         .setNegativeButton("Finish", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                //TODO finish reservation
                                 Intent i = getIntent();
                                 final String uidRestaurant = i.getStringExtra("UID");
                                 final String seat = i.getStringExtra("SEAT");
@@ -141,9 +149,6 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                                 final DatabaseReference mRestaurant = FirebaseDatabase.getInstance().getReference("Restaurants").child(uidRestaurant);
                                 final DatabaseReference mReservation = FirebaseDatabase.getInstance().getReference("Reservations").child("CurrentReservations");
 
-                                //final DatabaseReference mReservation = FirebaseDatabase.getInstance().getReference("Reservations").child("PastReservations");
-
-
                                 final String rezID = mReservation.push().getKey();
 
                                 mRestaurant.addValueEventListener(new ValueEventListener() {
@@ -159,9 +164,10 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                                                 String cusPhone = dataSnapshot.child("phone").getValue().toString();
 
                                                 Reservation reservation = new Reservation( rezID, user.getUid(), uidRestaurant, cusName, restaurantName,
-                                                        cusPhone, restaurantPhone, "No pre-order", date, String.valueOf(timeSlot),
+                                                        cusPhone, restaurantPhone, "Pre-order cost", date, String.valueOf(timeSlot),
                                                         "0", seat );
                                                 mReservation.child(rezID).setValue(reservation);
+                                                mReservation.child(rezID).child("preOrderText").setValue("No pre-order!");
                                                 mCustomer.child("reservations").child(rezID).setValue(rezID);
                                                 mRestaurant.child("reservations").child(rezID).setValue(rezID);
                                             }
@@ -178,7 +184,7 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
 
                                     }
                                 });
-                                startActivity(new Intent(MakeReservationCustomerP2.this, CustomerProfile.class));
+                                startActivity(new Intent(MakeReservationCustomerP2.this, MainActivity.class));
                                 finish();
                             }
                         }).show();

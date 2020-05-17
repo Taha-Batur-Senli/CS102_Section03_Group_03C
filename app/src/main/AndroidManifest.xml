@@ -44,8 +44,12 @@
         <activity android:name=".HelpRestaurant" />
         <activity android:name=".CustomerProfile" />
         <activity android:name=".SignUpAsCustomerActivity" />
+        <activity android:name=".EasterEggPage" />
+        <activity android:name=".RateReservation" />
+        <activity android:name=".ShowCurrentReservation" />
         <activity android:name=".RestaurantProfile" />
         <activity android:name=".SignUpAsRestaurantActivity" />
+        <activity android:name=".RestaurantReservationsActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LogInActivity">
             <intent-filter>

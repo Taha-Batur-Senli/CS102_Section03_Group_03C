@@ -103,7 +103,7 @@ public class AddMoneyActivity extends AppCompatActivity {
                     });
 
                     //return to customer profile
-                    startActivity(new Intent( AddMoneyActivity.this, CustomerProfile.class ));
+                    startActivity(new Intent( AddMoneyActivity.this, MainActivity.class ));
                     finish();
                 }
             }
