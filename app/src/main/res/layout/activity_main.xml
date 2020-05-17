@@ -372,7 +372,7 @@
                     app:layout_constraintVertical_bias="0.55" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/btnPromotions"
                     android:layout_width="175dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="200dp"
@@ -408,11 +408,11 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="4dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/button2"
-                    app:layout_constraintEnd_toEndOf="@+id/button2"
+                    app:layout_constraintBottom_toBottomOf="@+id/btnPromotions"
+                    app:layout_constraintEnd_toEndOf="@+id/btnPromotions"
                     app:layout_constraintHorizontal_bias="0.096"
-                    app:layout_constraintStart_toStartOf="@+id/button2"
-                    app:layout_constraintTop_toTopOf="@+id/button2"
+                    app:layout_constraintStart_toStartOf="@+id/btnPromotions"
+                    app:layout_constraintTop_toTopOf="@+id/btnPromotions"
                     app:srcCompat="@drawable/trending" />
 
                 <ImageView

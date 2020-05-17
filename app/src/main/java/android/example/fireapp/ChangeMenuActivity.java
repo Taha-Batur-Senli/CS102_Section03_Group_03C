@@ -122,6 +122,9 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         }
         else {
             super.onBackPressed();
+            //TODO crash yiyoruz
+            //startActivity(new Intent(ChangeMenuActivity.this, RestaurantProfile.class));
+            //finish();
         }
     }
 
