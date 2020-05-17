@@ -36,18 +36,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.145" />
 
-    <ListView
-        android:id="@+id/lvMenuResPreOrder"
-        android:layout_width="406dp"
-        android:layout_height="192dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.324">
 
-    </ListView>
 
     <TextView
         android:id="@+id/textView24"
@@ -80,12 +69,12 @@
 
     <TextView
         android:id="@+id/txtTotal"
-        android:layout_width="31dp"
-        android:layout_height="28dp"
+        android:layout_width="59dp"
+        android:layout_height="29dp"
+        android:gravity="center"
         android:text="0"
         android:textColor="@color/white"
         android:textSize="15sp"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.871"
@@ -111,28 +100,27 @@
 
     <ListView
         android:id="@+id/lvMyOrder"
-        android:layout_width="413dp"
-        android:layout_height="204dp"
+        android:layout_width="399dp"
+        android:layout_height="194dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvMenuResPreOrder"
-        app:layout_constraintVertical_bias="0.216" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.795" />
 
     <TextView
         android:id="@+id/textView29"
-        android:layout_width="41dp"
-        android:layout_height="28dp"
+        android:layout_width="69dp"
+        android:layout_height="30dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
-        android:text="Total: "
         android:gravity="center"
+        android:text="Total: "
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.819"
+        app:layout_constraintHorizontal_bias="0.694"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.879" />
@@ -168,6 +156,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
+
+    <ListView
+        android:id="@+id/lvMenuResPreOrder"
+        android:layout_width="400dp"
+        android:layout_height="202dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.323" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -12,6 +13,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DatabaseReference mRef;
     FirebaseDatabase database;
     FirebaseAuth mAuth;
+    CardView steak, sushi, hamburger, chicken, dessert, pizza;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,75 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         search = findViewById(R.id.search);
         mViewFlipper = findViewById(R.id.view_flipper);
         cusNameMenu = findViewById(R.id.nav_customer_name);
+
+        steak = (CardView) findViewById(R.id.steakCardView);
+        sushi = (CardView) findViewById(R.id.sushiCardView);
+        pizza = (CardView) findViewById(R.id.pizza_cardview);
+        hamburger = (CardView) findViewById(R.id.hamburgerCardView);
+        dessert = (CardView) findViewById(R.id.dessertCardView);
+        chicken = (CardView) findViewById(R.id.chickenCardView);
+
+        //On click listeners of card views
+        steak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenreSpecialRes.class);
+                i.putExtra("GENRE", "Steak");
+                startActivity(i);
+
+            }
+        });
+
+        pizza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenreSpecialRes.class);
+                i.putExtra("GENRE", "Pizza");
+                startActivity(i);
+
+            }
+        });
+
+        chicken.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenreSpecialRes.class);
+                i.putExtra("GENRE", "Chicken");
+                startActivity(i);
+
+            }
+        });
+
+        dessert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenreSpecialRes.class);
+                i.putExtra("GENRE", "Dessert");
+                startActivity(i);
+
+            }
+        });
+
+        hamburger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenreSpecialRes.class);
+                i.putExtra("GENRE", "Hamburger");
+                startActivity(i);
+
+            }
+        });
+
+        sushi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenreSpecialRes.class);
+                i.putExtra("GENRE", "Sushi");
+                startActivity(i);
+
+            }
+        });
+
 
         //setSupportActionBar(toolbar);
         //toolbar.setTitle("");

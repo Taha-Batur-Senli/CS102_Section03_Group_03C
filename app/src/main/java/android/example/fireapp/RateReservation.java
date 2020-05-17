@@ -136,7 +136,6 @@ public class RateReservation extends AppCompatActivity {
 
                    }
                });
-
                //TODO reservasyonun hasRatedini false yap
                startActivity(new Intent(RateReservation.this, MyReservations.class));
                finish();
