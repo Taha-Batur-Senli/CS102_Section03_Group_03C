@@ -40,9 +40,10 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="47dp"
+        android:fontFamily="@font/roboto_light"
         android:text="Don't have an account?"
         android:textColor="@color/white"
         android:textSize="12sp"
@@ -55,21 +56,23 @@
         android:id="@+id/btnLogInActivity"
         android:layout_width="159dp"
         android:layout_height="51dp"
+        android:layout_marginTop="128dp"
         android:background="@drawable/button"
         android:fontFamily="@font/roboto_light"
         android:text="Log in"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="14sp"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="525dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPasswordLogIn" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="45dp"
         android:layout_height="20dp"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="17dp"
         android:background="?android:attr/selectableItemBackground"
         android:fontFamily="@font/roboto_light"
         android:text="Sign up"
@@ -81,7 +84,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/etPasswordLogIn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.017" />
 
     <TextView
         android:id="@+id/textView3"

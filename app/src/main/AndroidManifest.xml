@@ -46,7 +46,6 @@
         <activity android:name=".RestaurantProfileDisplay" />
         <activity android:name=".RestaurantEditProfileActivity" />
         <activity android:name=".HelpRestaurant" />
-        <activity android:name=".CustomerProfile" />
         <activity android:name=".SignUpAsCustomerActivity" />
         <activity android:name=".EasterEggPage" />
         <activity android:name=".RateReservation" />
