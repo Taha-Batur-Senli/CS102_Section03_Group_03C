@@ -19,7 +19,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="upload">UPLOAD</string>
+    <string name="upload">Upload Pictures</string>
     <string name="customer_help">Customer Help</string>
     <string name="how_to_use_app">How To Use App</string>
     <string name="how_to_make_reservations">How To Make Reservations</string>

@@ -121,7 +121,7 @@ public class PreOrderActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String money = dataSnapshot.child("money").getValue().toString();
-                yourMoneyTv.setText("You have " + money+ "TL");
+                yourMoneyTv.setText("You currently have \n" + money + " g3Coins in your account.");
             }
 
             @Override
