@@ -166,7 +166,7 @@ public class RestaurantReservationsActivity extends AppCompatActivity {
                     String timeSlotString = hS + ":" + mS;
 
                     String toString = cusName + "\n" + date + "   " + timeSlotString + " " + "" + table + "\n" +
-                            proOrder + "___" + totalPrice + "TL\nRestaurant info: +90 " + cusPhone;
+                            proOrder + "___" + totalPrice + " g3Coins\nRestaurant info: +90 " + cusPhone;
                     toString += "\n\n\nPre-order: \n" + preOrderTxt;
 
                     pastReservations.add(toString);
@@ -212,7 +212,7 @@ public class RestaurantReservationsActivity extends AppCompatActivity {
                     String timeSlotString = hS + ":" + mS;
 
                     String toString = cusName + "\n" + date + "   " + timeSlotString + " " + "" + table + "\n" +
-                            proOrder + "___" + totalPrice + "TL\nCustomer info: +90 " + cusPhone;
+                            proOrder + "___" + totalPrice + " g3Coins\nCustomer info: +90 " + cusPhone;
                     toString += "\n\n\nPre-order: \n" + preOrderTxt;
 
                     currentReservations.add(toString);
