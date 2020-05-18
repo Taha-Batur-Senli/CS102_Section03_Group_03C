@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ImageRecycler"></activity>
+        <activity android:name=".ImageRecyclerCustomer"></activity>
+        <activity android:name=".ImageRecycler" />
         <activity android:name=".UploadImage" />
         <activity android:name=".SignUpAsRestaurantP2" />
         <activity android:name=".BestRestaurantsDisplay" />

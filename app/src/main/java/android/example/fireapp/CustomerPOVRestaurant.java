@@ -36,6 +36,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
     TextView tvName, tvRating, tvDescription, tvMinPriceToPreOrder;
     DatabaseReference mRefRes;
     Button showMenu, makeReservation;
+    Button showPictures;
 
 
     @Override
@@ -46,6 +47,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         setContentView(R.layout.activity_customer_p_o_v_restaurant);
 
         //Initialize
+        showPictures = findViewById(R.id.show_pictures);
         tvName = (TextView)findViewById(R.id.txtNamePOV);
         tvRating = (TextView)findViewById(R.id.txtRatingPOV);
         tvDescription = (TextView)findViewById(R.id.txtDescriptionPOV);
@@ -57,6 +59,8 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
 
         mRefRes = FirebaseDatabase.getInstance().getReference("Restaurants");
 
+
+
         //Methods called
         placeDatatoTVs();
         showMenuAction();
@@ -65,6 +69,16 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         Intent intent = getIntent();
         final String uid = intent.getStringExtra("UID");
 
+
+        //adding clicKlistener to show pic button as it has to show new page
+        showPictures.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustomerPOVRestaurant.this,ImageRecyclerCustomer.class);
+                intent.putExtra("restaurant_id",uid);
+                startActivity(intent);
+            }
+        });
         // updater
 
 
