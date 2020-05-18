@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,7 +25,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -63,8 +67,8 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
         String date = i.getStringExtra("DATE");
 
         //Print out only the non reserved time slots.
-        final DatabaseReference refAvailableHours = FirebaseDatabase.getInstance().getReference("SeatPlans")
-                .child(uidRestaurant).child(seat).child(date);
+        final DatabaseReference refAvailableHours = FirebaseDatabase.getInstance().getReference("Restaurants")
+                .child(uidRestaurant).child("seats").child(seat).child(date);
 
         refAvailableHours.addValueEventListener(new ValueEventListener() {
             @Override
@@ -72,13 +76,15 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
                 while(items.hasNext()) {
                     DataSnapshot item1 = items.next();
-                    if (item1.child("reserved").getValue().toString().equals("false") ){
+                    if (item1.child("reservedStatus").getValue().toString().equals("false") ){
 
-                        String timeSlot =  item1.child("firstTime").child("hour").getValue().toString() + ":" +
+                        /*String timeSlot =  item1.child("firstTime").child("hour").getValue().toString() + ":" +
                                 item1.child("firstTime").child("minute").getValue().toString() + "-" +
                                 item1.child("endTime").child("hour").getValue().toString() + ":" +
                                 item1.child("endTime").child("minute").getValue().toString();
-                        //String timeSlot = item1.getKey();
+                        //String timeSlot = item1.getKey();*/
+                        String timeSlot = item1.child("timeSlot").getValue().toString();
+
                         allTimes.add(timeSlot);
                         myAdapter.notifyDataSetChanged();
                     }
@@ -135,14 +141,33 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                                 final String uidRestaurant = i.getStringExtra("UID");
                                 final String seat = i.getStringExtra("SEAT");
                                 final String date = i.getStringExtra("DATE");
-                                final DatabaseReference mRefRez = FirebaseDatabase.getInstance().getReference("SeatPlans");
+                                final DatabaseReference mRefRez = FirebaseDatabase.getInstance().getReference("Restaurants");
+                                // final int durationOfMeal = i.getStringExtra("");
+
 
                                 //Determine timeslots numeric value
                                 String ts = allTimes.get(position);
-                                String[] temp = ts.split("-");
+                                String[] temp = ts.split(" - ");
                                 String[] temp2 = temp[0].split(":");
                                 final int timeSlot = ((Integer.parseInt(temp2[0]) * 60 ) + Integer.parseInt(temp2[1]));
-                                mRefRez.child(uidRestaurant).child(seat).child(date).child(String.valueOf(timeSlot)).child("reserved").setValue("true");
+
+
+//                                mRefRez.child(uidRestaurant).child("seats").child(seat).child(date).addValueEventListener(new ValueEventListener() {
+//                                    @Override
+//                                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                                        // iteration through timeslots
+//                                        for ( DataSnapshot snapshot : dataSnapshot.getChildren()){
+//                                            int relatedTimeSlot = Integer.parseInt(snapshot.getKey());
+//                                            if( Math.abs(timeSlot - relatedTimeSlot) <= )
+//                                        }
+//                                    }
+//                                    @Override
+//                                    public void onCancelled(DatabaseError databaseError) {
+//
+//                                    }
+//                                });
+
+                                mRefRez.child(uidRestaurant).child("seats").child(seat).child(date).child(String.valueOf(timeSlot)).child("reservedStatus").setValue("true");
 
 
                                 final DatabaseReference mCustomer = FirebaseDatabase.getInstance().getReference("Customers").child(user.getUid());
@@ -168,8 +193,8 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                                                         "0", seat );
                                                 mReservation.child(rezID).setValue(reservation);
                                                 mReservation.child(rezID).child("preOrderText").setValue("No pre-order!");
-                                                mCustomer.child("reservations").child(rezID).setValue(rezID);
-                                                mRestaurant.child("reservations").child(rezID).setValue(rezID);
+                                                // mCustomer.child("reservations").child(rezID).setValue(rezID);
+                                                // mRestaurant.child("reservations").child(rezID).setValue(rezID);
                                                 startActivity(new Intent(MakeReservationCustomerP2.this, MainActivity.class));
                                                 finish();
                                             }

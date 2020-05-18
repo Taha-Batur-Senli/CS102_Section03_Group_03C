@@ -116,12 +116,12 @@ public class PreOrderActivity extends AppCompatActivity {
 
 
         //Set requires text views
-        minPricetv.setText(minPrice + " g3Coins left to satisfy the minimum limit to pre-order.");
+        minPricetv.setText(minPrice + " TL left to satisfy the minimum limit to pre-order.");
         mRefUser.child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String money = dataSnapshot.child("money").getValue().toString();
-                yourMoneyTv.setText("You currently have \n" + money + " g3Coins in your account.");
+                yourMoneyTv.setText("You have " + money+ "TL");
             }
 
             @Override
@@ -147,7 +147,7 @@ public class PreOrderActivity extends AppCompatActivity {
                     String name;
                     name = "" + item.child("name").getValue().toString() + ": "
                             + item.child("ingredients").getValue().toString() +
-                            "___" + item.child("price").getValue().toString() + "g3Coins";
+                            "___" + item.child("price").getValue().toString() + "TL";
 
                     menu.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -175,7 +175,7 @@ public class PreOrderActivity extends AppCompatActivity {
                 //Get price
                 String item = menu.get(position);
                 int index = item.indexOf("___");
-                String price = item.substring((index + 3), (item.length()-7) );
+                String price = item.substring((index + 3), (item.length()-2) );
 
                 double minPriceLimit = Double.parseDouble(minPrice);
                 double priceOfDish = Double.parseDouble(price);
@@ -188,7 +188,7 @@ public class PreOrderActivity extends AppCompatActivity {
                 if ( minPriceLimit - total <= 0)
                     minPricetv.setText("You satisfied the limit!");
                 else
-                    minPricetv.setText( minPriceLimit - total + " g3Coins left to satisfy the minimum limit to pre-order.");
+                    minPricetv.setText( minPriceLimit - total + " TL left to satisfy the minimum limit to pre-order.");
                 totalTv.setText( total +"");
                 preOrder.add(item);
                 myAdapter2.notifyDataSetChanged();
@@ -211,10 +211,10 @@ public class PreOrderActivity extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
 
-                               //Get dish's price
-                               String item = preOrder.get(position);
-                               int index = item.indexOf("___");
-                               double price = Double.parseDouble(item.substring((index + 3), (item.length()-7) ));
+                                //Get dish's price
+                                String item = preOrder.get(position);
+                                int index = item.indexOf("___");
+                                double price = Double.parseDouble(item.substring((index + 3), (item.length()-2) ));
 
                                 //get total price and reduce dish's price
                                 String total = totalTv.getText().toString();
@@ -229,7 +229,7 @@ public class PreOrderActivity extends AppCompatActivity {
                                 if ( remaining <= 0)
                                     minPricetv.setText("You satisfied the limit!");
                                 else
-                                    minPricetv.setText( remaining + " g3Coins left to satisfy the minimum limit to pre-order.");
+                                    minPricetv.setText( remaining + " TL left to satisfy the minimum limit to pre-order.");
 
                             }
                         })
@@ -261,10 +261,7 @@ public class PreOrderActivity extends AppCompatActivity {
                 } else {
                     //check if you have enough money
                     String money = yourMoneyTv.getText().toString();
-                    //final double moneyOnAccount = Double.parseDouble(money.substring(9, money.length() - 2));
-                    int indexOfMoneyStart = money.indexOf("\n") + 1;
-                    int indexOfMoneyEnd = money.indexOf("g3Coins") - 1;
-                    final double moneyOnAccount = Double.parseDouble(money.substring(indexOfMoneyStart, indexOfMoneyEnd));
+                    final double moneyOnAccount = Double.parseDouble(money.substring(9, money.length() - 2));
                     final double priceTotal = Double.parseDouble(totalTv.getText().toString());
                     if ( moneyOnAccount < priceTotal) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(PreOrderActivity.this);
@@ -280,6 +277,7 @@ public class PreOrderActivity extends AppCompatActivity {
                         alert.show();
 
                     } else {
+                        //TODO add reservations
                         AlertDialog.Builder builder = new AlertDialog.Builder(PreOrderActivity.this);
                         builder.setMessage("Reservation made successfully!")
                                 .setCancelable(false)
@@ -290,15 +288,15 @@ public class PreOrderActivity extends AppCompatActivity {
                                         final String seat = i.getStringExtra("SEAT");
                                         final String date = i.getStringExtra("DATE");
                                         String ts = i.getStringExtra("TIMESLOT");
-                                        DatabaseReference mRefRez = FirebaseDatabase.getInstance().getReference("SeatPlans");
+                                        DatabaseReference mRefRez = FirebaseDatabase.getInstance().getReference("Restaurants");
 
                                         //Determine timeslot's numeric value
-                                        String[] temp = ts.split("-");
+                                        String[] temp = ts.split(" - ");
                                         String[] temp2 = temp[0].split(":");
                                         final int timeSlot = ((Integer.parseInt(temp2[0]) * 60 ) + Integer.parseInt(temp2[1]));
 
                                         //Make timeslot reserved
-                                        mRefRez.child(uidRestaurant).child(seat).child(date).child(String.valueOf(timeSlot)).child("reserved").setValue("true");
+                                        mRefRez.child(uidRestaurant).child("seats").child(seat).child(date).child(String.valueOf(timeSlot)).child("reservedStatus").setValue("true");
 
                                         final DatabaseReference mCustomer = FirebaseDatabase.getInstance().getReference("Customers").child(user.getUid());
                                         final DatabaseReference mRestaurant = FirebaseDatabase.getInstance().getReference("Restaurants").child(uidRestaurant);
@@ -327,8 +325,8 @@ public class PreOrderActivity extends AppCompatActivity {
                                                             preOrderText += preOrder.get(i) + "\n";
                                                         }
                                                         mReservation.child(rezID).child("preOrderText").setValue(preOrderText);
-                                                        mCustomer.child("reservations").child(rezID).setValue(rezID);
-                                                        mRestaurant.child("reservations").child(rezID).setValue(rezID);
+                                                        // mCustomer.child("reservations").child(rezID).setValue(rezID);
+                                                        // mRestaurant.child("reservations").child(rezID).setValue(rezID);
                                                     }
 
                                                     @Override
@@ -346,10 +344,7 @@ public class PreOrderActivity extends AppCompatActivity {
                                         startActivity(new Intent(PreOrderActivity.this, MainActivity.class));
                                         finish();
 
-                                        System.out.println("MONEY ON ACCOUUUUUUUNT " + moneyOnAccount);
-                                        System.out.println("PRICE TOTALLLLLLLLLLLLL " + priceTotal);
                                         double remainingMoney = moneyOnAccount - priceTotal;
-                                        System.out.println("REMAINIIIIIIIIIIIIIIIING "  + remainingMoney);
                                         mRefUser.child(user.getUid()).child("money").setValue(String.valueOf(remainingMoney));
                                         startActivity(new Intent(PreOrderActivity.this, MainActivity.class));
                                         finish();

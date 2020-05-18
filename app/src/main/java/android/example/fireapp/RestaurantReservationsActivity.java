@@ -149,7 +149,7 @@ public class RestaurantReservationsActivity extends AppCompatActivity {
                     //String resPhone = item.child("restaurantPhone").getValue().toString();
                     String cusPhone = item.child("cusPhone").getValue().toString();
                     String proOrder = item.child("preOrder").getValue().toString();
-                    String preOrderTxt = item.child("preOrderText").getValue().toString();
+                    String preOrderTxt = (String)item.child("preOrderText").getValue();
                     String seat = item.child("seat").getValue().toString();
                     String totalPrice = item.child("totalPrice").getValue().toString();
                     String timeSlot = item.child("timeSlot").getValue().toString();

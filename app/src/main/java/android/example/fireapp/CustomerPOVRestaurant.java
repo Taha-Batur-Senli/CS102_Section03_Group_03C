@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,7 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.Iterator;
 
 /*
@@ -31,13 +32,10 @@ import java.util.Iterator;
  process by clicking to the related button.
  */
 public class CustomerPOVRestaurant extends AppCompatActivity {
-   //Properties
-    TextView tvName, tvRating, tvDescription, tvMinPriceToPreOrder;
+    //Properities
+    TextView tvName, tvRating, tvDescription, tvGenre, tvWorkingHours, tvMinPriceToPreOrder, tvPhone, tvAdress;
     DatabaseReference mRefRes;
     Button showMenu, makeReservation;
-    ListView listView;
-    ArrayAdapter myAdapter;
-    ArrayList<String> menu = new ArrayList<String>();
 
 
     @Override
@@ -48,48 +46,82 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         setContentView(R.layout.activity_customer_p_o_v_restaurant);
 
         //Initialize
-        Intent intent = getIntent();
-        String uid = intent.getStringExtra("UID");
-
         tvName = (TextView)findViewById(R.id.txtNamePOV);
         tvRating = (TextView)findViewById(R.id.txtRatingPOV);
         tvDescription = (TextView)findViewById(R.id.txtDescriptionPOV);
+        tvGenre = (TextView)findViewById(R.id.txtGenrePOV);
+        tvWorkingHours = (TextView)findViewById(R.id.txtWorkingHoursPOV);
         tvMinPriceToPreOrder = (TextView)findViewById(R.id.txtMinPricePreOrderPOV);
+        tvPhone = (TextView)findViewById(R.id.txtPhonePOV);
+        tvAdress = (TextView)findViewById(R.id.txtAdressPOV);
         showMenu = (Button)findViewById(R.id.btnShowMenuPOV);
         makeReservation = (Button)findViewById(R.id.btnMakeReservationCustomer);
-        listView = findViewById(R.id.lvMenuRestaurant);
 
         mRefRes = FirebaseDatabase.getInstance().getReference("Restaurants");
-
-        myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, menu);
-        listView.setAdapter(myAdapter);
 
         //Methods called
         placeDatatoTVs();
         showMenuAction();
         makeReservationAction();
 
-        mRefRes.child(uid).child("menu").addValueEventListener(new ValueEventListener() {
+        Intent intent = getIntent();
+        final String uid = intent.getStringExtra("UID");
+
+        // updater
+
+
+        mRefRes.addValueEventListener(new ValueEventListener() {
+            int k = 0;
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                menu.clear();
-                Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
-                while (items.hasNext()) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (k < 1) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        // Restaurant r = snapshot.getValue( Restaurant.class);
+                        Object restaurant = snapshot.getValue();
+                        HashMap<String, Object> r = (HashMap<String, Object>) restaurant;
+                        String uidOfRestaurant = (String) r.get("uid");
+                        if (uid.equals(uidOfRestaurant)) { // r.getUid()
+                            int i = 1;
+                            for (DataSnapshot snapshot2 : dataSnapshot.child(uid).child("seats").getChildren()) {
+                                HashMap<String, Object> seatWeeklyPlan = new HashMap<String, Object>();
+                                for (DataSnapshot snapshot3 : dataSnapshot.child(uid).child("seats").child("seat" + i).getChildren()) {
+                                    String dateName = snapshot3.getKey();
 
-                    DataSnapshot item = items.next();
-                    String name;
-                    name = "" + item.child("name").getValue().toString() + ": "
-                            + item.child("ingredients").getValue().toString() +
-                            "___" + item.child("price").getValue().toString() + "TL";
+                                    if (LocalDate.parse(dateName).isBefore(LocalDate.now())) {
+                                        System.out.println("ONCEYIMMM " + dateName);
+                                        HashMap<String, Object> newSeatCalendar = new SeatCalendar(LocalDate.parse(dateName).plusDays(7), LocalTime.of(9, 0), LocalTime.of(23, 0));
+                                        seatWeeklyPlan.put(LocalDate.parse(dateName).plusDays(7).toString(), newSeatCalendar);
+                                    } else if (LocalDate.parse(dateName).isAfter(LocalDate.now())) {
+                                        System.out.println("SONRAYIMMM " + dateName);
+                                        Object existingSeatCalendar = snapshot3.getValue(); // Object is HashMap<String, Object>
+                                        seatWeeklyPlan.put(dateName, existingSeatCalendar);
+                                    } else {
+                                        System.out.println("BUGUNDEYIMMMMMMM " + dateName);
+                                        Object existingSeatCalendar = snapshot3.getValue();
+                                        HashMap<String, Object> todaysMap = (HashMap<String, Object>) existingSeatCalendar;
+                                        Iterator it = todaysMap.keySet().iterator();
+                                        while (it.hasNext()) {
+                                            String str = it.next().toString();
+                                            int minutes = Integer.parseInt(str);
+                                            if (minutes < LocalTime.now().getHour() * 60 + LocalTime.now().getMinute()) {
+                                                it.remove();
+                                            }
+                                        }
+                                        seatWeeklyPlan.put(dateName, todaysMap);
+                                    }
 
-                    menu.add(name);
-                    myAdapter.notifyDataSetChanged();
+                                    System.out.println("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII: " + i);
+                                }
+                                mRefRes.child(uid).child("seats").child("seat" + i).setValue(seatWeeklyPlan);
+                                i++;
+                            }
+                        }
+                    }
+                    k++;
                 }
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onCancelled(DatabaseError databaseError) {
             }
         });
     }
@@ -129,8 +161,6 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         });
     }
 
-
-
     /*
     This method retrieves data from firebase and puts the related data to related text views.
      */
@@ -143,33 +173,44 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                 final String resName = dataSnapshot.child("name").getValue(String.class);
                 final double resRating = dataSnapshot.child("rating").getValue(Double.class);
                 final String resDescription = dataSnapshot.child("description").getValue(String.class);
+                final String resGenre = dataSnapshot.child("genre").getValue(String.class);
+                final String resWH = dataSnapshot.child("workingHours").getValue(String.class);
                 final double resMinPrice = dataSnapshot.child("minPriceToPreOrder").getValue(Double.class);
+                final String resPhone = dataSnapshot.child("phone").getValue(String.class);
+                final String resAdress = dataSnapshot.child("adress").getValue(String.class);
 
-                if( resRating >= 4)
-                {
-                    tvRating.setBackgroundColor( getResources().getColor(R.color.green));
-                }
-                else if( resRating >= 3)
-                {
-                    tvRating.setBackgroundColor( getResources().getColor(R.color.light_green));
-                }
-                else if ( resRating >= 2)
-                {
-                    tvRating.setBackgroundColor( getResources().getColor(R.color.orange));
-                }
-                else if ( resRating >= 1)
-                {
-                    tvRating.setBackgroundColor( getResources().getColor(R.color.light_red));
-                }
-                else
-                    tvRating.setBackgroundColor( getResources().getColor(R.color.red));
+//                if( resRating >= 4)
+//                {
+//                    tvRating.setBackgroundColor( getResources().getColor(R.color.green));
+//                }
+//                else if( resRating >= 3)
+//                {
+//                    tvRating.setBackgroundColor( getResources().getColor(R.color.light_green));
+//                }
+//                else if ( resRating >= 2)
+//                {
+//                    tvRating.setBackgroundColor( getResources().getColor(R.color.orange));
+//                }
+//                else if ( resRating >= 1)
+//                {
+//                    tvRating.setBackgroundColor( getResources().getColor(R.color.light_red));
+//                }
+//                else
+//                    tvRating.setBackgroundColor( getResources().getColor(R.color.red));
 
                 tvName.setText("" + resName );
                 tvRating.setText("" + resRating + "/5");
-                tvMinPriceToPreOrder.setText("Minimum price for pre-order is " + resMinPrice + " g3Coins.");
+                tvGenre.setText("Genre: " + resGenre );
+                tvMinPriceToPreOrder.setText("Min price limit to pre-order: " + resMinPrice);
 
                 if ( !resDescription.isEmpty())
                     tvDescription.setText("Description: " + resDescription);
+                if ( !resWH.isEmpty())
+                    tvWorkingHours.setText("Working hours: " + resWH);
+                if ( !resPhone.isEmpty())
+                    tvPhone.setText("GSM: +90 " + resPhone);
+                if ( !resAdress.isEmpty())
+                    tvAdress.setText("Adress: " + resAdress);
             }
 
             @Override

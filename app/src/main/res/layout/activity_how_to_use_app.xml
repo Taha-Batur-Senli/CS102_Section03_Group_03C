@@ -48,7 +48,7 @@
         android:layout_height="214dp"
         android:lineSpacingExtra="10dp"
         android:text="You can use the app by whether choosing the desired option
-from scrollable menu or the main menu that introduced to you after you successfully logged in."
+from scrollable menu or the main menu that is introduced to you after you successfully logged in."
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
