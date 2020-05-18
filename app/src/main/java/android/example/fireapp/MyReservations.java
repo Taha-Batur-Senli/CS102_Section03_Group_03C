@@ -43,7 +43,12 @@ public class MyReservations extends AppCompatActivity {
         lvCurrentReservations = (ListView)findViewById(R.id.lvCurrentRezCustomer);
         lvPastReservations = (ListView)findViewById(R.id.lvPastRezCustomer);
         myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, currentReservations);
-        myAdapter2 = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, pastReservations);
+        myAdapter2 = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, pastReservations){
+            @Override
+            public boolean isEnabled(int position) {
+                return false;
+            }
+        };
         lvCurrentReservations.setAdapter(myAdapter);
         lvPastReservations.setAdapter(myAdapter2);
 
@@ -224,8 +229,9 @@ public class MyReservations extends AppCompatActivity {
 
                     currentReservations.add(toString);
                     myAdapter.notifyDataSetChanged();
+
                     myAdapter2.notifyDataSetChanged();
-                }
+              }
             }
 
             @Override

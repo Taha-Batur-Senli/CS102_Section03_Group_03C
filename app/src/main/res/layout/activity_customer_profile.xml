@@ -99,7 +99,6 @@
         android:id="@+id/lvAllRestaurants"
         android:layout_width="415dp"
         android:layout_height="127dp"
-        android:layout_marginBottom="13dp"
         app:layout_constraintBottom_toTopOf="@+id/textView26"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
