@@ -33,7 +33,7 @@ import java.util.Iterator;
  */
 public class CustomerPOVRestaurant extends AppCompatActivity {
     //Properities
-    TextView tvName, tvRating, tvDescription, tvGenre, tvWorkingHours, tvMinPriceToPreOrder, tvPhone, tvAdress;
+    TextView tvName, tvRating, tvDescription, tvMinPriceToPreOrder;
     DatabaseReference mRefRes;
     Button showMenu, makeReservation;
 
@@ -49,11 +49,9 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         tvName = (TextView)findViewById(R.id.txtNamePOV);
         tvRating = (TextView)findViewById(R.id.txtRatingPOV);
         tvDescription = (TextView)findViewById(R.id.txtDescriptionPOV);
-        tvGenre = (TextView)findViewById(R.id.txtGenrePOV);
-        tvWorkingHours = (TextView)findViewById(R.id.txtWorkingHoursPOV);
+
         tvMinPriceToPreOrder = (TextView)findViewById(R.id.txtMinPricePreOrderPOV);
-        tvPhone = (TextView)findViewById(R.id.txtPhonePOV);
-        tvAdress = (TextView)findViewById(R.id.txtAdressPOV);
+
         showMenu = (Button)findViewById(R.id.btnShowMenuPOV);
         makeReservation = (Button)findViewById(R.id.btnMakeReservationCustomer);
 
@@ -173,11 +171,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                 final String resName = dataSnapshot.child("name").getValue(String.class);
                 final double resRating = dataSnapshot.child("rating").getValue(Double.class);
                 final String resDescription = dataSnapshot.child("description").getValue(String.class);
-                final String resGenre = dataSnapshot.child("genre").getValue(String.class);
-                final String resWH = dataSnapshot.child("workingHours").getValue(String.class);
                 final double resMinPrice = dataSnapshot.child("minPriceToPreOrder").getValue(Double.class);
-                final String resPhone = dataSnapshot.child("phone").getValue(String.class);
-                final String resAdress = dataSnapshot.child("adress").getValue(String.class);
 
 //                if( resRating >= 4)
 //                {
@@ -200,17 +194,10 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
 
                 tvName.setText("" + resName );
                 tvRating.setText("" + resRating + "/5");
-                tvGenre.setText("Genre: " + resGenre );
                 tvMinPriceToPreOrder.setText("Min price limit to pre-order: " + resMinPrice);
 
                 if ( !resDescription.isEmpty())
                     tvDescription.setText("Description: " + resDescription);
-                if ( !resWH.isEmpty())
-                    tvWorkingHours.setText("Working hours: " + resWH);
-                if ( !resPhone.isEmpty())
-                    tvPhone.setText("GSM: +90 " + resPhone);
-                if ( !resAdress.isEmpty())
-                    tvAdress.setText("Adress: " + resAdress);
             }
 
             @Override
