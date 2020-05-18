@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignUpAsRestaurantP2"></activity>
+        <activity android:name=".ImageRecycler"></activity>
+        <activity android:name=".UploadImage" />
+        <activity android:name=".SignUpAsRestaurantP2" />
         <activity android:name=".BestRestaurantsDisplay" />
         <activity android:name=".PromotionsPOVCustomer" />
         <activity android:name=".GenreSpecialRes" />
@@ -26,7 +28,6 @@
         </activity>
         <activity android:name=".HowToUseApp" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".UploadPicture" />
         <activity android:name=".PreOrderActivity" />
         <activity android:name=".MakeReservationCustomerP2" />
         <activity android:name=".MyReservations" />
