@@ -23,7 +23,7 @@ import java.util.Iterator;
 
 public class RateReservation extends AppCompatActivity {
     //Properties
-    TextView tvReserv;
+    TextView tvReserv, tvSetError;
     Button rate;
     EditText etRating;
 
@@ -37,6 +37,7 @@ public class RateReservation extends AppCompatActivity {
         //Initialize
         etRating = (EditText)findViewById(R.id.etRate);
         tvReserv = (TextView)findViewById(R.id.reservTextRatePage);
+        tvSetError = (TextView)findViewById(R.id.textView42);
         rate = (Button)findViewById(R.id.btnRate);
         user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -44,31 +45,24 @@ public class RateReservation extends AppCompatActivity {
         Intent i = getIntent();
         String reservText = i.getStringExtra("RESERVTEXT");
         final String resName = i.getStringExtra("RESTNAME");
-        //final String seat = i.getStringExtra("SEAT");
-        //final String date = i.getStringExtra("DATE");
-        //final String timeSlot = i.getStringExtra("TIMESLOT");
-        tvReserv.setText( reservText);
 
-        //TODO find the reservation id
-        /*DatabaseReference mRez = FirebaseDatabase.getInstance().getReference("Reservations").child("PastReservations");
-        mRez.addValueEventListener(new ValueEventListener() {
+        tvReserv.setText( reservText);
+        int indexOfIDStart = reservText.indexOf("ID:") + 3;
+        int indexOfIDEnd  = reservText.indexOf("   ", indexOfIDStart);
+        final String rezID = reservText.substring(indexOfIDStart, indexOfIDEnd);
+
+
+        DatabaseReference reservation = FirebaseDatabase.getInstance().getReference("Reservations").child("PastReservations");
+        reservation.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
-                while (items.hasNext()){
-                    DataSnapshot item1 = items.next();
-                    if (item1.child("restaurantName").getValue().toString().equals(resName)
-                    && item1.child("cusID").getValue().toString().equals(user.getUid())
-                    && item1.child("date").toString().equals(date)
-                    && item1.child("seat").toString().equals(seat)
-                    && item1.child("timeSlot").toString().equals(timeSlot)){
-                        if (item1.child("hasReserved").toString().equals("true")){
-                            etRating.setError("You have already rated this reservation!");
-                            etRating.requestFocus();
-                            return;
-                        }
-
-                    }
+                String hasRated = dataSnapshot.child(rezID).child("hasRated").getValue().toString();
+                if (hasRated.equals("true")){
+                    tvSetError.setText("You have rated this reservation before!");
+                    etRating.setVisibility(View.INVISIBLE);
+                    rate.setVisibility(View.INVISIBLE);
+                    rate.setClickable(false);
+                    return;
                 }
             }
 
@@ -76,20 +70,20 @@ public class RateReservation extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
+
 
         //Methods called
-        rateAction();
+        rateAction( rezID);
     }
 
     //METHODS
-    private void rateAction() {
+    private void rateAction(final String rezID) {
        rate.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                final String ratingString = etRating.getText().toString();
 
-               //TODO if(reservastonun hasRated'i true ise error ver you have rated this rez already)
                if (ratingString.isEmpty()){
                    etRating.setError("Cannot be empty!");
                    etRating.requestFocus();
@@ -120,10 +114,6 @@ public class RateReservation extends AppCompatActivity {
                                     double avg = (double)(sum / numOfTimesRated);
                                     item1.getRef().child("rating").setValue(avg);
                                     item1.getRef().child("numOfTimesRated").setValue(numOfTimesRated);
-                                    //mRef.child(resName).child("numOfTimesRated").setValue(String.valueOf(numOfTimesRated));
-                                    //mRef.child(resName).child("rating").setValue(String.valueOf(avg));
-                                    //dataSnapshot.getRef().child("numOfTimesRated").setValue(numOfTimesRated);
-                                    //dataSnapshot.getRef().child("rating").setValue(avg);
                                     i++;
 
                                 }
@@ -136,7 +126,8 @@ public class RateReservation extends AppCompatActivity {
 
                    }
                });
-               //TODO reservasyonun hasRatedini false yap
+               DatabaseReference reservation = FirebaseDatabase.getInstance().getReference("Reservations").child("PastReservations");
+               reservation.child(rezID).child("hasRated").setValue(true);
                startActivity(new Intent(RateReservation.this, MyReservations.class));
                finish();
 

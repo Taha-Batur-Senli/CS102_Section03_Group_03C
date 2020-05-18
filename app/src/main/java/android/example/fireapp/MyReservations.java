@@ -162,6 +162,7 @@ public class MyReservations extends AppCompatActivity {
                     //String cusName = item.child("cusName").getValue().toString();
                     String resPhone = item.child("restaurantPhone").getValue().toString();
                     //String cusPhone = item.child("cusPhone").getValue().toString();
+                    String rezID = item.child("reservID").getValue().toString();
                     String proOrder = item.child("preOrder").getValue().toString();
                     String preOrderTxt = item.child("preOrderText").getValue().toString();
                     String seat = item.child("seat").getValue().toString();
@@ -180,9 +181,9 @@ public class MyReservations extends AppCompatActivity {
                     String timeSlotString = hS + ":" + mS;
 
                     String toString = resName + "\n" + date + "   " + timeSlotString + " " + "" + table + "\n" +
-                            proOrder + "___" + totalPrice + "TL\nRestaurant info: +90 " + resPhone;
+                            proOrder + "___" + totalPrice + " g3Coins\nRestaurant info: +90 " + resPhone;
                     toString += "\n\n\nPre-order: \n" + preOrderTxt;
-
+                    toString += "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nID:" + rezID + "   ";
                     pastReservations.add(toString);
                     myAdapter.notifyDataSetChanged();
                     myAdapter2.notifyDataSetChanged();
@@ -228,7 +229,7 @@ public class MyReservations extends AppCompatActivity {
                     String timeSlotString = hS + ":" + mS;
 
                     String toString = resName + "\n" + date + "   " +  timeSlotString + " "+ ""+ table +  "\n"+
-                            proOrder + "___" + totalPrice + "TL\nRestaurant info: +90 " + resPhone;
+                            proOrder + "___" + totalPrice + " g3Coins\nRestaurant info: +90 " + resPhone;
                     toString += "\n\n\nPre-order: \n" + preOrderTxt;
                     currentReservations.add(toString);
                     myAdapter.notifyDataSetChanged();
