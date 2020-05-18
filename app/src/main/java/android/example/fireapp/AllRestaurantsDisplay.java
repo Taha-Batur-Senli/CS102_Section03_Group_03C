@@ -169,7 +169,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         });
     }
 
-    /*
+    /**
     This method makes all restaurants clickable. If a customer clicks on a restaurant, they are directed
     to the profile of that restaurant.
      */

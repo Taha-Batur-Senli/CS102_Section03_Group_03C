@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,10 +25,7 @@ import java.util.Iterator;
 This class enables customers to display restaurants menu.
  */
 public class ShowMenuPOV extends AppCompatActivity {
-    TextView tvName;
-    ListView lvMenu;
-    ArrayAdapter myAdapter;
-    ArrayList<String> menu = new ArrayList<String>();
+    TextView tvName, tvGenre, tvAddress, tvPhone, tvWH;
     FirebaseDatabase database;
     DatabaseReference reference;
 
@@ -35,51 +33,32 @@ public class ShowMenuPOV extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_show_menu_p_o_v);
 
         //get the uid of restaurant from previous activity
         Intent intent = getIntent();
         String uid = intent.getStringExtra("UID");
 
-        lvMenu = (ListView)findViewById(R.id.lvMenuResPOV);
         tvName = (TextView)findViewById(R.id.txtNameShowMenuPOV);
+        tvGenre = findViewById(R.id.txtGenrePOV2);
+        tvAddress = findViewById(R.id.txtAdressPOV2);
+        tvPhone = findViewById(R.id.txtPhonePOV2);
+        tvWH = findViewById(R.id.txtWorkingHoursPOV2);
 
-        myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu);
-        lvMenu.setAdapter(myAdapter);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference( "Restaurants");
+
+        //methods
+        placeDatatoTVs();
 
         //Set the name of the restaurant to the related text view.
         reference.child(uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final String nameof = dataSnapshot.child("name").getValue().toString();
-                tvName.setText(nameof);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        //Display Menu
-        reference.child(uid).child("menu").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                menu.clear();
-                Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
-                while (items.hasNext()) {
-
-                    DataSnapshot item = items.next();
-                    String name;
-                    name = "" + item.child("name").getValue().toString() + ": "
-                            + item.child("ingredients").getValue().toString() +
-                            "___" + item.child("price").getValue().toString() + "TL";
-
-                    menu.add(name);
-                    myAdapter.notifyDataSetChanged();
-                }
+                tvName.setText("Information of " + nameof);
             }
 
             @Override
@@ -89,12 +68,39 @@ public class ShowMenuPOV extends AppCompatActivity {
         });
     }
 
-    /*
-    This method prevents some bugs.
-     */
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+    private void placeDatatoTVs() {
+        Intent intent = getIntent();
+        String uid = intent.getStringExtra("UID");
+        reference.child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final String resName = dataSnapshot.child("name").getValue(String.class);
+                final String resGenre = dataSnapshot.child("genre").getValue(String.class);
+                final String resWH = dataSnapshot.child("workingHours").getValue(String.class);
+                final String resPhone = dataSnapshot.child("phone").getValue(String.class);
+                final String resAdress = dataSnapshot.child("adress").getValue(String.class);
+
+                tvName.setText( "Information of " + resName );
+                tvGenre.setText("Genre: " + resGenre );
+
+                if ( !resWH.isEmpty())
+                    tvWH.setText("Working hours: " + resWH);
+                else
+                    tvWH.setText("Working Hours: -");
+                if ( !resPhone.isEmpty())
+                    tvPhone.setText("Phone Number: +90 " + resPhone);
+                else
+                    tvPhone.setText("Phone Number: -");
+                if ( !resAdress.isEmpty())
+                    tvAddress.setText("Address: " + resAdress);
+                else
+                    tvAddress.setText("Address: -");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

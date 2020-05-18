@@ -8,41 +8,126 @@
     tools:context=".ShowMenuPOV">
 
     <TextView
-        android:id="@+id/txtNameShowMenuPOV"
-        android:layout_width="239dp"
-        android:layout_height="42dp"
-        android:text="Restaurant Name"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.071" />
-
-    <ListView
-        android:id="@+id/lvMenuResPOV"
-        android:layout_width="381dp"
-        android:layout_height="431dp"
-        android:layout_marginTop="268dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddFood"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/textView16"
-        android:layout_width="86dp"
-        android:layout_height="42dp"
-        android:text="Menu"
-        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.5"
+        android:fontFamily="@font/roboto_light"
         android:gravity="center"
-        android:textSize="30sp"
+        android:text="© 2020-2021  RESERVED\nAll Rights Reserved "
+        android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWorkingHoursPOV2"
+        app:layout_constraintVertical_bias="0.977" />
+
+    <ImageView
+        android:id="@+id/imageView47"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNameShowMenuPOV"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/line_28" />
+
+    <TextView
+        android:id="@+id/txtAdressPOV2"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="Address"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtGenrePOV2"
+        app:layout_constraintVertical_bias="0.055" />
+
+    <TextView
+        android:id="@+id/txtPhonePOV2"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="GSM: "
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAdressPOV2"
+        app:layout_constraintVertical_bias="0.068" />
+
+    <TextView
+        android:id="@+id/txtWorkingHoursPOV2"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="Working Hours"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPhonePOV2"
+        app:layout_constraintVertical_bias="0.075" />
+
+    <TextView
+        android:id="@+id/txtGenrePOV2"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="Genre"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNameShowMenuPOV"
+        app:layout_constraintVertical_bias="0.123" />
+
+    <TextView
+        android:id="@+id/txtNameShowMenuPOV"
+        android:layout_width="239dp"
+        android:layout_height="42dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="Information Restaurant Name"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView45"
+        app:layout_constraintVertical_bias="0.015" />
+
+    <ImageView
+        android:id="@+id/imageView45"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.226" />
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/logo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
