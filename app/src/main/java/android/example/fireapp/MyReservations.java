@@ -118,7 +118,7 @@ public class MyReservations extends AppCompatActivity {
                         String resPhone = item.child("restaurantPhone").getValue().toString();
                         String cusPhone = item.child("cusPhone").getValue().toString();
                         String proOrder = item.child("preOrder").getValue().toString();
-                        String preOrderTxt = item.child("preOrderText").getValue().toString();
+                        String preOrderTxt = (String)item.child("preOrderText").getValue();
                         String seat = item.child("seat").getValue().toString();
                         String totalPrice = item.child("totalPrice").getValue().toString();
                         String timeSlotClone = item.child("timeSlot").getValue().toString();
@@ -154,12 +154,12 @@ public class MyReservations extends AppCompatActivity {
                 while (items.hasNext()) {
                     DataSnapshot item = items.next();
                     String resName = item.child("restaurantName").getValue().toString();
+                    String rezID = item.child("reservID").getValue().toString();
                     //String cusName = item.child("cusName").getValue().toString();
                     String resPhone = item.child("restaurantPhone").getValue().toString();
                     //String cusPhone = item.child("cusPhone").getValue().toString();
-                    String rezID = item.child("reservID").getValue().toString();
                     String proOrder = item.child("preOrder").getValue().toString();
-                    String preOrderTxt = item.child("preOrderText").getValue().toString();
+                    String preOrderTxt = (String)item.child("preOrderText").getValue();
                     String seat = item.child("seat").getValue().toString();
                     String totalPrice = item.child("totalPrice").getValue().toString();
                     String timeSlot = item.child("timeSlot").getValue().toString();
@@ -176,7 +176,7 @@ public class MyReservations extends AppCompatActivity {
                     String timeSlotString = hS + ":" + mS;
 
                     String toString = resName + "\n" + date + "   " + timeSlotString + " " + "" + table + "\n" +
-                            proOrder + "___" + totalPrice + " g3Coins\nRestaurant info: +90 " + resPhone;
+                            proOrder + "___" + totalPrice + "TL\nRestaurant info: +90 " + resPhone;
                     toString += "\n\n\nPre-order: \n" + preOrderTxt;
                     toString += "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nID:" + rezID + "   ";
                     pastReservations.add(toString);
@@ -207,7 +207,7 @@ public class MyReservations extends AppCompatActivity {
                     String resPhone = item.child("restaurantPhone").getValue().toString();
                     //String cusPhone = item.child("cusPhone").getValue().toString();
                     String proOrder = item.child("preOrder").getValue().toString();
-                    String preOrderTxt = item.child("preOrderText").getValue().toString();
+                    String preOrderTxt = (String)item.child("preOrderText").getValue();
                     String seat = item.child("seat").getValue().toString();
                     String totalPrice = item.child("totalPrice").getValue().toString();
                     String timeSlot = item.child("timeSlot").getValue().toString();
@@ -224,7 +224,7 @@ public class MyReservations extends AppCompatActivity {
                     String timeSlotString = hS + ":" + mS;
 
                     String toString = resName + "\n" + date + "   " +  timeSlotString + " "+ ""+ table +  "\n"+
-                            proOrder + "___" + totalPrice + " g3Coins\nRestaurant info: +90 " + resPhone;
+                            proOrder + "___" + totalPrice + "TL\nRestaurant info: +90 " + resPhone;
                     toString += "\n\n\nPre-order: \n" + preOrderTxt;
                     currentReservations.add(toString);
                     myAdapter.notifyDataSetChanged();

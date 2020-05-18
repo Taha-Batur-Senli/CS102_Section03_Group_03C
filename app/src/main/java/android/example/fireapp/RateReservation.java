@@ -56,8 +56,8 @@ public class RateReservation extends AppCompatActivity {
         reservation.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String hasRated = dataSnapshot.child(rezID).child("hasRated").getValue().toString();
-                if (hasRated.equals("true")){
+                boolean hasRated = (boolean)dataSnapshot.child(rezID).child("hasRated").getValue();
+                if (hasRated){
                     tvSetError.setText("You have rated this reservation before!");
                     etRating.setVisibility(View.INVISIBLE);
                     rate.setVisibility(View.INVISIBLE);

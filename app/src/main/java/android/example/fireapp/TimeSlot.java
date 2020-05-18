@@ -2,54 +2,48 @@ package android.example.fireapp;
 
 import android.os.Build;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class TimeSlot{ // implements Reservable {
+public class TimeSlot{
 
 
     // properties
 
-    private LocalDate date;
-    private LocalTime firstTime; // in terms of minute
-    private LocalTime endTime;
-    public static int durationOfMeal = 60; // in terms of minute (90 minute)
-    private boolean reservedStatus;
+    private LocalDateTime dateAndTimeStart;
+    private LocalDateTime dateAndTimeEnd;
+    public String timeSlot;
+    public static int durationOfMeal = 10; // in terms of minute (60 minute)
+    public boolean reservedStatus;
 
     // constructors
 
+    public TimeSlot(){
+
+    }
+
     public TimeSlot( LocalDate date, LocalTime firstTime)
     {
-        this.date = date;
-        this.firstTime = firstTime;
-        this.endTime = this.firstTime.plusMinutes(durationOfMeal);
+        this.dateAndTimeStart = LocalDateTime.of(date, firstTime);
+        this.dateAndTimeEnd = LocalDateTime.of(date, firstTime.plusMinutes(durationOfMeal));
+        this.timeSlot = firstTime + " - " + firstTime.plusMinutes(durationOfMeal);
     }
 
     // methods
 
-
-    public void setReserved( boolean a) {
+    public void setReservedStatus( boolean a) {
         reservedStatus = a;
-
     }
 
-    public boolean isReserved() {
+    public boolean getReservedStatus() {
         return reservedStatus;
     }
 
-    public String toString()
-    {
-        return "Date: " + date + "  Time: " + firstTime + "-" + endTime;
-    }
-
-    public LocalTime getFirstTime()
-    {
-        return firstTime;
-    }
-
-    public LocalTime getEndTime()
-    {
-        return endTime;
+    public String getTimeSlot(){
+        return timeSlot;
     }
 
 }

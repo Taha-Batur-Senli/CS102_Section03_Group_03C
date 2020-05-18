@@ -2,20 +2,23 @@ package android.example.fireapp;
 
 import android.widget.ImageView;
 
+import java.util.HashMap;
+
 /*
 This class creates restaurant objects to facilitate adding restaurants to firebase.
  */
 public class Restaurant {
     //Properties
-    String uid, email, name, genre, phone, description, reservations, menu, adress, workingHours;
+    String uid, email, name, genre, phone, description, reservations, menu, adress, workingHours, openingHour, closingHour;
     int numOfTimesRated, maxSeatingDuration, minPriceToPreOrder;
     double rating;
     ImageView restaurantImage;
+    HashMap<String, Object> seats;
 
     //Constructors
     public Restaurant(){}
 
-    public Restaurant(String name, String email, String genre, String phone, String uid, int maxSeatingDuration, int minPriceToPreOrder) {
+    public Restaurant(String name, String email, String genre, String phone, String uid, String numOfTables, int maxSeatingDuration, int minPriceToPreOrder) {
         this.uid = uid;
         this.email = email;
         this.name = name;
@@ -25,14 +28,29 @@ public class Restaurant {
         reservations = "";
         menu = "";
         adress = "";
-        workingHours = "";
+        workingHours = "0:10-23:59";
+        openingHour =  "0:10";
+        closingHour = "23:59";
         numOfTimesRated = 0;
         this.maxSeatingDuration = maxSeatingDuration;
         this.minPriceToPreOrder = minPriceToPreOrder;
         rating = 0.0;
+        seats = new Seats(Integer.parseInt(numOfTables), this);
     }
 
     //GET & SET METHODS
+    public String getOpeningHour() {
+        return openingHour;
+    }
+
+    public String getClosingHour() {
+        return closingHour;
+    }
+
+    public HashMap<String, Object> getSeats() {
+        return seats;
+    }
+
     public String getName() {
         return name;
     }

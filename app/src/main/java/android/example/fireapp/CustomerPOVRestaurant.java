@@ -21,13 +21,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.Iterator;
+
 /*
  This class a class that enables customers to see the restaurants profiles. They can see the menu of
  restaurants in another activity directed from here or they can initiate the reservation making
  process by clicking to the related button.
  */
 public class CustomerPOVRestaurant extends AppCompatActivity {
-   //Properities
+    //Properities
     TextView tvName, tvRating, tvDescription, tvGenre, tvWorkingHours, tvMinPriceToPreOrder, tvPhone, tvAdress;
     DatabaseReference mRefRes;
     Button showMenu, makeReservation;
@@ -58,6 +63,67 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         placeDatatoTVs();
         showMenuAction();
         makeReservationAction();
+
+        Intent intent = getIntent();
+        final String uid = intent.getStringExtra("UID");
+
+        // updater
+
+
+        mRefRes.addValueEventListener(new ValueEventListener() {
+            int k = 0;
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (k < 1) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        // Restaurant r = snapshot.getValue( Restaurant.class);
+                        Object restaurant = snapshot.getValue();
+                        HashMap<String, Object> r = (HashMap<String, Object>) restaurant;
+                        String uidOfRestaurant = (String) r.get("uid");
+                        if (uid.equals(uidOfRestaurant)) { // r.getUid()
+                            int i = 1;
+                            for (DataSnapshot snapshot2 : dataSnapshot.child(uid).child("seats").getChildren()) {
+                                HashMap<String, Object> seatWeeklyPlan = new HashMap<String, Object>();
+                                for (DataSnapshot snapshot3 : dataSnapshot.child(uid).child("seats").child("seat" + i).getChildren()) {
+                                    String dateName = snapshot3.getKey();
+
+                                    if (LocalDate.parse(dateName).isBefore(LocalDate.now())) {
+                                        System.out.println("ONCEYIMMM " + dateName);
+                                        HashMap<String, Object> newSeatCalendar = new SeatCalendar(LocalDate.parse(dateName).plusDays(7), LocalTime.of(9, 0), LocalTime.of(23, 0));
+                                        seatWeeklyPlan.put(LocalDate.parse(dateName).plusDays(7).toString(), newSeatCalendar);
+                                    } else if (LocalDate.parse(dateName).isAfter(LocalDate.now())) {
+                                        System.out.println("SONRAYIMMM " + dateName);
+                                        Object existingSeatCalendar = snapshot3.getValue(); // Object is HashMap<String, Object>
+                                        seatWeeklyPlan.put(dateName, existingSeatCalendar);
+                                    } else {
+                                        System.out.println("BUGUNDEYIMMMMMMM " + dateName);
+                                        Object existingSeatCalendar = snapshot3.getValue();
+                                        HashMap<String, Object> todaysMap = (HashMap<String, Object>) existingSeatCalendar;
+                                        Iterator it = todaysMap.keySet().iterator();
+                                        while (it.hasNext()) {
+                                            String str = it.next().toString();
+                                            int minutes = Integer.parseInt(str);
+                                            if (minutes < LocalTime.now().getHour() * 60 + LocalTime.now().getMinute()) {
+                                                it.remove();
+                                            }
+                                        }
+                                        seatWeeklyPlan.put(dateName, todaysMap);
+                                    }
+
+                                    System.out.println("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII: " + i);
+                                }
+                                mRefRes.child(uid).child("seats").child("seat" + i).setValue(seatWeeklyPlan);
+                                i++;
+                            }
+                        }
+                    }
+                    k++;
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
     //METHODS
@@ -113,24 +179,24 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                 final String resPhone = dataSnapshot.child("phone").getValue(String.class);
                 final String resAdress = dataSnapshot.child("adress").getValue(String.class);
 
-                if( resRating >= 4)
-                {
-                    tvRating.setBackgroundColor( getResources().getColor(R.color.green));
-                }
-                else if( resRating >= 3)
-                {
-                    tvRating.setBackgroundColor( getResources().getColor(R.color.light_green));
-                }
-                else if ( resRating >= 2)
-                {
-                    tvRating.setBackgroundColor( getResources().getColor(R.color.orange));
-                }
-                else if ( resRating >= 1)
-                {
-                    tvRating.setBackgroundColor( getResources().getColor(R.color.light_red));
-                }
-                else
-                    tvRating.setBackgroundColor( getResources().getColor(R.color.red));
+//                if( resRating >= 4)
+//                {
+//                    tvRating.setBackgroundColor( getResources().getColor(R.color.green));
+//                }
+//                else if( resRating >= 3)
+//                {
+//                    tvRating.setBackgroundColor( getResources().getColor(R.color.light_green));
+//                }
+//                else if ( resRating >= 2)
+//                {
+//                    tvRating.setBackgroundColor( getResources().getColor(R.color.orange));
+//                }
+//                else if ( resRating >= 1)
+//                {
+//                    tvRating.setBackgroundColor( getResources().getColor(R.color.light_red));
+//                }
+//                else
+//                    tvRating.setBackgroundColor( getResources().getColor(R.color.red));
 
                 tvName.setText("" + resName );
                 tvRating.setText("" + resRating + "/5");

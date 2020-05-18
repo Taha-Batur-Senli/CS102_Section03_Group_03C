@@ -87,7 +87,7 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
         Intent intent = getIntent();
         String uidRestaurant = intent.getStringExtra("UID");
 
-        reference.child("SeatPlans").child(uidRestaurant).addValueEventListener(new ValueEventListener() {
+        reference.child("Restaurants").child(uidRestaurant).child("seats").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 allSeats.clear();
