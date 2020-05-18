@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -27,28 +30,38 @@ public class GenreSpecialRes extends AppCompatActivity {
     ArrayAdapter myAdapter;
     ArrayList<String> genreSpecificRestaurant = new ArrayList<String>();
     DatabaseReference mRef;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_genre_special_res);
 
         //Initialize
         tvGenreType = (TextView)findViewById(R.id.genreTypeSpecial);
         listViewGenreRestaurants = (ListView)findViewById(R.id.lvGenreSpecificRestaurants);
         myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, genreSpecificRestaurant);
+        searchView = (SearchView) findViewById(R.id.searchView);
         listViewGenreRestaurants.setAdapter(myAdapter);
         mRef = FirebaseDatabase.getInstance().getReference("Restaurants");
+
+
+        int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = searchView.findViewById(id);
+        textView.setTextColor(Color.WHITE);
 
         //Set tv the genre type
         Intent i = getIntent();
         String genre = i.getStringExtra("GENRE");
-        tvGenreType.setText(genre + "Restaurants");
+        tvGenreType.setText(genre + " Restaurants");
 
 
         //Methods called
         displayRestaurantProfile();
         displayRestaurantsOnList(genre);
+        searchRestaurant();
+        searchView.clearFocus();
     }
 
 
@@ -73,6 +86,21 @@ public class GenreSpecialRes extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void searchRestaurant(){
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String text) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     private void displayRestaurantProfile() {

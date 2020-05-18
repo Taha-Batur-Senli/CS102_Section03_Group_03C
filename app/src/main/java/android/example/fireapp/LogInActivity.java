@@ -24,7 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-/*
+/**
 This class is the class users face for the first time when they run our app. They can login to their
 account or create a new account if they don't have one.
  */

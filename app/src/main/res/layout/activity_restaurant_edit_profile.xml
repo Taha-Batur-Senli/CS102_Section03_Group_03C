@@ -7,34 +7,6 @@
     android:background="@drawable/background2"
     tools:context=".RestaurantEditProfileActivity">
 
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="55dp"
-        android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/logo" />
-
-    <Button
-        android:id="@+id/upload_image"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="66dp"
-        android:background="@drawable/button"
-        android:text="@string/upload"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.865"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.943" />
-
     <TextView
         android:id="@+id/txtEditRes"
         android:layout_width="238dp"
@@ -51,22 +23,34 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView12"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/btnSaveEditProfileRes"
-        android:layout_width="152dp"
-        android:layout_height="48dp"
-        android:background="@drawable/button_rosa"
-        android:text="Save Changes"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:fontFamily="@font/roboto_light"
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.212"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.948" />
+        app:layout_constraintVertical_bias="0.007"
+        app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/upload_image"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/roboto_light"
+        android:text="@string/upload"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.827"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/genre_button"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/etMaxDurationEdit"
@@ -146,25 +130,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/etResProfileWH"
-        android:layout_width="215dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/button"
-        android:ems="10"
-        android:fontFamily="@font/roboto_light"
-        android:gravity="center"
-        android:hint="Change Working Hours"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etResProfileDescription"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
         android:id="@+id/etResProfileAdress"
         android:layout_width="215dp"
         android:layout_height="50dp"
@@ -185,10 +150,41 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/etMinPriceEdit"
+        android:id="@+id/etResProfileWH"
         android:layout_width="215dp"
         android:layout_height="50dp"
         android:layout_marginTop="15dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:hint="Change Working Hours"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etResProfileDescription"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinnerEdit"
+        android:layout_width="57dp"
+        android:layout_height="32dp"
+        android:entries="@array/genres"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.592" />
+
+    <EditText
+        android:id="@+id/etMinPriceEdit"
+        android:layout_width="215dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/button"
         android:ems="10"
         android:fontFamily="@font/roboto_light"
@@ -200,18 +196,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etMaxDurationEdit" />
-
-    <Spinner
-        android:id="@+id/spinnerEdit"
-        android:layout_width="183dp"
-        android:layout_height="37dp"
-        android:entries="@array/genres"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.71"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.88" />
 
     <ImageView
         android:id="@+id/imageView14"
@@ -238,6 +222,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etMinPriceEdit"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnSaveEditProfileRes"
+        android:layout_width="152dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_rosa"
+        android:fontFamily="@font/roboto_light"
+        android:text="Save Changes"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/genre_button"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

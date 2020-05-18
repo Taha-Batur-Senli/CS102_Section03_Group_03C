@@ -7,6 +7,26 @@
     android:layout_height="match_parent"
     tools:context=".BestRestaurantsDisplay">
 
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="311dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button"
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        android:closeIcon="@drawable/ic_close_white_24dp"
+        android:fontFamily="@font/roboto_light"
+        android:goIcon="@drawable/ic_keyboard_arrow_right_white_24dp"
+        android:iconifiedByDefault="false"
+        android:searchHintIcon="@drawable/ic_search_white_24dp"
+        android:searchIcon="@drawable/ic_search_white_24dp"
+        android:voiceIcon="@drawable/ic_mic_white_24dp"
+        app:layout_constraintBottom_toTopOf="@+id/lvBestRestaurants2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditRes7"
+        app:layout_constraintVertical_bias="0.492" />
+
     <ImageView
         android:id="@+id/imageView40"
         android:layout_width="wrap_content"
@@ -38,11 +58,10 @@
         android:id="@+id/imageView33"
         android:layout_width="55dp"
         android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/logo" />
 
     <TextView
@@ -73,12 +92,11 @@
 
     <ListView
         android:id="@+id/lvBestRestaurants2"
-        android:layout_width="410dp"
-        android:layout_height="562dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="412dp"
+        android:layout_height="454dp"
+        android:layout_marginTop="216dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.905" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
