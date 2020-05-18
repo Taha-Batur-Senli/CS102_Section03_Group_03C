@@ -47,5 +47,21 @@ public class CustHelpActivity extends AppCompatActivity {
             }
         });
 
+        how_to_pre_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustHelpActivity.this,HowToPreOrder.class);
+                startActivity(intent);
+            }
+        });
+
+        FAQ.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustHelpActivity.this,FAQ.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

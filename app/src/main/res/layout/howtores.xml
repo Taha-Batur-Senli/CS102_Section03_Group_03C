@@ -48,8 +48,8 @@
         android:text="You can search whatever you wish in menu. After
 you find a proper restaurant for yourself, it is time to choose date and time for you. After that
 you are able to see the available seat for the time you typed before.
-Before choosing a table you may also check the restaurant plan as it is shared in restaurant profile and choose
-the table you want. Enjoy your meal"
+Before choosing a table you may also want to check the restaurant plan as it is shared in restaurant profile and choose
+the table you want. Enjoy your meal!"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20dp"
