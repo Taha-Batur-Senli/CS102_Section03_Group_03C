@@ -13,8 +13,8 @@ _ResApp is a platform that enables customers to make reservations from wished re
 + **Group/project Selection:** completed (date)
 + **Requirements:** completed (date)
 + **UI Design:** completed (date)
-+ **Detailed Design:** in progress
-+ **Implementation:** not started!
++ **Detailed Design:** completed (12.05.2020)
++ **Implementation:** started!
 + **Reflections:** not yet!
 
 [Group Meetings Log](group/meetingslog.md)
