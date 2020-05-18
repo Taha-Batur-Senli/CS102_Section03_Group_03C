@@ -83,6 +83,7 @@ public class RestaurantEditProfileActivity extends AppCompatActivity{
             @Override
             public void onClick(View v){
                 startActivity( new Intent(RestaurantEditProfileActivity.this, Genres.class));
+                finish();
             }
 
         });
