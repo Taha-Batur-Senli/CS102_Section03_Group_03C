@@ -62,6 +62,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Genres" />
+        <activity android:name=".HowToPreOrder" />
+        <activity android:name=".FAQ" />
     </application>
 
 </manifest>
