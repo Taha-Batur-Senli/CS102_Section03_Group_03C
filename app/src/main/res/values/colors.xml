@@ -7,4 +7,9 @@
     <color name="grey">#171A1F</color>
     <color name="black">#000000</color>
     <color name="rosa">#5A3F3F</color>
+    <color name="green">#41FF41</color>
+    <color name="light_green">#91FF91</color>
+    <color name="orange">#FFC21C</color>
+    <color name="light_red">#E66065</color>
+    <color name="red">#FF0000</color>
 </resources>
