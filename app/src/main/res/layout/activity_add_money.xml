@@ -7,6 +7,44 @@
     android:background="@drawable/background2"
     tools:context=".AddMoneyActivity">
 
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/txtEditRes2"
+        android:layout_width="238dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="Add Money"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+    <ImageView
+        android:id="@+id/imageView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditRes2"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/line_28" />
+
     <EditText
         android:id="@+id/etMoneyToAdded3"
         android:layout_width="263dp"
@@ -17,11 +55,12 @@
         android:hint="Enter the amount"
         android:inputType="numberDecimal"
         android:textColorHint="@color/white"
+        android:fontFamily="@font/roboto_light"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/addMoney3"
@@ -31,25 +70,41 @@
         android:text="Add Money"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="14sp"
+        android:fontFamily="@font/roboto_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.695" />
+        app:layout_constraintVertical_bias="0.838" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="325dp"
-        android:layout_height="124dp"
-        android:text="The specified amount of money will be billed retracted from your credit card. Please enter the amount of money you want to add to your account."
+        android:layout_width="334dp"
+        android:layout_height="42dp"
+        android:alpha="0.25"
         android:gravity="center"
+        android:text="The specified amount will be transferred from your credit card into your wallet in RESERVED."
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.227" />
+        app:layout_constraintVertical_bias="0.584" />
+
+    <TextView
+        android:id="@+id/moneyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="14sp"
+        android:fontFamily="@font/roboto_light"
+        android:textColor="@color/white"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/etMoneyToAdded3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditRes2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

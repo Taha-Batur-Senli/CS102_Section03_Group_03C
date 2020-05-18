@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,6 +24,7 @@ public class AddMoneyActivity extends AppCompatActivity {
     //Properties
     Button addMoney;
     EditText toBeAdded;
+    TextView moneyTextView;
 
     DatabaseReference mRef;
     FirebaseAuth mAuth;
@@ -37,12 +39,26 @@ public class AddMoneyActivity extends AppCompatActivity {
         //Initialize
         addMoney = findViewById(R.id.addMoney3);
         toBeAdded = findViewById(R.id.etMoneyToAdded3);
+        moneyTextView = findViewById(R.id.moneyTextView);
 
         toBeAdded.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         mAuth = FirebaseAuth.getInstance();
         mRef = FirebaseDatabase.getInstance().getReference("Customers");
         user = mAuth.getCurrentUser();
+
+        mRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String money = dataSnapshot.child("money").getValue().toString();
+                moneyTextView.setText("You currently have \n" + money + " g3Coins in your account.");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         //Adds customers wallet the amount of money specified
         addMoney.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +119,7 @@ public class AddMoneyActivity extends AppCompatActivity {
                     });
 
                     //return to customer profile
-                    startActivity(new Intent( AddMoneyActivity.this, CustomerProfile.class ));
+                    startActivity(new Intent( AddMoneyActivity.this, MainActivity.class ));
                     finish();
                 }
             }

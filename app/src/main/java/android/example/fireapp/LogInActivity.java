@@ -120,4 +120,9 @@ public class LogInActivity extends AppCompatActivity {
         intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        
+    }
 }

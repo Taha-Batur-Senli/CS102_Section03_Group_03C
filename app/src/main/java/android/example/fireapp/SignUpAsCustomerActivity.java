@@ -122,7 +122,7 @@ public class SignUpAsCustomerActivity extends AppCompatActivity {
                         finish();
                     }
                     else {
-                        startActivity(new Intent(SignUpAsCustomerActivity.this, CustomerProfile.class));
+                        startActivity(new Intent(SignUpAsCustomerActivity.this, MainActivity.class));
                         finish();
                     }
                 } else{

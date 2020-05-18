@@ -15,7 +15,7 @@ public class Restaurant {
     //Constructors
     public Restaurant(){}
 
-    public Restaurant(String name, String email, String genre, String phone, String uid) {
+    public Restaurant(String name, String email, String genre, String phone, String uid, int maxSeatingDuration, int minPriceToPreOrder) {
         this.uid = uid;
         this.email = email;
         this.name = name;
@@ -27,8 +27,8 @@ public class Restaurant {
         adress = "";
         workingHours = "";
         numOfTimesRated = 0;
-        maxSeatingDuration = 90;
-        minPriceToPreOrder = 25;
+        this.maxSeatingDuration = maxSeatingDuration;
+        this.minPriceToPreOrder = minPriceToPreOrder;
         rating = 0.0;
     }
 

@@ -3,14 +3,12 @@
     <string name="navigation_drawer_close">Close navigation</string>
     <string name="app_name">FireApp</string>
     <string-array name="genres">
-        <item>Fast food</item>
-        <item>Breakfast</item>
-        <item>Lunch</item>
-        <item>Fish Restaurant</item>
-        <item>Kebab Restaurant</item>
-        <item>Coffee Shop</item>
-        <item>Bar</item>
-        <item>Steak House</item>
+        <item>Pizza</item>
+        <item>Sushi</item>
+        <item>Hamburger</item>
+        <item>Chicken</item>
+        <item>Dessert</item>
+        <item>Steak</item>
     </string-array>
     <string name="title_activity_restaurant_profile">RestaurantProfile</string>
     <!-- Strings used for fragments for navigation -->
@@ -21,7 +19,16 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="upload">UPLOAD</string>
+    <string name="upload">Upload Pictures</string>
+    <string name="customer_help">Customer Help</string>
+    <string name="how_to_use_app">How To Use App</string>
+    <string name="how_to_make_reservations">How To Make Reservations</string>
+    <string name="how_to_pre_order_meals">How To Pre Order Meals</string>
+    <string name="faq">FAQ</string>
+    <string name="todo1">TODO</string>
+    <string name="how_to_make_reservation">How To Make Reservations</string>
+    <string name="textview">TextView</string>
+    <string name="todo">TODO</string>
 
     <string-array name="menu_items">
         <item>Pizza Margarita</item>
@@ -35,4 +42,7 @@
         <item>Pizza with mora maltınok</item>
         <item>Pizza with mali meren</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

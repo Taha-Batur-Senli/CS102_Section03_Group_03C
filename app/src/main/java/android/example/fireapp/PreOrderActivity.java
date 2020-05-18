@@ -40,6 +40,8 @@ public class PreOrderActivity extends AppCompatActivity {
     DatabaseReference reference, mRefUser;
     FirebaseUser user;
 
+    //TextView denemeA1, denemeA2, denemeA3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +60,46 @@ public class PreOrderActivity extends AppCompatActivity {
         totalTv = (TextView)findViewById(R.id.txtTotal);
         yourMoneyTv = (TextView)findViewById(R.id.txtYourMoney);
 
+        //denemeA1 = (TextView)findViewById(R.id.denemeA1);
+        //denemeA2 = (TextView)findViewById(R.id.denemeA2);
+        //denemeA3 = (TextView)findViewById(R.id.denemeA3);
+        /*<TextView
+        android:id="@+id/denemeA2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029" />
+
+    <TextView
+        android:id="@+id/denemeA1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.789"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029" />
+
+    <TextView
+        android:id="@+id/denemeA3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.176" />
+*/
+
         myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, menu);
         myAdapter2 = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, preOrder);
         lvMenu.setAdapter(myAdapter);
@@ -74,12 +116,12 @@ public class PreOrderActivity extends AppCompatActivity {
 
 
         //Set requires text views
-        minPricetv.setText(minPrice + " TL left to satisfy the minimum limit to pre-order.");
+        minPricetv.setText(minPrice + " g3Coins left to satisfy the minimum limit to pre-order.");
         mRefUser.child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String money = dataSnapshot.child("money").getValue().toString();
-                yourMoneyTv.setText("You have " + money+ "TL");
+                yourMoneyTv.setText("You currently have \n" + money + " g3Coins in your account.");
             }
 
             @Override
@@ -105,7 +147,7 @@ public class PreOrderActivity extends AppCompatActivity {
                     String name;
                     name = "" + item.child("name").getValue().toString() + ": "
                             + item.child("ingredients").getValue().toString() +
-                            "___" + item.child("price").getValue().toString() + "TL";
+                            "___" + item.child("price").getValue().toString() + "g3Coins";
 
                     menu.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -133,7 +175,7 @@ public class PreOrderActivity extends AppCompatActivity {
                 //Get price
                 String item = menu.get(position);
                 int index = item.indexOf("___");
-                String price = item.substring((index + 3), (item.length()-2) );
+                String price = item.substring((index + 3), (item.length()-7) );
 
                 double minPriceLimit = Double.parseDouble(minPrice);
                 double priceOfDish = Double.parseDouble(price);
@@ -146,7 +188,7 @@ public class PreOrderActivity extends AppCompatActivity {
                 if ( minPriceLimit - total <= 0)
                     minPricetv.setText("You satisfied the limit!");
                 else
-                    minPricetv.setText( minPriceLimit - total + " TL left to satisfy the minimum limit to pre-order.");
+                    minPricetv.setText( minPriceLimit - total + " g3Coins left to satisfy the minimum limit to pre-order.");
                 totalTv.setText( total +"");
                 preOrder.add(item);
                 myAdapter2.notifyDataSetChanged();
@@ -172,7 +214,7 @@ public class PreOrderActivity extends AppCompatActivity {
                                //Get dish's price
                                String item = preOrder.get(position);
                                int index = item.indexOf("___");
-                               double price = Double.parseDouble(item.substring((index + 3), (item.length()-2) ));
+                               double price = Double.parseDouble(item.substring((index + 3), (item.length()-7) ));
 
                                 //get total price and reduce dish's price
                                 String total = totalTv.getText().toString();
@@ -187,7 +229,7 @@ public class PreOrderActivity extends AppCompatActivity {
                                 if ( remaining <= 0)
                                     minPricetv.setText("You satisfied the limit!");
                                 else
-                                    minPricetv.setText( remaining + " TL left to satisfy the minimum limit to pre-order.");
+                                    minPricetv.setText( remaining + " g3Coins left to satisfy the minimum limit to pre-order.");
 
                             }
                         })
@@ -219,7 +261,10 @@ public class PreOrderActivity extends AppCompatActivity {
                 } else {
                     //check if you have enough money
                     String money = yourMoneyTv.getText().toString();
-                    final double moneyOnAccount = Double.parseDouble(money.substring(9, money.length() - 2));
+                    //final double moneyOnAccount = Double.parseDouble(money.substring(9, money.length() - 2));
+                    int indexOfMoneyStart = money.indexOf("\n") + 1;
+                    int indexOfMoneyEnd = money.indexOf("g3Coins") - 1;
+                    final double moneyOnAccount = Double.parseDouble(money.substring(indexOfMoneyStart, indexOfMoneyEnd));
                     final double priceTotal = Double.parseDouble(totalTv.getText().toString());
                     if ( moneyOnAccount < priceTotal) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(PreOrderActivity.this);
@@ -235,15 +280,78 @@ public class PreOrderActivity extends AppCompatActivity {
                         alert.show();
 
                     } else {
-                        //TODO add reservations
                         AlertDialog.Builder builder = new AlertDialog.Builder(PreOrderActivity.this);
                         builder.setMessage("Reservation made successfully!")
                                 .setCancelable(false)
                                 .setPositiveButton("OK!", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
+                                        Intent i = getIntent();
+                                        final String uidRestaurant = i.getStringExtra("UID");
+                                        final String seat = i.getStringExtra("SEAT");
+                                        final String date = i.getStringExtra("DATE");
+                                        String ts = i.getStringExtra("TIMESLOT");
+                                        DatabaseReference mRefRez = FirebaseDatabase.getInstance().getReference("SeatPlans");
+
+                                        //Determine timeslot's numeric value
+                                        String[] temp = ts.split("-");
+                                        String[] temp2 = temp[0].split(":");
+                                        final int timeSlot = ((Integer.parseInt(temp2[0]) * 60 ) + Integer.parseInt(temp2[1]));
+
+                                        //Make timeslot reserved
+                                        mRefRez.child(uidRestaurant).child(seat).child(date).child(String.valueOf(timeSlot)).child("reserved").setValue("true");
+
+                                        final DatabaseReference mCustomer = FirebaseDatabase.getInstance().getReference("Customers").child(user.getUid());
+                                        final DatabaseReference mRestaurant = FirebaseDatabase.getInstance().getReference("Restaurants").child(uidRestaurant);
+                                        final DatabaseReference mReservation = FirebaseDatabase.getInstance().getReference("Reservations").child("CurrentReservations");
+
+                                        final String rezID = mReservation.push().getKey();
+
+                                        mRestaurant.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                final String restaurantName = dataSnapshot.child("name").getValue().toString();
+                                                final String restaurantPhone = dataSnapshot.child("phone").getValue().toString();
+
+                                                mCustomer.addValueEventListener(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                        String cusName = dataSnapshot.child("name").getValue().toString();
+                                                        String cusPhone = dataSnapshot.child("phone").getValue().toString();
+
+                                                        Reservation reservation = new Reservation( rezID, user.getUid(), uidRestaurant, cusName, restaurantName,
+                                                                cusPhone, restaurantPhone, "Pre-order cost", date, String.valueOf(timeSlot),
+                                                                String.valueOf(priceTotal), seat );
+                                                        mReservation.child(rezID).setValue(reservation);
+                                                        String preOrderText = "";
+                                                        for (int i = 0; i < preOrder.size(); i++){
+                                                            preOrderText += preOrder.get(i) + "\n";
+                                                        }
+                                                        mReservation.child(rezID).child("preOrderText").setValue(preOrderText);
+                                                        mCustomer.child("reservations").child(rezID).setValue(rezID);
+                                                        mRestaurant.child("reservations").child(rezID).setValue(rezID);
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                    }
+                                                });
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                        startActivity(new Intent(PreOrderActivity.this, MainActivity.class));
+                                        finish();
+
+                                        System.out.println("MONEY ON ACCOUUUUUUUNT " + moneyOnAccount);
+                                        System.out.println("PRICE TOTALLLLLLLLLLLLL " + priceTotal);
                                         double remainingMoney = moneyOnAccount - priceTotal;
+                                        System.out.println("REMAINIIIIIIIIIIIIIIIING "  + remainingMoney);
                                         mRefUser.child(user.getUid()).child("money").setValue(String.valueOf(remainingMoney));
-                                        startActivity(new Intent(PreOrderActivity.this, CustomerProfile.class));
+                                        startActivity(new Intent(PreOrderActivity.this, MainActivity.class));
                                         finish();
                                     }
                                 });

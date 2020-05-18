@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,6 +38,7 @@ public class ChangeFoodActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_change_food);
 
         //Initialization
@@ -74,7 +76,7 @@ public class ChangeFoodActivity extends AppCompatActivity {
         //Get data from previous activity
         Intent intent = getIntent();
         String name = intent.getStringExtra("NAME");
-        nameTV.setText(name);
+        nameTV.setText("Edit: " + name);
 
         //Methods called
         saveChangesAction();
@@ -121,7 +123,7 @@ public class ChangeFoodActivity extends AppCompatActivity {
                                    .child("price").setValue(priceUpdate);
                            k++;
                         }
-                        startActivity(new Intent(ChangeFoodActivity.this, RestaurantProfile.class));
+                        startActivity(new Intent(ChangeFoodActivity.this, ChangeMenuActivity.class));
                         finish();
                     }
 

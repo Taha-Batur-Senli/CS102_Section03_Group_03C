@@ -20,6 +20,7 @@ We spotted a bug when trying to add more than one food to menu. We were not stor
 As we store the restaurant in our database. Problems started to occur. The registers became inconsistent(Sometimes it authenticated the user, sometimes it did not) I  realized that as we did the same thing when storing food. We did not created restaurant as an object. So we were storing all of restaurant's custom fields individually. This was a lot of unnecessary code and also caused the firebase to crush. So Ege and I wrote a basic restaurant class with properties and set get methods. And it started to work properly.
 ### ~ 13 May 2020 ~
 I can not run the app because my phones sdkVersion can not match with the new sdk version( a new method and libraries that we added forced it to update the sdk version). 
-
+### ~ 17 May 2020 ~
+I have been working on to fix the sdkVersion problems for few days but unfortunately i have gotten to a point that the only point to fix this problem is changing my phone. I added search view that helps user to find the restaurant that he/she wants. It searches through chars and lists the restaurants that have the chars that user typed. Also user still can press on it to view the restaurant's homepage. I searched to find how to add icons to app. I came up with one logo and added it to our project.
 
 ****

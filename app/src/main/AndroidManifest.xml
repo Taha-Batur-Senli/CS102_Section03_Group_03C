@@ -12,9 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RateReservation"></activity>
-        <activity android:name=".RestaurantReservationsActivity" />
-        <activity android:name=".Genres" />
+        <activity android:name=".SignUpAsRestaurantP2"></activity>
+        <activity android:name=".BestRestaurantsDisplay" />
+        <activity android:name=".PromotionsPOVCustomer" />
+        <activity android:name=".GenreSpecialRes" />
+        <activity android:name=".HowToMakeReservation" />
         <activity android:name=".AnimationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".HowToUseApp" />
         <activity android:name=".MainActivity" />
         <activity android:name=".UploadPicture" />
         <activity android:name=".PreOrderActivity" />
@@ -45,8 +48,12 @@
         <activity android:name=".HelpRestaurant" />
         <activity android:name=".CustomerProfile" />
         <activity android:name=".SignUpAsCustomerActivity" />
+        <activity android:name=".EasterEggPage" />
+        <activity android:name=".RateReservation" />
+        <activity android:name=".ShowCurrentReservation" />
         <activity android:name=".RestaurantProfile" />
         <activity android:name=".SignUpAsRestaurantActivity" />
+        <activity android:name=".RestaurantReservationsActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LogInActivity">
             <intent-filter>
@@ -55,6 +62,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".Genres" />
     </application>
 
 </manifest>

@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_customer_my_account);
 
         //Initialize
@@ -65,8 +67,8 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
                 final String rankingString = dataSnapshot.child(user.getUid()).child("ranking").getValue(String.class);
                 final String emailString = user.getEmail();
 
-                name.setText( nameString );
-                money.setText( "My Money: " + moneyString );
+                name.setText( "Name: " + nameString );
+                money.setText( "My Money: " + moneyString + " g3Coins" );
                 points.setText(  "My Reservation Points: " + pointsString );
                 phone.setText( "GSM: " + phoneString);
                 email.setText("Email: " + emailString);
@@ -87,7 +89,6 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustomerMyAccountActivity.this, AddMoneyActivity.class));
-                finish();
             }
         });
 
@@ -98,7 +99,6 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustomerMyAccountActivity.this, EditCustomerAccountActivity.class));
-                finish();
 
             }
         });

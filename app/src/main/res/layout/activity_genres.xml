@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/pizza_cardview"
+            android:id="@+id/pizza_cardview2"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
@@ -67,6 +67,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/steakCardView2"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
@@ -110,6 +111,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/dessertCardView2"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
@@ -141,6 +143,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/chickenCardView2"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
@@ -184,6 +187,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/sushiCardView2"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"
@@ -216,6 +220,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/hamburgerCardView2"
             android:layout_width="0dp"
             android:layout_height="150dp"
             android:layout_margin="10dp"

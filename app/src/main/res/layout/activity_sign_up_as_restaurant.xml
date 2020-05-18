@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpAsRestaurantActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    tools:context=".SignUpAsRestaurantActivity">
 
     <TextView
         android:id="@+id/textView14"
@@ -51,21 +51,6 @@
         app:layout_constraintVertical_bias="0.172"
         app:srcCompat="@drawable/logo" />
 
-    <Button
-        android:id="@+id/btnRegisterSignUpAsRest"
-        android:layout_width="159dp"
-        android:layout_height="51dp"
-        android:background="@drawable/button"
-        android:fontFamily="@font/roboto_light"
-        android:text="Sign up"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.814" />
 
     <EditText
         android:id="@+id/etPhoneResSignUp"
@@ -139,54 +124,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.519" />
 
-    <Spinner
-        android:id="@+id/spinnerGenre"
-        android:layout_width="210dp"
-        android:layout_height="41dp"
-        android:background="@drawable/button"
-        android:entries="@array/genres"
+    <Button
+        android:id="@+id/btnNextSignUpAsRest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.681" />
+        app:layout_constraintVertical_bias="0.706" />
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="12dp"
-        android:layout_height="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/spinnerGenre"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerGenre"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="@+id/spinnerGenre"
-        app:layout_constraintTop_toTopOf="@+id/spinnerGenre"
-        app:layout_constraintVertical_bias="0.55"
-        app:srcCompat="@drawable/polygon" />
-
-    <ProgressBar
-        android:id="@+id/progressBarResSignUp"
-        style="?android:attr/progressBarStyle"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/textView14"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etNumOfTablesSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint=" Table Number"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegisterSignUpAsRest"
-        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -113,6 +113,25 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                 final String resPhone = dataSnapshot.child("phone").getValue(String.class);
                 final String resAdress = dataSnapshot.child("adress").getValue(String.class);
 
+                if( resRating >= 4)
+                {
+                    tvRating.setBackgroundColor( getResources().getColor(R.color.green));
+                }
+                else if( resRating >= 3)
+                {
+                    tvRating.setBackgroundColor( getResources().getColor(R.color.light_green));
+                }
+                else if ( resRating >= 2)
+                {
+                    tvRating.setBackgroundColor( getResources().getColor(R.color.orange));
+                }
+                else if ( resRating >= 1)
+                {
+                    tvRating.setBackgroundColor( getResources().getColor(R.color.light_red));
+                }
+                else
+                    tvRating.setBackgroundColor( getResources().getColor(R.color.red));
+
                 tvName.setText("" + resName );
                 tvRating.setText("" + resRating + "/5");
                 tvGenre.setText("Genre: " + resGenre );

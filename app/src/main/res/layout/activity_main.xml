@@ -90,6 +90,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/steakCardView"
                         android:layout_width="0dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
@@ -134,6 +135,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/sushiCardView"
                         android:layout_width="0dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
@@ -166,6 +168,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/hamburgerCardView"
                         android:layout_width="0dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
@@ -208,6 +211,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/dessertCardView"
                         android:layout_width="0dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
@@ -239,6 +243,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/chickenCardView"
                         android:layout_width="0dp"
                         android:layout_height="150dp"
                         android:layout_margin="10dp"
@@ -349,7 +354,7 @@
                     app:navigationIcon="@drawable/menu" /> -->
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btnBestRestaurants"
                     android:layout_width="175dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="200dp"
@@ -367,7 +372,7 @@
                     app:layout_constraintVertical_bias="0.55" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/btnPromotions"
                     android:layout_width="175dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="200dp"
@@ -390,11 +395,11 @@
                     android:layout_height="20dp"
                     android:layout_marginStart="7dp"
                     android:foregroundGravity="center"
-                    app:layout_constraintBottom_toBottomOf="@+id/button"
-                    app:layout_constraintEnd_toEndOf="@+id/button"
+                    app:layout_constraintBottom_toBottomOf="@+id/btnBestRestaurants"
+                    app:layout_constraintEnd_toEndOf="@+id/btnBestRestaurants"
                     app:layout_constraintHorizontal_bias="0.058"
-                    app:layout_constraintStart_toStartOf="@+id/button"
-                    app:layout_constraintTop_toTopOf="@+id/button"
+                    app:layout_constraintStart_toStartOf="@+id/btnBestRestaurants"
+                    app:layout_constraintTop_toTopOf="@+id/btnBestRestaurants"
                     app:layout_constraintVertical_bias="0.5"
                     app:srcCompat="@drawable/thumbs_up" />
 
@@ -403,11 +408,11 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="4dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/button2"
-                    app:layout_constraintEnd_toEndOf="@+id/button2"
+                    app:layout_constraintBottom_toBottomOf="@+id/btnPromotions"
+                    app:layout_constraintEnd_toEndOf="@+id/btnPromotions"
                     app:layout_constraintHorizontal_bias="0.096"
-                    app:layout_constraintStart_toStartOf="@+id/button2"
-                    app:layout_constraintTop_toTopOf="@+id/button2"
+                    app:layout_constraintStart_toStartOf="@+id/btnPromotions"
+                    app:layout_constraintTop_toTopOf="@+id/btnPromotions"
                     app:srcCompat="@drawable/trending" />
 
                 <ImageView

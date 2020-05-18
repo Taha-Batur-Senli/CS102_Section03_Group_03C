@@ -6,12 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,6 +41,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_all_restaurants_display);
 
         //Initialize
@@ -51,11 +55,17 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         searchView = (SearchView) findViewById(R.id.searchView);
 
+        int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = searchView.findViewById(id);
+        textView.setTextColor(Color.WHITE);
+
+
         //Methods called
         displayAllRestaurants();
         listOnLongClickAction();
         displayRestProfileAction();
         searchRestaurant();
+        searchView.clearFocus();
 
 
     }

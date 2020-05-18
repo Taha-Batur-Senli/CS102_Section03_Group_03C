@@ -5,7 +5,7 @@ This is a class to create reservation objects easily.
  */
 public class Reservation {
     String reservID, cusID, restaurantID, restaurantName, cusName, restaurantPhone, cusPhone,
-            preOrder, date, timeSlot, totalPrice, seat;
+            preOrder, date, timeSlot, totalPrice, seat, preOrderTxt;
     boolean hasRated;
     public Reservation() { }
 
@@ -25,6 +25,7 @@ public class Reservation {
         this.totalPrice = totalPrice;
         this.seat = seat;
         hasRated = false;
+        preOrderTxt = "";
     }
 
     // GET & SET METHODS
@@ -122,5 +123,21 @@ public class Reservation {
 
     public void setSeat(String seat) {
         this.seat = seat;
+    }
+
+    public String getPreOrderTxt() {
+        return preOrderTxt;
+    }
+
+    public void setPreOrderTxt(String preOrderTxt) {
+        this.preOrderTxt = preOrderTxt;
+    }
+
+    public boolean isHasRated() {
+        return hasRated;
+    }
+
+    public void setHasRated(boolean hasRated) {
+        this.hasRated = hasRated;
     }
 }

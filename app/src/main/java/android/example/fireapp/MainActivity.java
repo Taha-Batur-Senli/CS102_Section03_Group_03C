@@ -3,17 +3,16 @@ package android.example.fireapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -40,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DatabaseReference mRef;
     FirebaseDatabase database;
     FirebaseAuth mAuth;
+    CardView steak, sushi, hamburger, chicken, dessert, pizza;
+    Button promotions, bestRestaurants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,88 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         search = findViewById(R.id.search);
         mViewFlipper = findViewById(R.id.view_flipper);
         cusNameMenu = findViewById(R.id.nav_customer_name);
+        promotions = (Button)findViewById(R.id.btnPromotions);
+        bestRestaurants = (Button)findViewById(R.id.btnBestRestaurants);
 
+        steak = (CardView) findViewById(R.id.steakCardView);
+        sushi = (CardView) findViewById(R.id.sushiCardView);
+        pizza = (CardView) findViewById(R.id.pizza_cardview);
+        hamburger = (CardView) findViewById(R.id.hamburgerCardView);
+        dessert = (CardView) findViewById(R.id.dessertCardView);
+        chicken = (CardView) findViewById(R.id.chickenCardView);
+
+        //On click listeners of card views & buttons
+        steak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenreSpecialRes.class);
+                i.putExtra("GENRE", "Steak");
+                startActivity(i);
+
+            }
+        });
+
+        pizza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenreSpecialRes.class);
+                i.putExtra("GENRE", "Pizza");
+                startActivity(i);
+
+            }
+        });
+
+        chicken.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenreSpecialRes.class);
+                i.putExtra("GENRE", "Chicken");
+                startActivity(i);
+            }
+        });
+
+        dessert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenreSpecialRes.class);
+                i.putExtra("GENRE", "Dessert");
+                startActivity(i);
+
+            }
+        });
+
+        hamburger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenreSpecialRes.class);
+                i.putExtra("GENRE", "Hamburger");
+                startActivity(i);
+            }
+        });
+
+        sushi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, GenreSpecialRes.class);
+                i.putExtra("GENRE", "Sushi");
+                startActivity(i);
+
+            }
+        });
+
+        promotions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, PromotionsPOVCustomer.class));
+            }
+        });
+
+        bestRestaurants.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent( MainActivity.this, BestRestaurantsDisplay.class));
+            }
+        });
         //setSupportActionBar(toolbar);
         //toolbar.setTitle("");
 
@@ -153,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_log_out:
                 FirebaseAuth.getInstance().signOut();
                 startActivity( new Intent(MainActivity.this, LogInActivity.class));
+                finish();
                 break;
         }
 

@@ -8,6 +8,33 @@
     android:background="@drawable/background2"
     tools:context=".ChangeMenuActivity">
 
+    <ImageView
+        android:id="@+id/imageView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/lvMenuRes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/line_155" />
+
+    <ImageView
+        android:id="@+id/imageView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvMenuRes"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/line_155" />
+
     <TextView
         android:id="@+id/textView7"
         android:layout_width="253dp"
@@ -48,14 +75,16 @@
 
     <ListView
         android:id="@+id/lvMenuRes"
-        android:layout_width="415dp"
-        android:layout_height="382dp"
+        android:layout_width="409dp"
+        android:layout_height="399dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.056" />
+        app:layout_constraintVertical_bias="0.148">
+
+    </ListView>
 
     <ImageView
         android:id="@+id/add_new_dish"
@@ -64,56 +93,26 @@
         android:layout_marginEnd="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintHorizontal_bias="0.682"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lvMenuRes"
-        app:layout_constraintVertical_bias="0.111"
+        app:layout_constraintVertical_bias="0.076"
         app:srcCompat="@drawable/add_button" />
-
-    <ImageView
-        android:id="@+id/remove_dish"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvMenuRes"
-        app:layout_constraintVertical_bias="0.111"
-        app:srcCompat="@drawable/remove" />
 
     <TextView
         android:id="@+id/textView35"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="162dp"
+        android:clickable="true"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
         android:text="Add New Dish"
         android:textColor="@color/white"
         android:textSize="14sp"
-        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_new_dish"
-        app:layout_constraintVertical_bias="0.042" />
-
-    <TextView
-        android:id="@+id/textView36"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_light"
-        android:gravity="center"
-        android:text="Remove Dish"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.201"
-        app:layout_constraintStart_toEndOf="@+id/textView35"
-        app:layout_constraintTop_toBottomOf="@+id/remove_dish"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintVertical_bias="0.087" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,7 +35,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
     //Properties
     ImageView removeDish, addDish;
     ListView lvMenuRes;
-    ArrayAdapter myAdapter;
+    MyCustomAdapter myAdapter;
     ArrayList<String> menu = new ArrayList<>();
 
     FirebaseDatabase database;
@@ -55,13 +55,12 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         //Initialize
         lvMenuRes = (ListView)findViewById(R.id.lvMenuRes);
 
-        myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu);
+        myAdapter = new MyCustomAdapter(menu, this);
         lvMenuRes.setAdapter(myAdapter);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference( "Restaurants");
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        removeDish = findViewById(R.id.remove_dish);
         addDish = findViewById(R.id.add_new_dish);
 
         //Display Menu
@@ -73,9 +72,8 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
                 while (items.hasNext()) {
                     DataSnapshot item = items.next();
                     String name;
-                    name = "" + item.child("name").getValue().toString() + ": "
-                            + item.child("ingredients").getValue().toString() +
-                            "___" + item.child("price").getValue().toString() + "TL";
+                    name = "" + item.child("name").getValue().toString() + ", " + item.child("price").getValue().toString()
+                            + "$\n" + item.child("ingredients").getValue().toString();
 
                     menu.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -96,7 +94,6 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         });
 
         //Methods called
-        editFoodAction();
         listOnLongClickAction();
     }
 
@@ -104,23 +101,6 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
     This method makes each dish clickable. When restaurant owners click to a dish on their menu,
     they are directed to a page in which they can edit their dish's name, şngredients and price.
      */
-    private void editFoodAction() {
-        lvMenuRes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //gets the name of the dish
-                String item = menu.get(position);
-                int indexOfName = item.indexOf(":");
-                String name = item.substring(0,indexOfName);
-
-                //passes the name of te food to the next activity
-                Intent intent = new Intent(ChangeMenuActivity.this, ChangeFoodActivity.class);
-                intent.putExtra("NAME", name);
-                startActivity( intent);
-                finish();
-            }
-        });
-    }
 
     public void addFragment()
     {
@@ -142,6 +122,9 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         }
         else {
             super.onBackPressed();
+            //TODO crash yiyoruz
+            //startActivity(new Intent(ChangeMenuActivity.this, RestaurantProfile.class));
+            //finish();
         }
     }
 
@@ -172,7 +155,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String food = menu.get(position);
-                                int index = food.indexOf(":");
+                                int index = food.indexOf(",");
                                 String foodName = food.substring(0, index);
                                 final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Restaurants");
                                 mRef.child(user.getUid()).child("menu").orderByChild("name").equalTo(foodName).addValueEventListener(new ValueEventListener() {
