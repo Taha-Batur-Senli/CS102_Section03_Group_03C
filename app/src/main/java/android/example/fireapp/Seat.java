@@ -21,8 +21,8 @@ public class Seat extends HashMap<String, Object>{
 
     private void createWeeklySeatPlan1( String workingHours ) {
         String[] temp = workingHours.split("-");
-        String[] temp2 = r.getOpeningHour().split(":");
-        String[] temp3 = r.getClosingHour().split(":");
+        String[] temp2 = r.getOpeningTime().split(":");
+        String[] temp3 = r.getClosingTime().split(":");
         LocalTime startingHour = LocalTime.of(Integer.parseInt(temp2[0]), Integer.parseInt(temp2[1]));
         LocalTime closingHour = LocalTime.of(Integer.parseInt(temp3[0]), Integer.parseInt(temp3[1]));
 
@@ -33,7 +33,7 @@ public class Seat extends HashMap<String, Object>{
     private HashMap<String, SeatCalendar> createSeatWeeklyPlan2( LocalTime openingHour, LocalTime closingHour){
 
         HashMap<String, SeatCalendar> newSwp = new HashMap<String, SeatCalendar>();
-        LocalDate date = LocalDate.of(2020, 5, 17);
+        LocalDate date = LocalDate.now();
         for ( int i = 0; i < 7; i++ ){
             if( i > 0)
                 date = date.plusDays(1);

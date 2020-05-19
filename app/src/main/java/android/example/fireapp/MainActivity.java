@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                final String userName = dataSnapshot.child(user.getUid()).child("name").getValue(String.class);
+                final String userName = (String)dataSnapshot.child(user.getUid()).child("name").getValue();
                 cusNameTV.setText(("Welcome,\n" + userName + "!").toUpperCase());
                 if (userName.toLowerCase().equals("david"))
                     cusNameTV.setText("Welcome David, thank you for everything sir :)");

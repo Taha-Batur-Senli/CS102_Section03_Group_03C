@@ -106,7 +106,6 @@ public class SignUpAsRestaurantP2 extends AppCompatActivity {
         final String minPrice = etMinPrice.getText().toString();
         final String genre = tvGenre.getText().toString();
 
-        //BERKAY BUNLARI KULLANARAK WORKING HOURSLARI SET EDEBİLİRSİN
         final String startH = etStartH.getText().toString();
         final String startM = etStartM.getText().toString();
         final String finishH = etFinishH.getText().toString();
@@ -150,7 +149,7 @@ public class SignUpAsRestaurantP2 extends AppCompatActivity {
                     String genre = tvGenre.getText().toString();
 
                     //Setting Firebase realtime database
-                    Restaurant r = new Restaurant(name, email, genre, phone, uid, numOfTables, Integer.parseInt(maxDuration), Integer.parseInt(minPrice));
+                    Restaurant r = new Restaurant(name, email, genre, phone, uid, numOfTables, Integer.parseInt(maxDuration), Integer.parseInt(minPrice), startH, startM, finishH, finishM);
                     mRef.child(uid).setValue(r);
                     //mRef2.child(uid).setValue(new Restaurant(name, email, genre, phone, uid));
 
