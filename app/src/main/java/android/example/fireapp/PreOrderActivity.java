@@ -118,12 +118,12 @@ public class PreOrderActivity extends AppCompatActivity {
 
 
         //Set requires text views
-        minPricetv.setText(minPrice + " TL left to satisfy the minimum limit to pre-order.");
+        minPricetv.setText(minPrice + " g3Coins left to satisfy the minimum limit to pre-order.");
         mRefUser.child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String money = dataSnapshot.child("money").getValue().toString();
-                yourMoneyTv.setText("You currently have " + money + "g3Coins");
+                yourMoneyTv.setText("You currently have \n" + money + " g3Coins");
             }
 
             @Override
@@ -149,7 +149,7 @@ public class PreOrderActivity extends AppCompatActivity {
                     String name;
                     name = "" + item.child("name").getValue().toString() + ": "
                             + item.child("ingredients").getValue().toString() +
-                            " - " + item.child("price").getValue().toString() + "TL";
+                            " - " + item.child("price").getValue().toString() + "g3Coins";
 
                     menu.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -177,7 +177,7 @@ public class PreOrderActivity extends AppCompatActivity {
                 //Get price
                 String item = menu.get(position);
                 int index = item.indexOf(" - ");
-                String price = item.substring((index + 3), (item.length()-2) );
+                String price = item.substring((index + 3), (item.length()-7) );
 
                 double minPriceLimit = Double.parseDouble(minPrice);
                 double priceOfDish = Double.parseDouble(price);
@@ -216,7 +216,7 @@ public class PreOrderActivity extends AppCompatActivity {
                                 //Get dish's price
                                 String item = preOrder.get(position);
                                 int index = item.indexOf(" - ");
-                                double price = Double.parseDouble(item.substring((index + 3), (item.length()-2) ));
+                                double price = Double.parseDouble(item.substring((index + 3), (item.length()-7) ));
 
                                 //get total price and reduce dish's price
                                 String total = totalTv.getText().toString();
@@ -263,7 +263,10 @@ public class PreOrderActivity extends AppCompatActivity {
                 } else {
                     //check if you have enough money
                     String money = yourMoneyTv.getText().toString();
-                    final double moneyOnAccount = Double.parseDouble(money.substring(9, money.length() - 2));
+                    int startOfMoney = money.indexOf("\n") + 1;
+                    int endOfMoney = money.indexOf("g3Coins") - 1;
+                    final double moneyOnAccount = Double.parseDouble(money.substring(startOfMoney, endOfMoney));
+                    System.out.println("YOU HAVE TOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO MONEY " + moneyOnAccount);
                     final double priceTotal = Double.parseDouble(totalTv.getText().toString());
                     if ( moneyOnAccount < priceTotal) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(PreOrderActivity.this);

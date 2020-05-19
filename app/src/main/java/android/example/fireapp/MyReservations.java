@@ -1,8 +1,10 @@
 package android.example.fireapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -60,6 +62,7 @@ public class MyReservations extends AppCompatActivity {
         displayPastReservations();
         ratePastReservations();
         showCurrentReservation();
+        deleteCurrentReservations();
     }
 
     //METHODS
@@ -208,6 +211,7 @@ public class MyReservations extends AppCompatActivity {
                     String resName = item.child("restaurantName").getValue().toString();
                     //String cusName = item.child("cusName").getValue().toString();
                     String resPhone = item.child("restaurantPhone").getValue().toString();
+                    String rezID = item.child("reservID").getValue().toString();
                     //String cusPhone = item.child("cusPhone").getValue().toString();
                     String proOrder = item.child("preOrder").getValue().toString();
                     String preOrderTxt = (String)item.child("preOrderText").getValue();
@@ -229,6 +233,7 @@ public class MyReservations extends AppCompatActivity {
                     String toString = resName + "\n" + date + " - " +  timeSlotString + " - " + table +  "\n"+
                             proOrder + ": " + totalPrice + " g3Coins\nRestaurant info: +90 " + resPhone;
                     toString += "\n\n\nPre-order: \n" + preOrderTxt;
+                    toString += "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nID:" + rezID + "   ";
                     currentReservations.add(toString);
                     myAdapter.notifyDataSetChanged();
                     myAdapter2.notifyDataSetChanged();
@@ -238,6 +243,41 @@ public class MyReservations extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+    }
+
+    private void deleteCurrentReservations(){
+        lvCurrentReservations.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                final String rezTxt = currentReservations.get(position);
+
+                new AlertDialog.Builder(MyReservations.this)
+                        .setIcon(android.R.drawable.ic_input_add)
+                        .setTitle("Cancel Reservation!")
+                        .setMessage("Are you sure to cancel this reservation?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                int indexOfIDStart = rezTxt.indexOf("ID:") + 3;
+                                int indexOfIDEnd  = rezTxt.indexOf("   ", indexOfIDStart);
+                                final String rezID = rezTxt.substring(indexOfIDStart, indexOfIDEnd);
+
+                                System.out.println("BANA BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK" + rezID);
+                                DatabaseReference deleteRez = FirebaseDatabase.getInstance().getReference("Reservations").
+                                        child("CurrentReservations");
+                                deleteRez.child(rezID).removeValue();
+                                myAdapter.notifyDataSetChanged();
+
+
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+
+                return true;
             }
         });
     }

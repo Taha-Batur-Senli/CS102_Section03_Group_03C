@@ -58,7 +58,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.521" />
+        app:layout_constraintVertical_bias="0.536" />
 
     <TextView
         android:id="@+id/txtTotal"
@@ -77,8 +77,8 @@
 
     <TextView
         android:id="@+id/txtYourMoney"
-        android:layout_width="387dp"
-        android:layout_height="42dp"
+        android:layout_width="384dp"
+        android:layout_height="72dp"
         android:layout_marginBottom="146dp"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
@@ -130,10 +130,10 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.694"
+        app:layout_constraintHorizontal_bias="0.73"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.879" />
+        app:layout_constraintVertical_bias="0.878" />
 
     <TextView
         android:id="@+id/textView28"
@@ -169,14 +169,14 @@
 
     <ListView
         android:id="@+id/lvMenuResPreOrder"
-        android:layout_width="400dp"
+        android:layout_width="384dp"
         android:layout_height="202dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.407"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.298" />
+        app:layout_constraintVertical_bias="0.332" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
