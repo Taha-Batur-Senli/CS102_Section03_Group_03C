@@ -7,11 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Application;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -35,12 +38,16 @@ import java.util.Iterator;
  */
 public class CustomerPOVRestaurant extends AppCompatActivity {
     //Properities
+    ImageView logo;
     TextView tvName, tvRating, tvDescription, tvMinPriceToPreOrder;
     DatabaseReference mRefRes;
-    Button showMenu, makeReservation, showPictures;
+    Button showMenu, makeReservation, showPictures,showSeatingPlan;
     ListView listView;
     ArrayAdapter myAdapter;
     ArrayList<String> menu = new ArrayList<String>();
+    private Uri uri;
+    private Upload upload;
+
 
 
     @Override
@@ -51,6 +58,8 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         setContentView(R.layout.activity_customer_p_o_v_restaurant);
 
         //Initialize
+        logo = findViewById(R.id.imageView43);
+        showSeatingPlan = findViewById(R.id.show_seating_plan);
         showPictures = findViewById(R.id.show_pictures);
         tvName = (TextView)findViewById(R.id.txtNamePOV);
         tvRating = (TextView)findViewById(R.id.txtRatingPOV);
@@ -76,7 +85,34 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         Intent intent = getIntent();
         final String uid = intent.getStringExtra("UID");
 
+     /*  mRefRes.child(uid).child("Pictures").child("logo").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    upload = snapshot.getValue(Upload.class);
+                }
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        Picasso.with(CustomerPOVRestaurant.this).load(upload.getmImageURL()).into(logo);
+
+*/
+
+        //adding clickListener to show seat plan pic button.
+        showSeatingPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustomerPOVRestaurant.this,SeatingPlanPicsRecycler.class);
+                intent.putExtra("restaurant_id",uid);
+                startActivity(intent);
+            }
+        });
         //adding clicKlistener to show pic button as it has to show new page
         showPictures.setOnClickListener(new View.OnClickListener() {
             @Override

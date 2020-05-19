@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ImageRecyclerCustomer"></activity>
+        <activity android:name=".UploadLogo"></activity>
+        <activity android:name=".SeatingPlanPicsRecycler" />
+        <activity android:name=".UploadSeatingPlan" />
+        <activity android:name=".ChooseUploadType" />
+        <activity android:name=".ImageRecyclerCustomer" />
         <activity android:name=".ImageRecycler" />
         <activity android:name=".UploadImage" />
         <activity android:name=".SignUpAsRestaurantP2" />

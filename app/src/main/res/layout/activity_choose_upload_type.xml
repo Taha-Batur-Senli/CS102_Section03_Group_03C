@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background2"
+    tools:context=".ChooseUploadType">
+
+    <ImageView
+        android:id="@+id/imageView60"
+        android:layout_width="111dp"
+        android:layout_height="102dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/upload_gallery"
+        android:layout_width="244dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
+        android:text="Upload to gallery"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView60" />
+
+    <Button
+        android:id="@+id/upload_logo"
+        android:layout_width="244dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="28dp"
+        android:text="Upload to Logo"
+        android:textAllCaps="false"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upload_gallery" />
+
+    <Button
+        android:id="@+id/upload_seating_plan"
+        android:layout_width="244dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="40dp"
+        android:textAllCaps="false"
+        android:text="Upload Seating Plan"
+        android:background="@drawable/button"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upload_logo" />
+
+    <ImageView
+        android:id="@+id/imageView61"
+        android:layout_width="296dp"
+        android:layout_height="5dp"
+        android:layout_marginEnd="56dp"
+        app:layout_constraintBottom_toTopOf="@+id/upload_gallery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView60"
+        app:layout_constraintVertical_bias="0.524"
+        app:srcCompat="@drawable/line" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="308dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="56dp"
+        android:text="Choose Uploading Place"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView61"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView60"
+        app:layout_constraintVertical_bias="1.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

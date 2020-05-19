@@ -125,7 +125,7 @@ public class UploadImage extends AppCompatActivity {
 
                             String uploadId = databaseReference.push().getKey();
                             assert uploadId != null;
-                            databaseReference.child(user.getUid()).child("Pictures").child(uploadId).setValue(upload);
+                            databaseReference.child(user.getUid()).child("Pictures").child("Gallery").child(uploadId).setValue(upload);
                             Toast.makeText(UploadImage.this, "UPLOADED", Toast.LENGTH_SHORT).show();
                         }
                     })

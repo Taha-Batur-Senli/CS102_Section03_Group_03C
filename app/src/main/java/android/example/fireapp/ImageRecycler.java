@@ -45,7 +45,7 @@ public class ImageRecycler extends AppCompatActivity {
         user = mAuth.getCurrentUser();
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Restaurants");
-        databaseReference.child(user.getUid()).child("Pictures").addValueEventListener(new ValueEventListener() {
+        databaseReference.child(user.getUid()).child("Pictures").child("Gallery").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) { //dataSnapshot is a object that store datas like arraylists.
                 for( DataSnapshot snapshot : dataSnapshot.getChildren()){ //checking the every object of data
