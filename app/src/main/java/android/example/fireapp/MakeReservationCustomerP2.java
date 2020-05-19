@@ -83,7 +83,8 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                                 item1.child("endTime").child("minute").getValue().toString();
                         //String timeSlot = item1.getKey();*/
                         String timeSlot = item1.child("timeSlot").getValue().toString();
-
+                        String[] temp = timeSlot.split(" - ");
+                        timeSlot = temp[0];
                         allTimes.add(timeSlot);
                         myAdapter.notifyDataSetChanged();
                     }
@@ -144,8 +145,8 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
 
                                 //Determine timeslots numeric value
                                 String ts = allTimes.get(position);
-                                String[] temp = ts.split(" - ");
-                                String[] temp2 = temp[0].split(":");
+//                                String[] temp = ts.split(" - ");
+                                String[] temp2 = ts.split(":");
                                 final int timeSlot = ((Integer.parseInt(temp2[0]) * 60 ) + Integer.parseInt(temp2[1]));
 
                                 // setting related timeslots reserved

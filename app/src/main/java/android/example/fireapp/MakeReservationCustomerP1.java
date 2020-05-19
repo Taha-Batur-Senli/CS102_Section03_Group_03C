@@ -174,7 +174,7 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String seatName = allSeats.get(position);
-                String seat  = "seat" + seatName.charAt(seatName.length()-1);
+                String seat  = "seat" + seatName.substring(6);
 
                 String date = year + "-" + (month + 1 )+ "-"  + dayOfMonth ;
                 if ( (month + 1) < 10 )
