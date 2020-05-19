@@ -12,33 +12,6 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/txtEditRes11"
-            android:layout_width="238dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/roboto_light"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calendarView" />
-
-        <ImageView
-            android:id="@+id/imageView59"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/lvSeatSelection"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtEditRes11"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/line_28" />
-
-        <TextView
             android:id="@+id/txtEditRes10"
             android:layout_width="238dp"
             android:layout_height="45dp"
@@ -119,15 +92,58 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/txtEditRes11"
+            android:layout_width="238dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="68dp"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+        <ImageView
+            android:id="@+id/imageView59"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/lvSeatSelection"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtEditRes11"
+            app:srcCompat="@drawable/line_28" />
+
         <ListView
             android:id="@+id/lvSeatSelection"
             android:layout_width="412dp"
             android:layout_height="325dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="120dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+        <Button
+            android:id="@+id/tables_show"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/button"
+            android:fontFamily="@font/roboto_light"
+            android:text="Show Tables"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -209,32 +209,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView42" />
 
-    <Button
-        android:id="@+id/show_pictures"
-        android:layout_width="68dp"
-        android:layout_height="41dp"
-        android:layout_marginEnd="56dp"
-        android:background="@drawable/button"
-        android:text="Show"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/textView41"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView41"
-        app:layout_constraintTop_toBottomOf="@+id/txtDescriptionPOV"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/show_seating_plan"
-        android:layout_width="97dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Show Seating Plan"
-        android:background="@drawable/button"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/textView41"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView43" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_customer_pics"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="389dp"
+        android:layout_height="702dp"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

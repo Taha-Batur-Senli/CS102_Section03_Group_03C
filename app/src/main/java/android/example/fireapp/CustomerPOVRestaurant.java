@@ -37,11 +37,11 @@ import java.util.Iterator;
  process by clicking to the related button.
  */
 public class CustomerPOVRestaurant extends AppCompatActivity {
-    //Properities
+    //Properties
     ImageView logo;
     TextView tvName, tvRating, tvDescription, tvMinPriceToPreOrder;
     DatabaseReference mRefRes;
-    Button showMenu, makeReservation, showPictures,showSeatingPlan;
+    Button showMenu, makeReservation;
     ListView listView;
     ArrayAdapter myAdapter;
     ArrayList<String> menu = new ArrayList<String>();
@@ -59,8 +59,6 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
 
         //Initialize
         logo = findViewById(R.id.imageView43);
-        showSeatingPlan = findViewById(R.id.show_seating_plan);
-        showPictures = findViewById(R.id.show_pictures);
         tvName = (TextView)findViewById(R.id.txtNamePOV);
         tvRating = (TextView)findViewById(R.id.txtRatingPOV);
         tvDescription = (TextView)findViewById(R.id.txtDescriptionPOV);
@@ -104,24 +102,6 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
 
 */
 
-        //adding clickListener to show seat plan pic button.
-        showSeatingPlan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CustomerPOVRestaurant.this,SeatingPlanPicsRecycler.class);
-                intent.putExtra("restaurant_id",uid);
-                startActivity(intent);
-            }
-        });
-        //adding clicKlistener to show pic button as it has to show new page
-        showPictures.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CustomerPOVRestaurant.this,ImageRecyclerCustomer.class);
-                intent.putExtra("restaurant_id",uid);
-                startActivity(intent);
-            }
-        });
         // updater
 
         mRefRes.child(uid).child("menu").addValueEventListener(new ValueEventListener() {

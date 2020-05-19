@@ -2,6 +2,8 @@ package android.example.fireapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +12,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 /*
 This class is the first page for reservation making process. Here, customers can see the available
@@ -44,22 +49,31 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
     DatabaseReference reference;
     TextView txtEditRes11;
     ImageView tableLine;
+    Button showTables;
+    String uidRestaurant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_make_reservation_customer_p1);
 
         //Initialize
+
         calendar = (CalendarView)findViewById(R.id.calendarView);
         lvTables = (ListView)findViewById(R.id.lvSeatSelection);
         txtEditRes11 = findViewById(R.id.txtEditRes11);
         tableLine = findViewById(R.id.imageView59);
+        showTables = findViewById(R.id.tables_show);
 
         myAdapter = new ArrayAdapter<>(this, R.layout.listrow, R.id.textView2, allSeats);
         lvTables.setAdapter(myAdapter);
-        reference = FirebaseDatabase.getInstance().getReference();
+
+        reference = FirebaseDatabase.getInstance().getReference("Restaurants");
+
+        Intent intent = getIntent();
+        uidRestaurant = intent.getStringExtra("UID");
 
         //Make previous dates unclickable
         calendar.setMinDate((new Date().getTime()));
@@ -101,9 +115,19 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
                 return true;
             }
         });
+
+        showTables.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MakeReservationCustomerP1.this, SeatingPlanPicsRecycler.class);
+                intent.putExtra("restaurant_id", uidRestaurant);
+                startActivity(intent);
+            }
+        });
     }
 
     //METHODS
+
 
 
 
@@ -113,10 +137,9 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
      */
     public void displaySeats( final int year, final int month, final int dayOfMonth){
         //get restaurants uid from previous class
-        Intent intent = getIntent();
-        String uidRestaurant = intent.getStringExtra("UID");
 
-        reference.child("Restaurants").child(uidRestaurant).child("seats").addValueEventListener(new ValueEventListener() {
+
+        reference.child(uidRestaurant).child("seats").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 allSeats.clear();
