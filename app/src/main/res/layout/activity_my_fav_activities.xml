@@ -23,6 +23,8 @@
         android:text="My Favourite Restaurants"
         android:textColor="@color/white"
         android:textSize="25sp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/lvMyFavRestaurants"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

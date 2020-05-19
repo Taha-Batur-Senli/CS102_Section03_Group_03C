@@ -12,7 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SignUpAsRestaurantP2"></activity>
+        <activity android:name=".UploadLogo"></activity>
+        <activity android:name=".SeatingPlanPicsRecycler" />
+        <activity android:name=".UploadSeatingPlan" />
+        <activity android:name=".ChooseUploadType" />
+        <activity android:name=".ImageRecyclerCustomer" />
+        <activity android:name=".ImageRecycler" />
+        <activity android:name=".UploadImage" />
+        <activity android:name=".SignUpAsRestaurantP2" />
         <activity android:name=".BestRestaurantsDisplay" />
         <activity android:name=".PromotionsPOVCustomer" />
         <activity android:name=".GenreSpecialRes" />
@@ -25,8 +32,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".HowToUseApp" />
+        <activity android:name=".HowToUseAppOwner" />
+        <activity android:name=".HowToDiscount" />
+        <activity android:name=".HowToMakeListing" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".UploadPicture" />
         <activity android:name=".PreOrderActivity" />
         <activity android:name=".MakeReservationCustomerP2" />
         <activity android:name=".MyReservations" />
@@ -62,6 +71,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Genres" />
+        <activity android:name=".HowToPreOrder" />
+        <activity android:name=".FAQ" />
     </application>
 
 </manifest>

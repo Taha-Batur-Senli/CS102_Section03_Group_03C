@@ -7,10 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Application;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,9 +23,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -33,9 +38,16 @@ import java.util.Iterator;
  */
 public class CustomerPOVRestaurant extends AppCompatActivity {
     //Properities
+    ImageView logo;
     TextView tvName, tvRating, tvDescription, tvMinPriceToPreOrder;
     DatabaseReference mRefRes;
-    Button showMenu, makeReservation;
+    Button showMenu, makeReservation, showPictures,showSeatingPlan;
+    ListView listView;
+    ArrayAdapter myAdapter;
+    ArrayList<String> menu = new ArrayList<String>();
+    private Uri uri;
+    private Upload upload;
+
 
 
     @Override
@@ -46,6 +58,9 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         setContentView(R.layout.activity_customer_p_o_v_restaurant);
 
         //Initialize
+        logo = findViewById(R.id.imageView43);
+        showSeatingPlan = findViewById(R.id.show_seating_plan);
+        showPictures = findViewById(R.id.show_pictures);
         tvName = (TextView)findViewById(R.id.txtNamePOV);
         tvRating = (TextView)findViewById(R.id.txtRatingPOV);
         tvDescription = (TextView)findViewById(R.id.txtDescriptionPOV);
@@ -54,8 +69,13 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
 
         showMenu = (Button)findViewById(R.id.btnShowMenuPOV);
         makeReservation = (Button)findViewById(R.id.btnMakeReservationCustomer);
+        listView = findViewById(R.id.lvMenuRestaurant);
 
         mRefRes = FirebaseDatabase.getInstance().getReference("Restaurants");
+        myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, menu);
+        listView.setAdapter(myAdapter);
+
+
 
         //Methods called
         placeDatatoTVs();
@@ -65,10 +85,70 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         Intent intent = getIntent();
         final String uid = intent.getStringExtra("UID");
 
+     /*  mRefRes.child(uid).child("Pictures").child("logo").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    upload = snapshot.getValue(Upload.class);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        Picasso.with(CustomerPOVRestaurant.this).load(upload.getmImageURL()).into(logo);
+
+*/
+
+        //adding clickListener to show seat plan pic button.
+        showSeatingPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustomerPOVRestaurant.this,SeatingPlanPicsRecycler.class);
+                intent.putExtra("restaurant_id",uid);
+                startActivity(intent);
+            }
+        });
+        //adding clicKlistener to show pic button as it has to show new page
+        showPictures.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustomerPOVRestaurant.this,ImageRecyclerCustomer.class);
+                intent.putExtra("restaurant_id",uid);
+                startActivity(intent);
+            }
+        });
         // updater
 
+        mRefRes.child(uid).child("menu").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                menu.clear();
+                Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                while (items.hasNext()) {
 
-        mRefRes.addValueEventListener(new ValueEventListener() {
+                    DataSnapshot item = items.next();
+                    String name;
+                    name = "" + item.child("name").getValue().toString() + ":\n"
+                            + item.child("ingredients").getValue().toString() + "  "
+                            + item.child("price").getValue().toString() + " g3Coins";
+
+                    menu.add(name);
+                    myAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        /*mRefRes.addValueEventListener(new ValueEventListener() {
             int k = 0;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -86,15 +166,15 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                                     String dateName = snapshot3.getKey();
 
                                     if (LocalDate.parse(dateName).isBefore(LocalDate.now())) {
-                                        System.out.println("ONCEYIMMM " + dateName);
+                                        //System.out.println("ONCEYIMMM " + dateName);
                                         HashMap<String, Object> newSeatCalendar = new SeatCalendar(LocalDate.parse(dateName).plusDays(7), LocalTime.of(9, 0), LocalTime.of(23, 0));
                                         seatWeeklyPlan.put(LocalDate.parse(dateName).plusDays(7).toString(), newSeatCalendar);
                                     } else if (LocalDate.parse(dateName).isAfter(LocalDate.now())) {
-                                        System.out.println("SONRAYIMMM " + dateName);
+                                        //System.out.println("SONRAYIMMM " + dateName);
                                         Object existingSeatCalendar = snapshot3.getValue(); // Object is HashMap<String, Object>
                                         seatWeeklyPlan.put(dateName, existingSeatCalendar);
                                     } else {
-                                        System.out.println("BUGUNDEYIMMMMMMM " + dateName);
+                                        //System.out.println("BUGUNDEYIMMMMMMM " + dateName);
                                         Object existingSeatCalendar = snapshot3.getValue();
                                         HashMap<String, Object> todaysMap = (HashMap<String, Object>) existingSeatCalendar;
                                         Iterator it = todaysMap.keySet().iterator();
@@ -108,7 +188,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                                         seatWeeklyPlan.put(dateName, todaysMap);
                                     }
 
-                                    System.out.println("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII: " + i);
+                                    //System.out.println("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII: " + i);
                                 }
                                 mRefRes.child(uid).child("seats").child("seat" + i).setValue(seatWeeklyPlan);
                                 i++;
@@ -121,7 +201,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
-        });
+        }); */
     }
 
     //METHODS
@@ -173,31 +253,31 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                 final String resDescription = dataSnapshot.child("description").getValue(String.class);
                 final double resMinPrice = dataSnapshot.child("minPriceToPreOrder").getValue(Double.class);
 
-//                if( resRating >= 4)
-//                {
-//                    tvRating.setBackgroundColor( getResources().getColor(R.color.green));
-//                }
-//                else if( resRating >= 3)
-//                {
-//                    tvRating.setBackgroundColor( getResources().getColor(R.color.light_green));
-//                }
-//                else if ( resRating >= 2)
-//                {
-//                    tvRating.setBackgroundColor( getResources().getColor(R.color.orange));
-//                }
-//                else if ( resRating >= 1)
-//                {
-//                    tvRating.setBackgroundColor( getResources().getColor(R.color.light_red));
-//                }
-//                else
-//                    tvRating.setBackgroundColor( getResources().getColor(R.color.red));
+                if( resRating >= 4)
+                {
+                    tvRating.setBackgroundColor( getResources().getColor(R.color.green));
+                }
+                else if( resRating >= 3)
+                {
+                    tvRating.setBackgroundColor( getResources().getColor(R.color.light_green));
+                }
+                else if ( resRating >= 2)
+                {
+                    tvRating.setBackgroundColor( getResources().getColor(R.color.orange));
+                }
+                else if ( resRating >= 1)
+                {
+                    tvRating.setBackgroundColor( getResources().getColor(R.color.light_red));
+                }
+                else
+                    tvRating.setBackgroundColor( getResources().getColor(R.color.red));
 
                 tvName.setText("" + resName );
                 tvRating.setText("" + resRating + "/5");
                 tvMinPriceToPreOrder.setText("Min price limit to pre-order: " + resMinPrice);
 
                 if ( !resDescription.isEmpty())
-                    tvDescription.setText("Description: " + resDescription);
+                    tvDescription.setText("Description:\n" + resDescription);
             }
 
             @Override

@@ -13,7 +13,7 @@ import android.widget.TextView;
 //A class that functions no more? To be deleted later on!
 
 public class CustHelpActivity extends AppCompatActivity {
-    Button how_to_use_app, how_to_make_reservations, how_to_pre_order,FAQ;
+    Button how_to_use_app, how_to_make_reservations, how_to_pre_order, FAQ;
     ImageView logo, line;
     TextView txt;
 
@@ -42,23 +42,21 @@ public class CustHelpActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CustHelpActivity.this, HowToMakeReservation.class);
-                startActivity(intent);
+                startActivity( new Intent(CustHelpActivity.this, HowToMakeReservation.class));
             }
         });
 
         how_to_pre_order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CustHelpActivity.this,HowToPreOrder.class);
-                startActivity(intent);
+                startActivity(new Intent(CustHelpActivity.this, HowToPreOrder.class));
             }
         });
 
         FAQ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CustHelpActivity.this,FAQ.class);
+                Intent intent = new Intent(CustHelpActivity.this, FAQ.class);
                 startActivity(intent);
             }
         });

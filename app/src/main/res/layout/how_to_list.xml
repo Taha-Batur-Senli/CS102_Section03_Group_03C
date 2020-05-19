@@ -48,7 +48,8 @@
         android:id="@+id/textView41"
         android:layout_width="310dp"
         android:layout_height="477dp"
-        android:text="TextView"
+        android:layout_marginTop="8dp"
+        android:text="To create a listing, which is basically like adding a dish to your menu, you have to click on the change menu button after logging into your restaurant account. From there, you can easily see your current menu and add or remove any listing/dish you desire."
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20dp"
@@ -57,6 +58,6 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/freq"
-        app:layout_constraintVertical_bias="0.411" />
+        app:layout_constraintVertical_bias="0.529" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

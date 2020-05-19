@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,14 +27,17 @@ public class PromotionsPOVCustomer extends AppCompatActivity {
     ArrayAdapter myAdapter;
     ArrayList<String> promotions = new ArrayList<>();
     DatabaseReference reference2;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_promotions_p_o_v_customer);
 
         //Initialize
         listViewPromotions = (ListView) findViewById(R.id.listViewAllPromotionsPage);
+        searchView = (SearchView) findViewById(R.id.searchView);
         myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, promotions);
         listViewPromotions.setAdapter(myAdapter);
         reference2 = FirebaseDatabase.getInstance().getReference();
@@ -40,6 +45,22 @@ public class PromotionsPOVCustomer extends AppCompatActivity {
         //Methods called
         displayPromotions();
         promotionsClick();
+        searchPromotions();
+    }
+
+    public void searchPromotions(){
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String text) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     private void displayPromotions() {

@@ -61,9 +61,11 @@
 
     <TextView
         android:id="@+id/textView45"
-        android:layout_width="273dp"
-        android:layout_height="39dp"
-        android:text="TextView"
+        android:layout_width="293dp"
+        android:layout_height="195dp"
+        android:text="After logging into the app as a restaurant owner, you will see various
+buttons with a multitude of tasks. Some of these tasks are explained in the help page,
+which you can access by clicking the help button."
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20dp"
@@ -71,6 +73,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/freq"
-        app:layout_constraintVertical_bias="0.126" />
+        app:layout_constraintVertical_bias="0.182" />
+
+    <TextView
+        android:id="@+id/textView48"
+        android:layout_width="293dp"
+        android:layout_height="195dp"
+        android:text="You can choose any option you desire from the buttons on the main page or
+from the menu you can access by sliding your finger from left to right."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/freq"
+        app:layout_constraintVertical_bias="0.805" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

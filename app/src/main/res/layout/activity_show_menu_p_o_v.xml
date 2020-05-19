@@ -106,8 +106,8 @@
 
     <TextView
         android:id="@+id/txtNameShowMenuPOV"
-        android:layout_width="239dp"
-        android:layout_height="42dp"
+        android:layout_width="241dp"
+        android:layout_height="61dp"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
         android:text="Information Restaurant Name"
@@ -129,5 +129,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="Restaurant Gallery"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtWorkingHoursPOV2"
+        app:layout_constraintVertical_bias="0.173" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

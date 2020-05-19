@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,14 +27,17 @@ public class BestRestaurantsDisplay extends AppCompatActivity {
     ArrayAdapter myAdapter;
     ArrayList<String> bestRestaurants = new ArrayList<String>();
     DatabaseReference reference;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_best_restaurants_display);
 
         //Initialize
         listViewBestRestaurants = (ListView)findViewById(R.id.lvBestRestaurants2);
+        searchView = (SearchView) findViewById(R.id.searchView);
         myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, bestRestaurants);
         listViewBestRestaurants.setAdapter(myAdapter);
         reference = FirebaseDatabase.getInstance().getReference();
@@ -40,6 +45,7 @@ public class BestRestaurantsDisplay extends AppCompatActivity {
         //Methods called
         displayBestRestaurants();
         makeLvClickable();
+        searchRestaurant();
     }
 
     //Methods
@@ -75,6 +81,21 @@ public class BestRestaurantsDisplay extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                     }
                 });
+            }
+        });
+    }
+
+    public void searchRestaurant(){
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String text) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myAdapter.getFilter().filter(newText);
+                return false;
             }
         });
     }
