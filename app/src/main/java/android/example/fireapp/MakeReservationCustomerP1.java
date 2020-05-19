@@ -62,7 +62,7 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference();
 
         //Make previous dates unclickable
-        //calendar.setMinDate((new Date().getTime()));
+        calendar.setMinDate((new Date().getTime()));
 
         //Make dates after one week unclickable
         Date today = new Date();

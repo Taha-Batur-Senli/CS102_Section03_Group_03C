@@ -13,9 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+//adding food class directly updated the menu
 public class addFoodDialog extends AppCompatDialogFragment {
-
-    //adding food class directly updated the menu
+    //Properties
     private EditText etName;
     private EditText etIngredients;
     private EditText etPrice;

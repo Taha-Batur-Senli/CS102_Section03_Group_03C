@@ -2,6 +2,7 @@ package android.example.fireapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ import java.util.HashMap;
 
 public class SignUpAsRestaurantP2 extends AppCompatActivity {
     Button register;
-    EditText etNumOfTables, etMinPrice, etMaxDuration;
+    EditText etNumOfTables, etMinPrice, etMaxDuration, etStartH, etStartM, etFinishH, etFinishM;
     TextView tvGenre;
     ListView lvGenre;
     ArrayAdapter myAdapter;
@@ -48,8 +49,15 @@ public class SignUpAsRestaurantP2 extends AppCompatActivity {
         //Initialize
         register = (Button)findViewById(R.id.btnRegisterSignUpAsRest2);
         etNumOfTables = (EditText)findViewById(R.id.etNumOfTables2);
+        etNumOfTables.setTextColor(ContextCompat.getColor(this, R.color.white));
         etMinPrice = (EditText)findViewById(R.id.etMinPriceSignUp2);
+        etMinPrice.setTextColor(ContextCompat.getColor(this, R.color.white));
         etMaxDuration = (EditText)findViewById(R.id.etMaxDurationSignUp2);
+        etMaxDuration.setTextColor(ContextCompat.getColor(this, R.color.white));
+        etStartH = (EditText)findViewById(R.id.etStartHour);
+        etStartM = (EditText)findViewById(R.id.etStartMin);
+        etFinishH = (EditText)findViewById(R.id.etFinishHour);
+        etFinishM = (EditText)findViewById(R.id.etFinishMin);
         tvGenre = (TextView)findViewById(R.id.tvSelectGenre);
         lvGenre = (ListView)findViewById(R.id.lvGenreSelection);
         myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, allGenre);
@@ -97,6 +105,12 @@ public class SignUpAsRestaurantP2 extends AppCompatActivity {
         final String maxDuration = etMaxDuration.getText().toString();
         final String minPrice = etMinPrice.getText().toString();
         final String genre = tvGenre.getText().toString();
+
+        //BERKAY BUNLARI KULLANARAK WORKING HOURSLARI SET EDEBİLİRSİN
+        final String startH = etStartH.getText().toString();
+        final String startM = etStartM.getText().toString();
+        final String finishH = etFinishH.getText().toString();
+        final String finishM = etFinishM.getText().toString();
 
         if (numOfTables.isEmpty()) {
             etNumOfTables.setError("Enter numbers of tables you have!");
