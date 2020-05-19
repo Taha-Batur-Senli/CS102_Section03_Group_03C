@@ -288,15 +288,37 @@ public class PreOrderActivity extends AppCompatActivity {
                                         final String seat = i.getStringExtra("SEAT");
                                         final String date = i.getStringExtra("DATE");
                                         String ts = i.getStringExtra("TIMESLOT");
-                                        DatabaseReference mRefRez = FirebaseDatabase.getInstance().getReference("Restaurants");
+                                        final DatabaseReference mRefRez = FirebaseDatabase.getInstance().getReference("Restaurants");
 
                                         //Determine timeslot's numeric value
                                         String[] temp = ts.split(" - ");
                                         String[] temp2 = temp[0].split(":");
                                         final int timeSlot = ((Integer.parseInt(temp2[0]) * 60 ) + Integer.parseInt(temp2[1]));
 
-                                        //Make timeslot reserved
-                                        mRefRez.child(uidRestaurant).child("seats").child(seat).child(date).child(String.valueOf(timeSlot)).child("reservedStatus").setValue("true");
+                                        // Make timeslots reserved
+                                        mRefRez.child(uidRestaurant).addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                // finding maxSeatingDuration
+                                                long maxSeatingDura = (long)dataSnapshot.child("maxSeatingDuration").getValue();
+                                                int maxSeatingDuration = (int)maxSeatingDura;
+                                                // iteration through timeslots
+                                                for ( DataSnapshot snapshot : dataSnapshot.child("seats").child(seat).child(date).getChildren()){
+                                                    String rTimeSlot = (String)snapshot.getKey();
+                                                    int relatedTimeSlot = Integer.parseInt(rTimeSlot);
+                                                    // setting related timeslots reserved
+                                                    if( Math.abs(timeSlot - relatedTimeSlot) + 1 <= (int)maxSeatingDuration){
+                                                        mRefRez.child(uidRestaurant).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("reservedStatus").setValue(true);
+                                                    }
+                                                }
+                                            }
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                        // Make timeslot reserved
+                                        // mRefRez.child(uidRestaurant).child("seats").child(seat).child(date).child(String.valueOf(timeSlot)).child("reservedStatus").setValue("true");
 
                                         final DatabaseReference mCustomer = FirebaseDatabase.getInstance().getReference("Customers").child(user.getUid());
                                         final DatabaseReference mRestaurant = FirebaseDatabase.getInstance().getReference("Restaurants").child(uidRestaurant);

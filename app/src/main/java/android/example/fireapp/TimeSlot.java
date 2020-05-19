@@ -16,8 +16,8 @@ public class TimeSlot{
     private LocalDateTime dateAndTimeStart;
     private LocalDateTime dateAndTimeEnd;
     public String timeSlot;
-    public static int durationOfMeal = 10; // in terms of minute (60 minute)
     public boolean reservedStatus;
+    private int maxSeatingDuration;
 
     // constructors
 
@@ -25,11 +25,12 @@ public class TimeSlot{
 
     }
 
-    public TimeSlot( LocalDate date, LocalTime firstTime)
+    public TimeSlot( int maxSeatingDuration, LocalDate date, LocalTime firstTime)
     {
+        this.maxSeatingDuration = maxSeatingDuration;
         this.dateAndTimeStart = LocalDateTime.of(date, firstTime);
-        this.dateAndTimeEnd = LocalDateTime.of(date, firstTime.plusMinutes(durationOfMeal));
-        this.timeSlot = firstTime + " - " + firstTime.plusMinutes(durationOfMeal);
+        this.dateAndTimeEnd = LocalDateTime.of(date, firstTime.plusMinutes(maxSeatingDuration));
+        this.timeSlot = firstTime + " - " + firstTime.plusMinutes(maxSeatingDuration);
     }
 
     // methods

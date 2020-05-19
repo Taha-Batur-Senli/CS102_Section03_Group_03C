@@ -5,7 +5,6 @@ import java.util.HashMap;
 public class Seats extends HashMap<String, Object>{
 
     private Restaurant restaurant;
-
     public Seats(){
 
     }

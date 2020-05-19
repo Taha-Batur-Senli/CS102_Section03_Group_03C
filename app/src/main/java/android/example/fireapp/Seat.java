@@ -27,16 +27,17 @@ public class Seat extends HashMap<String, Object>{
         LocalTime closingHour = LocalTime.of(Integer.parseInt(temp3[0]), Integer.parseInt(temp3[1]));
 
         this.putAll(createSeatWeeklyPlan2( startingHour, closingHour));
+        System.out.println(this.toString());
     }
 
     private HashMap<String, SeatCalendar> createSeatWeeklyPlan2( LocalTime openingHour, LocalTime closingHour){
 
         HashMap<String, SeatCalendar> newSwp = new HashMap<String, SeatCalendar>();
-        LocalDate date = LocalDate.now();
+        LocalDate date = LocalDate.of(2020, 5, 17);
         for ( int i = 0; i < 7; i++ ){
             if( i > 0)
                 date = date.plusDays(1);
-            newSwp.put( date.toString(), new SeatCalendar( date, openingHour, closingHour));
+            newSwp.put( date.toString(), new SeatCalendar( r, date, openingHour, closingHour));
         }
         return newSwp;
     }
