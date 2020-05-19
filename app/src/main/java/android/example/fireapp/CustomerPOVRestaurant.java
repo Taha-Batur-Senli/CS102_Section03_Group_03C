@@ -94,7 +94,8 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                     upload = snapshot.getValue(Upload.class);
                 }
 
-                Picasso.with(CustomerPOVRestaurant.this).load(upload.getmImageURL()).into(logo);
+                String str = (String)upload.getmImageURL();
+                Picasso.with(CustomerPOVRestaurant.this).load(str).into(logo);
             }
 
             @Override
@@ -131,11 +132,9 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
             }
         });
 
-        /*mRefRes.addValueEventListener(new ValueEventListener() {
-            int k = 0;
+        mRefRes.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (k < 1) {
                     Object restaurant = dataSnapshot.child(uid).getValue();
                     HashMap<String, Object> r = (HashMap<String, Object>) restaurant;
                             int i = 1;
@@ -187,13 +186,11 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                                 mRefRes.child(uid).child("seats").child("seat" + i).setValue(seatWeeklyPlan);
                                 i++;
                             }
-                    k++;
-                }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
-        }); */
+        });
     }
 
     //METHODS

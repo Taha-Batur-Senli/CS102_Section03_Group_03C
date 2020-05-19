@@ -18,6 +18,7 @@ public class TimeSlot{
     public String timeSlot;
     public boolean reservedStatus;
     private int maxSeatingDuration;
+    public int layer;
 
     // constructors
 
@@ -27,6 +28,7 @@ public class TimeSlot{
 
     public TimeSlot( int maxSeatingDuration, LocalDate date, LocalTime firstTime)
     {
+        layer = 0;
         this.maxSeatingDuration = maxSeatingDuration;
         this.dateAndTimeStart = LocalDateTime.of(date, firstTime);
         this.dateAndTimeEnd = LocalDateTime.of(date, firstTime.plusMinutes(maxSeatingDuration));
@@ -47,4 +49,7 @@ public class TimeSlot{
         return timeSlot;
     }
 
+    public int getLayer(){
+        return layer;
+    }
 }

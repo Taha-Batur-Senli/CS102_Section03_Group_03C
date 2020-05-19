@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -21,10 +22,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class MyReservations extends AppCompatActivity {
@@ -264,11 +267,67 @@ public class MyReservations extends AppCompatActivity {
                                 int indexOfIDStart = rezTxt.indexOf("ID:") + 3;
                                 int indexOfIDEnd  = rezTxt.indexOf("   ", indexOfIDStart);
                                 final String rezID = rezTxt.substring(indexOfIDStart, indexOfIDEnd);
+                                System.out.println("REZZZZZZZZZZZZZZZZZZZZZID " + rezID);
 
-                                System.out.println("BANA BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK" + rezID);
+
+
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Reservations").child("CurrentReservations").child(rezID);
+                                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        final String date = (String) dataSnapshot.child("date").getValue();
+                                        final String restaurantID = (String) dataSnapshot.child("restaurantID").getValue();
+                                        final String seat = (String) dataSnapshot.child("seat").getValue();
+                                        final String timeSlot = (String) dataSnapshot.child("timeSlot").getValue(); // in the form of minutes
+                                        System.out.println("RESTAURANT IDDDDDDDDDDDDDDDDDDDDDDDDDD " + restaurantID + "DATE  " + date + "SEAT  " + seat + "TIMESLOT  " + timeSlot);
+                                        final DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("Restaurants");
+                                        ref2.child(restaurantID).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                long maxSeatingDura = (long)dataSnapshot.child("maxSeatingDuration").getValue();
+                                                int maxSeatingDuration = (int)maxSeatingDura;
+                                                for (DataSnapshot snapshot : dataSnapshot.child("seats").child(seat).child(date).getChildren()){
+                                                    System.out.println("SLMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+                                                    String ts = (String)snapshot.getKey(); // timeslot in the form of minutes
+                                                    int relatedTimeSlot = Integer.parseInt(ts);
+                                                    Object tS = snapshot.getValue();
+                                                    HashMap<String, Object> oldTimeMap = (HashMap<String, Object>)tS;
+                                                    long lay = (long) oldTimeMap.get("layer");
+                                                    int layer = (int)lay;
+                                                    if( layer > 0)
+                                                        layer = layer - 1;
+                                                    else
+                                                        layer = 0;
+
+                                                    if( Math.abs(Integer.parseInt(timeSlot) - relatedTimeSlot) + 1 <= (int)maxSeatingDuration){
+                                                        if( layer != 0){
+                                                            ref2.child(restaurantID).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("layer").setValue(layer);
+                                                        }
+                                                        else
+                                                        {
+                                                            ref2.child(restaurantID).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("layer").setValue(layer);
+                                                            ref2.child(restaurantID).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("reservedStatus").setValue(false);
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+
                                 DatabaseReference deleteRez = FirebaseDatabase.getInstance().getReference("Reservations").
                                         child("CurrentReservations");
-                                deleteRez.child(rezID).removeValue();
+                                //deleteRez.child(rezID).removeValue();
                                 myAdapter.notifyDataSetChanged();
 
 

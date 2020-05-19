@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 /*
@@ -301,7 +302,7 @@ public class PreOrderActivity extends AppCompatActivity {
                                         final int timeSlot = ((Integer.parseInt(temp2[0]) * 60 ) + Integer.parseInt(temp2[1]));
 
                                         // Make timeslots reserved
-                                        mRefRez.child(uidRestaurant).addValueEventListener(new ValueEventListener() {
+                                        mRefRez.child(uidRestaurant).addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
                                                 // finding maxSeatingDuration
@@ -311,9 +312,15 @@ public class PreOrderActivity extends AppCompatActivity {
                                                 for ( DataSnapshot snapshot : dataSnapshot.child("seats").child(seat).child(date).getChildren()){
                                                     String rTimeSlot = (String)snapshot.getKey();
                                                     int relatedTimeSlot = Integer.parseInt(rTimeSlot);
+                                                    Object tS = snapshot.getValue();
+                                                    HashMap<String, Object> oldTimeMap = (HashMap<String, Object>)tS;
+                                                    long lay = (long) oldTimeMap.get("layer");
+                                                    int layer = (int)lay;
+                                                    int incrementedLayer = layer + 1;
                                                     // setting related timeslots reserved
                                                     if( Math.abs(timeSlot - relatedTimeSlot) + 1 <= (int)maxSeatingDuration){
                                                         mRefRez.child(uidRestaurant).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("reservedStatus").setValue(true);
+                                                        mRefRez.child(uidRestaurant).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("layer").setValue(incrementedLayer);
                                                     }
                                                 }
                                             }
