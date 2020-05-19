@@ -56,7 +56,7 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference();
 
         //Make previous dates unclickable
-        //calendar.setMinDate((new Date().getTime()));
+        calendar.setMinDate((new Date().getTime()));
 
         //Make dates after one week unclickable
         Date today = new Date();
@@ -97,7 +97,7 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
                     DataSnapshot item = items.next();
                     String seatName;
                     seatName = "" + item.getKey();
-                    String seatNameFinal = "Table " + seatName.charAt(seatName.length() - 1);
+                    String seatNameFinal = "Table " + seatName.substring(4);
 
                     allSeats.add(seatNameFinal);
                     myAdapter.notifyDataSetChanged();
