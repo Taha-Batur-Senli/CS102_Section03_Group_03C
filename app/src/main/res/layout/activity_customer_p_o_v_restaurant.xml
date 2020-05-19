@@ -101,7 +101,7 @@
 
     <TextView
         android:id="@+id/txtRatingPOV"
-        android:layout_width="40dp"
+        android:layout_width="50dp"
         android:layout_height="25dp"
         android:gravity="center"
         android:text="Rating"
@@ -120,7 +120,6 @@
         android:layout_width="201dp"
         android:layout_height="98dp"
         android:fontFamily="@font/roboto_light"
-        android:gravity="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="14sp"

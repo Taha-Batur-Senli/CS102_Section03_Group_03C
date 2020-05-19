@@ -131,7 +131,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
             }
         });
 
-        mRefRes.addValueEventListener(new ValueEventListener() {
+        /*mRefRes.addValueEventListener(new ValueEventListener() {
             int k = 0;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -193,7 +193,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
-        });
+        }); */
     }
 
     //METHODS

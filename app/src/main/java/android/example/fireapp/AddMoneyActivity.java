@@ -93,7 +93,6 @@ public class AddMoneyActivity extends AppCompatActivity {
                     });
 
                     startActivity(new Intent( AddMoneyActivity.this, CustomerMyAccountActivity.class ));
-                    finish();
 
                 }
                 else {
