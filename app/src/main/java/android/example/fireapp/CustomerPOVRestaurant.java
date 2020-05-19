@@ -118,11 +118,6 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                 if (k < 1) {
                     Object restaurant = dataSnapshot.child(uid).getValue();
                     HashMap<String, Object> r = (HashMap<String, Object>) restaurant;
-                   // for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                        Object restaurant = snapshot.getValue();
-//                        HashMap<String, Object> r = (HashMap<String, Object>) restaurant;
-//                        String uidOfRestaurant = (String) r.get("uid");
-                     //   if (uid.equals(uidOfRestaurant)) { // r.getUid()
                             int i = 1;
                             for (DataSnapshot snapshot : dataSnapshot.child(uid).child("seats").getChildren()) {
                                 HashMap<String, Object> seatWeeklyPlan = new HashMap<String, Object>();
@@ -135,18 +130,19 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                                         long maxSeatingDura = (long) r.get("maxSeatingDuration");
                                         int maxSeatingDuration = (int)maxSeatingDura;
 
-                                        String openingTime = (String)r.get("openingHour");
+                                        String openingTime = (String)r.get("openingTime");
                                         String[] temp = openingTime.split(":");
                                         int otHour = Integer.parseInt( temp[0]);
                                         int otMinute = Integer.parseInt( temp[1]);
 
-                                        String closingTime = (String)r.get("openingHour");
-                                        String[] temp1 = openingTime.split(":");
+                                        String closingTime = (String)r.get("closingTime");
+                                        String[] temp1 = closingTime.split(":");
                                         int ctHour = Integer.parseInt( temp1[0]);
                                         int ctMinute = Integer.parseInt( temp1[1]);
 
                                         HashMap<String, Object> newSeatCalendar = new SeatCalendar(maxSeatingDuration, LocalDate.parse(dateName).plusDays(7), LocalTime.of(otHour, otMinute), LocalTime.of(ctHour, ctMinute));
                                         seatWeeklyPlan.put(LocalDate.parse(dateName).plusDays(7).toString(), newSeatCalendar);
+
                                     } else if (LocalDate.parse(dateName).isAfter(LocalDate.now())) {
                                         System.out.println("SONRAYIMMM " + dateName);
                                         Object existingSeatCalendar = snapshot2.getValue(); // Object is HashMap<String, Object>
@@ -171,8 +167,6 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                                 mRefRes.child(uid).child("seats").child("seat" + i).setValue(seatWeeklyPlan);
                                 i++;
                             }
-                     //   }
-                   // }
                     k++;
                 }
             }

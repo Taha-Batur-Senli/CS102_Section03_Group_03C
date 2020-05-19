@@ -49,6 +49,7 @@ public class SeatCalendar extends HashMap<String, Object>{
 
     public SeatCalendar(Restaurant r, LocalDate date, LocalTime start, LocalTime end) {
         this.r = r;
+        maxSeatingDuration = r.getMaxSeatingDuration();
         currentDate = date;
         availableHoursEnd = end;
 
@@ -73,14 +74,12 @@ public class SeatCalendar extends HashMap<String, Object>{
     private void createTimeSlots( LocalTime start, LocalTime end)
     {
         TimeSlot ts;
-        System.out.println("BURAYA GIRIYORUM");
         System.out.println(start.toString());
         System.out.println(end.toString());
         for( LocalTime i = start; i.isBefore(end); i = i.plusMinutes(15)) // 15 represent intervals, we can change if needed
         {
             if ( r != null) maxSeatingDuration = r.getMaxSeatingDuration();
             ts = new TimeSlot(maxSeatingDuration, currentDate, i);
-            System.out.println("TIMESLOT IS : " + ts.toString());
             ts.setReservedStatus(false);
             this.put("" + (i.getHour() * 60 + i.getMinute()), ts);
         }

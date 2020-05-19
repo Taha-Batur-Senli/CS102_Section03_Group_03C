@@ -75,19 +75,4 @@ which you can access by clicking the help button."
         app:layout_constraintTop_toBottomOf="@+id/freq"
         app:layout_constraintVertical_bias="0.182" />
 
-    <TextView
-        android:id="@+id/textView48"
-        android:layout_width="293dp"
-        android:layout_height="195dp"
-        android:text="You can choose any option you desire from the buttons on the main page or
-from the menu you can access by sliding your finger from left to right."
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/freq"
-        app:layout_constraintVertical_bias="0.805" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

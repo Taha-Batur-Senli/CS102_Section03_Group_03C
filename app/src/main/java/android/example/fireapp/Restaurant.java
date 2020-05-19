@@ -9,7 +9,7 @@ This class creates restaurant objects to facilitate adding restaurants to fireba
  */
 public class Restaurant {
     //Properties
-    String uid, email, name, genre, phone, description, reservations, menu, adress, workingHours, openingHour, closingHour;
+    String uid, email, name, genre, phone, description, reservations, menu, adress, workingHours, openingTime, closingTime, openingTimeHour, openingTimeMinute, closingTimeHour, closingTimeMinute;
     int numOfTimesRated, maxSeatingDuration, minPriceToPreOrder;
     double rating;
     ImageView restaurantImage;
@@ -18,7 +18,7 @@ public class Restaurant {
     //Constructors
     public Restaurant(){}
 
-    public Restaurant(String name, String email, String genre, String phone, String uid, String numOfTables, int maxSeatingDuration, int minPriceToPreOrder) {
+    public Restaurant(String name, String email, String genre, String phone, String uid, String numOfTables, int maxSeatingDuration, int minPriceToPreOrder, String openingTimeHour, String openingTimeMinute, String closingTimeHour, String closingTimeMinute) {
         this.uid = uid;
         this.email = email;
         this.name = name;
@@ -28,9 +28,14 @@ public class Restaurant {
         reservations = "";
         menu = "";
         adress = "";
-        workingHours = "0:10-23:50";
-        openingHour =  "0:10";
-        closingHour = "23:50";
+        this.openingTimeHour = openingTimeHour;
+        this.openingTimeMinute = openingTimeMinute;
+        this.closingTimeHour = closingTimeHour;
+        this.closingTimeMinute = closingTimeMinute;
+        openingTime = this.openingTimeHour + ":" + this.openingTimeMinute;
+        closingTime = this.closingTimeHour + ":" + this.closingTimeMinute;
+        //workingHours = "0:10-23:50";
+        workingHours = this.openingTime + "-" + this.closingTime;
         numOfTimesRated = 0;
         this.maxSeatingDuration = maxSeatingDuration;
         this.minPriceToPreOrder = minPriceToPreOrder;
@@ -39,12 +44,12 @@ public class Restaurant {
     }
 
     //GET & SET METHODS
-    public String getOpeningHour() {
-        return openingHour;
+    public String getOpeningTime() {
+        return openingTime;
     }
 
-    public String getClosingHour() {
-        return closingHour;
+    public String getClosingTime() {
+        return closingTime;
     }
 
     public HashMap<String, Object> getSeats() {
