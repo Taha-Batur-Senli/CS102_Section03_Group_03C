@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,21 +38,24 @@ as well. If a restaurant has five tables, customers will be asked to choose one 
 public class MakeReservationCustomerP1 extends AppCompatActivity {
     //Properties
     CalendarView calendar;
-    TextView tvDate;
     ListView lvTables;
     ArrayAdapter myAdapter;
     ArrayList<String> allSeats = new ArrayList<>();
     DatabaseReference reference;
+    TextView txtEditRes11;
+    ImageView tableLine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_make_reservation_customer_p1);
 
         //Initialize
         calendar = (CalendarView)findViewById(R.id.calendarView);
-        tvDate = (TextView)findViewById(R.id.txtDate);
         lvTables = (ListView)findViewById(R.id.lvSeatSelection);
+        txtEditRes11 = findViewById(R.id.txtEditRes11);
+        tableLine = findViewById(R.id.imageView59);
 
         myAdapter = new ArrayAdapter<>(this, R.layout.listrow, R.id.textView2, allSeats);
         lvTables.setAdapter(myAdapter);
@@ -67,18 +73,41 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 allSeats.clear();
-                String date = dayOfMonth + "/" + month + "/" + year;
-                date += "\n Please select a table now!";
-                tvDate.setText(date);
+                txtEditRes11.setText("Select a Table");
+                tableLine.setVisibility(View.VISIBLE);
 
                 displaySeats( year, month, dayOfMonth);
+            }
+        });
+
+        lvTables.setOnTouchListener(new ListView.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        // Disallow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        // Allow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+
+                // Handle ListView touch events.
+                v.onTouchEvent(event);
+                return true;
             }
         });
     }
 
     //METHODS
 
-    /*
+
+
+    /**
     Gets the data of restaurant from database and creates a list view accordingly. Prints out
     all of the tables a restaurant have on the related list view.
      */
@@ -97,7 +126,7 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
                     DataSnapshot item = items.next();
                     String seatName;
                     seatName = "" + item.getKey();
-                    String seatNameFinal = "Table " + seatName.charAt(seatName.length() - 1);
+                    String seatNameFinal = "Table " + seatName.substring(4);
 
                     allSeats.add(seatNameFinal);
                     myAdapter.notifyDataSetChanged();

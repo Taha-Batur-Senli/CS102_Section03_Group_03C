@@ -142,7 +142,7 @@ public class UploadImage extends AppCompatActivity {
                         @Override
                         public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                            progressDialog.setMessage("uploaaded " + (int) progress  + " %");
+                            progressDialog.setMessage("uploaded " + (int) progress  + " %");
                         }
                     });
         }

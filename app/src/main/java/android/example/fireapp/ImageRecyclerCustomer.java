@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.WindowManager;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,13 +28,14 @@ public class ImageRecyclerCustomer extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_image_recycler);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         uploads = new ArrayList<>();
         final String restaurant_id = getIntent().getStringExtra("restaurant_id");
-
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Restaurants");
         databaseReference.child(restaurant_id).child("Pictures").addValueEventListener(new ValueEventListener() {
@@ -42,7 +45,7 @@ public class ImageRecyclerCustomer extends AppCompatActivity {
                     Upload upload = snapshot.getValue(Upload.class);
                     uploads.add(upload);
                 }
-                adapter = new Adapter(ImageRecyclerCustomer.this,uploads);
+                adapter = new Adapter(ImageRecyclerCustomer.this, uploads);
                 recyclerView.setAdapter(adapter);
             }
 

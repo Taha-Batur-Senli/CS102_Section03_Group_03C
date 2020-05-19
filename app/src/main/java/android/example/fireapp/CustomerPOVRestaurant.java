@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -23,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -35,8 +37,10 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
     //Properities
     TextView tvName, tvRating, tvDescription, tvMinPriceToPreOrder;
     DatabaseReference mRefRes;
-    Button showMenu, makeReservation;
-    Button showPictures;
+    Button showMenu, makeReservation, showPictures;
+    ListView listView;
+    ArrayAdapter myAdapter;
+    ArrayList<String> menu = new ArrayList<String>();
 
 
     @Override
@@ -56,8 +60,11 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
 
         showMenu = (Button)findViewById(R.id.btnShowMenuPOV);
         makeReservation = (Button)findViewById(R.id.btnMakeReservationCustomer);
+        listView = findViewById(R.id.lvMenuRestaurant);
 
         mRefRes = FirebaseDatabase.getInstance().getReference("Restaurants");
+        myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, menu);
+        listView.setAdapter(myAdapter);
 
 
 
@@ -81,8 +88,31 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         });
         // updater
 
+        mRefRes.child(uid).child("menu").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                menu.clear();
+                Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                while (items.hasNext()) {
 
-        mRefRes.addValueEventListener(new ValueEventListener() {
+                    DataSnapshot item = items.next();
+                    String name;
+                    name = "" + item.child("name").getValue().toString() + ":\n"
+                            + item.child("ingredients").getValue().toString() + "  "
+                            + item.child("price").getValue().toString() + " g3Coins";
+
+                    menu.add(name);
+                    myAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        /*mRefRes.addValueEventListener(new ValueEventListener() {
             int k = 0;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -100,15 +130,15 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                                     String dateName = snapshot3.getKey();
 
                                     if (LocalDate.parse(dateName).isBefore(LocalDate.now())) {
-                                        System.out.println("ONCEYIMMM " + dateName);
+                                        //System.out.println("ONCEYIMMM " + dateName);
                                         HashMap<String, Object> newSeatCalendar = new SeatCalendar(LocalDate.parse(dateName).plusDays(7), LocalTime.of(9, 0), LocalTime.of(23, 0));
                                         seatWeeklyPlan.put(LocalDate.parse(dateName).plusDays(7).toString(), newSeatCalendar);
                                     } else if (LocalDate.parse(dateName).isAfter(LocalDate.now())) {
-                                        System.out.println("SONRAYIMMM " + dateName);
+                                        //System.out.println("SONRAYIMMM " + dateName);
                                         Object existingSeatCalendar = snapshot3.getValue(); // Object is HashMap<String, Object>
                                         seatWeeklyPlan.put(dateName, existingSeatCalendar);
                                     } else {
-                                        System.out.println("BUGUNDEYIMMMMMMM " + dateName);
+                                        //System.out.println("BUGUNDEYIMMMMMMM " + dateName);
                                         Object existingSeatCalendar = snapshot3.getValue();
                                         HashMap<String, Object> todaysMap = (HashMap<String, Object>) existingSeatCalendar;
                                         Iterator it = todaysMap.keySet().iterator();
@@ -122,7 +152,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                                         seatWeeklyPlan.put(dateName, todaysMap);
                                     }
 
-                                    System.out.println("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII: " + i);
+                                    //System.out.println("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII: " + i);
                                 }
                                 mRefRes.child(uid).child("seats").child("seat" + i).setValue(seatWeeklyPlan);
                                 i++;
@@ -135,7 +165,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
-        });
+        }); */
     }
 
     //METHODS
@@ -211,7 +241,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                 tvMinPriceToPreOrder.setText("Min price limit to pre-order: " + resMinPrice);
 
                 if ( !resDescription.isEmpty())
-                    tvDescription.setText("Description: " + resDescription);
+                    tvDescription.setText("Description:\n" + resDescription);
             }
 
             @Override

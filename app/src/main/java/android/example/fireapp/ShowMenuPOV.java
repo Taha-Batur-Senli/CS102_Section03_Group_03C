@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,6 +30,9 @@ public class ShowMenuPOV extends AppCompatActivity {
     TextView tvName, tvGenre, tvAddress, tvPhone, tvWH;
     FirebaseDatabase database;
     DatabaseReference reference;
+    Button showGallery;
+    Intent intent;
+    String uid;
 
 
     @Override
@@ -38,17 +43,29 @@ public class ShowMenuPOV extends AppCompatActivity {
         setContentView(R.layout.activity_show_menu_p_o_v);
 
         //get the uid of restaurant from previous activity
-        Intent intent = getIntent();
-        String uid = intent.getStringExtra("UID");
+        intent = getIntent();
+        uid = intent.getStringExtra("UID");
 
         tvName = (TextView)findViewById(R.id.txtNameShowMenuPOV);
         tvGenre = findViewById(R.id.txtGenrePOV2);
         tvAddress = findViewById(R.id.txtAdressPOV2);
         tvPhone = findViewById(R.id.txtPhonePOV2);
         tvWH = findViewById(R.id.txtWorkingHoursPOV2);
+        showGallery = findViewById(R.id.button);
 
         database = FirebaseDatabase.getInstance();
         reference = database.getReference( "Restaurants");
+
+
+        showGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ShowMenuPOV.this, ImageRecyclerCustomer.class);
+                intent.putExtra("restaurant_id", uid);
+                startActivity(intent);
+            }
+        });
 
         //methods
         placeDatatoTVs();
