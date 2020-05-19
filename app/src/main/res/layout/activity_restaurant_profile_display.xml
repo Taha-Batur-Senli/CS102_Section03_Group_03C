@@ -8,142 +8,154 @@
     tools:context=".RestaurantProfileDisplay">
 
     <TextView
-        android:id="@+id/txtResDisplayName"
-        android:layout_width="246dp"
-        android:layout_height="56dp"
-        android:text="Restaurant Name"
+        android:id="@+id/txtResDisplayDescription"
+        android:layout_width="201dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtResDisplayName" />
+
+    <TextView
+        android:id="@+id/txtResDisplayName"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="Restaurant Name"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/roboto_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView104"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView104"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/imageView105"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtResDisplayName"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/line_28" />
+
+    <TextView
+        android:id="@+id/txtResDisplayWH"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/roboto_light"
+        android:text="Working hours:"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.087" />
-
-    <TextView
-        android:id="@+id/txtResDisplayDescription"
-        android:layout_width="345dp"
-        android:layout_height="97dp"
-        android:text="Description:"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtResDisplayName"
-        app:layout_constraintVertical_bias="0.121" />
-
-    <TextView
-        android:id="@+id/txtResDisplayWH"
-        android:layout_width="342dp"
-        android:layout_height="49dp"
-        android:text="Working hours:"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.476" />
+        app:layout_constraintTop_toBottomOf="@+id/txtResDisplayGenre"
+        app:layout_constraintVertical_bias="0.043" />
 
     <TextView
         android:id="@+id/txtResDisplayGenre"
-        android:layout_width="338dp"
+        android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
         android:text="Genre:"
+        android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtResDisplayWH"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtResDisplayDescription"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="322dp"
-        android:layout_height="45dp"
-        android:text="Restaurant Information"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtResDisplayWH"
-        app:layout_constraintVertical_bias="0.384" />
+        app:layout_constraintTop_toBottomOf="@+id/txtResDisplayDescription" />
 
     <TextView
         android:id="@+id/txtResDisplayPhone"
-        android:layout_width="384dp"
-        android:layout_height="30dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_light"
         android:text="GSM:"
+        android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="14sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.104" />
+        app:layout_constraintTop_toBottomOf="@+id/txtMinPriceResDisplay" />
 
     <TextView
         android:id="@+id/txtResDisplayAdress"
-        android:layout_width="362dp"
-        android:layout_height="74dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/roboto_light"
         android:text="Address:"
+        android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="14sp"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtResDisplayPhone"
-        app:layout_constraintVertical_bias="0.215" />
-
-    <TextView
-        android:id="@+id/txtRating"
-        android:layout_width="65dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="47dp"
-        android:text="Rating"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtResDisplayDescription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.904"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtResDisplayName"
-        app:layout_constraintVertical_bias="0.533" />
+        app:layout_constraintVertical_bias="0.177" />
 
     <TextView
         android:id="@+id/txtMaxDurationResDisplay"
-        android:layout_width="352dp"
-        android:layout_height="46dp"
-        android:layout_marginBottom="91dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/roboto_light"
         android:text="Max Duration"
+        android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        android:textSize="14sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.593"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtResDisplayWH"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/txtResDisplayWH" />
 
     <TextView
         android:id="@+id/txtMinPriceResDisplay"
-        android:layout_width="338dp"
-        android:layout_height="51dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_light"
         android:text="Min Price"
+        android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        android:textSize="14sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtMaxDurationResDisplay"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/txtMaxDurationResDisplay" />
 </androidx.constraintlayout.widget.ConstraintLayout>

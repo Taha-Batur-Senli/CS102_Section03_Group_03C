@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,7 +20,7 @@ This class enavles restaurants to display their own profiles from the perspectiv
  */
 public class RestaurantProfileDisplay extends AppCompatActivity {
     //Properties
-    TextView name, wh, adress, phone, description, genre, rating, minPrice, maxDuration;
+    TextView name, wh, adress, phone, description, genre, minPrice, maxDuration;
     DatabaseReference mRef;
     FirebaseAuth mAuth;
     FirebaseUser user;
@@ -27,6 +28,8 @@ public class RestaurantProfileDisplay extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_restaurant_profile_display);
 
         //Initialize
@@ -36,7 +39,6 @@ public class RestaurantProfileDisplay extends AppCompatActivity {
         phone = (TextView)findViewById(R.id.txtResDisplayPhone);
         description = (TextView)findViewById(R.id.txtResDisplayDescription);
         genre = (TextView)findViewById(R.id.txtResDisplayGenre);
-        rating = (TextView)findViewById(R.id.txtRating);
         minPrice = (TextView)findViewById(R.id.txtMinPriceResDisplay);
         maxDuration = (TextView)findViewById(R.id.txtMaxDurationResDisplay);
 
@@ -64,7 +66,6 @@ public class RestaurantProfileDisplay extends AppCompatActivity {
                 phone.setText( "Phone: " + phoneString );
                 description.setText( "Description: " + descriptionString );
                 genre.setText( "    Genre: " + genreString );
-                rating.setText(ratingString + "/5");
                 minPrice.setText("Minimum amount for customers to pre-order: " + minPriceString + " TL");
                 maxDuration.setText("Maximum seating duration (This data will not be seen by customers): " + maxdurationString + " minutes");
 

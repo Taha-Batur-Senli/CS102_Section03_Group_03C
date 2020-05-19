@@ -7,72 +7,60 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/logo1"
-        android:layout_width="115dp"
-        android:layout_height="91dp"
-        android:contentDescription="@string/todo"
+        android:id="@+id/imageView93"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048"
+        app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/logo" />
 
-    <ImageView
-        android:id="@+id/row1"
-        android:layout_width="330dp"
-        android:layout_height="8dp"
-        android:contentDescription="@string/todo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/freq"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/line" />
-
     <TextView
-        android:id="@+id/freq"
-        android:layout_width="323dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="20dp"
-        android:text="How to Use The App"
+        android:id="@+id/txtEditRes23"
+        android:layout_width="238dp"
+        android:layout_height="45dp"
+        android:fontFamily="@font/roboto_light"
         android:gravity="center"
+        android:text="How to Use"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo1" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView93" />
 
-    <TextView
-        android:id="@+id/textView41"
-        android:layout_width="273dp"
-        android:layout_height="39dp"
-        android:text="For Restaurant Owners"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="20dp"
+    <ImageView
+        android:id="@+id/imageView94"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="628dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/freq"
-        app:layout_constraintVertical_bias="0.033" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEditRes3"
+        app:layout_constraintVertical_bias="0.012"
+        app:srcCompat="@drawable/line_28" />
 
     <TextView
         android:id="@+id/textView45"
         android:layout_width="293dp"
         android:layout_height="195dp"
+        android:layout_marginBottom="376dp"
+        android:fontFamily="@font/roboto_light"
         android:text="After logging into the app as a restaurant owner, you will see various
 buttons with a multitude of tasks. Some of these tasks are explained in the help page,
 which you can access by clicking the help button."
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/freq"
-        app:layout_constraintVertical_bias="0.182" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEditRes23"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

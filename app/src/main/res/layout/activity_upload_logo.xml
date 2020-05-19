@@ -8,23 +8,66 @@
     tools:context=".UploadLogo">
 
     <ImageView
-        android:id="@+id/image_logo"
-        android:layout_width="312dp"
-        android:layout_height="356dp"
-        android:layout_marginTop="108dp"
+        android:id="@+id/imageView100"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/txtEditRes27"
+        android:layout_width="238dp"
+        android:layout_height="45dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="Upload Logo"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView100" />
+
+    <ImageView
+        android:id="@+id/imageView101"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="628dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditRes3"
+        app:layout_constraintVertical_bias="0.012"
+        app:srcCompat="@drawable/line_28" />
+
+    <ImageView
+        android:id="@+id/image_logo"
+        android:layout_width="360dp"
+        android:layout_height="460dp"
+        android:layout_marginTop="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></ImageView>
 
     <Button
         android:id="@+id/choose_logo"
-        android:layout_width="130dp"
-        android:layout_height="70dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_marginStart="48dp"
-        android:text="Choose Logo"
         android:background="@drawable/button"
+        android:text="Choose Logo"
         android:textColor="@color/white"
+        android:fontFamily="@font/roboto_light"
+        android:textSize="16sp"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_logo"
@@ -32,14 +75,17 @@
 
     <Button
         android:id="@+id/arrange_logo"
-        android:layout_width="121dp"
-        android:layout_height="64dp"
-        android:layout_marginEnd="48dp"
-        android:text="Arrange Logo"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="44dp"
         android:background="@drawable/button"
+        android:text="Arrange Logo"
         android:textColor="@color/white"
+        android:fontFamily="@font/roboto_light"
+        android:textSize="16sp"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_logo"
-        app:layout_constraintVertical_bias="0.489" />
+        app:layout_constraintVertical_bias="0.504" />
 </androidx.constraintlayout.widget.ConstraintLayout>

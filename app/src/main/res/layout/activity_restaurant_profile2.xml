@@ -29,7 +29,6 @@
         android:id="@+id/resHelp"
         android:layout_width="250dp"
         android:layout_height="45dp"
-        android:layout_marginTop="15dp"
         android:background="@drawable/button_rosa"
         android:fontFamily="@font/roboto_light"
         android:text="Help"
@@ -38,10 +37,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPromotionMenu"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/RestaurantReservations"
+        app:layout_constraintVertical_bias="0.063" />
 
     <Button
         android:id="@+id/resEditProfile"
@@ -123,11 +122,11 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@+id/resHelp"
-        app:layout_constraintVertical_bias="0.063" />
+        app:layout_constraintTop_toBottomOf="@+id/btnPromotionMenu"
+        app:layout_constraintVertical_bias="0.053" />
 
     <FrameLayout
         android:id="@+id/frameLayout2"

@@ -53,7 +53,7 @@
         android:text="To create a promotion, which is essentially a discount, you have to click on the promotions button after logging into your restaurant account. From there, you can choose or create the menu you want and add the adequate promotion you desire."
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"

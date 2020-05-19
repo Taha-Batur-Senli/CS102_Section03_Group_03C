@@ -31,7 +31,6 @@ public class RestaurantEditProfileActivity extends AppCompatActivity{
     //Properties
     Button save, upload, changeGenre;
     EditText etDescription, etPhone, etName, etWH,etAdress, etMaxDuration, etMinPrice;
-    Spinner genre;
     DatabaseReference mRef;
     FirebaseAuth mAuth;
     FirebaseDatabase mDatabase;
@@ -53,7 +52,6 @@ public class RestaurantEditProfileActivity extends AppCompatActivity{
         etAdress = (EditText)findViewById(R.id.etResProfileAdress);
         etMaxDuration = (EditText)findViewById(R.id.etMaxDurationEdit);
         etMinPrice = (EditText)findViewById(R.id.etMinPriceEdit);
-        genre = (Spinner)findViewById(R.id.spinnerEdit);
         changeGenre = findViewById(R.id.genre_button);
 
         etDescription.setTextColor(ContextCompat.getColor(this, R.color.white));
@@ -98,7 +96,6 @@ public class RestaurantEditProfileActivity extends AppCompatActivity{
                 final String phoneUpdate = etPhone.getText().toString();
                 final String whUpdate = etWH.getText().toString();
                 final String adressUpdate = etAdress.getText().toString();
-                final String genreUpdate = genre.getSelectedItem().toString();
                 final String minPriceUpdate = etMinPrice.getText().toString();
                 final String maxDurationUpdate = etMaxDuration.getText().toString();
                 res = false;
@@ -131,10 +128,6 @@ public class RestaurantEditProfileActivity extends AppCompatActivity{
                 if(!adressUpdate.isEmpty()) {
                     mRef.child(user.getUid()).child("adress").setValue(adressUpdate);
                     res = true;
-                }
-                //TODO bug should be fixed
-                if(!genreUpdate.isEmpty()) {
-                    mRef.child(user.getUid()).child("genre").setValue(genreUpdate);
                 }
 
                 if( res ) {

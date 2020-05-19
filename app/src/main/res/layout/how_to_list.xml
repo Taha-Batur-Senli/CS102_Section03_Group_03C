@@ -7,57 +7,57 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/logo1"
-        android:layout_width="115dp"
-        android:layout_height="91dp"
-        android:contentDescription="@string/todo"
+        android:id="@+id/imageView97"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048"
+        app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/logo" />
 
+    <TextView
+        android:id="@+id/txtEditRes25"
+        android:layout_width="238dp"
+        android:layout_height="45dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="How to Add Dishes"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView97" />
+
     <ImageView
-        android:id="@+id/row1"
-        android:layout_width="330dp"
-        android:layout_height="8dp"
-        android:contentDescription="@string/todo"
+        android:id="@+id/imageView98"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="628dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/freq"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/line" />
-
-    <TextView
-        android:id="@+id/freq"
-        android:layout_width="323dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="20dp"
-        android:text="How to Create A Listing"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo1" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEditRes3"
+        app:layout_constraintVertical_bias="0.012"
+        app:srcCompat="@drawable/line_28" />
 
     <TextView
         android:id="@+id/textView41"
         android:layout_width="310dp"
         android:layout_height="477dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="84dp"
+        android:fontFamily="@font/roboto_light"
         android:text="To create a listing, which is basically like adding a dish to your menu, you have to click on the change menu button after logging into your restaurant account. From there, you can easily see your current menu and add or remove any listing/dish you desire."
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/freq"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

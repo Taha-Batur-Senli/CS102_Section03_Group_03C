@@ -32,7 +32,6 @@ import com.squareup.picasso.Picasso;
 public class UploadSeatingPlan extends AppCompatActivity {
 
     Button choose_seating_plan, upload_seating_plan_pic;
-    TextView txt;
     ImageView imageView, line;
     private Uri uri;
     private Uri mImageUri;
@@ -49,7 +48,6 @@ public class UploadSeatingPlan extends AppCompatActivity {
         setContentView(R.layout.activity_upload_seating_plan);
         choose_seating_plan = findViewById(R.id.choose_seating_plan);
         upload_seating_plan_pic = findViewById(R.id.upload_seating_plan_pic);
-        txt = findViewById(R.id.textView47);
         imageView = findViewById(R.id.imageView62);
         line = findViewById(R.id.imageView63);
         mAuth = FirebaseAuth.getInstance();

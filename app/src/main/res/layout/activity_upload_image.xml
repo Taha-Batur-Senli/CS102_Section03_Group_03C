@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,25 +9,65 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView102"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/txtEditRes28"
+        android:layout_width="238dp"
+        android:layout_height="45dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="Upload Image to Gallery"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView102" />
+
+    <ImageView
+        android:id="@+id/imageView103"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="628dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditRes28"
+        app:layout_constraintVertical_bias="0.012"
+        app:srcCompat="@drawable/line_28" />
+
     <Button
         android:id="@+id/choose"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/button"
         android:fontFamily="@font/roboto_light"
+        android:text="Choose File"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="14sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose File" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image" />
 
     <EditText
         android:id="@+id/give_file_name"
         android:layout_width="270dp"
         android:layout_height="46dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="31dp"
-        android:layout_marginLeft="116dp"
-        android:layout_marginEnd="6dp"
         android:layout_toEndOf="@+id/choose"
         android:background="@drawable/button"
         android:fontFamily="@font/roboto_light"
@@ -36,42 +76,50 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditRes28"
+        app:layout_constraintVertical_bias="0.483" />
 
     <ImageView
         android:id="@+id/image"
         android:layout_width="381dp"
         android:layout_height="339dp"
         android:layout_below="@id/choose"
-        android:layout_marginTop="42dp"
-        android:layout_marginBottom="51dp" />
+        android:layout_centerHorizontal="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53" />
 
     <Button
         android:id="@+id/upload"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="28dp"
         android:background="@drawable/button"
         android:fontFamily="@font/roboto_light"
+        android:text="Upload"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="14sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="170dp"
-        android:layout_marginTop="510dp"
-        android:layout_marginBottom="147dp"
-        android:text="Upload" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/choose"
+        app:layout_constraintVertical_bias="0.517" />
 
     <Button
         android:id="@+id/show_uploads"
-        android:layout_width="113dp"
-        android:layout_height="57dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="510dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="148dp"
         android:layout_toEndOf="@+id/upload"
         android:layout_toRightOf="@+id/upload"
         android:background="@drawable/button"
@@ -79,6 +127,12 @@
         android:text="Show Uploads"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.328"
+        app:layout_constraintStart_toEndOf="@+id/upload"
+        app:layout_constraintTop_toBottomOf="@+id/choose"
+        app:layout_constraintVertical_bias="0.517" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
