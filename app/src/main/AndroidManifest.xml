@@ -32,6 +32,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".HowToUseApp" />
+        <activity android:name=".HowToUseAppOwner" />
+        <activity android:name=".HowToDiscount" />
+        <activity android:name=".HowToMakeListing" />
         <activity android:name=".MainActivity" />
         <activity android:name=".PreOrderActivity" />
         <activity android:name=".MakeReservationCustomerP2" />
