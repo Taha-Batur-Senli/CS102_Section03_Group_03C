@@ -41,7 +41,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
     ImageView logo;
     TextView tvName, tvRating, tvDescription, tvMinPriceToPreOrder;
     DatabaseReference mRefRes;
-    Button showMenu, makeReservation, showPictures,showSeatingPlan;
+    Button showMenu, makeReservation;
     ListView listView;
     ArrayAdapter myAdapter;
     ArrayList<String> menu = new ArrayList<String>();
@@ -59,8 +59,6 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
 
         //Initialize
         logo = findViewById(R.id.imageView43);
-        showSeatingPlan = findViewById(R.id.show_seating_plan);
-        showPictures = findViewById(R.id.show_pictures);
         tvName = (TextView)findViewById(R.id.txtNamePOV);
         tvRating = (TextView)findViewById(R.id.txtRatingPOV);
         tvDescription = (TextView)findViewById(R.id.txtDescriptionPOV);
