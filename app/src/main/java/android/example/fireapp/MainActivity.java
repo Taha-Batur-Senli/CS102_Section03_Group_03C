@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     TextView textView;
-    SearchView search;
     ViewFlipper mViewFlipper;
     TextView cusNameTV, cusNameMenu;
     FirebaseUser user;
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.navigation_view);
         //toolbar = findViewById(R.id.toolbar);
         textView = findViewById(R.id.text);
-        search = findViewById(R.id.search);
         mViewFlipper = findViewById(R.id.view_flipper);
         cusNameMenu = findViewById(R.id.nav_customer_name);
         promotions = (Button)findViewById(R.id.btnPromotions);
@@ -148,13 +146,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.setCheckedItem(R.id.nav_home);
-
-        //Text color of searchView
-        int id = search.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
-        TextView textView = search.findViewById(id);
-        textView.setTextColor(Color.WHITE);
-
-        search.clearFocus();
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();

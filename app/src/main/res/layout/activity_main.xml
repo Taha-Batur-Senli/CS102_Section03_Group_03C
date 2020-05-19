@@ -318,27 +318,6 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.19999999" />
 
-                    <SearchView
-                        android:id="@+id/search"
-                        android:layout_width="350dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="100dp"
-                        android:layout_marginBottom="60dp"
-                        android:accessibilityPaneTitle="F"
-                        android:background="@drawable/button"
-                        android:backgroundTint="#FFFFFF"
-                        android:clickable="true"
-                        android:closeIcon="@drawable/ic_close_white_24dp"
-                        android:fontFamily="@font/roboto_light"
-                        android:goIcon="@drawable/ic_keyboard_arrow_right_white_24dp"
-                        android:iconifiedByDefault="false"
-                        android:searchHintIcon="@drawable/ic_search_white_24dp"
-                        android:searchIcon="@drawable/ic_search_white_24dp"
-                        android:text="Search Restaurants"
-                        android:textColor="@color/white"
-                        android:voiceIcon="@drawable/ic_mic_white_24dp" />
-
                 </FrameLayout>
 
                 <!-- <androidx.appcompat.widget.Toolbar

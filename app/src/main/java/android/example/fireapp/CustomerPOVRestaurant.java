@@ -3,6 +3,8 @@ package android.example.fireapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Application;
 import android.content.DialogInterface;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 // import com.squareup.picasso.Picasso;
 
 import java.time.LocalDate;
@@ -32,6 +36,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 /*
  This class a class that enables customers to see the restaurants profiles. They can see the menu of
@@ -41,9 +46,10 @@ import java.util.Iterator;
 public class CustomerPOVRestaurant extends AppCompatActivity {
     //Properities
     ImageView logo;
+    Adapter adapter;
+    List<Upload> uploads;
     TextView tvName, tvRating, tvDescription, tvMinPriceToPreOrder;
     DatabaseReference mRefRes;
-    StorageReference storageReference;
     Button showMenu, makeReservation;
     ListView listView;
     ArrayAdapter myAdapter;
@@ -61,7 +67,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         setContentView(R.layout.activity_customer_p_o_v_restaurant);
 
         //Initialize
-        logo = findViewById(R.id.imageView43);
+        logo = findViewById(R.id.logo);
         tvName = (TextView)findViewById(R.id.txtNamePOV);
         tvRating = (TextView)findViewById(R.id.txtRatingPOV);
         tvDescription = (TextView)findViewById(R.id.txtDescriptionPOV);
@@ -78,13 +84,27 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
 
 
 
+        Intent intent = getIntent();
+        final String uid = intent.getStringExtra("UID");
+
+        mRefRes.child(uid).child("Pictures").child("Logo").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) { //dataSnapshot is a object that store datas like arraylists.
+                for( DataSnapshot snapshot : dataSnapshot.getChildren()){ //checking the every object of data
+                    upload = snapshot.getValue(Upload.class);
+                }
+
+                Picasso.with(CustomerPOVRestaurant.this).load(upload.getmImageURL()).into(logo);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
+
         //Methods called
         placeDatatoTVs();
         showMenuAction();
         makeReservationAction();
-
-        Intent intent = getIntent();
-        final String uid = intent.getStringExtra("UID");
 
         // updater
 
