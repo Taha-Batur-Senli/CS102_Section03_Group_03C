@@ -9,6 +9,32 @@
 
 
     <ImageView
+        android:id="@+id/imageView89"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/lvMyOrder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/line_155" />
+
+    <ImageView
+        android:id="@+id/imageView43"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/btnFinishAndPay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvMyOrder"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/line_155" />
+
+    <ImageView
         android:id="@+id/imageView85"
         android:layout_width="55dp"
         android:layout_height="40dp"
@@ -22,7 +48,7 @@
     <TextView
         android:id="@+id/txtEditRes20"
         android:layout_width="238dp"
-        android:layout_height="45dp"
+        android:layout_height="30dp"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
         android:text="Pre-Order"
@@ -49,78 +75,82 @@
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:text="My Order"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:fontFamily="@font/roboto_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.536" />
+        app:layout_constraintVertical_bias="0.544" />
 
     <TextView
         android:id="@+id/txtTotal"
-        android:layout_width="59dp"
-        android:layout_height="29dp"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
         android:gravity="center"
         android:text="0"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintHorizontal_bias="0.844"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.883" />
+        app:layout_constraintVertical_bias="0.868" />
 
     <TextView
         android:id="@+id/txtYourMoney"
-        android:layout_width="384dp"
-        android:layout_height="72dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="4dp"
         android:layout_marginBottom="146dp"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
         android:text="You have TL"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.172" />
 
     <TextView
         android:id="@+id/txtPreOrderMinPrice"
-        android:layout_width="247dp"
-        android:layout_height="46dp"
+        android:layout_width="230dp"
+        android:layout_height="31dp"
         android:alpha="0.6"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
         android:text="Minimum Price Limit:"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.868" />
 
     <ListView
         android:id="@+id/lvMyOrder"
-        android:layout_width="414dp"
-        android:layout_height="169dp"
+        android:layout_width="412dp"
+        android:layout_height="175dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.733" />
+        app:layout_constraintVertical_bias="0.755" />
 
     <TextView
         android:id="@+id/textView29"
-        android:layout_width="69dp"
+        android:layout_width="50dp"
         android:layout_height="30dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
@@ -130,32 +160,32 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintHorizontal_bias="0.739"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.878" />
+        app:layout_constraintVertical_bias="0.863" />
 
     <TextView
         android:id="@+id/textView28"
-        android:layout_width="45dp"
-        android:layout_height="28dp"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
         android:gravity="center"
-        android:text="TL"
+        android:text="g3Coins"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.989"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.883" />
+        app:layout_constraintVertical_bias="0.868" />
 
     <Button
         android:id="@+id/btnFinishAndPay"
         android:layout_width="328dp"
         android:layout_height="60dp"
-        android:background="@drawable/button"
+        android:background="@drawable/button_rosa"
         android:text="Finish and Pay"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -170,13 +200,57 @@
     <ListView
         android:id="@+id/lvMenuResPreOrder"
         android:layout_width="384dp"
-        android:layout_height="202dp"
+        android:layout_height="176dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.407"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.332" />
+        app:layout_constraintVertical_bias="0.315" />
+
+    <ImageView
+        android:id="@+id/imageView90"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/textView25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvMenuResPreOrder"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/line_155" />
+
+    <ImageView
+        android:id="@+id/imageView91"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/lvMenuResPreOrder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtYourMoney"
+        app:layout_constraintVertical_bias="0.944"
+        app:srcCompat="@drawable/line_155" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Menu"
+        android:fontFamily="@font/roboto_light"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/lvMenuResPreOrder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtYourMoney"
+        app:layout_constraintVertical_bias="0.818" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
