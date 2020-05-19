@@ -42,4 +42,7 @@ I spent these two days with continously working on the GUI and handling some of 
 ### ~ 16.05.2020 and 17.05.2020 ~
 Saturday was spent solving the previous issue and I managed to achieve success, while sunday was mostly spent on the SearchView. However, a small communications error in our team basically made my work on the SearchView obsolete and so I had to discard it and provide my understanding of it as advice. It was frustrating to discard my progress in a sense, but in the end we outlined our tasks clearly and so I began to work on designing the help pages. 
 
+### ~ 18.05.2020 ~
+Today I finished the help pages, both for the restaurant and the customer by creating the necessary xml pages, java classes and then adding the required event listeners to those classes. I also encountered a small problem with their functioning and discovered that it was caused due to the classes not being in the android manifest.
+
 ****
