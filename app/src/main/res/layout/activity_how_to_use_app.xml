@@ -8,6 +8,22 @@
     tools:context=".HowToUseApp">
 
     <TextView
+        android:id="@+id/textView48"
+        android:layout_width="312dp"
+        android:layout_height="216dp"
+        android:text="You can choose any option you desire from the buttons on the main page or
+from the menu you can access by sliding your finger from left to right."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:lineSpacingExtra="10dp"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView32"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <TextView
         android:id="@+id/textView31"
         android:layout_width="257dp"
         android:layout_height="44dp"
