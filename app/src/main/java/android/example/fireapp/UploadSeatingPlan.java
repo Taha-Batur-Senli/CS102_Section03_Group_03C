@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -45,7 +46,10 @@ public class UploadSeatingPlan extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_upload_seating_plan);
+
         choose_seating_plan = findViewById(R.id.choose_seating_plan);
         upload_seating_plan_pic = findViewById(R.id.upload_seating_plan_pic);
         imageView = findViewById(R.id.imageView62);

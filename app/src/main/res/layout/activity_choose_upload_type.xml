@@ -9,36 +9,65 @@
 
     <ImageView
         android:id="@+id/imageView60"
-        android:layout_width="111dp"
-        android:layout_height="102dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/logo" />
 
-    <Button
-        android:id="@+id/upload_gallery"
-        android:layout_width="244dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="120dp"
-        android:background="@drawable/button"
+    <TextView
+        android:id="@+id/txtEditRes29"
+        android:layout_width="238dp"
+        android:layout_height="45dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="Add Money"
         android:textColor="@color/white"
-        android:text="Upload to gallery"
-        android:textAllCaps="false"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView60" />
 
+    <ImageView
+        android:id="@+id/imageView61"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditRes29"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/line_28" />
+
+    <Button
+        android:id="@+id/upload_gallery"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="116dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/roboto_light"
+        android:text="Upload to gallery"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView61" />
+
     <Button
         android:id="@+id/upload_logo"
-        android:layout_width="244dp"
-        android:layout_height="66dp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
         android:layout_marginTop="28dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/roboto_light"
         android:text="Upload to Logo"
         android:textAllCaps="false"
-        android:background="@drawable/button"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -47,40 +76,17 @@
 
     <Button
         android:id="@+id/upload_seating_plan"
-        android:layout_width="244dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="40dp"
-        android:textAllCaps="false"
-        android:text="Upload Seating Plan"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/button"
+        android:fontFamily="@font/roboto_light"
+        android:text="Upload Seating Plan"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upload_logo" />
 
-    <ImageView
-        android:id="@+id/imageView61"
-        android:layout_width="296dp"
-        android:layout_height="5dp"
-        android:layout_marginEnd="56dp"
-        app:layout_constraintBottom_toTopOf="@+id/upload_gallery"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView60"
-        app:layout_constraintVertical_bias="0.524"
-        app:srcCompat="@drawable/line" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="308dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="56dp"
-        android:text="Choose Uploading Place"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView61"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView60"
-        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
