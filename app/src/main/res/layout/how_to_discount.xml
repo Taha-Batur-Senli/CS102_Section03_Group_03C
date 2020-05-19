@@ -46,8 +46,8 @@
 
     <TextView
         android:id="@+id/textView41"
-        android:layout_width="310dp"
-        android:layout_height="477dp"
+        android:layout_width="302dp"
+        android:layout_height="208dp"
         android:layout_marginTop="8dp"
         android:text="To create a promotion, which is essentially a discount, you have to click on the promotions button after logging into your restaurant account. From there, you can choose or create the menu you want and add the adequate promotion you desire."
         android:textAlignment="center"
@@ -58,6 +58,23 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/freq"
-        app:layout_constraintVertical_bias="0.764" />
+        app:layout_constraintVertical_bias="0.082" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="304dp"
+        android:layout_height="175dp"
+        android:layout_marginBottom="16dp"
+        android:lineSpacingExtra="10dp"
+        android:text="Moreover, you have to perform a long click in order to delete a promotion."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView41"
+        app:layout_constraintVertical_bias="0.243" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
