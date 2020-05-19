@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -11,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,6 +43,10 @@ public class PromotionsPOVCustomer extends AppCompatActivity {
         myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, promotions);
         listViewPromotions.setAdapter(myAdapter);
         reference2 = FirebaseDatabase.getInstance().getReference();
+
+        int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        TextView textView = searchView.findViewById(id);
+        textView.setTextColor(Color.WHITE);
 
         //Methods called
         displayPromotions();
@@ -82,7 +88,7 @@ public class PromotionsPOVCustomer extends AppCompatActivity {
                             {
                                 final String resName = ds2.child("restaurantName").getValue().toString();
                                 final String name = ds2.child("name").getValue().toString();
-                                String promo = resName + "   " + name;
+                                String promo = resName + "\n" + name;
                                 promotions.add(promo);
                                 myAdapter.notifyDataSetChanged();
                             }
@@ -108,7 +114,7 @@ public class PromotionsPOVCustomer extends AppCompatActivity {
             {
                 //Get restaurants name
                 String promo = promotions.get(position);
-                int index = promo.indexOf("   ");
+                int index = promo.indexOf("\n");
                 final String resName = promo.substring(0, index);
 
                 //Go to restaurants profile

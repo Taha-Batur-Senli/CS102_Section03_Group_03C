@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -45,6 +46,7 @@ public class PreOrderActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_pre_order);
 
         //Get restaurants data
@@ -121,7 +123,7 @@ public class PreOrderActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String money = dataSnapshot.child("money").getValue().toString();
-                yourMoneyTv.setText("You have " + money+ "TL");
+                yourMoneyTv.setText("You currently have " + money + "g3Coins");
             }
 
             @Override
@@ -147,7 +149,7 @@ public class PreOrderActivity extends AppCompatActivity {
                     String name;
                     name = "" + item.child("name").getValue().toString() + ": "
                             + item.child("ingredients").getValue().toString() +
-                            "___" + item.child("price").getValue().toString() + "TL";
+                            " - " + item.child("price").getValue().toString() + "TL";
 
                     menu.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -174,7 +176,7 @@ public class PreOrderActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Get price
                 String item = menu.get(position);
-                int index = item.indexOf("___");
+                int index = item.indexOf(" - ");
                 String price = item.substring((index + 3), (item.length()-2) );
 
                 double minPriceLimit = Double.parseDouble(minPrice);
@@ -188,8 +190,8 @@ public class PreOrderActivity extends AppCompatActivity {
                 if ( minPriceLimit - total <= 0)
                     minPricetv.setText("You satisfied the limit!");
                 else
-                    minPricetv.setText( minPriceLimit - total + " TL left to satisfy the minimum limit to pre-order.");
-                totalTv.setText( total +"");
+                    minPricetv.setText( minPriceLimit - total + " g3Coins left to satisfy the minimum limit to pre-order.");
+                totalTv.setText( total + "");
                 preOrder.add(item);
                 myAdapter2.notifyDataSetChanged();
             }
@@ -213,7 +215,7 @@ public class PreOrderActivity extends AppCompatActivity {
 
                                 //Get dish's price
                                 String item = preOrder.get(position);
-                                int index = item.indexOf("___");
+                                int index = item.indexOf(" - ");
                                 double price = Double.parseDouble(item.substring((index + 3), (item.length()-2) ));
 
                                 //get total price and reduce dish's price
@@ -229,7 +231,7 @@ public class PreOrderActivity extends AppCompatActivity {
                                 if ( remaining <= 0)
                                     minPricetv.setText("You satisfied the limit!");
                                 else
-                                    minPricetv.setText( remaining + " TL left to satisfy the minimum limit to pre-order.");
+                                    minPricetv.setText( remaining + " g3Coins left to satisfy the minimum limit to pre-order.");
 
                             }
                         })

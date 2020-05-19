@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -37,18 +38,17 @@ import java.util.Iterator;
  */
 public class MakeReservationCustomerP2 extends AppCompatActivity {
     //Properties
-    TextView askPreOrder;
-    Button yes, no;
     ListView lvAvailableTimeSlots;
     ArrayAdapter myAdapter;
     ArrayList<String> allTimes = new ArrayList<>();
     DatabaseReference reference;
     FirebaseUser user;
-    TextView tvDeneme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_make_reservation_customer_p2);
 
         //Initialize
@@ -56,7 +56,6 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
         myAdapter = new ArrayAdapter<>(this, R.layout.listrow, R.id.textView2, allTimes);
         lvAvailableTimeSlots.setAdapter(myAdapter);
         reference = FirebaseDatabase.getInstance().getReference();
-        tvDeneme = (TextView)findViewById(R.id.deneme6);
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();

@@ -7,47 +7,47 @@
 
 
     <ImageView
-        android:id="@+id/logo1"
-        android:layout_width="115dp"
-        android:layout_height="91dp"
-        android:contentDescription="@string/todo"
+        android:id="@+id/imageView81"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048"
+        app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/logo" />
 
+    <TextView
+        android:id="@+id/txtEditRes19"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="Frequently Asked Questions"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView81" />
+
     <ImageView
-        android:id="@+id/row1"
-        android:layout_width="330dp"
-        android:layout_height="8dp"
-        android:contentDescription="@string/todo"
+        android:id="@+id/imageView82"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/freq"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditRes19"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/line" />
-
-    <TextView
-        android:id="@+id/freq"
-        android:layout_width="323dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="20dp"
-        android:text="Frequently Asked Questions"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo1" />
+        app:srcCompat="@drawable/line_28" />
 
     <TextView
         android:id="@+id/textView41"
         android:layout_width="314dp"
         android:layout_height="54dp"
+        android:fontFamily="@font/roboto_light"
         android:text="What is the main purpose of the app?"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -57,13 +57,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/freq"
-        app:layout_constraintVertical_bias="0.083" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEditRes19"
+        app:layout_constraintVertical_bias="0.05" />
 
     <TextView
         android:id="@+id/textView43"
         android:layout_width="314dp"
         android:layout_height="54dp"
+        android:fontFamily="@font/roboto_light"
         android:text="Where does the app store personal information?"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -74,12 +75,14 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView27"
-        app:layout_constraintVertical_bias="0.285" />
+        app:layout_constraintVertical_bias="0.141" />
 
     <TextView
         android:id="@+id/textView27"
         android:layout_width="322dp"
         android:layout_height="178dp"
+        android:alpha="0.6"
+        android:fontFamily="@font/roboto_light"
         android:text="The main purpose of our app is to create an efficient albeit simple enough solution for not only our university, but for all those that wait on food queues by delegating the time everyone had to spend for eating a meal."
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -89,12 +92,14 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView41"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.029" />
 
     <TextView
         android:id="@+id/textView44"
         android:layout_width="313dp"
         android:layout_height="97dp"
+        android:alpha="0.6"
+        android:fontFamily="@font/roboto_light"
         android:text="Our app uses Firebase to store any and all personal data, be it user or restaurant related information."
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -103,6 +108,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView43"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.072" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

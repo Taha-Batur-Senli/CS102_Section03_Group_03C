@@ -81,24 +81,23 @@
         android:id="@+id/imageView55"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginTop="8dp"
         android:layout_weight="1"
         android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvBestRestaurants2"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/listViewAllPromotionsPage"
         app:srcCompat="@drawable/line_155" />
 
     <ListView
         android:id="@+id/listViewAllPromotionsPage"
         android:layout_width="410dp"
         android:layout_height="450dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView55"
+        android:layout_marginTop="212dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.964" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

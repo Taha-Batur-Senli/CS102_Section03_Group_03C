@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -37,6 +38,8 @@ public class MyReservations extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_my_reservations);
 
         //Initialization
@@ -223,8 +226,8 @@ public class MyReservations extends AppCompatActivity {
                         mS = "00";
                     String timeSlotString = hS + ":" + mS;
 
-                    String toString = resName + "\n" + date + "   " +  timeSlotString + " "+ ""+ table +  "\n"+
-                            proOrder + "___" + totalPrice + "TL\nRestaurant info: +90 " + resPhone;
+                    String toString = resName + "\n" + date + " - " +  timeSlotString + " - " + table +  "\n"+
+                            proOrder + ": " + totalPrice + " g3Coins\nRestaurant info: +90 " + resPhone;
                     toString += "\n\n\nPre-order: \n" + preOrderTxt;
                     currentReservations.add(toString);
                     myAdapter.notifyDataSetChanged();

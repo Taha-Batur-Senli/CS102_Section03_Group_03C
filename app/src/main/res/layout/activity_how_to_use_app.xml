@@ -7,55 +7,60 @@
     android:layout_height="match_parent"
     tools:context=".HowToUseApp">
 
-    <TextView
-        android:id="@+id/textView31"
-        android:layout_width="257dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="16dp"
-        android:text="How To Use App"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
-
     <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="132dp"
-        android:layout_height="111dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/imageView65"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/logo" />
 
-    <ImageView
-        android:id="@+id/imageView15"
-        android:layout_width="340dp"
-        android:layout_height="9dp"
+    <TextView
+        android:id="@+id/txtEditRes13"
+        android:layout_width="238dp"
+        android:layout_height="45dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="How to Use"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView31"
-        app:srcCompat="@drawable/line" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView65" />
+
+    <ImageView
+        android:id="@+id/imageView66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="628dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEditRes3"
+        app:layout_constraintVertical_bias="0.012"
+        app:srcCompat="@drawable/line_28" />
 
     <TextView
         android:id="@+id/textView32"
         android:layout_width="325dp"
         android:layout_height="214dp"
+        android:fontFamily="@font/roboto_light"
         android:lineSpacingExtra="10dp"
         android:text="You can use the app by whether choosing the desired option
 from scrollable menu or the main menu that is introduced to you after you successfully log in."
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView15"
-        app:layout_constraintVertical_bias="0.193" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEditRes13"
+        app:layout_constraintVertical_bias="0.11" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,10 +2,12 @@ package android.example.fireapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ public class RateReservation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_rate_reservation);
 
         //Initialize
@@ -40,6 +43,8 @@ public class RateReservation extends AppCompatActivity {
         tvSetError = (TextView)findViewById(R.id.textView42);
         rate = (Button)findViewById(R.id.btnRate);
         user = FirebaseAuth.getInstance().getCurrentUser();
+
+        etRating.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         //SET TV
         Intent i = getIntent();
