@@ -28,9 +28,9 @@ public class Restaurant {
         reservations = "";
         menu = "";
         adress = "";
-        workingHours = "0:10-23:59";
+        workingHours = "0:10-23:50";
         openingHour =  "0:10";
-        closingHour = "23:59";
+        closingHour = "23:50";
         numOfTimesRated = 0;
         this.maxSeatingDuration = maxSeatingDuration;
         this.minPriceToPreOrder = minPriceToPreOrder;

@@ -17,21 +17,45 @@ public class SeatCalendar extends HashMap<String, Object>{
     private LocalTime availableHoursStart;
     private LocalTime availableHoursEnd;
     private LocalDate currentDate;
+    private Restaurant r;
+    private int maxSeatingDuration;
 
     // constructors
     public SeatCalendar(){
 
     }
 
-    public SeatCalendar(LocalDate date, LocalTime start, LocalTime end) {
-
+    public SeatCalendar( int maxSeatingDuration, LocalDate date, LocalTime start, LocalTime end){
+        this.maxSeatingDuration = maxSeatingDuration;
         currentDate = date;
         availableHoursEnd = end;
 
         if( date.isEqual(LocalDate.now()))
         {
             LocalTime i;
-            for ( i = start; i.isBefore(LocalTime.now()); i = i.plusMinutes(5))
+            for ( i = start; i.isBefore(LocalTime.now()); i = i.plusMinutes(15))
+            {
+                // do nothing
+            }
+            availableHoursStart = i;
+        }
+        else
+        {
+            availableHoursStart = start;
+        }
+
+        createTimeSlots( availableHoursStart, getLastReservationTime().plusMinutes(1));
+    }
+
+    public SeatCalendar(Restaurant r, LocalDate date, LocalTime start, LocalTime end) {
+        this.r = r;
+        currentDate = date;
+        availableHoursEnd = end;
+
+        if( date.isEqual(LocalDate.now()))
+        {
+            LocalTime i;
+            for ( i = start; i.isBefore(LocalTime.now()); i = i.plusMinutes(15))
             {
                 // do nothing
             }
@@ -49,10 +73,14 @@ public class SeatCalendar extends HashMap<String, Object>{
     private void createTimeSlots( LocalTime start, LocalTime end)
     {
         TimeSlot ts;
-
-        for( LocalTime i = start; i.isBefore(end); i = i.plusMinutes(5)) // 10 represent intervals, we can change if needed
+        System.out.println("BURAYA GIRIYORUM");
+        System.out.println(start.toString());
+        System.out.println(end.toString());
+        for( LocalTime i = start; i.isBefore(end); i = i.plusMinutes(15)) // 15 represent intervals, we can change if needed
         {
-            ts = new TimeSlot(currentDate, i);
+            if ( r != null) maxSeatingDuration = r.getMaxSeatingDuration();
+            ts = new TimeSlot(maxSeatingDuration, currentDate, i);
+            System.out.println("TIMESLOT IS : " + ts.toString());
             ts.setReservedStatus(false);
             this.put("" + (i.getHour() * 60 + i.getMinute()), ts);
         }
@@ -83,6 +111,7 @@ public class SeatCalendar extends HashMap<String, Object>{
 
     private LocalTime getLastReservationTime() {
         // to do
-        return availableHoursEnd.minusMinutes(TimeSlot.durationOfMeal);
+        return availableHoursEnd.minusMinutes(maxSeatingDuration);
+
     }
 }

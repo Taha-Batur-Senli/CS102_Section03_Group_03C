@@ -100,7 +100,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
 
                     DataSnapshot item = items.next();
                     String name, genre;
-                    name = item.child("name").getValue().toString() + ", " + item.child("genre").getValue().toString();
+                    name = "" + (String)item.child("name").getValue() + ", " + (String) item.child("genre").getValue();
 
                     allRestaurants.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -190,7 +190,8 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
                         while (items.hasNext()) {
                             DataSnapshot item1 = items.next();
                             String searchedId;
-                            if (item1.child("name").getValue().toString().equals(name)) {
+                            String nameOfRestaurant = (String)item1.child("name").getValue();
+                            if ((nameOfRestaurant).equals(name)) {
 
                                 searchedId = item1.child("uid").getValue().toString();
                                 Intent intent = new Intent(AllRestaurantsDisplay.this, CustomerPOVRestaurant.class);
