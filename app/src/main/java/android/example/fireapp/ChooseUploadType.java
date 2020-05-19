@@ -26,7 +26,7 @@ public class ChooseUploadType extends AppCompatActivity {
         upload_gallery = findViewById(R.id.upload_gallery);
         upload_logo = findViewById(R.id.upload_logo);
         upload_seating_plan = findViewById(R.id.upload_seating_plan);
-        textView = findViewById(R.id.textView17);
+        // textView = findViewById(R.id.textView17);
 
         upload_gallery.setOnClickListener(new View.OnClickListener(){
 
