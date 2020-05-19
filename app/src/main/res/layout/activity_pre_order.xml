@@ -77,8 +77,8 @@
 
     <TextView
         android:id="@+id/txtYourMoney"
-        android:layout_width="161dp"
-        android:layout_height="38dp"
+        android:layout_width="387dp"
+        android:layout_height="42dp"
         android:layout_marginBottom="146dp"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
@@ -87,10 +87,9 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.202" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <TextView
         android:id="@+id/txtPreOrderMinPrice"
@@ -111,8 +110,8 @@
 
     <ListView
         android:id="@+id/lvMyOrder"
-        android:layout_width="399dp"
-        android:layout_height="194dp"
+        android:layout_width="414dp"
+        android:layout_height="169dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

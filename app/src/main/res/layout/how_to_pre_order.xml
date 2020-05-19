@@ -49,7 +49,11 @@
             android:id="@+id/textView41"
             android:layout_width="310dp"
             android:layout_height="477dp"
-            android:text="To pre-order a meal you have to..."
+            android:text="To pre-order a meal you have to follow the same procedure outlined in
+how to make a reservation. However, after you select your table and date a warning will pop up
+asking whether if you want to pre-order your meal or not.
+Clicking on the pre-order button will then lead you to the dish selection page and then
+you will be able to make a pre-order from that menu."
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp"
