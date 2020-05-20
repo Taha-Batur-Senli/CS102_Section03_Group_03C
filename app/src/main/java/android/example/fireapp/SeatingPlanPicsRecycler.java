@@ -56,6 +56,5 @@ public class SeatingPlanPicsRecycler extends AppCompatActivity {
                         .show();
             }
         });
-
     }
 }

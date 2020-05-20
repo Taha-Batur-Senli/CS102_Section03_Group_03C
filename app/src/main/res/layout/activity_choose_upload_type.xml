@@ -24,7 +24,7 @@
         android:layout_height="45dp"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
-        android:text="Add Money"
+        android:text="Upload Picture"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
