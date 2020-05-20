@@ -27,4 +27,11 @@ This week I've designed and implemented almost all lists required for the GUI (R
 @TODO: For now, when user wants to close the pop-up settings menu, it starts the previous activity over the pop-up settings menu instead of actually closing the pop-up settings menu with going back to the previous activity. I'll enhance the close button.
 @TODO 2: I need to look at our main function: making reservations. Some of my team members especially Berkay was involved in making reservations, I will work with him to implement the features to the Android Studoio, to the GUI.
 
+### 12.05.2020 - 19.05.2020
+This week I modified & enhanced over 50 XML classes and 40 Java classes. I and my team pretty much shaped everything we did up in this week. I mostly spent my time about enhancing the GUI and making the app function, spending at least 4-5 hours a day, 7-8 with breaks in average. At the end, what I contributed to the project only this week that comes to my mind now were 3 times restored main menu, a drawer menu, most of the pages' GUI themes, making lists and buttons get data from firebase (Alongisde my friends, I also worked with firebase a little bit at the and), adjusting the views of many pages and basically, integrating XML classes with Java classes.
+
+@TODO: There's not much to do left. We pretty much finished our project, and will probably name our next push as 'Final Release'. There are still some bugs that we are aware of, however they can be prevented through using different ways. We will work on fixing these bugs after we upload our demovideo tomorrow.
+
 ****
+
+If you're reading here sir, thank you for the two semesters, for teaching us the basics of Java, and for everything. I especially, started coding with your lectures, so thank you.
