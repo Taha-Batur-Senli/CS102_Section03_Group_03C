@@ -160,9 +160,11 @@ public class RestaurantProfile extends AppCompatActivity {
                            @Override
                            public void onClick(DialogInterface dialog, int which) {
                                FirebaseAuth.getInstance().signOut();
-                               //startActivity(new Intent( RestaurantProfile.this, MainActivity.class));
-                               startActivity(new Intent(RestaurantProfile.this, LogInActivity.class));
-                               finish();
+                               Intent intent = new Intent(RestaurantProfile.this,
+                                       LogInActivity.class);
+                               intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                               intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                               startActivity(intent);
 
 
                            }
@@ -186,9 +188,11 @@ public class RestaurantProfile extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         FirebaseAuth.getInstance().signOut();
-                        startActivity(new Intent(RestaurantProfile.this, LogInActivity.class));
-                        finish();
-                        //RestaurantProfile.this.finish();
+                        Intent intent = new Intent(RestaurantProfile.this,
+                                LogInActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {

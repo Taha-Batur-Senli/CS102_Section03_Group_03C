@@ -91,11 +91,17 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) { //dataSnapshot is a object that store datas like arraylists.
                 for( DataSnapshot snapshot : dataSnapshot.getChildren()){ //checking the every object of data
-                    upload = snapshot.getValue(Upload.class);
+                    if (snapshot.child("imageURL").exists())
+                        upload = snapshot.getValue(Upload.class);
+                    else
+                        upload = null;
                 }
 
-                String str = (String)upload.getmImageURL();
-                Picasso.with(CustomerPOVRestaurant.this).load(str).into(logo);
+                String str;
+                if (upload != null) {
+                    str = (String) upload.getmImageURL();
+                    Picasso.with(CustomerPOVRestaurant.this).load(str).into(logo);
+                }
             }
 
             @Override

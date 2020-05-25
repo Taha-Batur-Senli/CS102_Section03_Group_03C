@@ -225,8 +225,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_log_out:
                 FirebaseAuth.getInstance().signOut();
-                startActivity( new Intent(MainActivity.this, LogInActivity.class));
-                finish();
+                Intent intent = new Intent(MainActivity.this,
+                        LogInActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
         }
 
