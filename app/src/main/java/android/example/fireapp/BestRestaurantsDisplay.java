@@ -109,17 +109,18 @@ public class BestRestaurantsDisplay extends AppCompatActivity {
                 while (items.hasNext()) {
 
                     DataSnapshot item = items.next();
-                    String ratingS = (String) item.child("rating").getValue().toString();
-                    double rating = Double.parseDouble(ratingS);
+                    if (item.child("rating").exists()) {
+                        String ratingS = (String) item.child("rating").getValue().toString();
+                        double rating = Double.parseDouble(ratingS);
 
-                    if (rating >= 3.75) {
-                        String name;
-                        name = item.child("name").getValue().toString() + ", " + item.child("genre").getValue().toString();
+                        if (rating >= 3.75) {
+                            String name;
+                            name = item.child("name").getValue().toString() + ", " + item.child("genre").getValue().toString();
 
-                        bestRestaurants.add(name);
-                        myAdapter.notifyDataSetChanged();
+                            bestRestaurants.add(name);
+                            myAdapter.notifyDataSetChanged();
+                        }
                     }
-
                 }
             }
 
