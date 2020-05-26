@@ -45,6 +45,7 @@ import java.util.List;
  */
 public class CustomerPOVRestaurant extends AppCompatActivity {
     //Properities
+
     ImageView logo;
     Adapter adapter;
     List<Upload> uploads;
@@ -67,6 +68,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         setContentView(R.layout.activity_customer_p_o_v_restaurant);
 
         //Initialize
+
         logo = findViewById(R.id.logo);
         tvName = (TextView)findViewById(R.id.txtNamePOV);
         tvRating = (TextView)findViewById(R.id.txtRatingPOV);
@@ -87,28 +89,26 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
         Intent intent = getIntent();
         final String uid = intent.getStringExtra("UID");
 
-        mRefRes.child(uid).child("Pictures").child("Logo").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) { //dataSnapshot is a object that store datas like arraylists.
-                for( DataSnapshot snapshot : dataSnapshot.getChildren()){ //checking the every object of data
-                    if (snapshot.child("imageURL").exists())
-                        upload = snapshot.getValue(Upload.class);
-                    else
-                        upload = null;
-                }
+            mRefRes.child(uid).child("Pictures").child("Logo").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) { //dataSnapshot is a object that store datas like arraylists.
+                    if(dataSnapshot.getValue() != null) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) { //checking the every object of data
+                            upload = snapshot.getValue(Upload.class);
+                        }
 
-                String str;
-                if (upload != null) {
-                    str = (String) upload.getmImageURL();
-                    Picasso.with(CustomerPOVRestaurant.this).load(str).into(logo);
+                        if (upload.getmImageURL() != null) {
+                            Picasso.with(CustomerPOVRestaurant.this).load(upload.getmImageURL()).into(logo);
+                        }
+                    }
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
 
         //Methods called
+
         placeDatatoTVs();
         showMenuAction();
         makeReservationAction();
