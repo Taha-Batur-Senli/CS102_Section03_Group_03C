@@ -1,4 +1,4 @@
-# CS102 ~ Personal Log page ~
+# CS102 ~ Taha's Personal Log Page ~
 ****
 ## Taha Batur Şenli
 ****
