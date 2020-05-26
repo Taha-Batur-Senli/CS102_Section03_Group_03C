@@ -50,7 +50,7 @@ Today we did our final checks before the video session. I was responsible with e
 ### ~ 20.05.2020 ~
 Today we did the video! It took some time to prepare and we spent some time preparing. I fixed the appearance of a couple pages today and so we began the process of reviewing our bugs to make sure our video had no problems. However, in the end, it was time to relax and we all breathed, if I dare say, a rightfully earned sigh of relief.
 
-### ~ 28.05.2020 and 28.05.2020 ~
+### ~ 27.05.2020 and 28.05.2020 ~
 With the Eid Al-Fitr about to end, I began working on the small issues on our code. My contributions are more cosmetic than practical at this point (since the app is working smoothly) but I will keep a log of it regardless. Moreover, since these are my final contributions, I wanted to make this my final entry. Therefore, I will try my best to list all I did in the mentioned days in one go and hopefully leave a heartwarming goodbye message.
 
 @WhatToDo?
