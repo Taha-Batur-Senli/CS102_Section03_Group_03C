@@ -1,16 +1,16 @@
 
-PROJET GROUP NUMBER:03C
+PROJET GROUP NUMBER: 03C
 ----------------------------------------------------------------------------------------------------------------------------------
-TITLE:Reserved
+TITLE: Reserved
 -----------------------------------------------------------------------------------------------------------------------------------
-DESCRIPTION:This app designed to help both customers and restaurants by making fast, efficient reservations anytime.
+DESCRIPTION: This app designed to help both customers and restaurants by making fast, efficient and reliable reservations anytime.
 -----------------------------------------------------------------------------------------------------------------------------------
 PROJECT'S CURRENT STATUS: Completed!
 -----------------------------------------------------------------------------------------------------------------------------------
 WHAT WORKS:
 	-Authentication works succesfully.
         -Reservation making process works.
-        -Customer's features such as adding money, rating apast reservations, editing account... works
+        -Customer's features such as adding money, rating past reservations, editing account... works.
         -Restaurant owner's features such as changing menu, adding promotion... works.
 -------------------------------------------------------------------------------------------------------------------------------------
 WHAT DOES NOT WORK: 
@@ -22,9 +22,9 @@ WHAT REMAINS TO BE DONE:
 	-Berkay İnceişçi: I worked on reservation process and I was responsible for making our app time sensitive
 	-Ege Ergül: I worked on manuplating the data on Firebase, connecting it to our app, and I also worked on reservation objects. 
 	-Bora Altınok:I worked on connecting database to Android Studio ,and creating the basic skeleton of our project.
-	-Taha Batur Şenli: I worked on our app's GUI and apperance, mostly spending time on XML classes and event listeners.
-	-Ali Eren Günaltılı:I worked on image uploading mechanism and built a connection between firestorage and firebase.
+	-Ali Eren Günaltılı: I worked on image uploading mechanism and built a connection between Firestorage and Firebase.
 	-Arda Tavusbay: I created our design and Adobe XD, and then implemented it to our Android Studio project and worked on           	  integrating xml files to java classes.
+	-Taha Batur Şenli: I worked on our app's GUI and apperance, mostly spending time on XML classes and event listeners.
 -------------------------------------------------------------------------------------------------------------------------------------
 Softwares: Android Studio 3.6, java8.0, SDK version 26, Firebase, GitHub
 Implementations: minSdkVersion 26, targetSdkVersion 29, compileSdkVersion 29.
