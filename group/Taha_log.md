@@ -54,19 +54,19 @@ Today we did the video! It took some time to prepare and we spent some time prep
 With the Eid Al-Fitr about to end, I began working on the small issues on our code. My contributions are more cosmetic than practical at this point (since the app is working smoothly) but I will keep a log of it regardless. Moreover, since these are my final contributions, I wanted to make this my final entry. Therefore, I will try my best to list all I did in the mentioned days in one go and hopefully leave a heartwarming goodbye message.
 
 @WhatToDo?
--
--
--
+- Reviewed Javadoc comments for almost all the classes!
+- Performed final checks on the XML files.
 
-### ~ Taking A Good Look Back ~
+### ~ Taking A Good Look Back (A Rant? I hope not!) ~
 Before I begin, I want to state (once again) that I kept this logs as organic as possible. I've done my best trying to relay the idea of what I did and how much I've worked on them instead of maintaining an all-out formal tone. My main focus was on how our app looked like, as I worked more on XML files and the listener methods for buttons etc. I also helped my team with the GitHub repository and any other problems they faced. With this explanation done, I want to move on to my "Sub-Headings."
 
-Strengths:
+Strengths: I tried my best to be a team player, constantly spending time on the issues my friends faced (technical and otherwise) and trying my best to fix the issues they encountered. I also think I learned GitHub pretty fast and helped my friends grasp the program as best as I can and also helped my team use GitHub more efficiently. In terms of Android Studio, I once again tried to be the first to answer my friends' calls for aid and helped them in any way I could. I also had much less time getting used to working with XML files as well, which was a surprise for me. Overall, I think helping teamwork and ensuring cooperation was my strong suit.
 
-Weaknesses:
+Weaknesses: Despite my best efforts to hide it, I was consumed by a wide variety of different types of paranoid fears throughout the couse of the project. I had full confidence in our project's progress and was certain that we would complete it in the end, so my fears were basically doomsday scenarios where I caused a huge problem. As time passed, however, I realized that this fear originated from my desire to contribute more to the project, and so I adjusted my approach to my fears by increasing my workload.
 
-What I Have learned:
+What I Have learned: I learned how to cope with problems and how to help my friends with theirs. The project made me understand the value of teamwork and how to contribute to it properly. I must admit that I was surrounded by a constant paranoid fear of being unable to pull my weight until the very end. I believe this was because of the fact that I missed some of my group's late night meetings before the quarantine due to some of the special circumstances I was in. However, the quarainte provided me the time and flexibility to go beyond some of my former restrictions and I tried my best to contribute as best as I could and I believe I did pull my weight in the end. This whole experience thus made me realize how to contribute to a project properly and constantly. I also learned a great deal about Android Studio, GitHub and XML format in general. I also learned the importance of teamwork and the importance of the friendly bonds I formed with my teammates, which seriously boosted my enthusiasm.
 
+Finally, I believe I learned valuable lessons during the course of this project, chief of them being the importance of pulling my own weight and helping my teammates in a project. I also understood how important it is to communicate with my teammates and the value of acting as a team. Ultimately, I believe I also earned valuable friends, and I believe this is also a part worth mentioning.
 
-
+All things considered, this project and your classes were very educative, Mr. Davenport. I want to take this time to first thank you for all that you have taught me (including being humble) and I want to apologize if I sounded arrogant or uninterested in any of your lectures or classes. Thank you for the ride, sir! This is Taha Batur Şenli, signing off.
 ****
