@@ -10,6 +10,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
+
 public class HelpRestaurant extends AppCompatActivity {
     Button FAQ;
     Button how_to_use_app_owner;

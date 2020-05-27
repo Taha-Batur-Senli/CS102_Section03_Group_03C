@@ -1,7 +1,9 @@
 package android.example.fireapp;
 
 /*
-This is a class to create reservation objects easily.
+ * This is a class to create reservation objects easily.
+ *@date 27.05.2020
+ *@author Group 3C
  */
 public class Reservation {
     String reservID, cusID, restaurantID, restaurantName, cusName, restaurantPhone, cusPhone,

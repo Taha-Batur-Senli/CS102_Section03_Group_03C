@@ -36,10 +36,13 @@ import java.util.Iterator;
 import java.util.List;
 
 /*
-This class is the first page for reservation making process. Here, customers can see the available
-days that they can make a reservation to. After they select a date, they are asked to select a table
-as well. If a restaurant has five tables, customers will be asked to choose one from five.
+* This class is the first page for reservation making process. Here, customers can see the available
+* days that they can make a reservation to. After they select a date, they are asked to select a
+* table as well. If a restaurant has five tables, customers will be asked to choose one from five.
+ *@date 27.05.2020
+ *@author Group 3C
  */
+
 public class MakeReservationCustomerP1 extends AppCompatActivity {
     //Properties
     CalendarView calendar;

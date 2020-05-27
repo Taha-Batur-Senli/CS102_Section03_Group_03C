@@ -27,12 +27,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
-/**
+/*
  * A simple {@link Fragment} subclass.
  * Use the {@link FragmentMenu#newInstance} factory method to
  * create an instance of this fragment.
+ *@date 27.05.2020
+ *@author Group 3C
  */
+
 public class FragmentMenu extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

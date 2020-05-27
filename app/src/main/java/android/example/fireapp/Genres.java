@@ -13,6 +13,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
+
 public class Genres extends AppCompatActivity {
     CardView pizza, dessert, hamburger, chicken, sushi, steak;
     FirebaseUser user;

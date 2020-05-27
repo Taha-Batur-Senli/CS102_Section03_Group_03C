@@ -33,8 +33,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /*
-This class enables restaurant owners to sign up to our app. Their info are stored both on authentic
-firebase and realtime database for different purposes.
+ *This class enables restaurant owners to sign up to our app. Their info are stored both on
+ *authentic firebase and realtime database for different purposes.
+ *@date 27.05.2020
+ *@author Group 3C
  */
 public class SignUpAsRestaurantActivity extends AppCompatActivity{
     //Properties

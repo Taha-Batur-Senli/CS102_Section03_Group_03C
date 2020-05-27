@@ -29,9 +29,17 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
+/*
+*A class that enables users to upload seating plans to the system or modify the seating plan.
+*@date 27.05.2020
+*@author Group 3C
+ */
 public class UploadSeatingPlan extends AppCompatActivity {
 
+    //Constants
+    public static final int PICK_IMAGE_REQUEST = 1;
+
+    //Variables
     Button choose_seating_plan, upload_seating_plan_pic;
     ImageView imageView, line;
     private Uri uri;
@@ -40,9 +48,8 @@ public class UploadSeatingPlan extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FirebaseUser user;
     private FirebaseAuth mAuth;
-    public static final int PICK_IMAGE_REQUEST = 1;
 
-
+    //Program Code
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +83,7 @@ public class UploadSeatingPlan extends AppCompatActivity {
         });
     }
 
-
+    //This method gets the file's extension (.jpg, .png etc.).
     public String getFileExtension(Uri uri){
         ContentResolver cR = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
@@ -84,7 +91,7 @@ public class UploadSeatingPlan extends AppCompatActivity {
     }
 
     private void uploadImage() {
-        //creating proggress dialog and show it in the onProgressListener
+        //creating progress dialog and show it in the onProgressListener
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("In progress...");
         progressDialog.show();
@@ -128,6 +135,7 @@ public class UploadSeatingPlan extends AppCompatActivity {
         }
     }
 
+    //This method enables the user to choose an image from the listed images (the phone's gallery).
     private void chooseImage(){
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -135,6 +143,7 @@ public class UploadSeatingPlan extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent,"Select Picture"),PICK_IMAGE_REQUEST); //start activity for result is a method that used for retrieving info from B to A.
     }
 
+    //This method causes the page to conclude the actions taken and save the images uploaded.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

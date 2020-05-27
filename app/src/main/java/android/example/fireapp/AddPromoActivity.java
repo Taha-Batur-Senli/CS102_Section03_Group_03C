@@ -19,6 +19,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
+
 public class AddPromoActivity extends AppCompatActivity {
     //Properties
     EditText etPromo;

@@ -30,6 +30,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
+
 public class MyReservations extends AppCompatActivity {
     //Properties
     ListView lvCurrentReservations, lvPastReservations;
@@ -263,7 +269,6 @@ public class MyReservations extends AppCompatActivity {
                                 int indexOfIDStart = rezTxt.indexOf("ID:") + 3;
                                 int indexOfIDEnd  = rezTxt.indexOf("   ", indexOfIDStart);
                                 final String rezID = rezTxt.substring(indexOfIDStart, indexOfIDEnd);
-                                System.out.println("REZZZZZZZZZZZZZZZZZZZZZID " + rezID);
 
                                     final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
                                         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -273,13 +278,11 @@ public class MyReservations extends AppCompatActivity {
                                                 final String restaurantID = (String) dataSnapshot.child("Reservations").child("CurrentReservations").child(rezID).child("restaurantID").getValue();
                                                 final String seat = (String) dataSnapshot.child("Reservations").child("CurrentReservations").child(rezID).child("seat").getValue();
                                                 final String timeSlot = (String) dataSnapshot.child("Reservations").child("CurrentReservations").child(rezID).child("timeSlot").getValue(); // in the form of minutes
-                                                System.out.println("RESTAURANT IDDDDDDDDDDDDDDDDDDDDDDDDDD " + restaurantID + "DATE  " + date + "SEAT  " + seat + "TIMESLOT  " + timeSlot);
 
                                                 final long maxSeatingDura = (long) dataSnapshot.child("Restaurants").child(restaurantID).child("maxSeatingDuration").getValue();
                                                 final int maxSeatingDuration = (int) maxSeatingDura;
 
                                                 for (DataSnapshot snapshot : dataSnapshot.child("Restaurants").child(restaurantID).child("seats").child(seat).child(date).getChildren()) {
-                                                    System.out.println("SLMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
                                                     String ts = (String) snapshot.getKey(); // timeslot in the form of minutes
                                                     int relatedTimeSlot = Integer.parseInt(ts);
                                                     Object tS = snapshot.getValue();
@@ -306,7 +309,6 @@ public class MyReservations extends AppCompatActivity {
                                                     }
                                                 }
 
-                                                System.out.println("SILINIYOMM MKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
                                                 ref.removeEventListener(this);
 
                                                 ref.child("Reservations").
@@ -314,7 +316,6 @@ public class MyReservations extends AppCompatActivity {
                                                         child(rezID).setValue(null);
                                                 myAdapter.notifyDataSetChanged();
 
-                                                System.out.println("YENI ACTIVITEYE GIRIS YAPIOMMMMMMMMMMMMMMMMMMMMMMM");
                                                 Intent i = new Intent(MyReservations.this, MainActivity.class);
                                                 startActivity(i);
 

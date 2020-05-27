@@ -10,7 +10,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.HashMap;
-
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
 public class SeatCalendar extends HashMap<String, Object>{
 
     // properties

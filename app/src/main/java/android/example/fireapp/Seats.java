@@ -1,7 +1,11 @@
 package android.example.fireapp;
 
 import java.util.HashMap;
-
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
 public class Seats extends HashMap<String, Object>{
 
     private Restaurant restaurant;

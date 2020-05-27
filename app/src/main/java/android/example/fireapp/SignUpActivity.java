@@ -9,7 +9,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 /*
-This class enables our users to distinquish their profile. If they are a regular customer, they
+This class enables our users to distinguish their profile. If they are a regular customer, they
 select 'I'm a customer' button and proceed with customer sign up activity. Else, they proceed with
 restaurant sign up activity.
  */

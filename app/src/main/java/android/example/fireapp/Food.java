@@ -1,8 +1,11 @@
 package android.example.fireapp;
 
 /*
-This class creates food objects. This facilitates adding foods' data to firebase.
+ * This class creates food objects. This facilitates adding foods' data to firebase.
+ *@date 27.05.2020
+ *@author Group 3C
  */
+
 public class Food {
     //Properties
     String name, ingredients;

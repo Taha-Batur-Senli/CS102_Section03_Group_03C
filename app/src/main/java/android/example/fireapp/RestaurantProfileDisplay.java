@@ -16,7 +16,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 /*
-This class enavles restaurants to display their own profiles from the perspective of a customer.
+ * This class enables restaurants to display their own profiles from the perspective of a customer.
+ *@date 27.05.2020
+ *@author Group 3C
  */
 public class RestaurantProfileDisplay extends AppCompatActivity {
     //Properties

@@ -18,7 +18,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
 public class SeatingPlanPicsRecycler extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Adapter adapter;

@@ -28,17 +28,26 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
+/*
+ *A class that helps restaurant owners to upload their restaurant's logo to the system and edit it.
+ *@date 27.05.2020
+ *@author Group 3C
+ */
 public class UploadLogo extends AppCompatActivity {
+
+    //Constants
+    public static final int PICK_IMAGE_REQUEST = 1;
+
+    //Variables
     Button choose_logo, arrange_logo;
     ImageView imageView;
     private Uri uri;
-    public static final int PICK_IMAGE_REQUEST = 1;
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
 
+    //Program Code
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +100,7 @@ public class UploadLogo extends AppCompatActivity {
     }
 
     private void uploadLogo() {
-        //creating proggress dialog and show it in the onProgressListener
+        //creating progress dialog and show it in the onProgressListener
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("In progress...");
         progressDialog.show();

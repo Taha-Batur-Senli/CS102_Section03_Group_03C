@@ -5,6 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
+
 public class HowToUseApp extends AppCompatActivity {
 
     @Override

@@ -24,15 +24,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class RestaurantProfile extends AppCompatActivity {
-    //PROPERTIES
-    Button logOut, editProfile, help, takeALookAtYourRestaurant, changeMenu, promotions,  myReservations;
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
 
+public class RestaurantProfile extends AppCompatActivity {
+
+    //Variables
+    Button logOut, editProfile, help, takeALookAtYourRestaurant, changeMenu, promotions,  myReservations;
     DatabaseReference mRef;
     FirebaseAuth mAuth;
     FirebaseUser user;
     TextView resNameTV;
-
     private ViewFlipper mViewFlipper;
 
     @Override

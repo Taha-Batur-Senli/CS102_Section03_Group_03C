@@ -31,6 +31,12 @@ import com.google.firebase.database.core.view.Change;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
+
 public class ChangeMenuActivity extends AppCompatActivity implements addFoodDialog.addFoodListener {
     //Properties
     ImageView removeDish, addDish;

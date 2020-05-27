@@ -23,7 +23,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
-
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
 public class RestaurantReservationsActivity extends AppCompatActivity {
     //Properties
     ListView lvCurrentReservations, lvPastReservations;

@@ -28,8 +28,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /*
-In this class, customers can pre-order and finalize their reservation.
+ * In this class, customers can pre-order and finalize their reservation.
+ *@date 27.05.2020
+ *@author Group 3C
  */
+
 public class PreOrderActivity extends AppCompatActivity {
     //Properties
     TextView minPricetv, yourMoneyTv, totalTv;

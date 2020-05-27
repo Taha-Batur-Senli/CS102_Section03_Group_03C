@@ -6,7 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.TextView;
-
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
 public class ShowCurrentReservation extends AppCompatActivity {
     //Properties
     TextView tvRes;

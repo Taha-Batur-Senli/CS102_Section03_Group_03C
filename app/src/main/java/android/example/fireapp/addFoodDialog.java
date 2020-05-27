@@ -13,7 +13,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-//adding food class directly updated the menu
+/*
+ *This class adds food to a restaurant's menu.
+ *@date 27.05.2020
+ *@author Group 3C
+ */
+
 public class addFoodDialog extends AppCompatDialogFragment {
     //Properties
     private EditText etName;

@@ -34,7 +34,11 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
 public class UploadImage extends AppCompatActivity {
 
     Button choose, upload, show_uploads;
@@ -95,7 +99,7 @@ public class UploadImage extends AppCompatActivity {
     }
 
     private void uploadImage() {
-        //creating proggress dialog and show it in the onProgressListener
+        //creating progress dialog and show it in the onProgressListener
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("In progress...");
         progressDialog.show();

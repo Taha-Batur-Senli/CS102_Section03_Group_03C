@@ -1,7 +1,10 @@
 package android.example.fireapp;
 
 /*
-A class that creates customer objects which facilitates the process of signing customer data up to firebase.
+ *A class that creates customer objects which facilitates the process of
+ * signing customer data up to firebase.
+ *@date 27.05.2020
+ *@author Group 3C
  */
 public class Customer {
     //Properties

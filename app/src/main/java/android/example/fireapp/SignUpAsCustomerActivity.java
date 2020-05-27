@@ -21,10 +21,11 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 /*
-Customers sign up to our app on this page. Their info are stored both on authentic firebase
- and realtime database for different purposes.
+ *Customers sign up to our app on this page. Their info are stored both on authentic firebase
+ *and realtime database for different purposes.
+ *@date 27.05.2020
+ *@author Group 3C
  */
 public class SignUpAsCustomerActivity extends AppCompatActivity {
     Button signUp;

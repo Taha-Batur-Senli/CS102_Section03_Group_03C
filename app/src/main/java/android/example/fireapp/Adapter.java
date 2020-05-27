@@ -1,6 +1,5 @@
 package android.example.fireapp;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+/*
+ * This is an adapter class that enables the color change on text files and more (UPDATE).
+ *@date 27.05.2020
+ *@author Group 3C
+ */
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ImageViewHolder> {
     private Context mContext;

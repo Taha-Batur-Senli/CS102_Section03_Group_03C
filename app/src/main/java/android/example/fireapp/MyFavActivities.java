@@ -25,9 +25,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /*
-This class allows customers to see their favorite restaurants. They also can remove a restaurant from
-this list.
+ * This class allows customers to see their favorite restaurants. They also can remove
+ * a restaurant from this list.
+ *@date 27.05.2020
+ *@author Group 3C
  */
+
 public class MyFavActivities extends AppCompatActivity {
    //Initialize
     ListView listViewFavRestaurants;

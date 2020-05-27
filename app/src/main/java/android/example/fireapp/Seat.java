@@ -3,7 +3,11 @@ package android.example.fireapp;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
-
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
 public class Seat extends HashMap<String, Object>{
 
     public String seatName;

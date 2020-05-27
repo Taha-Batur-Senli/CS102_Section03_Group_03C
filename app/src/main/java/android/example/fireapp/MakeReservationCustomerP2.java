@@ -32,10 +32,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-/**
- In this class, customers are displayed the available timeslots of the table they have selected on
- a specified date. Then they select a time slot and can either finish their reservation or can pre-order.
+/*
+ * In this class, customers are displayed the available time slots of the table they have
+ * selected on a specified date. Then they select a time slot and can either finish their
+ * reservation or pre-order.
+ *@date 27.05.2020
+ *@author Group 3C
  */
+
 public class MakeReservationCustomerP2 extends AppCompatActivity {
     //Properties
     ListView lvAvailableTimeSlots;

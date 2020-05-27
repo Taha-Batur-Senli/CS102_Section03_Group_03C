@@ -22,9 +22,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
 /*
-This class enables customers to display restaurants menu.
+ *This class enables customers to display a restaurant's menu.
+ *@date 27.05.2020
+ *@author Group 3C
  */
 public class ShowMenuPOV extends AppCompatActivity {
     TextView tvName, tvGenre, tvAddress, tvPhone, tvWH;

@@ -7,6 +7,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
+
 public class AnimationActivity extends AppCompatActivity {
 
     @Override

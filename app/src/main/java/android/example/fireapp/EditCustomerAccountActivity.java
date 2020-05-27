@@ -17,8 +17,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 /*
-This class enavles customers to edit their account. They can change their names and phone.
-Their changes are also updated on firebase.
+ * This class enables customers to edit their account. They can change their names and phone.
+ * Their changes are also updated on firebase.
+ *@date 27.05.2020
+ *@author Group 3C
  */
 public class EditCustomerAccountActivity extends AppCompatActivity {
     //Properities

@@ -1,7 +1,11 @@
 package android.example.fireapp;
+
 /*
-This class creates objects of promotion. This facilitates adding promotions to firebase.
+ * This class creates promotion objects. This facilitates adding promotions to firebase.
+ *@date 27.05.2020
+ *@author Group 3C
  */
+
 public class Promotion {
     //Properties
     String name, uid, restaurantName;

@@ -39,12 +39,16 @@ import java.util.Iterator;
 import java.util.List;
 
 /*
- This class enables customers to see the restaurants profiles. They can see the menu of
- restaurants in another activity directed from here or they can initiate the reservation making
- process by clicking to the related button.
+ * This class enables customers to see the restaurants profiles. They can see the menu of
+ * restaurants in another activity directed from here or they can initiate the reservation making
+ * process by clicking to the related button.
+ *@date 27.05.2020
+ *@author Group 3C
  */
+
 public class CustomerPOVRestaurant extends AppCompatActivity {
-    // properties
+
+    // Properties
     private ImageView logo;
     private TextView tvName, tvRating, tvDescription, tvMinPriceToPreOrder;
     private DatabaseReference mRefRes;
@@ -54,11 +58,8 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
     private ArrayList<String> menu = new ArrayList<String>();
     private Uri uri;
     private Upload upload;
-    //Properities
 
-
-
-    // methods
+    // Methods
     @Override
     /**
      * This is a method that is called every time this activity is opened and in which we initialize properties.
@@ -152,7 +153,6 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                                     String dateName = snapshot2.getKey();
 
                                     if (LocalDate.parse(dateName).isBefore(LocalDate.now())) {
-                                        System.out.println("ONCEYIMMM " + dateName);
 
                                         long maxSeatingDura = (long) r.get("maxSeatingDuration");
                                         int maxSeatingDuration = (int)maxSeatingDura;
@@ -171,11 +171,9 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                                         seatWeeklyPlan.put(LocalDate.parse(dateName).plusDays(7).toString(), newSeatCalendar);
 
                                     } else if (LocalDate.parse(dateName).isAfter(LocalDate.now())) {
-                                        System.out.println("SONRAYIMMM " + dateName);
                                         Object existingSeatCalendar = snapshot2.getValue(); // Object is HashMap<String, Object>
                                         seatWeeklyPlan.put(dateName, existingSeatCalendar);
                                     } else {
-                                        System.out.println("BUGUNDEYIMMMMMMM " + dateName);
                                         Object existingSeatCalendar = snapshot2.getValue();
                                         HashMap<String, Object> todaysMap = (HashMap<String, Object>) existingSeatCalendar;
                                         Iterator it = todaysMap.keySet().iterator();
@@ -203,7 +201,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
     //METHODS
 
     /*
-    This method initalizes reservation making process. The requires data are passed to the next activity.
+    This method initializes reservation making process. The requires data are passed to the next activity.
      */
     private void makeReservationAction() {
         makeReservation.setOnClickListener(new View.OnClickListener() {

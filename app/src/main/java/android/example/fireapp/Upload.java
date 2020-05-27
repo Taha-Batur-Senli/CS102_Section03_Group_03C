@@ -1,5 +1,9 @@
 package android.example.fireapp;
-
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
 public class Upload { //our uploaded image have 2 main properties : specific url and the name user typed in.
     private String mName;
     private String mImageURL;

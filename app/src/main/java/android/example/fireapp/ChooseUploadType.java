@@ -12,6 +12,12 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
+
 public class ChooseUploadType extends AppCompatActivity {
 
     ImageView view,line;

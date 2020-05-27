@@ -28,18 +28,24 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
 public class SignUpAsRestaurantP2 extends AppCompatActivity {
+
+    //Variables
     Button register;
     EditText etNumOfTables, etMinPrice, etMaxDuration, etStartH, etStartM, etFinishH, etFinishM;
     TextView tvGenre;
     ListView lvGenre;
     ArrayAdapter myAdapter;
     ArrayList<String> allGenre = new ArrayList<String>();
-
     FirebaseAuth mAuth;
     DatabaseReference mRef, mRefSeatPlans;
 
+    //Program code
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -7,6 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/*
+ * This class is a thank you page for Mr. Davenport.
+ *@date 27.05.2020
+ *@author Group 3C
+ */
+
 public class EasterEggPage extends AppCompatActivity {
     Button btnSkip;
 

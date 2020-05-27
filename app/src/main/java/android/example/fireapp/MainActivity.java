@@ -27,6 +27,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/*
+ * This class is the customer main menu of our app from which a wide variety of tasks can be done.
+ *@date 27.05.2020
+ *@author Group 3C
+ */
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
@@ -168,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        //giving images to flipperview
+        //Adding images to ViewFlipper
         int[] imgs = { R.drawable.food_photo, R.drawable.flipper_img};
         for ( int x = 0; x < imgs.length; x++)
         {

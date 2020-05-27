@@ -27,6 +27,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
+
 public class AllRestaurantsDisplay extends AppCompatActivity {
    //Properties
     ListView listViewAllRestaurants;

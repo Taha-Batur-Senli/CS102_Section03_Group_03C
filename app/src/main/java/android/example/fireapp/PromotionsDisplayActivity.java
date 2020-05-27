@@ -24,10 +24,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
 /*
-This class enables restaurant owners to manage their promotions. They can add or delete promotions
-in this activity.
+ * This class enables restaurant owners to manage their promotions. They can add or delete
+ * promotions using this activity.
+ *@date 27.05.2020
+ *@author Group 3C
  */
+
 public class PromotionsDisplayActivity extends AppCompatActivity {
     //Properties
     Button add;

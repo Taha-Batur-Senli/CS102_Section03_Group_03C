@@ -27,6 +27,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
+
 public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
     private ArrayList<String> list;
     private Context context;

@@ -10,7 +10,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-//A class that functions no more? To be deleted later on!
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
 
 public class CustHelpActivity extends AppCompatActivity {
     Button how_to_use_app, how_to_make_reservations, how_to_pre_order, FAQ;

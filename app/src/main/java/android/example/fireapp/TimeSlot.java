@@ -7,7 +7,11 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
+/*
+ *
+ *@date 27.05.2020
+ *@author Group 3C
+ */
 public class TimeSlot{
 
 
