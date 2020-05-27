@@ -1,7 +1,5 @@
-****
-## g3C ~~ Reserved
-~~
-****
+g3C -Reserved-
+-----------------------------------------------------------------------------------------------------------------------------------
 DESCRIPTION: This app designed to help both customers and restaurants by making fast, efficient and reliable reservations anytime.
 -----------------------------------------------------------------------------------------------------------------------------------
 PROJECT'S CURRENT STATUS: Completed!
