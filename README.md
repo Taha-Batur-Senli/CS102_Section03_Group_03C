@@ -7,7 +7,7 @@ The information and code in this repository are submitted in partial fulfillment
 ### ~ Colunbia ~
 
 ## Project Description
-_ResApp is a platform that enables customers to make reservations from wished restaurants. Also, if they want to, they also can pre-order ass well. This platform is even more useful in Corona times since it makes the process of getting to a restaurant and eating food faster and more transparent._
+_ResApp is a platform that enables customers to make reservations from wished restaurants. Also, if they want to, they also can pre-order ass well. This platform is even more useful during the quarantine due to the COVID-19, since it fastens the process of getting to a restaurant and eating food.
    
 ## Project Status
 + **Group/project Selection:** completed (date)
