@@ -1,0 +1,37 @@
+Group Reflections
+
+This project was a great opportunity for us to learn about new technologies and coding techniques. Our team learned about making a design for mobile apps and 
+discovered the Android Studio's unique features. We also learned how to organize our data on a database (Firebase), how to retrieve data from there, and how to update 
+ite. We also learned about "learning on our own". This is a core skill that every engineering student should have because technology is updating itself rapidly and a programmer
+should know how to exploit online sources for learning about them. Besides these, we learned about being an effective group, how to communicate effectively
+with each other, how to organize our work in such a way that our friends can build on it, and how to act as a group. Each of us understood the importance of recording 
+what we have been doing. Also, we now know how to solve the errors we receive by searching about them on the net. This taught us how to be patient. Last but not least,
+we also learned much about Git Hub and the proper way of using it for further projects. To sum up, this project was helpful for us as it taught each of us about learning 
+new technologies, being an effective team player, and gained each of one us some fundamental engineer/programmer skills.  
+
+We did not like making a project on online platforms. Due to the Coronavirus, we had no other option than meeting via Zoom. We believe that this decreased our 
+efficiency as a group. We handled the situation well and adopted to it rapidly. However, we feel that it was easier to meet and discuss our project when
+we could meet face to face at our university. Another aspect of this project which we found particularly challenging was the discrepancies of technologies. Each of us had a different 
+emulator on our PCs. Some of our's emulator/PC did not respond to the changes made by another teammate. Not having the same computer/emulator/gradle verison made the process of 
+using GitHub particularly more difficult. We needed to be extra careful about our pushes/pulls. 
+
+GitHub is not easy to use at Android Studio projects. Therefore, with no doubt, we can say that the most challenging part of this project was using GitHub! Some 
+of the other points that challenged us can be listed as follows: Retrieving data from Firebase, making our app time-sensitive, learning about Android Studio
+layouts, finding the correct libraries for our project, and storing thousands of lines of data at Firebase in such a way that they are easily accessible. 
+
+If we could start over again, first things first, we would design the general flow of the activities. We needed to re-write and design some activities from begging
+for multiple times in this project. To avoid such a wastage of time/effort, it is important to firstly link activities to each other and then make them 
+functional. Also, we would be more careful about the layouts we used because later on, different layouts caused several constraints problems. moreover, we would retrieve
+objects instead of particular lines of information related to that object. This would dramatically decrease the number of times we called "onDatacchanged()" method
+which is a problematic and complicated method and we frequently regretted using it! Last of all, we would first try to understand GitHub. Learning about GitHub in 
+the process was clearly not a good idea. We should have started our project by knowing everything about GitHub. 
+
+We spent very much -perhaps too much- time and effort on this project. It is a comprehensive and big project: There are currently 63 java classes and 58 XML files
+in our app. We have been working on our project for the last month and each of us spent somehow several hours each day. Also, we spent at least as much time for
+reports and other stages of this project as well. Therefore, even if we were to try coming up with a number, most probably we would fail to correctly estimate
+the actual time we spent on our app. The idea is that we wroked really hard :)
+
+Despite all of the sleepless nights we had, errors that drove us crazy and other issues related to this project; when we run our app, we forget about all of these
+bad memories. So YES, we most definitely are proud of our app and ourselves!
+
+
