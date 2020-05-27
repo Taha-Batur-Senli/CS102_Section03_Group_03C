@@ -3,8 +3,6 @@ package android.example.fireapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -29,6 +27,7 @@ public class AddMoneyActivity extends AppCompatActivity {
     DatabaseReference mRef;
     FirebaseAuth mAuth;
     FirebaseUser user;
+    Customer customer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +46,14 @@ public class AddMoneyActivity extends AppCompatActivity {
         mRef = FirebaseDatabase.getInstance().getReference("Customers");
         user = mAuth.getCurrentUser();
 
+        //Initialize customer and moneyTV
+        assert user != null;
         mRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String money = dataSnapshot.child("money").getValue().toString();
+                customer = dataSnapshot.getValue(Customer.class);
+                assert customer != null;
+                String money = customer.getMoney();
                 moneyTextView.setText("You currently have \n" + money + " g3Coins in your account.");
             }
 
@@ -72,56 +75,22 @@ public class AddMoneyActivity extends AppCompatActivity {
                     toBeAdded.requestFocus();
                     toBeAdded.setError("Enter amount of money!");
                 }
-                else if( moneyToAdd.equals("619")){
-                    mRef.addValueEventListener(new ValueEventListener() {
-                        int i  = 0;
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            final String moneyOnAccount = dataSnapshot.child(user.getUid()).child("money").getValue(String.class);
-                            Double sum =  Double.parseDouble(moneyToAdd) + Double.parseDouble(moneyOnAccount);
-                            String sumF = String.valueOf(sum);
-                            if (i < 50){
-                                mRef.child(user.getUid()).child("money").setValue(sumF);
-                                i++;
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-                    startActivity(new Intent( AddMoneyActivity.this, CustomerMyAccountActivity.class ));
-
+                else if ( moneyToAdd.equals("619")){ //easter egg :)
+                    mRef.child(user.getUid()).child("money").setValue("500000");
                 }
-                else {
-                    mRef.addValueEventListener(new ValueEventListener() {
-                        int i  = 0;
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            final String moneyOnAccount = dataSnapshot.child(user.getUid()).child("money").getValue(String.class);
-
-                            //Get the money currently on wallet and add the amount specified
-                            Double sum =  Double.parseDouble(moneyToAdd) + Double.parseDouble(moneyOnAccount);
-                            String sumF = String.valueOf(sum);
-                            if (i < 1){
-                                mRef.child(user.getUid()).child("money").setValue(sumF);
-                                i++;
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-                    //return to customer profile
-                    startActivity(new Intent( AddMoneyActivity.this, MainActivity.class ));
-                    finish();
+                else { //gets the current money, adds the amount wished to be added, updates the firebase
+                    double currentMoney = Double.parseDouble(customer.getMoney());
+                    double moneyFinal = currentMoney + Double.parseDouble(moneyToAdd);
+                    mRef.child(user.getUid()).child("money").setValue("" + moneyFinal);
                 }
             }
         });
+    }
+
+    //if customer presses to back with out taking any action, we delete this activity from activity history
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

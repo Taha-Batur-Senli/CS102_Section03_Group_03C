@@ -51,22 +51,6 @@ public class ChangeFoodActivity extends AppCompatActivity {
         etIngredients.setTextColor(ContextCompat.getColor(this, R.color.white));
         etPrice.setTextColor(ContextCompat.getColor(this, R.color.white));
 
-        //delete = (Button)findViewById(R.id.btnDeleteFood);
-        /* <Button
-        android:id="@+id/btnDeleteFood"
-        android:layout_width="115dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/button"
-        android:text="Delete Food"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bttnSaveFoodChange"
-        app:layout_constraintVertical_bias="0.388" />*/
         nameTV = (TextView)findViewById(R.id.txtFoodNameChange);
 
         mAuth = FirebaseAuth.getInstance();
@@ -80,14 +64,14 @@ public class ChangeFoodActivity extends AppCompatActivity {
 
         //Methods called
         saveChangesAction();
-        //deleteAction();
 
     }
 
     //METHODS
 
     /*
-    This method saves the changes made on dish on firebase.
+    This method saves the changes made on dish on firebase. If user wants to change only one attribute,
+    other properties are not effected despite the empty remaining edit texts.
      */
     private void saveChangesAction() {
         save.setOnClickListener(new View.OnClickListener() {
@@ -136,35 +120,11 @@ public class ChangeFoodActivity extends AppCompatActivity {
         });
     }
 
-     /*private void deleteAction() {
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = getIntent();
-                String name = intent.getStringExtra("NAME");
-                mRef.child(user.getUid()).child("menu").orderByChild("name").equalTo(name).addValueEventListener(new ValueEventListener() {
-                    int i = 0;
-                    @Override
-                    public void onDataChange (@NonNull DataSnapshot dataSnapshot){
-                        if ( i < 1) {
-                            mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
-                                    .removeValue();
-                            i++;
-                        }
-
-                        startActivity(new Intent(ChangeFoodActivity.this, RestaurantProfile.class));
-                        finish();
-                    }
-
-                    @Override
-                    public void onCancelled (@NonNull DatabaseError databaseError){
-
-                    }
-                });
-            }
-
-        });
-
-    }*/
+    //if customer presses to back with out taking any action, we delete this activity from activity history
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }
 

@@ -1,8 +1,10 @@
 package android.example.fireapp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +32,8 @@ public class BestRestaurantsDisplay extends AppCompatActivity {
     ArrayList<String> bestRestaurants = new ArrayList<String>();
     DatabaseReference reference;
     SearchView searchView;
+    FirebaseUser user;
+    DatabaseReference mRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,19 +47,28 @@ public class BestRestaurantsDisplay extends AppCompatActivity {
         myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, bestRestaurants);
         listViewBestRestaurants.setAdapter(myAdapter);
         reference = FirebaseDatabase.getInstance().getReference();
+        mRef = FirebaseDatabase.getInstance().getReference("Customers");
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         //Methods called
         displayBestRestaurants();
         makeLvClickable();
         searchRestaurant();
+        listOnLongClickAction();
+
     }
 
     //Methods
+
+    /**
+     This method makes all best restaurants clickable. If a customer clicks on a restaurant, they are
+     directed to the profile of that restaurant.
+     */
     private void makeLvClickable() {
         listViewBestRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //gets the name of the dish
+                //gets the name of the restaurant
                 String item = bestRestaurants.get(position);
                 int indexOfName = item.indexOf(", ");
                 final String name = item.substring(0,indexOfName);
@@ -100,6 +115,10 @@ public class BestRestaurantsDisplay extends AppCompatActivity {
         });
     }
 
+    /*
+    Prints all of the restaurants on the related list view. Iterates trough firebase and adds each
+    restaurant to best restaurants list view.
+  */
     private void displayBestRestaurants() {
         reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
             @Override
@@ -113,7 +132,7 @@ public class BestRestaurantsDisplay extends AppCompatActivity {
                         String ratingS = (String) item.child("rating").getValue().toString();
                         double rating = Double.parseDouble(ratingS);
 
-                        if (rating >= 3.75) {
+                        if (rating >= 4) {
                             String name;
                             name = item.child("name").getValue().toString() + ", " + item.child("genre").getValue().toString();
 
@@ -129,5 +148,63 @@ public class BestRestaurantsDisplay extends AppCompatActivity {
 
             }
         });
+    }
+
+    /*
+    This method makes restaurants long-clickable. If a customers long-clicks on a restaurant, they are
+    asked if they want to add that restaurant to favorite restaurants list.
+ */
+    private void listOnLongClickAction() {
+        listViewBestRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                //final int index;
+                new AlertDialog.Builder(BestRestaurantsDisplay.this)
+                        .setIcon(android.R.drawable.ic_input_add)
+                        .setTitle("Are you sure?")
+                        .setMessage("Do you want to add this restaurant to your favorite restaurants?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                final String item = myAdapter.getItem(position).toString();
+                                int index1 = item.indexOf(", ");
+                                final String s = item.substring(0,index1);
+                                reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                                        while(items.hasNext()) {
+                                            DataSnapshot item1 = items.next();
+                                            String searchedId;
+                                            if(item1.child("name").getValue().toString().equals(s)){
+
+                                                searchedId = item1.child("uid").getValue().toString();
+                                                mRef.child(user.getUid()).child("fav restaurants").child(searchedId).push();
+                                                mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("name").setValue(s);
+                                                mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("uid").setValue(searchedId);
+                                                myAdapter.notifyDataSetChanged();
+                                            }
+                                        }
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    }
+                                });
+                                myAdapter.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+
+                return true;
+            }
+        });
+    }
+
+    //if customer presses to back with out taking any action, we delete this activity from activity history
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

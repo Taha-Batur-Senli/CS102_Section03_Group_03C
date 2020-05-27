@@ -85,8 +85,6 @@ public class MyReservations extends AppCompatActivity {
         lvPastReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*String toString = resName + "\n" + date + "   " + timeSlotString + " " + "" + table + "\n" +
-                            proOrder + "___" + totalPrice + "TL\nRestaurant info: +90 " + resPhone;*/
                 String reservationText = pastReservations.get(position);
                 int indexOfResName = reservationText.indexOf("\n");
                 String resName = reservationText.substring(0, indexOfResName);
@@ -140,8 +138,6 @@ public class MyReservations extends AppCompatActivity {
                         refCurrentReservations.child(uid).removeValue();
 
                     }
-
-                    //currentReservations.add(toString);
                     myAdapter.notifyDataSetChanged();
                     myAdapter2.notifyDataSetChanged();
                 }
@@ -164,9 +160,7 @@ public class MyReservations extends AppCompatActivity {
                     DataSnapshot item = items.next();
                     String resName = item.child("restaurantName").getValue().toString();
                     String rezID = item.child("reservID").getValue().toString();
-                    //String cusName = item.child("cusName").getValue().toString();
                     String resPhone = item.child("restaurantPhone").getValue().toString();
-                    //String cusPhone = item.child("cusPhone").getValue().toString();
                     String proOrder = item.child("preOrder").getValue().toString();
                     String preOrderTxt = (String)item.child("preOrderText").getValue();
                     String seat = item.child("seat").getValue().toString();
@@ -267,8 +261,6 @@ public class MyReservations extends AppCompatActivity {
                                 int indexOfIDStart = rezTxt.indexOf("ID:") + 3;
                                 int indexOfIDEnd  = rezTxt.indexOf("   ", indexOfIDStart);
                                 final String rezID = rezTxt.substring(indexOfIDStart, indexOfIDEnd);
-                                System.out.println("REZZZZZZZZZZZZZZZZZZZZZID " + rezID);
-
 
 
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Reservations").child("CurrentReservations").child(rezID);
@@ -279,7 +271,6 @@ public class MyReservations extends AppCompatActivity {
                                         final String restaurantID = (String) dataSnapshot.child("restaurantID").getValue();
                                         final String seat = (String) dataSnapshot.child("seat").getValue();
                                         final String timeSlot = (String) dataSnapshot.child("timeSlot").getValue(); // in the form of minutes
-                                        System.out.println("RESTAURANT IDDDDDDDDDDDDDDDDDDDDDDDDDD " + restaurantID + "DATE  " + date + "SEAT  " + seat + "TIMESLOT  " + timeSlot);
                                         final DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("Restaurants");
                                         ref2.child(restaurantID).addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
@@ -287,7 +278,6 @@ public class MyReservations extends AppCompatActivity {
                                                 long maxSeatingDura = (long)dataSnapshot.child("maxSeatingDuration").getValue();
                                                 int maxSeatingDuration = (int)maxSeatingDura;
                                                 for (DataSnapshot snapshot : dataSnapshot.child("seats").child(seat).child(date).getChildren()){
-                                                    System.out.println("SLMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
                                                     String ts = (String)snapshot.getKey(); // timeslot in the form of minutes
                                                     int relatedTimeSlot = Integer.parseInt(ts);
                                                     Object tS = snapshot.getValue();
@@ -327,7 +317,6 @@ public class MyReservations extends AppCompatActivity {
 
                                 DatabaseReference deleteRez = FirebaseDatabase.getInstance().getReference("Reservations").
                                         child("CurrentReservations");
-                                //deleteRez.child(rezID).removeValue();
                                 myAdapter.notifyDataSetChanged();
 
 

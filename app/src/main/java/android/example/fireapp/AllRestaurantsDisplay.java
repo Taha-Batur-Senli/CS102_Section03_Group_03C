@@ -31,7 +31,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
    //Properties
     ListView listViewAllRestaurants;
     ArrayAdapter myAdapter;
-    ArrayList<String> allRestaurants = new ArrayList<String>();
+    ArrayList<String> allRestaurants = new ArrayList();
     FirebaseDatabase database;
     DatabaseReference reference, mRef;
     FirebaseAuth mAuth;
@@ -99,7 +99,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
                 while (items.hasNext()) {
 
                     DataSnapshot item = items.next();
-                    String name, genre;
+                    String name;
                     name = "" + (String)item.child("name").getValue() + ", " + (String) item.child("genre").getValue();
 
                     allRestaurants.add(name);
@@ -118,14 +118,11 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
     This method makes restaurants long-clickable. If a customers long-clicks on a restaurant, they are
     asked if they want to add that restaurant to favorite restaurants list.
      */
-    int index;
     private void listOnLongClickAction() {
         listViewAllRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 //final int index;
-                index = position;
-
                 new AlertDialog.Builder(AllRestaurantsDisplay.this)
                         .setIcon(android.R.drawable.ic_input_add)
                         .setTitle("Are you sure?")
@@ -133,7 +130,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                final String item = myAdapter.getItem(index).toString();
+                                final String item = myAdapter.getItem(position).toString();
                                 int index1 = item.indexOf(", ");
                                 final String s = item.substring(0,index1);
                                 reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
@@ -142,7 +139,6 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
                                         Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
                                         while(items.hasNext()) {
                                             DataSnapshot item1 = items.next();
-                                            String searchName;
                                             String searchedId;
                                             if(item1.child("name").getValue().toString().equals(s)){
 
@@ -210,4 +206,10 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         });
     }
 
+    //if customer presses to back with out taking any action, we delete this activity from activity history
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

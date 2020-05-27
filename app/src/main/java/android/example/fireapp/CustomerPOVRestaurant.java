@@ -187,7 +187,6 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                                         seatWeeklyPlan.put(dateName, todaysMap);
                                     }
 
-                                    System.out.println("IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII: " + i);
                                 }
                                 mRefRes.child(uid).child("seats").child("seat" + i).setValue(seatWeeklyPlan);
                                 i++;

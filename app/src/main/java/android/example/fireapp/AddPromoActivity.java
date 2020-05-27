@@ -36,12 +36,12 @@ public class AddPromoActivity extends AppCompatActivity {
 
         //Initialize
         etPromo = (EditText)findViewById(R.id.editTextPromoAdd);
+        etPromo.setTextColor(ContextCompat.getColor(this, R.color.white));
         add = (Button)findViewById(R.id.btnAddPromoAdd);
+
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference("Promotions");
-
-        etPromo.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         //Adds promotion to firebase
         add.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +54,7 @@ public class AddPromoActivity extends AppCompatActivity {
                     etPromo.setError("Enter your promotion!");
                     etPromo.requestFocus();
                 } else {
-                    //Adds promotion to firebase and returns to restaurants profile
+                    //create an id for promo and set it under that id
                     final String uid = mRef.child(user.getUid()).push().getKey();
 
                     DatabaseReference mRefRes = FirebaseDatabase.getInstance().getReference("Restaurants");
@@ -63,8 +63,6 @@ public class AddPromoActivity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             String restaurantsName =  dataSnapshot.child(user.getUid()).child("name").getValue().toString();
                             mRef.child(user.getUid()).child(uid).setValue(new Promotion(promo, restaurantsName,uid));
-                            startActivity(new Intent(AddPromoActivity.this, RestaurantProfile.class));
-                            finish();
                         }
 
                         @Override
@@ -76,5 +74,12 @@ public class AddPromoActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    //if customer presses to back with out taking any action, we delete this activity from activity history
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }
