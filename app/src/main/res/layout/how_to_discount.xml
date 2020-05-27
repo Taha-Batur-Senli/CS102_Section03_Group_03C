@@ -20,7 +20,7 @@
     <TextView
         android:id="@+id/txtNameShowMenuPOV2"
         android:layout_width="241dp"
-        android:layout_height="61dp"
+        android:layout_height="53dp"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
         android:text="How to Create Promotions"
@@ -56,7 +56,9 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.544"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView84"
+        app:layout_constraintVertical_bias="0.682" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

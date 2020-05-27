@@ -20,8 +20,8 @@
 
     <TextView
         android:id="@+id/txtEditRes26"
-        android:layout_width="238dp"
-        android:layout_height="45dp"
+        android:layout_width="247dp"
+        android:layout_height="42dp"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
         android:text="Upload Seating Plan"

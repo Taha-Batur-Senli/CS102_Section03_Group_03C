@@ -9,11 +9,11 @@
         android:id="@+id/imageView2"
         android:layout_width="55dp"
         android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView92"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
+        app:layout_constraintVertical_bias="0.258"
         app:srcCompat="@drawable/logo" />
 
     <TextView
@@ -64,5 +64,5 @@ the table you want. Enjoy your meal!"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEditRes22"
-        app:layout_constraintVertical_bias="0.233" />
+        app:layout_constraintVertical_bias="0.288" />
 </androidx.constraintlayout.widget.ConstraintLayout>

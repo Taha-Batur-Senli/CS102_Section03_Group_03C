@@ -11,6 +11,7 @@
         android:id="@+id/etIngrediends"
         android:layout_width="250dp"
         android:layout_height="40dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/button"
         android:ems="10"
         android:fontFamily="@font/roboto_light"
@@ -19,17 +20,16 @@
         android:inputType="textPersonName"
         android:textColorHint="@color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNameFood"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintTop_toBottomOf="@+id/etNameFood" />
 
     <EditText
         android:id="@+id/etNameFood"
         android:layout_width="250dp"
         android:layout_height="40dp"
+        android:layout_marginTop="180dp"
         android:background="@drawable/button"
         android:ems="10"
         android:fontFamily="@font/roboto_light"
@@ -38,12 +38,10 @@
         android:inputType="textPersonName"
         android:textColorHint="@color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etPrice"
@@ -63,5 +61,5 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etIngrediends"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintVertical_bias="0.326" />
 </androidx.constraintlayout.widget.ConstraintLayout>
