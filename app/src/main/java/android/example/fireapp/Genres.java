@@ -13,22 +13,29 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-/*
- *
- *@date 27.05.2020
- *@author Group 3C
+/**
+ * Lists all the restaurants with the selected genre from the main menu.
+ * @date 27.05.2020
+ * @author Group 3C
  */
 
 public class Genres extends AppCompatActivity {
+
+    //Properties
+
     CardView pizza, dessert, hamburger, chicken, sushi, steak;
     FirebaseUser user;
     DatabaseReference mRef;
+
+    //Methods
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_genres);
+
+        //Initialize
 
         pizza = (CardView)findViewById(R.id.pizza_cardview2);
         steak = (CardView)findViewById(R.id.steakCardView2);
@@ -39,6 +46,8 @@ public class Genres extends AppCompatActivity {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference("Restaurants");
+
+        //OnClickListeners
 
         pizza.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -13,11 +13,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,30 +23,33 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.core.view.Change;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/*
- *
- *@date 27.05.2020
- *@author Group 3C
+/**
+ * Class for editing the menu in restaurant owner GUI.
+ * Restaurant owners can add, edit or delete dishes through this class.
+ * @date 06.05.2020
+ * @author Group_g3C
  */
 
 public class ChangeMenuActivity extends AppCompatActivity implements addFoodDialog.addFoodListener {
+
     //Properties
-    ImageView removeDish, addDish;
-    ListView lvMenuRes;
-    MyCustomAdapter myAdapter;
-    ArrayList<String> menu = new ArrayList<>();
 
-    FirebaseDatabase database;
+    int               index;
+    ImageView         addDish;
+    ListView          lvMenuRes;
+    MyCustomAdapter   myAdapter;
+    ArrayList<String> menu;
+
+    FirebaseDatabase  database;
     DatabaseReference reference;
-    FirebaseUser user;
-    FirebaseAuth mAuth;
+    FirebaseUser      user;
+    FirebaseAuth      mAuth;
 
-    FragmentManager fragmentManager;
+    FragmentManager     fragmentManager;
     FragmentTransaction fragmentTransaction;
 
     @Override
@@ -59,22 +59,27 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         setContentView(R.layout.activity_change_menu);
 
         //Initialize
-        lvMenuRes = (ListView)findViewById(R.id.lvMenuRes);
 
+        addDish = findViewById(R.id.add_new_dish);
+        lvMenuRes = findViewById(R.id.lvMenuRes);
+        menu = new ArrayList<>();
         myAdapter = new MyCustomAdapter(menu, this);
         lvMenuRes.setAdapter(myAdapter);
         database = FirebaseDatabase.getInstance();
         reference = database.getReference( "Restaurants");
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        addDish = findViewById(R.id.add_new_dish);
 
-        //Display Menu
+        /*
+        This listener iterates through the menu items in the firebase, and adds them to the menu arraylist,
+        and the menu arraylist gets displayed in a list view at the end.
+         */
         reference.child(user.getUid()).child("menu").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 menu.clear();
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+
                 while (items.hasNext()) {
                     DataSnapshot item = items.next();
                     String name;
@@ -141,12 +146,11 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         reference.child(user.getUid()).child("menu").child(foodUid).setValue(new Food(name, ingredients, Integer.parseInt(price)));
     }
 
-    /*
+    /**
     This method makes menu long-clickable. When a restaurant owner long-clicks on a dish on their menu
     an alert dialog pop outs and asks if they want to delete the dish from their menu or not. If they
     select "delete" option, the dish is deleted from database.
      */
-    int index;
     private void listOnLongClickAction() {
         lvMenuRes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -183,8 +187,6 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
 
                                     }
                                 });
-
-
                             }
                         })
                         .setNegativeButton("Cancel", null)

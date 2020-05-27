@@ -29,11 +29,13 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
 /*
 *A class that enables users to upload seating plans to the system or modify the seating plan.
 *@date 27.05.2020
 *@author Group 3C
  */
+
 public class UploadSeatingPlan extends AppCompatActivity {
 
     //Constants

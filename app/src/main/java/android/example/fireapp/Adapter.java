@@ -14,20 +14,28 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-/*
- * This is an adapter class that enables the color change on text files and more (UPDATE).
- *@date 27.05.2020
- *@author Group 3C
+/**
+ * This is an adapter class for customizing the list views.
+ * Date: 27.05.2020
+ * Author: Group 3C
  */
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ImageViewHolder> {
+
+    //properties
+
     private Context mContext;
     private List<Upload> uploadList;
+
+    //constructors
 
     public Adapter (Context mContext, List<Upload> uploadList){
         this.mContext = mContext;
         this.uploadList = uploadList;
     }
+
+    //methods
+
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

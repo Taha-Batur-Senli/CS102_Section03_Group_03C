@@ -27,27 +27,31 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-/*
+/**
  * A simple {@link Fragment} subclass.
  * Use the {@link FragmentMenu#newInstance} factory method to
  * create an instance of this fragment.
+ *
+ * This is basically the pop-up menu for adding new dishes to the menu
+ * from the restaurant owner's GUI.
  *@date 27.05.2020
  *@author Group 3C
  */
 
 public class FragmentMenu extends Fragment implements View.OnClickListener{
-    // TODO: Rename parameter arguments, choose names that match
+
+    //Constants
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-    ArrayList<String> menuList;
+    //Variables
+
+    String mParam1;
+    String mParam2;
 
     View view;
-    ImageView imageView;
     EditText etName, etPrice, etDesc;
     ImageView reject, confirm;
 
@@ -56,19 +60,13 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
     FirebaseDatabase mDatabase;
     FirebaseUser user;
 
+    //Constructors
+
     public FragmentMenu() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MenuFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+    //Initialization of fragment menu
     public static FragmentMenu newInstance(String param1, String param2) {
         FragmentMenu fragment = new FragmentMenu();
         Bundle args = new Bundle();
@@ -113,60 +111,11 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
         return view;
     }
 
-    /*public void addFood() {
-        confirm.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = getActivity().getIntent();
-                        String fireName = intent.getStringExtra("NAME");
-                        mRef.child(user.getUid()).child("menu").orderByChild("name").equalTo(fireName).addValueEventListener(new ValueEventListener() {
-                            int i, j, k = 0;
-                            final String nameText = name.getText().toString();
-                            final String priceText = price.getText().toString();
-                            final String descText = desc.getText().toString();
-                            int priceValue = 0;
-
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                //Saves changes of name only if it is not empty
-
-                                if (!(("").equals(priceText))) {
-                                    priceValue = Integer.parseInt(priceText);
-                                }
-
-                                if (i < 1 && !nameText.isEmpty()) {
-                                    mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
-                                            .child("name").setValue(nameText);
-                                    i++;
-                                }
-
-                                //Saves changes of ingredients only if it is not empty
-                                if (j < 1 && !descText.isEmpty()) {
-                                    mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
-                                            .child("ingredients").setValue(descText);
-                                    j++;
-                                }
-
-                                //Saves changes of price only if it is not empty
-                                if (k < 1 && priceValue != 0) {
-                                    mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
-                                            .child("price").setValue(priceValue);
-                                    k++;
-                                }
-                                Toast.makeText(getActivity(), "Changes Saved", Toast.LENGTH_SHORT).show();
-                                getActivity().finish();
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-                    }
-                });
-    } */
-
+    /**
+     * This method contains reject and confirm buttons, and gives functionality to the them.
+     * While reject button leads user to the previous page, confirm buttons adds new item to the menu,
+     * and updates the firebase.
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId())
@@ -175,11 +124,10 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
                 getActivity().onBackPressed();
                 break;
             case R.id.confirm:
-
                 Intent intent = getActivity().getIntent();
                 String fireName = intent.getStringExtra("NAME");
                 mRef.child(user.getUid()).child("menu").orderByChild("name").equalTo(fireName).addValueEventListener(new ValueEventListener() {
-                    int i, j, k = 0;
+
                     final String nameText = etName.getText().toString();
                     final String priceText = etPrice.getText().toString();
                     final String descText = etDesc.getText().toString();
@@ -211,28 +159,6 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
                         String uidFood = mRef.child(user.getUid()).child("menu").push().getKey();
                         mRef.child(user.getUid()).child("menu").child(uidFood).setValue( new Food(nameText, descText, priceValue) );
 
-
-
-
-                        /*if (i < 1 && !nameText.isEmpty()) {
-                            mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
-                                    .child("name").setValue(nameText);
-                            i++;
-                        }
-
-                        //Saves changes of ingredients only if it is not empty
-                        if (j < 1 && !descText.isEmpty()) {
-                            mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
-                                    .child("ingredients").setValue(descText);
-                            j++;
-                        }
-
-                        //Saves changes of price only if it is not empty
-                        if (k < 1 && priceValue != 0) {
-                            mRef.child(user.getUid()).child("menu").child(dataSnapshot.getChildren().iterator().next().getKey())
-                                    .child("price").setValue(priceValue);
-                            k++;
-                        }*/
                         Toast.makeText(getActivity(), "Dish added", Toast.LENGTH_SHORT).show();
                         getActivity().finish();
                     }
@@ -243,10 +169,6 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
                     }
                 });
                 break;
-
-
-
-
         }
     }
 }
