@@ -39,36 +39,38 @@ import java.util.Iterator;
 import java.util.List;
 
 /*
- This class a class that enables customers to see the restaurants profiles. They can see the menu of
+ This class enables customers to see the restaurants profiles. They can see the menu of
  restaurants in another activity directed from here or they can initiate the reservation making
  process by clicking to the related button.
  */
 public class CustomerPOVRestaurant extends AppCompatActivity {
-    //Properities
-
-    ImageView logo;
-    Adapter adapter;
-    List<Upload> uploads;
-    TextView tvName, tvRating, tvDescription, tvMinPriceToPreOrder;
-    DatabaseReference mRefRes;
-    Button showMenu, makeReservation;
-    ListView listView;
-    ArrayAdapter myAdapter;
-    ArrayList<String> menu = new ArrayList<String>();
+    // properties
+    private ImageView logo;
+    private TextView tvName, tvRating, tvDescription, tvMinPriceToPreOrder;
+    private DatabaseReference mRefRes;
+    private Button showMenu, makeReservation;
+    private ListView listView;
+    private ArrayAdapter myAdapter;
+    private ArrayList<String> menu = new ArrayList<String>();
     private Uri uri;
     private Upload upload;
+    //Properities
 
 
 
+    // methods
     @Override
+    /**
+     * This is a method that is called every time this activity is opened and in which we initialize properties.
+     * Other methods are called inside it.
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_customer_p_o_v_restaurant);
 
-        //Initialize
-
+        // Initializing
         logo = findViewById(R.id.logo);
         tvName = (TextView)findViewById(R.id.txtNamePOV);
         tvRating = (TextView)findViewById(R.id.txtRatingPOV);

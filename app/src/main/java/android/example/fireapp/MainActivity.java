@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mRef = FirebaseDatabase.getInstance().getReference("Customers");
         database = FirebaseDatabase.getInstance();
 
-        mRef.addValueEventListener(new ValueEventListener() {
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final String userName = (String)dataSnapshot.child(user.getUid()).child("name").getValue();

@@ -119,7 +119,7 @@ public class PromotionsPOVCustomer extends AppCompatActivity {
 
                 //Go to restaurants profile
                 final DatabaseReference refRests = FirebaseDatabase.getInstance().getReference("Restaurants");
-                refRests.addValueEventListener(new ValueEventListener()
+                refRests.addListenerForSingleValueEvent(new ValueEventListener()
                 {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot)

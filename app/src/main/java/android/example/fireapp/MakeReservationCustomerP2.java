@@ -69,7 +69,7 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
         final DatabaseReference refAvailableHours = FirebaseDatabase.getInstance().getReference("Restaurants")
                 .child(uidRestaurant).child("seats").child(seat).child(date);
 
-        refAvailableHours.addValueEventListener(new ValueEventListener() {
+        refAvailableHours.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
@@ -162,7 +162,12 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                                             int relatedTimeSlot = Integer.parseInt(rTimeSlot);
                                             Object tS = snapshot.getValue();
                                             HashMap<String, Object> oldTimeMap = (HashMap<String, Object>)tS;
-                                            long lay = (long) oldTimeMap.get("layer");
+                                            long lay;
+                                            //if( oldTimeMap.get("layer") != null)
+                                            if (snapshot.child("layer").exists())
+                                                lay = (long) oldTimeMap.get("layer");
+                                            else
+                                                lay = 0;
                                             int layer = (int)lay;
                                             int incrementedLayer = layer + 1;
                                             // setting related timeslots reserved
@@ -187,13 +192,13 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
 
                                 final String rezID = mReservation.push().getKey();
 
-                                mRestaurant.addValueEventListener(new ValueEventListener() {
+                                mRestaurant.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         final String restaurantName = dataSnapshot.child("name").getValue().toString();
                                         final String restaurantPhone = dataSnapshot.child("phone").getValue().toString();
 
-                                        mCustomer.addValueEventListener(new ValueEventListener() {
+                                        mCustomer.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 String cusName = dataSnapshot.child("name").getValue().toString();

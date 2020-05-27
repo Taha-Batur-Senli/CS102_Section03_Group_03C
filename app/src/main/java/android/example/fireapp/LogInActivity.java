@@ -38,6 +38,15 @@ public class LogInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Restaurants");
+//        ref.setValue(null);
+//        DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("Reservations");
+//        ref2.setValue(null);
+//        DatabaseReference ref3 = FirebaseDatabase.getInstance().getReference("Customers");
+//        ref3.setValue(null);
+//        DatabaseReference ref4 = FirebaseDatabase.getInstance().getReference("Promotions");
+//        ref4.setValue(null);
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_log_in);
 

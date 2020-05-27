@@ -97,7 +97,7 @@ public class MyReservations extends AppCompatActivity {
     }
 
     private void updatePastReservations() {
-        refCurrentReservations.orderByChild("cusID").equalTo(user.getUid()).addValueEventListener(new ValueEventListener() {
+        refCurrentReservations.orderByChild("cusID").equalTo(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
@@ -151,7 +151,7 @@ public class MyReservations extends AppCompatActivity {
     }
 
     private void displayPastReservations() {
-        refPastReservations.orderByChild("cusID").equalTo(user.getUid()).addValueEventListener(new ValueEventListener() {
+        refPastReservations.orderByChild("cusID").equalTo(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 pastReservations.clear();
@@ -198,7 +198,7 @@ public class MyReservations extends AppCompatActivity {
 
     private void displayCurrentReservations() {
 
-        refCurrentReservations.orderByChild("cusID").equalTo(user.getUid()).addValueEventListener(new ValueEventListener() {
+        refCurrentReservations.orderByChild("cusID").equalTo(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentReservations.clear();
@@ -244,6 +244,8 @@ public class MyReservations extends AppCompatActivity {
         });
     }
 
+
+
     private void deleteCurrentReservations(){
         lvCurrentReservations.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -261,45 +263,62 @@ public class MyReservations extends AppCompatActivity {
                                 int indexOfIDStart = rezTxt.indexOf("ID:") + 3;
                                 int indexOfIDEnd  = rezTxt.indexOf("   ", indexOfIDStart);
                                 final String rezID = rezTxt.substring(indexOfIDStart, indexOfIDEnd);
+                                System.out.println("REZZZZZZZZZZZZZZZZZZZZZID " + rezID);
 
-
-                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Reservations").child("CurrentReservations").child(rezID);
-                                ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        final String date = (String) dataSnapshot.child("date").getValue();
-                                        final String restaurantID = (String) dataSnapshot.child("restaurantID").getValue();
-                                        final String seat = (String) dataSnapshot.child("seat").getValue();
-                                        final String timeSlot = (String) dataSnapshot.child("timeSlot").getValue(); // in the form of minutes
-                                        final DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("Restaurants");
-                                        ref2.child(restaurantID).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    final DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+                                        ref.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                long maxSeatingDura = (long)dataSnapshot.child("maxSeatingDuration").getValue();
-                                                int maxSeatingDuration = (int)maxSeatingDura;
-                                                for (DataSnapshot snapshot : dataSnapshot.child("seats").child(seat).child(date).getChildren()){
-                                                    String ts = (String)snapshot.getKey(); // timeslot in the form of minutes
+                                                final String date = (String) dataSnapshot.child("Reservations").child("CurrentReservations").child(rezID).child("date").getValue();
+                                                final String restaurantID = (String) dataSnapshot.child("Reservations").child("CurrentReservations").child(rezID).child("restaurantID").getValue();
+                                                final String seat = (String) dataSnapshot.child("Reservations").child("CurrentReservations").child(rezID).child("seat").getValue();
+                                                final String timeSlot = (String) dataSnapshot.child("Reservations").child("CurrentReservations").child(rezID).child("timeSlot").getValue(); // in the form of minutes
+                                                System.out.println("RESTAURANT IDDDDDDDDDDDDDDDDDDDDDDDDDD " + restaurantID + "DATE  " + date + "SEAT  " + seat + "TIMESLOT  " + timeSlot);
+
+                                                final long maxSeatingDura = (long) dataSnapshot.child("Restaurants").child(restaurantID).child("maxSeatingDuration").getValue();
+                                                final int maxSeatingDuration = (int) maxSeatingDura;
+
+                                                for (DataSnapshot snapshot : dataSnapshot.child("Restaurants").child(restaurantID).child("seats").child(seat).child(date).getChildren()) {
+                                                    System.out.println("SLMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+                                                    String ts = (String) snapshot.getKey(); // timeslot in the form of minutes
                                                     int relatedTimeSlot = Integer.parseInt(ts);
                                                     Object tS = snapshot.getValue();
-                                                    HashMap<String, Object> oldTimeMap = (HashMap<String, Object>)tS;
-                                                    long lay = (long) oldTimeMap.get("layer");
-                                                    int layer = (int)lay;
-                                                    if( layer > 0)
+                                                    HashMap<String, Object> oldTimeMap = (HashMap<String, Object>) tS;
+                                                    long lay;
+                                                    //if( oldTimeMap.get("layer") != null)
+                                                    if (snapshot.child("layer").exists())
+                                                        lay = (long) oldTimeMap.get("layer");
+                                                    else
+                                                        lay = 0;
+                                                    int layer = (int) lay;
+                                                    if (layer > 0)
                                                         layer = layer - 1;
                                                     else
                                                         layer = 0;
 
-                                                    if( Math.abs(Integer.parseInt(timeSlot) - relatedTimeSlot) + 1 <= (int)maxSeatingDuration){
-                                                        if( layer != 0){
-                                                            ref2.child(restaurantID).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("layer").setValue(layer);
-                                                        }
-                                                        else
-                                                        {
-                                                            ref2.child(restaurantID).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("layer").setValue(layer);
-                                                            ref2.child(restaurantID).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("reservedStatus").setValue(false);
+                                                    if (Math.abs(Integer.parseInt(timeSlot) - relatedTimeSlot) + 1 <= (int) maxSeatingDuration) {
+                                                        if (layer != 0) {
+                                                            ref.child("Restaurants").child(restaurantID).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("layer").setValue(layer);
+                                                        } else {
+                                                            ref.child("Restaurants").child(restaurantID).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("layer").setValue(layer);
+                                                            ref.child("Restaurants").child(restaurantID).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("reservedStatus").setValue(false);
                                                         }
                                                     }
                                                 }
+
+                                                System.out.println("SILINIYOMM MKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
+                                                ref.removeEventListener(this);
+
+                                                ref.child("Reservations").
+                                                        child("CurrentReservations").
+                                                        child(rezID).setValue(null);
+                                                myAdapter.notifyDataSetChanged();
+
+                                                System.out.println("YENI ACTIVITEYE GIRIS YAPIOMMMMMMMMMMMMMMMMMMMMMMM");
+                                                Intent i = new Intent(MyReservations.this, MainActivity.class);
+                                                startActivity(i);
+
+
                                             }
 
                                             @Override
@@ -307,18 +326,6 @@ public class MyReservations extends AppCompatActivity {
 
                                             }
                                         });
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                    }
-                                });
-
-                                DatabaseReference deleteRez = FirebaseDatabase.getInstance().getReference("Reservations").
-                                        child("CurrentReservations");
-                                myAdapter.notifyDataSetChanged();
-
 
                             }
                         })

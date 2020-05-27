@@ -8,6 +8,7 @@ import java.util.HashMap;
 This class creates restaurant objects to facilitate adding restaurants to firebase.
  */
 public class Restaurant {
+
     //Properties
     String uid, email, name, genre, phone, description, reservations, menu, adress, workingHours, openingTime, closingTime, openingTimeHour, openingTimeMinute, closingTimeHour, closingTimeMinute;
     int numOfTimesRated, maxSeatingDuration, minPriceToPreOrder;

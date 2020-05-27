@@ -46,8 +46,8 @@
 
     <TextView
         android:id="@+id/reservTextRatePage"
-        android:layout_width="276dp"
-        android:layout_height="168dp"
+        android:layout_width="315dp"
+        android:layout_height="371dp"
         android:fontFamily="@font/roboto_light"
         android:gravity="center"
         android:text="TextView"
@@ -55,10 +55,9 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.291" />
+        app:layout_constraintVertical_bias="0.305" />
 
     <EditText
         android:id="@+id/etRate"
@@ -66,17 +65,17 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:fontFamily="@font/roboto_light"
+        android:textColorHint="@color/white"
         android:hint="Out Of Five"
         android:inputType="number"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.582" />
+        app:layout_constraintVertical_bias="0.793" />
 
     <TextView
         android:id="@+id/textView42"
@@ -89,9 +88,9 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.703" />
 
     <Button
         android:id="@+id/btnRate"
@@ -109,5 +108,5 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812" />
+        app:layout_constraintVertical_bias="0.906" />
 </androidx.constraintlayout.widget.ConstraintLayout>

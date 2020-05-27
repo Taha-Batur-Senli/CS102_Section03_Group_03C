@@ -314,7 +314,12 @@ public class PreOrderActivity extends AppCompatActivity {
                                                     int relatedTimeSlot = Integer.parseInt(rTimeSlot);
                                                     Object tS = snapshot.getValue();
                                                     HashMap<String, Object> oldTimeMap = (HashMap<String, Object>)tS;
-                                                    long lay = (long) oldTimeMap.get("layer");
+                                                    long lay;
+                                                    //if( oldTimeMap.get("layer") != null)
+                                                    if (snapshot.child("layer").exists())
+                                                        lay = (long) oldTimeMap.get("layer");
+                                                    else
+                                                        lay = 0;
                                                     int layer = (int)lay;
                                                     int incrementedLayer = layer + 1;
                                                     // setting related timeslots reserved

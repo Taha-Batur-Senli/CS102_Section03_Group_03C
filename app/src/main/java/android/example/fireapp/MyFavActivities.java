@@ -152,7 +152,7 @@ public class MyFavActivities extends AppCompatActivity {
                 final String name = item.substring(0,indexOfName);
 
                 final DatabaseReference refRests = FirebaseDatabase.getInstance().getReference("Restaurants");
-                refRests.addValueEventListener(new ValueEventListener() {
+                refRests.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();

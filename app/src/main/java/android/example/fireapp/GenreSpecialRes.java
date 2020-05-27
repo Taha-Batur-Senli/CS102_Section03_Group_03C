@@ -109,16 +109,17 @@ public class GenreSpecialRes extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //gets the name of the dish
                 String item = genreSpecificRestaurant.get(position);
-                final String name = item.toString();
+                final String name = (String)item;
 
-                mRef.addValueEventListener(new ValueEventListener() {
+                mRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
                         while (items.hasNext()) {
                             DataSnapshot item1 = items.next();
                             String searchedId;
-                            if (item1.child("name").getValue().toString().equals(name)) {
+                            String str = (String)item1.child("name").getValue();
+                            if (str.equals(name)) {
 
                                 searchedId = item1.child("uid").getValue().toString();
                                 Intent intent = new Intent(GenreSpecialRes.this, CustomerPOVRestaurant.class);
