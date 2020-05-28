@@ -12,11 +12,14 @@ WHAT WORKS:
 -------------------------------------------------------------------------------------------------------------------------------------
 WHAT DOES NOT WORK: 
 	-Little bugs occur rarely, yet they do not effect the bulk of the project.
+	-When a restaurant presses to the "Change menu" button and afterward presses to the back button immediately,
+	 our app crashes. However, if they take even only one action, no problem occurs.
 ------------------------------------------------------------------------------------------------------------------------------------
 WHAT REMAINS TO BE DONE: 
 	-Delete option for deleting the added images by restaurant owner's, customer's reservation points/ranking
 	-The view of our app's GUI differs from phone to phone that creates an aesthatic problem (doesn't affect the
 	functions), therefore, enhancing the app's GUI so that it stays the same on all phones.
+	"Change working hours" is not functional yet. However, this can be made functional easily on future versions.
 -------------------------------------------------------------------------------------------------------------------------------------
 	-Berkay İnceişçi: I worked on reservation process and I was responsible for making our app time sensitive
 	-Ege Ergül: I worked on manuplating the data on Firebase, connecting it to our app, and I also worked on reservation objects. 
