@@ -5,21 +5,20 @@ import android.widget.ImageView;
 import java.util.HashMap;
 
 /*
- * This class creates restaurant objects to facilitate adding restaurants to firebase.
- *@date 27.05.2020
+ * This class creates restaurant objects to facilitate the addition of the restaurants to Firebase.
+ *@date 08.05.2020
  *@author Group 3C
  */
-
 public class Restaurant {
 
-    //Properties
+    // Properties
     String uid, email, name, genre, phone, description, reservations, menu, adress, workingHours, openingTime, closingTime, openingTimeHour, openingTimeMinute, closingTimeHour, closingTimeMinute;
     int numOfTimesRated, maxSeatingDuration, minPriceToPreOrder;
     double rating;
     ImageView restaurantImage;
     HashMap<String, Object> seats;
 
-    //Constructors
+    // Constructors
     public Restaurant(){}
 
     public Restaurant(String name, String email, String genre, String phone, String uid, String numOfTables, int maxSeatingDuration, int minPriceToPreOrder, String openingTimeHour, String openingTimeMinute, String closingTimeHour, String closingTimeMinute) {
@@ -47,7 +46,9 @@ public class Restaurant {
         seats = new Seats(Integer.parseInt(numOfTables), this);
     }
 
-    //GET & SET METHODS
+    // Methods
+
+    // GET & SET METHODS
     public String getOpeningTime() {
         return openingTime;
     }

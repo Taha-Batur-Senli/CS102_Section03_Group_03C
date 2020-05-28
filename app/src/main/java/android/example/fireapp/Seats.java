@@ -1,14 +1,18 @@
 package android.example.fireapp;
 
 import java.util.HashMap;
-/*
+
+/**
  *
- *@date 27.05.2020
+ *@date 10.05.2020
  *@author Group 3C
  */
 public class Seats extends HashMap<String, Object>{
 
+    // properties
     private Restaurant restaurant;
+
+    // constructors
     public Seats(){
 
     }
@@ -18,6 +22,5 @@ public class Seats extends HashMap<String, Object>{
         for ( int i = 0; i < numOfTables; i++){
             this.put( "seat" + (i+1), new Seat("seat" + (i+1), r));
         }
-        System.out.println(this.toString());
     }
 }

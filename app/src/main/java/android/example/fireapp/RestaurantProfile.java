@@ -24,15 +24,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-/*
- *
- *@date 27.05.2020
+/**
+ * This the page which restaurant owners see after they login.
+ *@date 09.05.2020
  *@author Group 3C
  */
-
 public class RestaurantProfile extends AppCompatActivity {
 
-    //Variables
+    // Properties
     Button logOut, editProfile, help, takeALookAtYourRestaurant, changeMenu, promotions,  myReservations;
     DatabaseReference mRef;
     FirebaseAuth mAuth;
@@ -40,6 +39,12 @@ public class RestaurantProfile extends AppCompatActivity {
     TextView resNameTV;
     private ViewFlipper mViewFlipper;
 
+    // Methods
+
+    /**
+     * This method is called after restaurant owner's entry to the app is completed.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +83,7 @@ public class RestaurantProfile extends AppCompatActivity {
         }
 
         //Get customer name and display
-        mRef.addValueEventListener(new ValueEventListener() {
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -95,7 +100,9 @@ public class RestaurantProfile extends AppCompatActivity {
 
     }
 
-    //METHODS
+    /**
+     * The button that enables owners to see the reservations
+     */
     private void myReservationsActivity() {
         myReservations.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +112,9 @@ public class RestaurantProfile extends AppCompatActivity {
         });
     }
 
+    /**
+     * The button that enables owners to see the promotions page in which they can arrange their promotions
+     */
     private void promotionsActivity() {
         promotions.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +124,9 @@ public class RestaurantProfile extends AppCompatActivity {
         });
     }
 
+    /**
+     * The button that enables owners to see the menu page in which they can arrange their menu
+     */
     private void changeMenuAction() {
         changeMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +136,9 @@ public class RestaurantProfile extends AppCompatActivity {
         });
     }
 
+    /**
+     * The button that directs owners to the profile edit page
+     */
     private void editTextAction() {
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +148,9 @@ public class RestaurantProfile extends AppCompatActivity {
         });
     }
 
+    /**
+     * The button that directs owners to the page where basic instructions of the app are explained
+     */
     private void helpAction() {
         help.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +160,9 @@ public class RestaurantProfile extends AppCompatActivity {
         });
     }
 
+    /**
+     * The button that directs owners to the page where they can see the information about their restaurant
+     */
     private void takeALookAtYourRestaurantAction() {
         takeALookAtYourRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,8 +172,8 @@ public class RestaurantProfile extends AppCompatActivity {
         });
     }
 
-    /*
-    Restaurant owners are asked if they want to log off or not.
+    /**
+     * The button that enables owners to log off from the app
      */
    private void logOffAction() {
        logOut.setOnClickListener(new View.OnClickListener() {
@@ -181,10 +203,10 @@ public class RestaurantProfile extends AppCompatActivity {
 
    }
 
-   /*
-   This method prevents a bug. If a restaurant owner clicks to back button accidentally, they are
-   asked whether they want to log off or not. They can choose yes or no.
-    */
+    /**
+     * This method prevents a bug. If a restaurant owner clicks to back button accidentally, they are
+     * asked whether they want to log off or not. They can choose yes or no.
+     */
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -210,6 +232,9 @@ public class RestaurantProfile extends AppCompatActivity {
 
     }
 
+    /**
+     * This method adds an image to the flipper view
+     */
     public void flipperImages (int image){
         ImageView imageView = new ImageView(this);
         imageView.setBackgroundResource( image);

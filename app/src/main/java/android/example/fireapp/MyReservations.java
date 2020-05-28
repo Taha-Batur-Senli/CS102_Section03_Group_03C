@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -98,6 +99,7 @@ public class MyReservations extends AppCompatActivity {
                 i.putExtra("RESTNAME", resName);
                 i.putExtra("RESERVTEXT", reservationText);
                 startActivity(i);
+                finish();
             }
         });
     }
@@ -157,7 +159,7 @@ public class MyReservations extends AppCompatActivity {
     }
 
     private void displayPastReservations() {
-        refPastReservations.orderByChild("cusID").equalTo(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        refPastReservations.orderByChild("cusID").equalTo(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 pastReservations.clear();
@@ -204,7 +206,7 @@ public class MyReservations extends AppCompatActivity {
 
     private void displayCurrentReservations() {
 
-        refCurrentReservations.orderByChild("cusID").equalTo(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        refCurrentReservations.orderByChild("cusID").equalTo(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 currentReservations.clear();
@@ -212,10 +214,8 @@ public class MyReservations extends AppCompatActivity {
                 while (items.hasNext()) {
                     DataSnapshot item = items.next();
                     String resName = item.child("restaurantName").getValue().toString();
-                    //String cusName = item.child("cusName").getValue().toString();
                     String resPhone = item.child("restaurantPhone").getValue().toString();
                     String rezID = item.child("reservID").getValue().toString();
-                    //String cusPhone = item.child("cusPhone").getValue().toString();
                     String proOrder = item.child("preOrder").getValue().toString();
                     String preOrderTxt = (String)item.child("preOrderText").getValue();
                     String seat = item.child("seat").getValue().toString();
@@ -288,10 +288,9 @@ public class MyReservations extends AppCompatActivity {
                                                     Object tS = snapshot.getValue();
                                                     HashMap<String, Object> oldTimeMap = (HashMap<String, Object>) tS;
                                                     long lay;
-                                                    //if( oldTimeMap.get("layer") != null)
-                                                    if (snapshot.child("layer").exists())
+                                                    if (snapshot.child("layer").exists()) // all new restaurants have layer
                                                         lay = (long) oldTimeMap.get("layer");
-                                                    else
+                                                    else // for old type of restaurants - not in use currently
                                                         lay = 0;
                                                     int layer = (int) lay;
                                                     if (layer > 0)
@@ -316,10 +315,10 @@ public class MyReservations extends AppCompatActivity {
                                                         child(rezID).setValue(null);
                                                 myAdapter.notifyDataSetChanged();
 
-                                                Intent i = new Intent(MyReservations.this, MainActivity.class);
+                                                Intent i = new Intent(MyReservations.this, MyReservations.class);
+                                                Toast.makeText(getApplicationContext(), "Reservation has been deleted", Toast.LENGTH_SHORT).show();
                                                 startActivity(i);
-
-
+                                                finish();
                                             }
 
                                             @Override
@@ -336,5 +335,11 @@ public class MyReservations extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

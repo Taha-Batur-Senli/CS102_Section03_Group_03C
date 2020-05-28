@@ -137,6 +137,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         }
         else {
             super.onBackPressed();
+            //TODO crash
         }
     }
 

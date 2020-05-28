@@ -92,7 +92,7 @@ public class LogInActivity extends AppCompatActivity {
 
                             //Distinquish User type
                             DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("Customers");
-                            ref.orderByChild("uid").equalTo(userID).addValueEventListener(new ValueEventListener() {
+                            ref.orderByChild("uid").equalTo(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {

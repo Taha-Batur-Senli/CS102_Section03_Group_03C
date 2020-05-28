@@ -1,14 +1,18 @@
 package android.example.fireapp;
 
-/*
- * This is a class to create reservation objects easily.
- *@date 27.05.2020
+/**
+ * This class is the outline of the reservation object which is created when a reservation is made
+ *@date 14.05.2020
  *@author Group 3C
  */
 public class Reservation {
+
+    // properties
     String reservID, cusID, restaurantID, restaurantName, cusName, restaurantPhone, cusPhone,
             preOrder, date, timeSlot, totalPrice, seat, preOrderTxt;
     boolean hasRated;
+
+    // constructors
     public Reservation() { }
 
     public Reservation(String reservID, String cusID, String restaurantID, String cusName,
@@ -29,6 +33,8 @@ public class Reservation {
         hasRated = false;
         preOrderTxt = "";
     }
+
+    // methods
 
     // GET & SET METHODS
     public String getReservID() {

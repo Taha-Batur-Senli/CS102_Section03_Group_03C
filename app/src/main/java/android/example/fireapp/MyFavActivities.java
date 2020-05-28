@@ -76,7 +76,7 @@ public class MyFavActivities extends AppCompatActivity {
 
                     DataSnapshot item = items.next();
                     String name;
-                    name =  item.child("name").getValue().toString() + "   ";// + "  Genre: " + item.child("genre").getValue().toString();
+                    name =  item.child("name").getValue().toString() + "   ";
 
                     favRestaurants.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -113,7 +113,7 @@ public class MyFavActivities extends AppCompatActivity {
                                 int index1 = item.indexOf("   ");
                                 final String s = item.substring(0,index1);
                                 reference.child(user.getUid()).child("fav restaurants").orderByChild("name").
-                                        equalTo(s).addValueEventListener(new ValueEventListener() {
+                                        equalTo(s).addListenerForSingleValueEvent(new ValueEventListener() {
                                     int i = 0;
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -130,6 +130,8 @@ public class MyFavActivities extends AppCompatActivity {
                                     }
                                 });
                                 myAdapter.notifyDataSetChanged();
+                                startActivity(new Intent(MyFavActivities.this, MyFavActivities.class));
+                                finish();
                             }
                         })
                         .setNegativeButton("No", null)
@@ -179,5 +181,11 @@ public class MyFavActivities extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

@@ -15,6 +15,7 @@
     import android.widget.ListView;
     import android.widget.SearchView;
     import android.widget.TextView;
+    import android.widget.Toast;
 
     import com.google.firebase.auth.FirebaseAuth;
     import com.google.firebase.auth.FirebaseUser;
@@ -96,16 +97,16 @@
             });
         }
 
-        /**
-        Prints all of the restaurants on the related listview. Iterates trough firebase and adds each
-        restaurant to all restaurants list view.
-         */
-        private void displayAllRestaurants () {
-            reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
-                    while (items.hasNext()) {
+    /*
+    Prints all of the restaurants on the related listview. Iterates trough firebase and adds each
+    restaurant to all restaurants list view.
+     */
+    private void displayAllRestaurants () {
+        reference.child("Restaurants").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                while (items.hasNext()) {
 
                         DataSnapshot item = items.next();
                         String name;
@@ -121,56 +122,57 @@
             });
         }
 
-        /**
-        This method makes restaurants long-clickable. If a customers long-clicks on a restaurant, they are
-        asked if they want to add that restaurant to favorite restaurants list.
-         */
-        private void listOnLongClickAction() {
-            listViewAllRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                @Override
-                public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-                    //final int index;
-                    new AlertDialog.Builder(AllRestaurantsDisplay.this)
-                            .setIcon(android.R.drawable.ic_input_add)
-                            .setTitle("Are you sure?")
-                            .setMessage("Do you want to add this restaurant to your favorite restaurants?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    final String item = myAdapter.getItem(position).toString();
-                                    int index1 = item.indexOf(", ");
-                                    final String s = item.substring(0,index1);
-                                    reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                            Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
-                                            while(items.hasNext()) {
-                                                DataSnapshot item1 = items.next();
-                                                String searchedId;
-                                                if(item1.child("name").getValue().toString().equals(s)){
-
-                                                    searchedId = item1.child("uid").getValue().toString();
-                                                    mRef.child(user.getUid()).child("fav restaurants").child(searchedId).push();
-                                                    mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("name").setValue(s);
-                                                    mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("uid").setValue(searchedId);
-                                                    myAdapter.notifyDataSetChanged();
-                                                }
+    /*
+    This method makes restaurants long-clickable. If a customers long-clicks on a restaurant, they are
+    asked if they want to add that restaurant to favorite restaurants list.
+     */
+    private void listOnLongClickAction() {
+        listViewAllRestaurants.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                //final int index;
+                new AlertDialog.Builder(AllRestaurantsDisplay.this)
+                        .setIcon(android.R.drawable.ic_input_add)
+                        .setTitle("Are you sure?")
+                        .setMessage("Do you want to add this restaurant to your favorite restaurants?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                final String item = myAdapter.getItem(position).toString();
+                                int index1 = item.indexOf(", ");
+                                final String s = item.substring(0,index1);
+                                reference.child("Restaurants").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                                        while(items.hasNext()) {
+                                            DataSnapshot item1 = items.next();
+                                            String searchedId;
+                                            if(item1.child("name").getValue().toString().equals(s)){
+                                                searchedId = item1.child("uid").getValue().toString();
+                                                mRef.child(user.getUid()).child("fav restaurants").child(searchedId).push();
+                                                mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("name").setValue(s);
+                                                mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("uid").setValue(searchedId);
+                                                myAdapter.notifyDataSetChanged();
+                                                Toast.makeText(getApplicationContext(), "Restaurant has been added to favorites", Toast.LENGTH_SHORT).show();
                                             }
                                         }
+                                    }
                                         @Override
                                         public void onCancelled(@NonNull DatabaseError databaseError) {
+
                                         }
-                                    });
+                                });
                                     myAdapter.notifyDataSetChanged();
-                                }
-                            })
+                            }
+                        })
                             .setNegativeButton("No", null)
                             .show();
 
                     return true;
                 }
             });
-        }
+    }
 
         /**
         This method makes all restaurants clickable. If a customer clicks on a restaurant, they are directed

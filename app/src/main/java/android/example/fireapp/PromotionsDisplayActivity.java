@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -129,13 +130,17 @@ public class PromotionsDisplayActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 final String item = myAdapter.getItem(index).toString();
 
-                                reference.child(user.getUid()).orderByChild("name").equalTo(item).addValueEventListener(new ValueEventListener() {
+                                reference.child(user.getUid()).orderByChild("name").equalTo(item).addListenerForSingleValueEvent(new ValueEventListener() {
                                     int i  = 0;
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                         if ( i < 1) {
                                             reference.child(user.getUid()).child(dataSnapshot.getChildren().iterator().next().getKey())
                                                     .removeValue();
+                                            myAdapter.notifyDataSetChanged();
+                                            Toast.makeText(getApplicationContext(), "Promotion has been deleted", Toast.LENGTH_SHORT).show();
+                                            startActivity( new Intent(PromotionsDisplayActivity.this, PromotionsDisplayActivity.class));
+                                            finish();
                                             i++;
                                         }
                                     }

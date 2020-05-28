@@ -49,7 +49,7 @@ public class RestaurantProfileDisplay extends AppCompatActivity {
         user = mAuth.getCurrentUser();
 
         //Get the data from firebase and place related data to related text views.
-        mRef.addValueEventListener(new ValueEventListener() {
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final String nameString = dataSnapshot.child(user.getUid()).child("name").getValue(String.class);

@@ -218,7 +218,7 @@ public class CustomerPOVRestaurant extends AppCompatActivity {
                 Intent intent = getIntent();
                 String uid = intent.getStringExtra("UID");
 
-                mRefRes.child(uid).child("minPriceToPreOrder").addValueEventListener(new ValueEventListener() {
+                mRefRes.child(uid).child("minPriceToPreOrder").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         final String minPrice = dataSnapshot.getValue().toString();

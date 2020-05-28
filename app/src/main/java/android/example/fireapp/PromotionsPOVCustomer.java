@@ -23,27 +23,33 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/*
- * This is a class to create reservation objects easily.
- *@date 27.05.2020
+/**
+ * This is the activity where customers can see the promotions offered by restaurants
+ *@date 20.05.2020
  *@author Group 3C
  */
-
 public class PromotionsPOVCustomer extends AppCompatActivity {
-    //Properties
-    ListView  listViewPromotions;
-    ArrayAdapter myAdapter;
-    ArrayList<String> promotions = new ArrayList<>();
-    DatabaseReference reference2;
-    SearchView searchView;
 
+    // Properties
+    private ListView  listViewPromotions;
+    private ArrayAdapter myAdapter;
+    private ArrayList<String> promotions = new ArrayList<>();
+    private DatabaseReference reference2;
+    private SearchView searchView;
+
+    // Methods
+
+    /**
+     * The method that is called when a customer opens promotions page
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_promotions_p_o_v_customer);
 
-        //Initialize
+        //Initializing variables
         listViewPromotions = (ListView) findViewById(R.id.listViewAllPromotionsPage);
         searchView = (SearchView) findViewById(R.id.searchView);
         myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, promotions);
@@ -54,12 +60,15 @@ public class PromotionsPOVCustomer extends AppCompatActivity {
         TextView textView = searchView.findViewById(id);
         textView.setTextColor(Color.WHITE);
 
-        //Methods called
+        //Calling methods
         displayPromotions();
         promotionsClick();
         searchPromotions();
     }
 
+    /**
+     * The method that makes it possible to search for a particular promotion by typing letters
+     */
     public void searchPromotions(){
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -75,6 +84,9 @@ public class PromotionsPOVCustomer extends AppCompatActivity {
         });
     }
 
+    /**
+     * The method that retrieves information about promotions from Firebase and displays them
+     */
     private void displayPromotions() {
         reference2.child("Promotions").addValueEventListener(new ValueEventListener()
         {
@@ -83,7 +95,7 @@ public class PromotionsPOVCustomer extends AppCompatActivity {
             {
                 for (DataSnapshot ds : dataSnapshot.getChildren())
                 {
-                    final String key = ds.getKey();
+                    final String key = ds.getKey(); // key is the uid of the promotion
                     DatabaseReference mRef2 = FirebaseDatabase.getInstance().getReference("Promotions");
                     mRef2.child(key).addValueEventListener(new ValueEventListener()
                     {
@@ -98,7 +110,6 @@ public class PromotionsPOVCustomer extends AppCompatActivity {
                                 promotions.add(promo);
                                 myAdapter.notifyDataSetChanged();
                             }
-
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {}
@@ -111,6 +122,9 @@ public class PromotionsPOVCustomer extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method directs customers to the reservation page of the restaurant when they click on a promotion
+     */
     private void promotionsClick()
     {
         listViewPromotions.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -118,12 +132,12 @@ public class PromotionsPOVCustomer extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                //Get restaurants name
+                //Get restaurant's name
                 String promo = promotions.get(position);
                 int index = promo.indexOf("\n");
                 final String resName = promo.substring(0, index);
 
-                //Go to restaurants profile
+                //Go to restaurant's profile
                 final DatabaseReference refRests = FirebaseDatabase.getInstance().getReference("Restaurants");
                 refRests.addListenerForSingleValueEvent(new ValueEventListener()
                 {

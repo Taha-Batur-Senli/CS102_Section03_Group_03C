@@ -78,7 +78,7 @@ public class GenreSpecialRes extends AppCompatActivity {
      * @param genre
      */
     private void displayRestaurantsOnList(String genre) {
-        mRef.orderByChild("genre").equalTo( genre ).addValueEventListener(new ValueEventListener() {
+        mRef.orderByChild("genre").equalTo( genre ).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();

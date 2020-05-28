@@ -3,12 +3,15 @@
     import androidx.annotation.NonNull;
     import androidx.appcompat.app.AppCompatActivity;
     import androidx.core.content.ContextCompat;
+
+    import android.content.Intent;
     import android.os.Bundle;
     import android.view.View;
     import android.view.WindowManager;
     import android.widget.Button;
     import android.widget.EditText;
     import android.widget.TextView;
+    import android.widget.Toast;
 
     import com.google.firebase.auth.FirebaseAuth;
     import com.google.firebase.auth.FirebaseUser;
@@ -54,21 +57,21 @@
             user = mAuth.getCurrentUser();
 
             //ValueEventListener to retrieve the current money and illustrate it.
-            assert user != null;
-            mRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    customer = dataSnapshot.getValue(Customer.class);
-                    assert customer != null;
-                    String money = customer.getMoney();
-                    moneyTextView.setText("You currently have \n" + money + " g3Coins in your account.");
-                }
+        assert user != null;
+        mRef.child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                customer = dataSnapshot.getValue(Customer.class);
+                assert customer != null;
+                String money = customer.getMoney();
+                moneyTextView.setText("You currently have \n" + money + " g3Coins in your account.");
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
+            }
+        });
 
 
             /**
@@ -79,24 +82,39 @@
                 public void onClick(View v) {
                     final String moneyToAdd = toBeAdded.getText().toString();
 
-                    //Ensure that customer entered a value
-                    if ( moneyToAdd.isEmpty())
-                    {
-                        toBeAdded.requestFocus();
-                        toBeAdded.setError("Enter amount of money!");
-                    }
-                    else if ( moneyToAdd.equals("619")){ //easter egg :)
-                        mRef.child(user.getUid()).child("money").setValue("500000");
-                    }
-                    else {
-                        //gets the current money, adds the amount wished to be added, updates the firebase
-                        double currentMoney = Double.parseDouble(customer.getMoney());
-                        double moneyFinal = currentMoney + Double.parseDouble(moneyToAdd);
-                        mRef.child(user.getUid()).child("money").setValue("" + moneyFinal);
-                    }
+                Intent intent = getIntent();
+                String from = intent.getStringExtra("FROM");
+
+                //Ensure that customer entered a value
+                if ( moneyToAdd.isEmpty())
+                {
+                    toBeAdded.requestFocus();
+                    toBeAdded.setError("Enter amount of money!");
                 }
-            });
-        }
+                else if ( moneyToAdd.equals("619")){ //easter egg :)
+                    mRef.child(user.getUid()).child("money").setValue("500000");
+                }
+                else {
+                    //gets the current money, adds the amount wished to be added, updates the firebase
+                    double currentMoney = Double.parseDouble(customer.getMoney());
+                    double moneyFinal = currentMoney + Double.parseDouble(moneyToAdd);
+                    mRef.child(user.getUid()).child("money").setValue("" + moneyFinal);
+                }
+
+                if( from.equals("CustomerMyAccountActivity")){
+                    Intent i = new Intent(AddMoneyActivity.this, CustomerMyAccountActivity.class);
+                    Toast.makeText(getApplicationContext(), "Money has been added", Toast.LENGTH_SHORT).show();
+                    startActivity(i);
+                    finish();
+                }
+                else if( from.equals("PreOrderActivity")){
+                    Toast.makeText(getApplicationContext(), "Money has been added", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+                }
+
+            }
+        });
+    }
 
         /**
          * if customer presses to back with out taking any action, we delete this activity from activity history

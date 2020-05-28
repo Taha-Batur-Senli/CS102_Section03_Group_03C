@@ -10,6 +10,7 @@
     import android.view.WindowManager;
     import android.widget.Button;
     import android.widget.EditText;
+    import android.widget.Toast;
 
     import com.google.firebase.auth.FirebaseAuth;
     import com.google.firebase.auth.FirebaseUser;
@@ -64,13 +65,15 @@
                         //create an id for promo and set it under that id
                         final String uid = mRef.child(user.getUid()).push().getKey();
 
-                        DatabaseReference mRefRes = FirebaseDatabase.getInstance().getReference("Restaurants");
-                        mRefRes.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                String restaurantsName =  dataSnapshot.child(user.getUid()).child("name").getValue().toString();
-                                mRef.child(user.getUid()).child(uid).setValue(new Promotion(promo, restaurantsName,uid));
-                            }
+                    DatabaseReference mRefRes = FirebaseDatabase.getInstance().getReference("Restaurants");
+                    mRefRes.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String restaurantsName =  dataSnapshot.child(user.getUid()).child("name").getValue().toString();
+                            mRef.child(user.getUid()).child(uid).setValue(new Promotion(promo, restaurantsName,uid));
+                            Toast.makeText(getApplicationContext(), "Promotion has been added", Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+                        }
 
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {

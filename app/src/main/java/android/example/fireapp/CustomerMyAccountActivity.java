@@ -66,8 +66,7 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
 
 
         //Get data from database and place them to text views
-
-        mRef.addValueEventListener(new ValueEventListener() {
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final String nameString = dataSnapshot.child(user.getUid()).child("name").getValue(String.class);
@@ -98,7 +97,10 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
         addMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustomerMyAccountActivity.this, AddMoneyActivity.class));
+                Intent intent = new Intent(CustomerMyAccountActivity.this, AddMoneyActivity.class);
+                intent.putExtra("FROM", "CustomerMyAccountActivity");
+                startActivity( intent);
+                finish();
             }
         });
     }
@@ -108,8 +110,14 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustomerMyAccountActivity.this, EditCustomerAccountActivity.class));
-
+                finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

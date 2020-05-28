@@ -72,7 +72,7 @@ public class ShowMenuPOV extends AppCompatActivity {
         placeDatatoTVs();
 
         //Set the name of the restaurant to the related text view.
-        reference.child(uid).addValueEventListener(new ValueEventListener() {
+        reference.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final String nameof = dataSnapshot.child("name").getValue().toString();
@@ -89,7 +89,7 @@ public class ShowMenuPOV extends AppCompatActivity {
     private void placeDatatoTVs() {
         Intent intent = getIntent();
         String uid = intent.getStringExtra("UID");
-        reference.child(uid).addValueEventListener(new ValueEventListener() {
+        reference.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 final String resName = dataSnapshot.child("name").getValue(String.class);

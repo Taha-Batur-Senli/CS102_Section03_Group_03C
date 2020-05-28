@@ -142,7 +142,7 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
         //get restaurants uid from previous class
 
 
-        reference.child(uidRestaurant).child("seats").addValueEventListener(new ValueEventListener() {
+        reference.child(uidRestaurant).child("seats").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 allSeats.clear();

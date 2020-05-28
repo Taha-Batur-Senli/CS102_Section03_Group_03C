@@ -167,10 +167,9 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                                             Object tS = snapshot.getValue();
                                             HashMap<String, Object> oldTimeMap = (HashMap<String, Object>)tS;
                                             long lay;
-                                            //if( oldTimeMap.get("layer") != null)
-                                            if (snapshot.child("layer").exists())
+                                            if (snapshot.child("layer").exists()) // all new restaurants have layer
                                                 lay = (long) oldTimeMap.get("layer");
-                                            else
+                                            else // for old type of restaurants - not in use currently
                                                 lay = 0;
                                             int layer = (int)lay;
                                             int incrementedLayer = layer + 1;

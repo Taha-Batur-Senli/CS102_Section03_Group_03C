@@ -26,14 +26,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-/*
- * This class enables restaurants to edit their data by updating them on firebase.
- *@date 27.05.2020
+/**
+ * This is the activity that enables restaurant owners to edit their restaurant's profile
+ *@date 09.05.2020
  *@author Group 3C
  */
-
 public class RestaurantEditProfileActivity extends AppCompatActivity{
-    //Properties
+    // Properties
     Button save, upload, changeGenre;
     EditText etDescription, etPhone, etName, etWH,etAdress, etMaxDuration, etMinPrice;
     DatabaseReference mRef;
@@ -41,6 +40,10 @@ public class RestaurantEditProfileActivity extends AppCompatActivity{
     FirebaseDatabase mDatabase;
     FirebaseUser user;
 
+    /**
+     * This method is called when restaurant owners click on the edit profile button on their restaurant profile page
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,7 +137,6 @@ public class RestaurantEditProfileActivity extends AppCompatActivity{
                     mRef.child(user.getUid()).child("adress").setValue(adressUpdate);
                     res = true;
                 }
-
                 if( res ) {
                     Toast.makeText(RestaurantEditProfileActivity.this, "Changes Saved", Toast.LENGTH_SHORT).show();
                 }

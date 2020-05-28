@@ -13,6 +13,7 @@
         import android.widget.ArrayAdapter;
         import android.widget.ListView;
         import android.widget.SearchView;
+        import android.widget.Toast;
 
         import com.google.firebase.auth.FirebaseAuth;
         import com.google.firebase.auth.FirebaseUser;
@@ -125,17 +126,17 @@
                 });
             }
 
-            /**
-            Prints all of the restaurants on the related list view. Iterates trough firebase and adds each
-            restaurant to best restaurants list view.
-          */
-            private void displayBestRestaurants() {
-                reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        bestRestaurants.clear();
-                        Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
-                        while (items.hasNext()) {
+    /*
+    Prints all of the restaurants on the related list view. Iterates trough firebase and adds each
+    restaurant to best restaurants list view.
+  */
+    private void displayBestRestaurants() {
+        reference.child("Restaurants").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                bestRestaurants.clear();
+                Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
+                while (items.hasNext()) {
 
                             DataSnapshot item = items.next();
                             if (item.child("rating").exists()) {
@@ -179,7 +180,7 @@
                                         final String item = myAdapter.getItem(position).toString();
                                         int index1 = item.indexOf(", ");
                                         final String s = item.substring(0,index1);
-                                        reference.child("Restaurants").addValueEventListener(new ValueEventListener() {
+                                        reference.child("Restaurants").addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
@@ -193,6 +194,7 @@
                                                         mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("name").setValue(s);
                                                         mRef.child(user.getUid()).child("fav restaurants").child(searchedId).child("uid").setValue(searchedId);
                                                         myAdapter.notifyDataSetChanged();
+                                                        Toast.makeText(getApplicationContext(), "Restaurant has been added to favorites", Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
                                             }

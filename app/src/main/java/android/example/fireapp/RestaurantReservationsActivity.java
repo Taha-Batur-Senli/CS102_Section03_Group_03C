@@ -89,7 +89,7 @@ public class RestaurantReservationsActivity extends AppCompatActivity {
     }
 
     private void updatePastReservations() {
-        refCurrentReservations.orderByChild("restaurantID").equalTo(user.getUid()).addValueEventListener(new ValueEventListener() {
+        refCurrentReservations.orderByChild("restaurantID").equalTo(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();

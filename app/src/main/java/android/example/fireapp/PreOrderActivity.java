@@ -144,7 +144,7 @@ public class PreOrderActivity extends AppCompatActivity {
     each dish to the related list view.
      */
     private void displayMenu(String uid, final String minPrice) {
-        reference.child(uid).child("menu").addValueEventListener(new ValueEventListener() {
+        reference.child(uid).child("menu").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
@@ -278,8 +278,9 @@ public class PreOrderActivity extends AppCompatActivity {
                                 .setCancelable(false)
                                 .setPositiveButton("Add money to my account.", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        startActivity(new Intent(PreOrderActivity.this, AddMoneyActivity.class));
-                                        finish();
+                                        Intent intent = new Intent(PreOrderActivity.this, AddMoneyActivity.class);
+                                        intent.putExtra("FROM", "PreOrderActivity");
+                                        startActivity( intent);
                                     }
                                 });
                         AlertDialog alert = builder.create();
@@ -318,10 +319,9 @@ public class PreOrderActivity extends AppCompatActivity {
                                                     Object tS = snapshot.getValue();
                                                     HashMap<String, Object> oldTimeMap = (HashMap<String, Object>)tS;
                                                     long lay;
-                                                    //if( oldTimeMap.get("layer") != null)
-                                                    if (snapshot.child("layer").exists())
+                                                    if (snapshot.child("layer").exists()) // all new restaurants have layer
                                                         lay = (long) oldTimeMap.get("layer");
-                                                    else
+                                                    else // for old type of restaurants - not in use currently
                                                         lay = 0;
                                                     int layer = (int)lay;
                                                     int incrementedLayer = layer + 1;
@@ -346,13 +346,13 @@ public class PreOrderActivity extends AppCompatActivity {
 
                                         final String rezID = mReservation.push().getKey();
 
-                                        mRestaurant.addValueEventListener(new ValueEventListener() {
+                                        mRestaurant.addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 final String restaurantName = dataSnapshot.child("name").getValue().toString();
                                                 final String restaurantPhone = dataSnapshot.child("phone").getValue().toString();
 
-                                                mCustomer.addValueEventListener(new ValueEventListener() {
+                                                mCustomer.addListenerForSingleValueEvent(new ValueEventListener() {
                                                     @Override
                                                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                         String cusName = dataSnapshot.child("name").getValue().toString();
