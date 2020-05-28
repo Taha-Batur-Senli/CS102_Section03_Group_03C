@@ -72,6 +72,11 @@ public class GenreSpecialRes extends AppCompatActivity {
 
 
     //METHODS
+
+    /**
+     * Displays the restaurants with specified genre as a list.
+     * @param genre
+     */
     private void displayRestaurantsOnList(String genre) {
         mRef.orderByChild("genre").equalTo( genre ).addValueEventListener(new ValueEventListener() {
             @Override
@@ -94,6 +99,9 @@ public class GenreSpecialRes extends AppCompatActivity {
 
     }
 
+    /**
+     * Method that helps user to search a specific restaurant.
+     */
     public void searchRestaurant(){
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -109,6 +117,9 @@ public class GenreSpecialRes extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method that takes user to the profile of the restaurant which is clicked on..
+     */
     private void displayRestaurantProfile() {
         listViewGenreRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
