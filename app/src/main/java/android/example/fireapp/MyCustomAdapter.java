@@ -28,12 +28,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 /**
- * UPDATE
- *@date 20.04.2020
- *@author Group 3C
+ * Adapter for the buttons and list views in fragment menu
+ * in restaurant owner's GUI
+ * @date 14.05.2020
+ * @author Group_g3C
  */
 
 public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
+
+    //Properties
+
     private ArrayList<String> list;
     private Context context;
     ImageView delete, edit;
@@ -42,10 +46,6 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
     FirebaseAuth mAuth;
     FirebaseUser user;
     String food;
-
-    FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
-
 
     public MyCustomAdapter(ArrayList<String> list, Context context) {
         this.list = list;
