@@ -2,7 +2,8 @@ package android.example.fireapp;
 
 import java.util.HashMap;
 /**
- * Seats class, multiple seat objects
+ * This class represents the collection of seats found in a restaurant.
+ * String key holds the name of the seats (seat1, seat2) and the value holds the related seat object.
  * @date 10.05.2020
  * @author Group 3C
  */
