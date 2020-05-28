@@ -8,14 +8,21 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-/*
-This class enables our users to distinguish their profile. If they are a regular customer, they
-select 'I'm a customer' button and proceed with customer sign up activity. Else, they proceed with
-restaurant sign up activity.
+/**
+ * This class enables our users to distinguish their profile. If they are a regular customer, they
+ * select 'I'm a customer' button and proceed with customer sign up activity. Else, they proceed with
+ * restaurant sign up activity.
+ * @date 29.04.2020
+ * @author group_g3C
  */
+
 public class SignUpActivity extends AppCompatActivity {
+
     //Properties
+
     Button signUpAsRestaurant, signUpAsCustomer;
+
+    //Methods
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

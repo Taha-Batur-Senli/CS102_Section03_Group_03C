@@ -27,13 +27,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-/*
- *
- *@date 27.05.2020
- *@author Group 3C
+/**
+ * Adapter for the buttons and list views in fragment menu
+ * in restaurant owner's GUI
+ * @date 14.05.2020
+ * @author Group_g3C
  */
 
 public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
+
+    //Properties
+
     private ArrayList<String> list;
     private Context context;
     ImageView delete, edit;
@@ -43,10 +47,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
     FirebaseUser user;
     String food;
 
-    FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
-
-
+    //Constructors
     public MyCustomAdapter(ArrayList<String> list, Context context) {
         this.list = list;
         this.context = context;
@@ -57,20 +58,23 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         user = mAuth.getCurrentUser();
     }
 
+    //Methods
+    //This method returns the size of the list.
     @Override
     public int getCount() {
         return list.size();
     }
 
+    //This method gets the item's ID.
     @Override
     public Object getItem(int pos) {
         return list.get(pos);
     }
 
+    //This method is for returning 0 if your list items do not have an ID variable.
     @Override
     public long getItemId(int pos) {
         return 0;
-        //just return 0 if your list items do not have an Id variable.
     }
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -79,8 +83,6 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.listrow_edit_menu, null);
         }
-
-
 
         //Handle TextView and display string from your list
         TextView tvContact= (TextView)view.findViewById(R.id.itemtv_listrow_edit_menu);
@@ -120,15 +122,14 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
             }
         });
 
+        //This method passes the name of the food to the next activity after getting the food's name
         edit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //do something
                 String item = list.get(position);
                 int indexOfName = item.indexOf(",");
                 String name = item.substring(0,indexOfName);
 
-                //passes the name of te food to the next activity
                 Intent intent = new Intent(context, ChangeFoodActivity.class);
                 intent.putExtra("NAME", name);
                 context.startActivity( intent);

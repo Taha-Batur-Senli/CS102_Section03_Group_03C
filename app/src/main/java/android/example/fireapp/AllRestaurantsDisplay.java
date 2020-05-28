@@ -30,8 +30,8 @@
 
     /**
      * Showing the all restaurants that is saved to database to customers after the All Restaurants button is called from navigation drawer.
-     *@date 24.05.2020
-     *@author Group 3C
+     * @date 28.04.2020
+     * @author Group_g3C
      */
 
     public class AllRestaurantsDisplay extends AppCompatActivity {

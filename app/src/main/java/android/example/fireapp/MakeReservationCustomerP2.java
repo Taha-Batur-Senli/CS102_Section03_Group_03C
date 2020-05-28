@@ -32,15 +32,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-/*
+/**
  * In this class, customers are displayed the available time slots of the table they have
  * selected on a specified date. Then they select a time slot and can either finish their
  * reservation or pre-order.
- *@date 27.05.2020
+ *@date 22.04.2020
  *@author Group 3C
  */
 
 public class MakeReservationCustomerP2 extends AppCompatActivity {
+
     //Properties
     ListView lvAvailableTimeSlots;
     ArrayAdapter myAdapter;
@@ -79,13 +80,8 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                 Iterator<DataSnapshot> items = dataSnapshot.getChildren().iterator();
                 while(items.hasNext()) {
                     DataSnapshot item1 = items.next();
-                    if (item1.child("reservedStatus").getValue().toString().equals("false") ){
-
-                        /*String timeSlot =  item1.child("firstTime").child("hour").getValue().toString() + ":" +
-                                item1.child("firstTime").child("minute").getValue().toString() + "-" +
-                                item1.child("endTime").child("hour").getValue().toString() + ":" +
-                                item1.child("endTime").child("minute").getValue().toString();
-                        //String timeSlot = item1.getKey();*/
+                    if (item1.child("reservedStatus").getValue().toString().equals("false") )
+                    {
                         String timeSlot = item1.child("timeSlot").getValue().toString();
                         String[] temp = timeSlot.split(" - ");
                         timeSlot = temp[0];
@@ -105,8 +101,8 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
     }
 
     /**
-     This method makes timeslots clickable. When customer selects a time slot, they are asked if they
-     want to pre-order or finish their reservation.
+     This method makes time slots clickable. When customer selects a time slot, they are asked if
+     they want to pre-order or finish their reservation.
      */
     private void selectTime(){
         lvAvailableTimeSlots.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -147,20 +143,21 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                                 final String date = i.getStringExtra("DATE");
                                 final DatabaseReference mRefRez = FirebaseDatabase.getInstance().getReference("Restaurants");
 
-                                //Determine timeslots numeric value
+                                //Determine time slots numeric value
                                 String ts = allTimes.get(position);
-//                                String[] temp = ts.split(" - ");
                                 String[] temp2 = ts.split(":");
                                 final int timeSlot = ((Integer.parseInt(temp2[0]) * 60 ) + Integer.parseInt(temp2[1]));
 
-                                // setting related timeslots reserved
+                                // setting related time slots reserved
                                 mRefRez.child(uidRestaurant).addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
+
                                         // finding maxSeatingDuration
                                         long maxSeatingDura = (long)dataSnapshot.child("maxSeatingDuration").getValue();
                                         int maxSeatingDuration = (int)maxSeatingDura;
-                                        // iteration through timeslots
+
+                                        // iteration through time slots
                                         for ( DataSnapshot snapshot : dataSnapshot.child("seats").child(seat).child(date).getChildren()){
                                             String rTimeSlot = (String)snapshot.getKey();
                                             int relatedTimeSlot = Integer.parseInt(rTimeSlot);
@@ -173,7 +170,8 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                                                 lay = 0;
                                             int layer = (int)lay;
                                             int incrementedLayer = layer + 1;
-                                            // setting related timeslots reserved
+
+                                            // setting related time slots reserved
                                             if( Math.abs(timeSlot - relatedTimeSlot) + 1 <= (int)maxSeatingDuration){
                                                 mRefRez.child(uidRestaurant).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("reservedStatus").setValue(true);
                                                 mRefRez.child(uidRestaurant).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("layer").setValue(incrementedLayer);
@@ -185,9 +183,6 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
 
                                     }
                                 });
-
-
-                                // mRefRez.child(uidRestaurant).child("seats").child(seat).child(date).child(String.valueOf(timeSlot)).child("reservedStatus").setValue("true");
 
                                 final DatabaseReference mCustomer = FirebaseDatabase.getInstance().getReference("Customers").child(user.getUid());
                                 final DatabaseReference mRestaurant = FirebaseDatabase.getInstance().getReference("Restaurants").child(uidRestaurant);
@@ -212,8 +207,6 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
                                                         "0", seat );
                                                 mReservation.child(rezID).setValue(reservation);
                                                 mReservation.child(rezID).child("preOrderText").setValue("No pre-order!");
-                                                // mCustomer.child("reservations").child(rezID).setValue(rezID);
-                                                // mRestaurant.child("reservations").child(rezID).setValue(rezID);
                                                 startActivity(new Intent(MakeReservationCustomerP2.this, MainActivity.class));
                                                 finish();
                                             }
@@ -238,7 +231,7 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
     }
 
     /**
-     This method prevents some bugs.
+     This method ends the current activity when the user goes back (It also fixes some bugs).
      */
     @Override
     public void onBackPressed() {

@@ -31,7 +31,7 @@
 
     /**
      *A class that helps restaurant owners to upload their restaurant's logo to the system and edit it.
-     *@date 25.05.2020
+     *@date 17.05.2020
      *@author Group 3C
      */
     public class UploadLogo extends AppCompatActivity {

@@ -27,13 +27,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-/*
+/**
  * This class is the customer main menu of our app from which a wide variety of tasks can be done.
- *@date 27.05.2020
- *@author Group 3C
+ * @date 15.05.2020
+ * @author Group_g3C
  */
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    //Properties
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -47,14 +49,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     CardView steak, sushi, hamburger, chicken, dessert, pizza;
     Button promotions, bestRestaurants;
 
+    //Methods
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Initialize
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigation_view);
-        //toolbar = findViewById(R.id.toolbar);
         textView = findViewById(R.id.text);
         mViewFlipper = findViewById(R.id.view_flipper);
         cusNameMenu = findViewById(R.id.nav_customer_name);
@@ -68,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dessert = (CardView) findViewById(R.id.dessertCardView);
         chicken = (CardView) findViewById(R.id.chickenCardView);
 
-        //On click listeners of card views & buttons
+        //On click listeners of card views & buttons (Types of restaurants)
         steak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,12 +144,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent( MainActivity.this, BestRestaurantsDisplay.class));
             }
         });
-        //setSupportActionBar(toolbar);
-        //toolbar.setTitle("");
 
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        //ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -159,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mRef = FirebaseDatabase.getInstance().getReference("Customers");
         database = FirebaseDatabase.getInstance();
 
+        //This part creates the welcome message that is specific to each user!
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -182,6 +184,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    //This method is for the go back button in a phone.
     @Override
     public void onBackPressed() {
 
@@ -193,6 +196,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    /*
+    *This method enables the ViewFlipper to function by handling the entrance and exit animations
+    * as well as the screen time of the images inside the ViewFlipper.
+    *@param an integer that corresponds to the index number of the image (which was added above!)
+     */
     public void flipperImages (int image)
     {
         ImageView imageView = new ImageView(this);
@@ -207,6 +215,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mViewFlipper.setOutAnimation( this, android.R.anim.slide_out_right);
     }
 
+    //This method is for the users to open the sliding menu and select the button they desire.
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item)
     {

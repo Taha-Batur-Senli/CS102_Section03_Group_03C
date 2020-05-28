@@ -24,31 +24,27 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-/*
+/**
  * This class is the class users face for the first time when they run our app. They can
  * login to their account or create a new account if they don't have one.
- *@date 27.05.2020
- *@author Group 3C
+ * @date 27.04.2020
+ * @author Group_g3C
  */
 
 public class LogInActivity extends AppCompatActivity {
+
     //Properties
+
     Button logIn;
     EditText etEmail, etPassword;
     ProgressBar pb;
     private FirebaseAuth mAuth;
 
+    //Methods
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Restaurants");
-//        ref.setValue(null);
-//        DatabaseReference ref2 = FirebaseDatabase.getInstance().getReference("Reservations");
-//        ref2.setValue(null);
-//        DatabaseReference ref3 = FirebaseDatabase.getInstance().getReference("Customers");
-//        ref3.setValue(null);
-//        DatabaseReference ref4 = FirebaseDatabase.getInstance().getReference("Promotions");
-//        ref4.setValue(null);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_log_in);
@@ -90,7 +86,7 @@ public class LogInActivity extends AppCompatActivity {
                             String userID = user.getUid();
                             Toast.makeText(LogInActivity.this, "Welcome back!", Toast.LENGTH_SHORT).show();
 
-                            //Distinquish User type
+                            //Distinguish User type
                             DatabaseReference ref=FirebaseDatabase.getInstance().getReference().child("Customers");
                             ref.orderByChild("uid").equalTo(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
@@ -126,6 +122,7 @@ public class LogInActivity extends AppCompatActivity {
         });
     }
 
+    //This method allows the user to open the sign up page.
     public void openActivity2()
     {
         Intent intent;
@@ -133,6 +130,7 @@ public class LogInActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //This method is for the going back button on a phone.
     @Override
     public void onBackPressed() {
         

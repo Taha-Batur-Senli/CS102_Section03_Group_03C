@@ -1,21 +1,19 @@
 package android.example.fireapp;
 
 import java.util.HashMap;
-
 /**
- *
- *@date 10.05.2020
- *@author Group 3C
+ * Seats class, multiple seat objects
+ * @date 10.05.2020
+ * @author Group 3C
  */
 public class Seats extends HashMap<String, Object>{
 
-    // properties
+    // Properties
     private Restaurant restaurant;
 
-    // constructors
-    public Seats(){
-
-    }
+    // Constructors
+    // Empty constructor required for the firebase
+    public Seats(){}
 
     public Seats( int numOfTables, Restaurant r) {
         restaurant = r;

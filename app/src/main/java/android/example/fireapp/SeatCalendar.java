@@ -13,17 +13,18 @@ import java.util.HashMap;
  */
 public class SeatCalendar extends HashMap<String, Object>{
 
-    // properties
+    // Properties
+
     private LocalTime availableHoursStart;
     private LocalTime availableHoursEnd;
     private LocalDate currentDate;
     private Restaurant r;
     private int maxSeatingDuration;
 
-    // constructors
-    public SeatCalendar(){
+    // Constructors
 
-    }
+    //Empty constructor required for the firebase
+    public SeatCalendar(){}
 
     // This constructor is used when a new restaurant is created
     public SeatCalendar(Restaurant r, LocalDate date, LocalTime start, LocalTime end) {

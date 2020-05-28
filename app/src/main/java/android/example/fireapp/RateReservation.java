@@ -24,7 +24,7 @@ import java.util.Iterator;
 
 /**
  * This is the activity that enables customers to rate a restaurant after having their meal.
- *@date 18.05.2020
+ *@date 08.05.2020
  *@author Group 3C
  */
 public class RateReservation extends AppCompatActivity {

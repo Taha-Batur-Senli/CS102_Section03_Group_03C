@@ -27,18 +27,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 /**
- * This is the activity that enables restaurant owners to edit their restaurant's profile
- *@date 09.05.2020
- *@author Group 3C
+ * This class enables restaurants to edit their data by updating them on firebase.
+ * @date 07.05.2020
+ * @author Group_g3C
  */
 public class RestaurantEditProfileActivity extends AppCompatActivity{
+
     // Properties
+
     Button save, upload, changeGenre;
     EditText etDescription, etPhone, etName, etWH,etAdress, etMaxDuration, etMinPrice;
     DatabaseReference mRef;
     FirebaseAuth mAuth;
     FirebaseDatabase mDatabase;
     FirebaseUser user;
+
+    // Methods
 
     /**
      * This method is called when restaurant owners click on the edit profile button on their restaurant profile page

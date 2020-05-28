@@ -7,6 +7,16 @@
     android:background="@drawable/background2"
     tools:context=".SignUpAsRestaurantP2">
 
+    <ImageView
+        android:id="@+id/imageView106"
+        android:layout_width="55dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
     <Button
         android:id="@+id/btnRegisterSignUpAsRest2"
         android:layout_width="150dp"
@@ -25,10 +35,13 @@
 
     <EditText
         android:id="@+id/etNumOfTables2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/button"
         android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
         android:hint="Table number"
         android:inputType="number"
         android:textColorHint="@color/white"
@@ -38,26 +51,34 @@
 
     <EditText
         android:id="@+id/etMaxDurationSignUp2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/button"
         android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
         android:hint="Max Duration (mins)"
         android:inputType="number"
         android:textColorHint="@color/white"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNumOfTables2" />
 
     <EditText
         android:id="@+id/etMinPriceSignUp2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/button"
         android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
         android:hint="Min Price (g3 Coins)"
         android:inputType="number"
         android:textColorHint="@color/white"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etMaxDurationSignUp2" />
@@ -65,7 +86,7 @@
 
     <ListView
         android:id="@+id/lvGenreSelection"
-        android:layout_width="344dp"
+        android:layout_width="410dp"
         android:layout_height="191dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +101,9 @@
         android:layout_width="267dp"
         android:layout_height="45dp"
         android:layout_marginTop="364dp"
-        android:text="Please select a genre to your restaurant"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:text="Please select the genre of your restaurant"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,65 +111,93 @@
 
     <EditText
         android:id="@+id/etStartHour"
-        android:layout_width="44dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/button"
         android:ems="10"
+        android:fontFamily="@font/roboto_light"
         android:gravity="center"
         android:inputType="number"
         android:text="9"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.196"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView10"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView46" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etStartMin"
-        android:layout_width="47dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="292dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/button"
         android:ems="10"
+        android:fontFamily="@font/roboto_light"
         android:gravity="center"
         android:inputType="number"
         android:text="30"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.381"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etFinishMin"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center"
+        android:inputType="number"
+        android:text="30"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView26"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="320dp"
+        android:text=":"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.686"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etFinishHour"
-        android:layout_width="42dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="292dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/button"
         android:ems="10"
+        android:fontFamily="@font/roboto_light"
         android:gravity="center"
         android:inputType="number"
         android:text="22"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.585"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/etFinishMin"
-        android:layout_width="38dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="292dp"
-        android:ems="10"
-        android:gravity="center"
-        android:inputType="number"
-        android:text="30"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.769"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView26"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -154,46 +205,32 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="320dp"
         android:text=":"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.306"
+        app:layout_constraintHorizontal_bias="0.294"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.439" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="320dp"
         android:text="-"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.439" />
-
-    <TextView
-        android:id="@+id/textView26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=":"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.439" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView46"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
+        android:fontFamily="@font/roboto_light"
         android:text="Select working hours"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

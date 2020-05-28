@@ -6,14 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.TextView;
-/*
- *
- *@date 27.05.2020
- *@author Group 3C
+/**
+ * Shows current reservation
+ * @date 12.05.2020
+ * @author Group_g3C
  */
 public class ShowCurrentReservation extends AppCompatActivity {
+
     //Properties
+
     TextView tvRes;
+
+    //Methods
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

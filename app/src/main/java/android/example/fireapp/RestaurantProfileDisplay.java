@@ -15,17 +15,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-/*
+/**
  * This class enables restaurants to display their own profiles from the perspective of a customer.
- *@date 27.05.2020
- *@author Group 3C
+ * @date 07.05.2020
+ * @author Group_g3C
  */
 public class RestaurantProfileDisplay extends AppCompatActivity {
+
     //Properties
+
     TextView name, wh, adress, phone, description, genre, minPrice, maxDuration;
     DatabaseReference mRef;
     FirebaseAuth mAuth;
     FirebaseUser user;
+
+    //Methods
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -13,6 +13,8 @@ public class Reservation {
     boolean hasRated;
 
     // constructors
+
+    // Empty constructor required for firebase
     public Reservation() { }
 
     public Reservation(String reservID, String cusID, String restaurantID, String cusName,
@@ -37,6 +39,7 @@ public class Reservation {
     // methods
 
     // GET & SET METHODS
+
     public String getReservID() {
         return reservID;
     }

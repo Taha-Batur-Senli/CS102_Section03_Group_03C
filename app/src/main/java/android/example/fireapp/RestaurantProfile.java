@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 /**
  * This the page which restaurant owners see after they login.
- *@date 09.05.2020
+ *@date 29.04.2020
  *@author Group 3C
  */
 public class RestaurantProfile extends AppCompatActivity {

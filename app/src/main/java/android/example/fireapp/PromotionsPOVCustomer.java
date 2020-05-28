@@ -25,7 +25,7 @@ import java.util.Iterator;
 
 /**
  * This is the activity where customers can see the promotions offered by restaurants
- *@date 20.05.2020
+ *@date 28.04.2020
  *@author Group 3C
  */
 public class PromotionsPOVCustomer extends AppCompatActivity {

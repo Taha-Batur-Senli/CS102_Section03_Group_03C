@@ -27,13 +27,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-/*
- * In this class, customers can pre-order and finalize their reservation.
- *@date 27.05.2020
+/**
+ * This class enables customers to pre-order and finalize their reservations.
+ *@date 27.04.2020
  *@author Group 3C
  */
 
 public class PreOrderActivity extends AppCompatActivity {
+
     //Properties
     TextView minPricetv, yourMoneyTv, totalTv;
     Button pay;
@@ -44,8 +45,6 @@ public class PreOrderActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference reference, mRefUser;
     FirebaseUser user;
-
-    //TextView denemeA1, denemeA2, denemeA3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,46 +65,6 @@ public class PreOrderActivity extends AppCompatActivity {
         totalTv = (TextView)findViewById(R.id.txtTotal);
         yourMoneyTv = (TextView)findViewById(R.id.txtYourMoney);
 
-        //denemeA1 = (TextView)findViewById(R.id.denemeA1);
-        //denemeA2 = (TextView)findViewById(R.id.denemeA2);
-        //denemeA3 = (TextView)findViewById(R.id.denemeA3);
-        /*<TextView
-        android:id="@+id/denemeA2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029" />
-
-    <TextView
-        android:id="@+id/denemeA1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.789"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029" />
-
-    <TextView
-        android:id="@+id/denemeA3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.176" />
-*/
-
         myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, menu);
         myAdapter2 = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, preOrder);
         lvMenu.setAdapter(myAdapter);
@@ -120,8 +79,7 @@ public class PreOrderActivity extends AppCompatActivity {
         removeFromMyOrder(minPrice);
         finishAndPay();
 
-
-        //Set requires text views
+        //This set requires text views to function!
         minPricetv.setText(minPrice + " g3Coins left to satisfy the minimum limit to pre-order.");
         mRefUser.child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -264,13 +222,14 @@ public class PreOrderActivity extends AppCompatActivity {
                     minPricetv.setError("!!");
                     minPricetv.requestFocus();
                     return;
-                } else {
+                }
+                else
+                    {
                     //check if you have enough money
                     String money = yourMoneyTv.getText().toString();
                     int startOfMoney = money.indexOf("\n") + 1;
                     int endOfMoney = money.indexOf("g3Coins") - 1;
                     final double moneyOnAccount = Double.parseDouble(money.substring(startOfMoney, endOfMoney));
-                    System.out.println("YOU HAVE TOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO MONEY " + moneyOnAccount);
                     final double priceTotal = Double.parseDouble(totalTv.getText().toString());
                     if ( moneyOnAccount < priceTotal) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(PreOrderActivity.this);
@@ -287,7 +246,6 @@ public class PreOrderActivity extends AppCompatActivity {
                         alert.show();
 
                     } else {
-                        //TODO add reservations
                         AlertDialog.Builder builder = new AlertDialog.Builder(PreOrderActivity.this);
                         builder.setMessage("Reservation made successfully!")
                                 .setCancelable(false)
@@ -300,19 +258,18 @@ public class PreOrderActivity extends AppCompatActivity {
                                         String ts = i.getStringExtra("TIMESLOT");
                                         final DatabaseReference mRefRez = FirebaseDatabase.getInstance().getReference("Restaurants");
 
-                                        //Determine timeslot's numeric value
-//                                        String[] temp = ts.split(" - ");
+                                        //Determine the time slot's numeric value
                                         String[] temp2 = ts.split(":");
                                         final int timeSlot = ((Integer.parseInt(temp2[0]) * 60 ) + Integer.parseInt(temp2[1]));
 
-                                        // Make timeslots reserved
+                                        // Make time slots reserved
                                         mRefRez.child(uidRestaurant).addListenerForSingleValueEvent(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
                                                 // finding maxSeatingDuration
                                                 long maxSeatingDura = (long)dataSnapshot.child("maxSeatingDuration").getValue();
                                                 int maxSeatingDuration = (int)maxSeatingDura;
-                                                // iteration through timeslots
+                                                // iteration through time slots
                                                 for ( DataSnapshot snapshot : dataSnapshot.child("seats").child(seat).child(date).getChildren()){
                                                     String rTimeSlot = (String)snapshot.getKey();
                                                     int relatedTimeSlot = Integer.parseInt(rTimeSlot);
@@ -325,7 +282,7 @@ public class PreOrderActivity extends AppCompatActivity {
                                                         lay = 0;
                                                     int layer = (int)lay;
                                                     int incrementedLayer = layer + 1;
-                                                    // setting related timeslots reserved
+                                                    // setting related time slots reserved
                                                     if( Math.abs(timeSlot - relatedTimeSlot) + 1 <= (int)maxSeatingDuration){
                                                         mRefRez.child(uidRestaurant).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("reservedStatus").setValue(true);
                                                         mRefRez.child(uidRestaurant).child("seats").child(seat).child(date).child(String.valueOf(relatedTimeSlot)).child("layer").setValue(incrementedLayer);
@@ -337,8 +294,6 @@ public class PreOrderActivity extends AppCompatActivity {
 
                                             }
                                         });
-                                        // Make timeslot reserved
-                                        // mRefRez.child(uidRestaurant).child("seats").child(seat).child(date).child(String.valueOf(timeSlot)).child("reservedStatus").setValue("true");
 
                                         final DatabaseReference mCustomer = FirebaseDatabase.getInstance().getReference("Customers").child(user.getUid());
                                         final DatabaseReference mRestaurant = FirebaseDatabase.getInstance().getReference("Restaurants").child(uidRestaurant);
@@ -367,8 +322,6 @@ public class PreOrderActivity extends AppCompatActivity {
                                                             preOrderText += preOrder.get(i) + "\n";
                                                         }
                                                         mReservation.child(rezID).child("preOrderText").setValue(preOrderText);
-                                                        // mCustomer.child("reservations").child(rezID).setValue(rezID);
-                                                        // mRestaurant.child("reservations").child(rezID).setValue(rezID);
                                                     }
 
                                                     @Override

@@ -4,10 +4,10 @@ import android.widget.ImageView;
 
 import java.util.HashMap;
 
-/*
- * This class creates restaurant objects to facilitate the addition of the restaurants to Firebase.
- *@date 08.05.2020
- *@author Group 3C
+/**
+ * This class creates restaurant objects to facilitate adding restaurants to firebase.
+ * @date 01.05.2020
+ * @author Group_g3C
  */
 public class Restaurant {
 

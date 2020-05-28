@@ -4,7 +4,6 @@
     import androidx.appcompat.app.AppCompatActivity;
     import androidx.core.content.ContextCompat;
 
-    import android.content.Intent;
     import android.os.Bundle;
     import android.view.View;
     import android.view.WindowManager;
@@ -22,8 +21,8 @@
 
     /**
      * Adding promotions to the specific restaurant.
-     *@date 23.05.2020
-     *@author Group 3C
+     * @date 01.05.2020
+     * @author Group 3C
      */
 
     public class AddPromoActivity extends AppCompatActivity {
@@ -35,6 +34,8 @@
         FirebaseUser user;
         FirebaseAuth mAuth;
         DatabaseReference mRef;
+
+        //Methods
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {

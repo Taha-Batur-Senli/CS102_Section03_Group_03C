@@ -14,7 +14,6 @@
     import android.webkit.MimeTypeMap;
     import android.widget.Button;
     import android.widget.ImageView;
-    import android.widget.TextView;
     import android.widget.Toast;
 
     import com.google.android.gms.tasks.OnFailureListener;
@@ -32,7 +31,7 @@
 
     /**
     *A class that enables users to upload seating plans to the system or modify the current seating plans.
-    *@date 27.05.2020
+    *@date 17.05.2020
     *@author Group 3C
      */
     public class UploadSeatingPlan extends AppCompatActivity {
@@ -45,7 +44,6 @@
 
         Button choose_seating_plan, upload_seating_plan_pic;
         ImageView imageView, line;
-        private Uri uri;
         private Uri mImageUri;
         private StorageReference storageReference;
         private DatabaseReference databaseReference;

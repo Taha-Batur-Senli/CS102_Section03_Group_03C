@@ -32,16 +32,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * changing menu by using add dish button or delete button.
- *@date 25.05.2020
- *@author Group 3C
+ * Changing menu by using add dish button or delete button.
+ * @date 03.05.2020
+ * @author Group_g3C
  */
 
 public class ChangeMenuActivity extends AppCompatActivity implements addFoodDialog.addFoodListener {
 
     //Properties
 
-    ImageView removeDish, addDish;
+    ImageView addDish;
     ListView lvMenuRes;
     MyCustomAdapter myAdapter;
     ArrayList<String> menu = new ArrayList<>();
@@ -72,7 +72,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
 
         //Display Menu
 
-        /**
+        /*
          * EventListener to retrieve the menu information from the firebase.
          */
         reference.child(user.getUid()).child("menu").addValueEventListener(new ValueEventListener() {

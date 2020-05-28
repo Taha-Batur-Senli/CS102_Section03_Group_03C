@@ -18,6 +18,7 @@ public class Seat extends HashMap<String, Object>{
     private Restaurant r;
 
     // Constructors
+    //Empty constructor required for the firebase
     public Seat(){
 
     }
