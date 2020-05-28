@@ -39,13 +39,18 @@ Prerequisite: Make sure that you installed AndroidStudio and Emulator (Pixel 2 i
 	2- Open the project in Android Studio.
 	3- Click green triangle(run button) to run the project with your emulator.
 
-PS: If you recieve "SDK location not found!" error. 
+PS: If you recieve "SDK location not found!" error; 
 To fix it:
-	1- Open Gradle Scripts > settings.gradle
-	2- Comment out "include':app'"(like this //include':app'). 
-	3- Sync the project.
-	4- Uncomment it.
-	5- Sync the project again.
+	1- Open Gradle Scripts > settings.gradle,
+	2- Comment out "include':app'"(like this //include':app'), 
+	3- Sync the project,
+	4- Uncomment it,
+	5- Sync the project again,
 	6- Run the project.
+	
+	If you recieve "JSON files collided!" error; 
+To fix it:
+	1- Go to Build > Clea Project,
+	2- Re-run the project.
 ---------------------------------------------------------------------------------------------------------------------------
 
