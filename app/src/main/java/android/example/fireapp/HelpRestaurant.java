@@ -32,6 +32,7 @@ public class HelpRestaurant extends AppCompatActivity {
         how_to_make_listing = findViewById(R.id.how_to_make_listing);
         how_to_discount = findViewById(R.id.how_to_discount);
 
+
         how_to_use_app_owner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,6 +40,7 @@ public class HelpRestaurant extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         how_to_make_listing.setOnClickListener(new View.OnClickListener() {
             @Override
