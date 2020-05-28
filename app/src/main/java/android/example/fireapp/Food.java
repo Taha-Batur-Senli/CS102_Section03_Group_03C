@@ -1,18 +1,24 @@
 package android.example.fireapp;
 
-/*
+/**
  * This class creates food objects. This facilitates adding foods' data to firebase.
- *@date 27.05.2020
- *@author Group 3C
+ * @date 29.04.2020
+ * @author Group 3C
  */
 
 public class Food {
+
     //Properties
-    String name, ingredients;
-    int price;
+
+    private String name, ingredients;
+    private int price;
 
     //Constructors
-    public Food(){}
+
+    //Empty constructor required for firebase.
+    public Food() {
+
+    }
 
     public Food(String name, String ingredients, int price) {
         this.name = name;
@@ -21,6 +27,7 @@ public class Food {
     }
 
     //GET & SET METHODS
+
     public String getName() {
         return name;
     }

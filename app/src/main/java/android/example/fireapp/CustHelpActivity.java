@@ -10,22 +10,32 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/*
- *
- *@date 27.05.2020
- *@author Group 3C
+/**
+ * Java class of the help page for customers
+ * Date: 11.05.2020
+ * Author: Group_g3C
  */
 
+
+
 public class CustHelpActivity extends AppCompatActivity {
+
+    //properties
+
     Button how_to_use_app, how_to_make_reservations, how_to_pre_order, FAQ;
     ImageView logo, line;
     TextView txt;
+
+    //methods
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_cust_help);
+
+        //Initialize
+
         how_to_make_reservations = findViewById(R.id.how_to_make_reservation);
         how_to_use_app = findViewById(R.id.how_to_use_app);
         how_to_pre_order =findViewById(R.id.how_to_pre_order);
@@ -33,6 +43,8 @@ public class CustHelpActivity extends AppCompatActivity {
         logo = findViewById(R.id.imageView12);
         line = findViewById(R.id.imageView13);
         txt = findViewById(R.id.textView4);
+
+        //ClickListeners for  buttons
 
         how_to_use_app.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +55,6 @@ public class CustHelpActivity extends AppCompatActivity {
         });
 
         how_to_make_reservations.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
                 startActivity( new Intent(CustHelpActivity.this, HowToMakeReservation.class));

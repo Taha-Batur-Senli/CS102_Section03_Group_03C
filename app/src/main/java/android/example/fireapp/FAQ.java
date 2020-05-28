@@ -5,13 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
-/*
- *
- *@date 27.05.2020
- *@author Group 3C
+/**
+ * Class of FAQ - Help page activity
+ * @date 18.05.2020
+ * @author Group 3C
  */
 
 public class FAQ extends AppCompatActivity{
+
+    //Methods
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

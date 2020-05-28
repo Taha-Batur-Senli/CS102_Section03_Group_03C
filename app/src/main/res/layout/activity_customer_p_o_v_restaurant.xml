@@ -120,6 +120,7 @@
         android:layout_width="201dp"
         android:layout_height="98dp"
         android:fontFamily="@font/roboto_light"
+        android:gravity="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="14sp"

@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,14 +19,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-/*
- *
- *@date 27.05.2020
- *@author Group 3C
+/**
+ * Class for customers to edit their information
+ * @date 06.05.2020
+ * @author Group_g3C
  */
 
 public class CustomerMyAccountActivity extends AppCompatActivity {
+
     //Properties
+
     TextView name, phone, points, money, email, ranking;
     Button addMoney, editAccount;
 
@@ -43,14 +44,15 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer_my_account);
 
         //Initialize
-        phone = (TextView)findViewById(R.id.txtCustomerAccountPhone);
-        ranking = (TextView)findViewById(R.id.txtCustomerAccountRanking);
-        name = (TextView)findViewById(R.id.txtCustomerAccountName);
-        points = (TextView)findViewById(R.id.txtCustomerAccountPoints);
-        money = (TextView)findViewById(R.id.txtCustomerAccountMoney);
-        email = (TextView)findViewById(R.id.txtCustomerAccountEmail);
-        addMoney = (Button)findViewById(R.id.btnAddMoney);
-        editAccount = (Button)findViewById(R.id.btnEditProfileCustomer);
+
+        phone = findViewById(R.id.txtCustomerAccountPhone);
+        ranking = findViewById(R.id.txtCustomerAccountRanking);
+        name = findViewById(R.id.txtCustomerAccountName);
+        points = findViewById(R.id.txtCustomerAccountPoints);
+        money = findViewById(R.id.txtCustomerAccountMoney);
+        email = findViewById(R.id.txtCustomerAccountEmail);
+        addMoney = findViewById(R.id.btnAddMoney);
+        editAccount = findViewById(R.id.btnEditProfileCustomer);
         addMoneyPopUp = new Dialog(this);
 
         mAuth = FirebaseAuth.getInstance();
@@ -58,11 +60,13 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
         user = mAuth.getCurrentUser();
 
         //Methods called
+
         addMoneyAction();
         editAccountAction();
 
 
         //Get data from database and place them to text views
+
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -79,7 +83,6 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
                 phone.setText( "GSM: " + phoneString);
                 email.setText("Email: " + emailString);
                 ranking.setText("Your Ranking: " + rankingString);
-
             }
 
             @Override
@@ -90,6 +93,7 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
     }
 
     //Methods
+
     private void addMoneyAction(){
         addMoney.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +101,6 @@ public class CustomerMyAccountActivity extends AppCompatActivity {
                 startActivity(new Intent(CustomerMyAccountActivity.this, AddMoneyActivity.class));
             }
         });
-
     }
 
     private void editAccountAction() {
