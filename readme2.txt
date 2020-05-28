@@ -41,9 +41,10 @@ implementation 'com.squareup.picasso:picasso:2.5.2'
 Instructions for setup:
 Prerequisite: Make sure that you installed AndroidStudio and its Emulator (Pixel 2 is recommended).
 	1- Unzip our project.
-	2- Open the project in Android Studio.
-	3- Click green triangle(run button) to run the project with your emulator.
+	2- Open the project in Android Studio by selecting our project folder.
+	3- After it opens, click the green triangle(run button) to run the project with your emulator.
 	
+	----------------------------------------------------------------------------------------------------------
 	How to add emulators:
 	When Android Studio is first installed it should be asking you for preferred emulator. However, you can also add emulators manually. To add an emulator,
 	1- Go to the Tools -> AVD Manager
