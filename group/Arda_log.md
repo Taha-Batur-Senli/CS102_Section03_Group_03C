@@ -31,4 +31,18 @@ This week I modified & enhanced over 50 XML classes and 40 Java classes. I and m
 
 ****
 
+### ~ Self Evaluation~
+
+I learned a lot, and practiced a lot during creating this project. I had stressful days spent without actually eating properly but coding, but at the end it was worth it.
+
+Strengths: Firstly, I like my team, and I believe that I worked well with a team. I contributed to our project especially in terms of GUI, and XML codings. My biggest strength in my opinion was my patience. Especially at first, learning the basics of Android Studio was really challenging considering the fact that I didn't know how to implement the design on Adobe XD to Android Studio. In addition, since my friends started to create the skeleton of our app without its GUI, the implementation of GUI got more difficult since often what they used as a test wouldn't be the best option for GUI. For example, they often used listviews to list some elements, but later on we figured that recyclerviews are better than listviews due to their functionality, but we couldn't change listviews due to them already being connected to firebase and other string in our code. I was confident in my designing & coding skills so I always wanted to take the lead on these situations especially on designing.
+
+Weaknesses: I was confident in my designing & coding skills so I always wanted to take the lead on these situations especially on designing. 
+I got bored easily when I encountered difficulties caused by the Android Studio. 
+
+
+
+
+
+
 If you're reading here sir, thank you for the two semesters, for teaching us the basics of Java, and for everything. I especially, started coding with your lectures, so thank you.
