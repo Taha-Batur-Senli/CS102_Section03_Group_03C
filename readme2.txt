@@ -15,13 +15,15 @@ WHAT DOES NOT WORK:
 ------------------------------------------------------------------------------------------------------------------------------------
 WHAT REMAINS TO BE DONE: 
 	-Delete option for deleting the added images by restaurant owner's, customer's reservation points/ranking
-	-The view of our app's GUI differs from phone to phone that creates an aesthatic problem (doesn't affect the functions), therefore, enhancing the app's GUI so that it stays the same on all phones.
+	-The view of our app's GUI differs from phone to phone that creates an aesthatic problem (doesn't affect the
+	functions), therefore, enhancing the app's GUI so that it stays the same on all phones.
 -------------------------------------------------------------------------------------------------------------------------------------
 	-Berkay İnceişçi: I worked on reservation process and I was responsible for making our app time sensitive
 	-Ege Ergül: I worked on manuplating the data on Firebase, connecting it to our app, and I also worked on reservation objects. 
 	-Bora Altınok:I worked on connecting database to Android Studio ,and creating the basic skeleton of our project.
 	-Ali Eren Günaltılı: I worked on image uploading mechanism and built a connection between Firestorage and Firebase.
-	-Arda Tavusbay: I created our design and Adobe XD, and then implemented it to our Android Studio project and worked on           	  integrating xml files to java classes.
+	-Arda Tavusbay: I created our design and Adobe XD, and then implemented it to our Android Studio project 
+	and worked on integrating xml files to java classes.
 	-Taha Batur Şenli: I worked on our app's GUI and apperance, mostly spending time on XML classes and event listeners.
 -------------------------------------------------------------------------------------------------------------------------------------
 Softwares: Android Studio 3.6, java8.0, SDK version 26, Firebase, GitHub
