@@ -54,7 +54,7 @@ Today we did the video! It took some time to prepare and we spent some time prep
 With the Eid Al-Fitr about to end, I began working on the small issues on our code. My contributions are more cosmetic than practical at this point (since the app is working smoothly) but I will keep a log of it regardless. Moreover, since these are my final contributions, I wanted to make this my final entry. Therefore, I will try my best to list all I did in the mentioned days in one go and hopefully leave a heartwarming goodbye message.
 
 @WhatToDo?
-- Reviewed Javadoc comments for almost all the classes!
+- Reviewed Javadoc comments for some classes!
 - Performed final checks on the XML files.
 
 ### ~ Taking A Good Look Back (A Rant? I hope not!) ~
