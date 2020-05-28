@@ -47,6 +47,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
     FirebaseUser user;
     String food;
 
+    //Constructors
     public MyCustomAdapter(ArrayList<String> list, Context context) {
         this.list = list;
         this.context = context;
@@ -57,6 +58,7 @@ public class MyCustomAdapter extends BaseAdapter implements ListAdapter {
         user = mAuth.getCurrentUser();
     }
 
+    //Methods
     //This method returns the size of the list.
     @Override
     public int getCount() {

@@ -15,7 +15,7 @@
 
     /**
      *This class adds food to a restaurant's menu.
-     *@date 22.05.2020
+     *@date 22.04.2020
      *@author Group 3C
      */
 
@@ -62,10 +62,6 @@
 
         //Methods
 
-        /**
-         *
-         * @param context
-         */
         @Override
         public void onAttach(@NonNull Context context) {
             super.onAttach(context);

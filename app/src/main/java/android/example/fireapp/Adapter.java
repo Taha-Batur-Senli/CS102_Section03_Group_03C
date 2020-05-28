@@ -16,7 +16,7 @@
 
         /**
          * The Adapter class implements the rows to recyclerView.
-         *@date 22.05.2020
+         *@date 22.04.2020
          *@author Group 3C
          */
 
@@ -67,8 +67,8 @@
                 return uploadList.size();
             }
 
-            /** inner class for holding the imageView.
-             *
+            /**
+             * Inner class for holding the imageView.
              */
             public class ImageViewHolder extends RecyclerView.ViewHolder {
                 public TextView textViewName;
