@@ -27,9 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-/*
+/**
  * UPDATE
- *@date 27.05.2020
+ *@date 20.04.2020
  *@author Group 3C
  */
 

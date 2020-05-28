@@ -1,8 +1,8 @@
 package android.example.fireapp;
 
-/*
+/**
  * This class creates promotion objects. This facilitates adding promotions to firebase.
- *@date 27.05.2020
+ *@date 26.04.2020
  *@author Group 3C
  */
 
@@ -19,7 +19,7 @@ public class Promotion {
         this.restaurantName = restaurantName;
     }
 
-    //GET & SET MEHODS
+    //GET & SET METHODS - Methods that either retrieve or change their values.
     public String getName() {
         return name;
     }

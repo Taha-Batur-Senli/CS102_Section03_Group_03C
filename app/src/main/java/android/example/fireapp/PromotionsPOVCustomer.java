@@ -23,9 +23,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/*
+/**
  * This is a class to create reservation objects easily.
- *@date 27.05.2020
+ *@date 28.04.2020
  *@author Group 3C
  */
 

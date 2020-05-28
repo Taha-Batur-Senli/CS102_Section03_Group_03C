@@ -25,10 +25,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/*
+/**
  * This class enables restaurant owners to manage their promotions. They can add or delete
  * promotions using this activity.
- *@date 27.05.2020
+ *@date 26.04.2020
  *@author Group 3C
  */
 
@@ -110,8 +110,8 @@ public class PromotionsDisplayActivity extends AppCompatActivity {
 
     /*
     This method makes promotions long-clickable. When an owner wishes to delete a promotion, they
-    can long-click on that promotion. Then, they are asked if they want to remove that promotion or not.
-    If they choose to remove, that promotion is removed from firebase as well.
+    can long-click on that promotion. Then, they are asked if they want to remove that
+    promotion or not. If they choose to remove, that promotion is removed from firebase as well.
      */
     int index;
     private void listOnLongClickAction() {

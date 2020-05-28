@@ -32,11 +32,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-/*
+/**
  * In this class, customers are displayed the available time slots of the table they have
  * selected on a specified date. Then they select a time slot and can either finish their
  * reservation or pre-order.
- *@date 27.05.2020
+ *@date 22.04.2020
  *@author Group 3C
  */
 
@@ -145,7 +145,6 @@ public class MakeReservationCustomerP2 extends AppCompatActivity {
 
                                 //Determine time slots numeric value
                                 String ts = allTimes.get(position);
-//                                String[] temp = ts.split(" - ");
                                 String[] temp2 = ts.split(":");
                                 final int timeSlot = ((Integer.parseInt(temp2[0]) * 60 ) + Integer.parseInt(temp2[1]));
 

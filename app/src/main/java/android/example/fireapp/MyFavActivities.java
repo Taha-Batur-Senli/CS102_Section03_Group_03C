@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/*
+/**
  * This class allows customers to see their favorite restaurants. They also can remove
  * a restaurant from this list.
  *@date 27.05.2020
@@ -77,7 +77,7 @@ public class MyFavActivities extends AppCompatActivity {
 
                     DataSnapshot item = items.next();
                     String name;
-                    name =  item.child("name").getValue().toString() + "   ";// + "  Genre: " + item.child("genre").getValue().toString();
+                    name =  item.child("name").getValue().toString() + "   ";
 
                     favRestaurants.add(name);
                     myAdapter.notifyDataSetChanged();
@@ -151,7 +151,7 @@ public class MyFavActivities extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                //gets the name of the dish
+                //Getting the name of the dish
                 String item = favRestaurants.get(position);
                 int indexOfName = item.indexOf("   ");
                 final String name = item.substring(0,indexOfName);

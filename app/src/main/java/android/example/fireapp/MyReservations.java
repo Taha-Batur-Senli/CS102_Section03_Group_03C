@@ -30,13 +30,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-/*
- *
+/**
+ *This class displays the past and present reservations of a customer, from which he rate past
+ * reservations or remove upcoming ones.
  *@date 27.05.2020
  *@author Group 3C
  */
 
 public class MyReservations extends AppCompatActivity {
+
     //Properties
     ListView lvCurrentReservations, lvPastReservations;
     ArrayAdapter myAdapter, myAdapter2;
@@ -75,6 +77,11 @@ public class MyReservations extends AppCompatActivity {
     }
 
     //METHODS
+
+    /**
+     * This method takes the user to a new activity in which detailed information about the
+     * reservation can be accessed.
+     */
     private void showCurrentReservation() {
         lvCurrentReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -87,6 +94,9 @@ public class MyReservations extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method enables users to rate their past reservations ny performing a long click.
+     */
     private void ratePastReservations() {
         lvPastReservations.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -102,6 +112,10 @@ public class MyReservations extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method moves an upcoming reservation to past reservations
+     * once the time of the reservation passes.
+     */
     private void updatePastReservations() {
         refCurrentReservations.orderByChild("cusID").equalTo(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -118,7 +132,7 @@ public class MyReservations extends AppCompatActivity {
                     int h = (int) (Integer.parseInt(timeSlot) / 60);
                     int m = Integer.parseInt(timeSlot) % 60;
 
-                    LocalTime rezTime = LocalTime.of(h, m);//.plusHours(1);
+                    LocalTime rezTime = LocalTime.of(h, m);
                     LocalTime now = LocalTime.now();
 
                     if (dateOfRez.isBefore(today) || (dateOfRez.isEqual(today) && rezTime.isBefore(now)))
@@ -156,6 +170,9 @@ public class MyReservations extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method displays the past reservations in the page.
+     */
     private void displayPastReservations() {
         refPastReservations.orderByChild("cusID").equalTo(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -201,7 +218,9 @@ public class MyReservations extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * This method displays the current reservations in the page.
+     */
     private void displayCurrentReservations() {
 
         refCurrentReservations.orderByChild("cusID").equalTo(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -212,10 +231,8 @@ public class MyReservations extends AppCompatActivity {
                 while (items.hasNext()) {
                     DataSnapshot item = items.next();
                     String resName = item.child("restaurantName").getValue().toString();
-                    //String cusName = item.child("cusName").getValue().toString();
                     String resPhone = item.child("restaurantPhone").getValue().toString();
                     String rezID = item.child("reservID").getValue().toString();
-                    //String cusPhone = item.child("cusPhone").getValue().toString();
                     String proOrder = item.child("preOrder").getValue().toString();
                     String preOrderTxt = (String)item.child("preOrderText").getValue();
                     String seat = item.child("seat").getValue().toString();
@@ -250,8 +267,9 @@ public class MyReservations extends AppCompatActivity {
         });
     }
 
-
-
+    /**
+     * This method enables a user to delete their upcoming reservation by long clicking on it.
+     */
     private void deleteCurrentReservations(){
         lvCurrentReservations.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -283,12 +301,11 @@ public class MyReservations extends AppCompatActivity {
                                                 final int maxSeatingDuration = (int) maxSeatingDura;
 
                                                 for (DataSnapshot snapshot : dataSnapshot.child("Restaurants").child(restaurantID).child("seats").child(seat).child(date).getChildren()) {
-                                                    String ts = (String) snapshot.getKey(); // timeslot in the form of minutes
+                                                    String ts = (String) snapshot.getKey(); // time slot is in the form of minutes!
                                                     int relatedTimeSlot = Integer.parseInt(ts);
                                                     Object tS = snapshot.getValue();
                                                     HashMap<String, Object> oldTimeMap = (HashMap<String, Object>) tS;
                                                     long lay;
-                                                    //if( oldTimeMap.get("layer") != null)
                                                     if (snapshot.child("layer").exists())
                                                         lay = (long) oldTimeMap.get("layer");
                                                     else
