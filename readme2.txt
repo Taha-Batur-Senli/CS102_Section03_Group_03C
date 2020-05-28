@@ -12,8 +12,8 @@ WHAT WORKS:
 -------------------------------------------------------------------------------------------------------------------------------------
 WHAT DOES NOT WORK: 
 	-Little bugs occur rarely, yet they do not effect the bulk of the project.
-	-When a restaurant presses to the "Change menu" button and afterward presses to the back button immediately,
-	 our app crashes. However, if they take even only one action, no problem occurs.
+	-The back button of "Change Menu Activity" is not working properly. There are some cases in which it works,
+	and some cases in which it does not.
 ------------------------------------------------------------------------------------------------------------------------------------
 WHAT REMAINS TO BE DONE: 
 	-Delete option for deleting the added images by restaurant owner's, customer's reservation points/ranking
