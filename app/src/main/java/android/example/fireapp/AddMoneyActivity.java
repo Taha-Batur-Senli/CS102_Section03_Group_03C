@@ -19,13 +19,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 /*
- *
+ * Adding Money Activity
  *@date 27.05.2020
  *@author Group 3C
  */
 
 public class AddMoneyActivity extends AppCompatActivity {
+
     //Properties
+
     Button addMoney;
     EditText toBeAdded;
     TextView moneyTextView;
@@ -42,17 +44,16 @@ public class AddMoneyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_money);
 
         //Initialize
+
         addMoney = findViewById(R.id.addMoney3);
         toBeAdded = findViewById(R.id.etMoneyToAdded3);
         moneyTextView = findViewById(R.id.moneyTextView);
-
         toBeAdded.setTextColor(ContextCompat.getColor(this, R.color.white));
-
         mAuth = FirebaseAuth.getInstance();
         mRef = FirebaseDatabase.getInstance().getReference("Customers");
         user = mAuth.getCurrentUser();
 
-        //Initialize customer and moneyTV
+        //ValueEventListener to retrieve the current money and illustrate it.
         assert user != null;
         mRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -69,7 +70,10 @@ public class AddMoneyActivity extends AppCompatActivity {
             }
         });
 
-        //Adds customers wallet the amount of money specified
+
+        /**
+         * Adds customers wallet the amount of money specified.
+         */
         addMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +88,8 @@ public class AddMoneyActivity extends AppCompatActivity {
                 else if ( moneyToAdd.equals("619")){ //easter egg :)
                     mRef.child(user.getUid()).child("money").setValue("500000");
                 }
-                else { //gets the current money, adds the amount wished to be added, updates the firebase
+                else {
+                    //gets the current money, adds the amount wished to be added, updates the firebase
                     double currentMoney = Double.parseDouble(customer.getMoney());
                     double moneyFinal = currentMoney + Double.parseDouble(moneyToAdd);
                     mRef.child(user.getUid()).child("money").setValue("" + moneyFinal);
@@ -93,7 +98,9 @@ public class AddMoneyActivity extends AppCompatActivity {
         });
     }
 
-    //if customer presses to back with out taking any action, we delete this activity from activity history
+    /**
+     * if customer presses to back with out taking any action, we delete this activity from activity history
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();

@@ -31,36 +31,37 @@ import com.google.firebase.database.core.view.Change;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/*
- *
- *@date 27.05.2020
+/**
+ * changing menu by using add dish button or delete button.
+ *@date 25.05.2020
  *@author Group 3C
  */
 
 public class ChangeMenuActivity extends AppCompatActivity implements addFoodDialog.addFoodListener {
+
     //Properties
+
     ImageView removeDish, addDish;
     ListView lvMenuRes;
     MyCustomAdapter myAdapter;
     ArrayList<String> menu = new ArrayList<>();
-
     FirebaseDatabase database;
     DatabaseReference reference;
     FirebaseUser user;
     FirebaseAuth mAuth;
-
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //making the activity full screen
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_change_menu);
 
         //Initialize
-        lvMenuRes = (ListView)findViewById(R.id.lvMenuRes);
 
+        lvMenuRes = (ListView)findViewById(R.id.lvMenuRes);
         myAdapter = new MyCustomAdapter(menu, this);
         lvMenuRes.setAdapter(myAdapter);
         database = FirebaseDatabase.getInstance();
@@ -70,6 +71,10 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         addDish = findViewById(R.id.add_new_dish);
 
         //Display Menu
+
+        /**
+         * EventListener to retrieve the menu information from the firebase.
+         */
         reference.child(user.getUid()).child("menu").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -92,6 +97,9 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
             }
         });
 
+        /**
+         * Adding the dish to the menu by calling addFragment method.
+         */
         addDish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,15 +107,15 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
             }
         });
 
+
         //Methods called
         listOnLongClickAction();
     }
 
-    /*
+    /**
     This method makes each dish clickable. When restaurant owners click to a dish on their menu,
     they are directed to a page in which they can edit their dish's name, şngredients and price.
      */
-
     public void addFragment()
     {
         fragmentManager = getSupportFragmentManager();
@@ -116,6 +124,7 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         fragmentTransaction.add( R.id.change_menu, fragmentMenu );
         fragmentTransaction.commit();
     }
+
 
     @Override
     public void onBackPressed() {
@@ -128,25 +137,28 @@ public class ChangeMenuActivity extends AppCompatActivity implements addFoodDial
         }
         else {
             super.onBackPressed();
-            //TODO crash yiyoruz
-            //startActivity(new Intent(ChangeMenuActivity.this, RestaurantProfile.class));
-            //finish();
         }
     }
 
+    /**
+     * putting these three parameters into the firebase under the right child.
+     * @param name
+     * @param ingredients
+     * @param price
+     */
     @Override
     public void applyTexts(String name, String ingredients, String price) {
-
      String foodUid = reference.child(user.getUid()).child("menu").push().getKey();
         reference.child(user.getUid()).child("menu").child(foodUid).setValue(new Food(name, ingredients, Integer.parseInt(price)));
     }
 
-    /*
+    int index;
+
+    /**
     This method makes menu long-clickable. When a restaurant owner long-clicks on a dish on their menu
     an alert dialog pop outs and asks if they want to delete the dish from their menu or not. If they
     select "delete" option, the dish is deleted from database.
      */
-    int index;
     private void listOnLongClickAction() {
         lvMenuRes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override

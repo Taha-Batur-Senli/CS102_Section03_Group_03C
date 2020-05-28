@@ -27,14 +27,16 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/*
+/**
  *
- *@date 27.05.2020
+ *@date 24.05.2020
  *@author Group 3C
  */
 
 public class AllRestaurantsDisplay extends AppCompatActivity {
+
    //Properties
+
     ListView listViewAllRestaurants;
     ArrayAdapter myAdapter;
     ArrayList<String> allRestaurants = new ArrayList();
@@ -51,6 +53,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         setContentView(R.layout.activity_all_restaurants_display);
 
         //Initialize
+
         listViewAllRestaurants = (ListView)findViewById(R.id.lvAllRestaurants2);
         myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, allRestaurants);
         listViewAllRestaurants.setAdapter(myAdapter);
@@ -60,24 +63,24 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         mRef = FirebaseDatabase.getInstance().getReference("Customers");
         user = mAuth.getCurrentUser();
         searchView = (SearchView) findViewById(R.id.searchView);
-
         int id = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
         TextView textView = searchView.findViewById(id);
         textView.setTextColor(Color.WHITE);
 
-
         //Methods called
+
         displayAllRestaurants();
         listOnLongClickAction();
         displayRestProfileAction();
         searchRestaurant();
         searchView.clearFocus();
-
-
     }
 
     //METHODS
 
+    /**
+     * Searching the restaurant and quering them by taking the typed string constantly.
+     */
     public void searchRestaurant(){
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -93,7 +96,7 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         });
     }
 
-    /*
+    /**
     Prints all of the restaurants on the related listview. Iterates trough firebase and adds each
     restaurant to all restaurants list view.
      */
@@ -112,15 +115,13 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
                     myAdapter.notifyDataSetChanged();
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
 
-    /*
+    /**
     This method makes restaurants long-clickable. If a customers long-clicks on a restaurant, they are
     asked if they want to add that restaurant to favorite restaurants list.
      */
@@ -212,7 +213,9 @@ public class AllRestaurantsDisplay extends AppCompatActivity {
         });
     }
 
-    //if customer presses to back with out taking any action, we delete this activity from activity history
+    /**
+     * if customer presses to back with out taking any action, we delete this activity from activity history
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();

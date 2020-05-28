@@ -34,12 +34,14 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-/*
- *
- *@date 27.05.2020
+/**
+ * Uploading image to the gallery 
+ *@date 24.05.2020
  *@author Group 3C
  */
 public class UploadImage extends AppCompatActivity {
+
+    //variables
 
     Button choose, upload, show_uploads;
     private EditText edit_name;
@@ -55,10 +57,12 @@ public class UploadImage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_upload_image);
+        //initalization
         choose = findViewById(R.id.choose);
         upload = findViewById(R.id.upload);
         show_uploads = findViewById(R.id.show_uploads);
@@ -92,12 +96,20 @@ public class UploadImage extends AppCompatActivity {
         });
     }
 
+    /**
+     * returning the url of the chosen pic as an string representation.
+     * @param uri
+     * @return String
+     */
     public String getFileExtension(Uri uri){
         ContentResolver cR = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(cR.getType(uri));
     }
 
+    /**
+     *
+     */
     private void uploadImage() {
         //creating progress dialog and show it in the onProgressListener
         final ProgressDialog progressDialog = new ProgressDialog(this);
@@ -111,17 +123,11 @@ public class UploadImage extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                        /* UploadTask.TaskSnapshot has a method named getMetadata() which returns a StorageMetadata object.
+                        /**
+                         *  UploadTask.TaskSnapshot has a method named getMetadata() which returns a StorageMetadata object.
                             This StorageMetadata object contains a method named getReference() which returns a StorageReference object.
                             That StorageReference object contains the getDownloadUrl() method, which now returns a Task
                             object instead of an Uri object.
-                         */
-                        /*
-                            Upload upload = new Upload(edit_name.getText().toString().trim()
-                                    ,taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
-                            String uploadID = databaseReference.push().getKey();
-                            databaseReference.child(uploadID).setValue(upload);
-
                          */
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
                             while (!urlTask.isSuccessful());
@@ -168,18 +174,6 @@ public class UploadImage extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
             mImageUri = data.getData();
             Picasso.with(this).load(mImageUri).into(imageView);
-             /*
-             try {
-                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),mImageUri);
-                 imageView.setImageBitmap(bitmap); // bitmap is a object that told the taken file is image to android.
-                 //bitmap is as far as I get take the info of pixels and stored and passed to whatever you want. You can whether create
-                 // your own image by BitMap factory or you can append the pixels into imageView.
-             }
-             catch (IOException e){
-                 e.printStackTrace();
-             }
-
-              */
         }
     }
 }

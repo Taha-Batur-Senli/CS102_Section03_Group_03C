@@ -19,17 +19,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-/*
- *
- *@date 27.05.2020
+/**
+ * Adding promotions to the specific restaurant.
+ *@date 23.05.2020
  *@author Group 3C
  */
 
 public class AddPromoActivity extends AppCompatActivity {
+
     //Properties
+
     EditText etPromo;
     Button add;
-
     FirebaseUser user;
     FirebaseAuth mAuth;
     DatabaseReference mRef;
@@ -41,10 +42,10 @@ public class AddPromoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_promo);
 
         //Initialize
+
         etPromo = (EditText)findViewById(R.id.editTextPromoAdd);
         etPromo.setTextColor(ContextCompat.getColor(this, R.color.white));
         add = (Button)findViewById(R.id.btnAddPromoAdd);
-
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference("Promotions");
@@ -82,7 +83,9 @@ public class AddPromoActivity extends AppCompatActivity {
         });
     }
 
-    //if customer presses to back with out taking any action, we delete this activity from activity history
+    /**
+     * if customer presses to back with out taking any action, we delete this activity from activity history
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();

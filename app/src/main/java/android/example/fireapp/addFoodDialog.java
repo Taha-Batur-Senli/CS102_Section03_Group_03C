@@ -15,16 +15,21 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 /*
  *This class adds food to a restaurant's menu.
- *@date 27.05.2020
+ *@date 22.05.2020
  *@author Group 3C
  */
 
 public class addFoodDialog extends AppCompatDialogFragment {
+
     //Properties
+
     private EditText etName;
     private EditText etIngredients;
     private EditText etPrice;
     private addFoodListener listener;
+
+
+    //onCreateDialog
 
     @NonNull
     @Override
@@ -38,7 +43,6 @@ public class addFoodDialog extends AppCompatDialogFragment {
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                     }
                 }).setPositiveButton("Add To Menu", new DialogInterface.OnClickListener() {
             @Override
@@ -56,6 +60,12 @@ public class addFoodDialog extends AppCompatDialogFragment {
         return builer.create();
     }
 
+    //Methods
+
+    /**
+     *
+     * @param context
+     */
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -67,6 +77,9 @@ public class addFoodDialog extends AppCompatDialogFragment {
         }
     }
 
+    /**
+     * interface to be used in foodDialog.
+     */
     public interface addFoodListener{
         void applyTexts(String name, String ingredients, String price);
     }

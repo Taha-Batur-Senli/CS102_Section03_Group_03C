@@ -28,17 +28,20 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-/*
+
+/**
  *A class that helps restaurant owners to upload their restaurant's logo to the system and edit it.
- *@date 27.05.2020
+ *@date 25.05.2020
  *@author Group 3C
  */
 public class UploadLogo extends AppCompatActivity {
 
     //Constants
+
     public static final int PICK_IMAGE_REQUEST = 1;
 
     //Variables
+
     Button choose_logo, arrange_logo;
     ImageView imageView;
     private Uri uri;
@@ -48,12 +51,17 @@ public class UploadLogo extends AppCompatActivity {
     private FirebaseUser user;
 
     //Program Code
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_upload_logo);
+
+        //initialization
+
         imageView = findViewById(R.id.image_logo);
         choose_logo = findViewById(R.id.choose_logo);
         arrange_logo = findViewById(R.id.arrange_logo);
@@ -61,7 +69,6 @@ public class UploadLogo extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         storageReference = FirebaseStorage.getInstance().getReference("uploads");
         databaseReference = FirebaseDatabase.getInstance().getReference("Restaurants");
-
         choose_logo.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -77,13 +84,23 @@ public class UploadLogo extends AppCompatActivity {
         });
     }
 
+    /**
+     * choosing logo from the gallery
+     */
     private void chooseLogo(){
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Select Picture"),PICK_IMAGE_REQUEST); //start activity for result is a method that used for retrieving info from B to A.
+        startActivityForResult(Intent.createChooser(intent,"Select Picture"),PICK_IMAGE_REQUEST);
+        //start activity for result is a method that used for retrieving info from B to A.
     }
 
+    /**
+     * as we have to take the image from B and have to illustrate in the A. We used this overrided method.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -93,13 +110,23 @@ public class UploadLogo extends AppCompatActivity {
         }
     }
 
+    /**
+     * returning the url of the chosen picture.
+     * @param uri
+     * @return String
+     */
     public String getFileExtension(Uri uri){
+
         ContentResolver cR = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(cR.getType(uri));
     }
 
+    /**
+     * uploading picture under the logo child which is created in here.
+     */
     private void uploadLogo() {
+
         //creating progress dialog and show it in the onProgressListener
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("In progress...");
@@ -112,18 +139,14 @@ public class UploadLogo extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
-                        /* UploadTask.TaskSnapshot has a method named getMetadata() which returns a StorageMetadata object.
+
+                        /**
+                        UploadTask.TaskSnapshot has a method named getMetadata() which returns a StorageMetadata object.
                             This StorageMetadata object contains a method named getReference() which returns a StorageReference object.
                             That StorageReference object contains the getDownloadUrl() method, which now returns a Task
                             object instead of an Uri object.
                          */
-                        /*
-                            Upload upload = new Upload(edit_name.getText().toString().trim()
-                                    ,taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
-                            String uploadID = databaseReference.push().getKey();
-                            databaseReference.child(uploadID).setValue(upload);
 
-                         */
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
                             while (!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();

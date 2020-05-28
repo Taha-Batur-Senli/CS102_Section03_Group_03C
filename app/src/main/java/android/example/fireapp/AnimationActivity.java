@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 
-/*
- *
- *@date 27.05.2020
+/**
+ * creation of the animation in the entrance of the app.
+ *@date 24.05.2020
  *@author Group 3C
  */
 

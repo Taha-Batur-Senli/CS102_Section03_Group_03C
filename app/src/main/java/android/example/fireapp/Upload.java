@@ -1,23 +1,30 @@
 package android.example.fireapp;
-/*
- *
- *@date 27.05.2020
+
+/**
+ * Upload objects to store the data and retrieve it easily. This object has two main properties to use it.
+ *@date 24.05.2020
  *@author Group 3C
  */
-public class Upload { //our uploaded image have 2 main properties : specific url and the name user typed in.
+public class Upload {
+
+    //our uploaded image have 2 main properties : specific url and the name user typed in.
     private String mName;
     private String mImageURL;
 
     public Upload(){ //default constructor
     }
 
-    public Upload(String mName, String mImageURL){ //constructor
+    //constructor
+
+    public Upload(String mName, String mImageURL){
         if(mName.trim().equals("")){
             mName = "no name";
         }
         this.mName = mName;
         this.mImageURL = mImageURL;
     }
+
+    //getters and setters
 
     public String getmName() {
         return mName;
