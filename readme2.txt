@@ -1,4 +1,6 @@
 g3C -RESERVED-
+
+P.S. : We originally uploaded our assignments into moodle before the deadline. However we faced with a simple bug about time and date on reservation activity and we fixed our bug with Mr. Davenport permission after the deadline. 
 -----------------------------------------------------------------------------------------------------------------------------------
 DESCRIPTION: This app designed to help both customers and restaurant owners by making fast, efficient and reliable reservations anytime.
 -----------------------------------------------------------------------------------------------------------------------------------
