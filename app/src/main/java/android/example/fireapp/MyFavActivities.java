@@ -48,6 +48,7 @@ public class MyFavActivities extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_my_fav_activities);
 
+        //Initialize
         listViewFavRestaurants = (ListView)findViewById(R.id.lvMyFavRestaurants);
         myAdapter = new ArrayAdapter<String>(this, R.layout.listrow, R.id.textView2, favRestaurants);
         listViewFavRestaurants.setAdapter(myAdapter);
@@ -92,7 +93,7 @@ public class MyFavActivities extends AppCompatActivity {
 
     /*
     This method makes favorite restaurants long-clickable. When a customer long-clicks to a favorite
-    restaurant of theris, an alert dialog is displayed asking them whether they want to remove the
+    restaurant of theirs, an alert dialog is displayed asking them whether they want to remove the
     specified restaurant from  their list or not.
      */
     int index;
@@ -149,6 +150,7 @@ public class MyFavActivities extends AppCompatActivity {
         listViewFavRestaurants.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 //gets the name of the dish
                 String item = favRestaurants.get(position);
                 int indexOfName = item.indexOf("   ");

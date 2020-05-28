@@ -44,6 +44,7 @@ import java.util.List;
  */
 
 public class MakeReservationCustomerP1 extends AppCompatActivity {
+
     //Properties
     CalendarView calendar;
     ListView lvTables;
@@ -63,7 +64,6 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
         setContentView(R.layout.activity_make_reservation_customer_p1);
 
         //Initialize
-
         calendar = (CalendarView)findViewById(R.id.calendarView);
         lvTables = (ListView)findViewById(R.id.lvSeatSelection);
         txtEditRes11 = findViewById(R.id.txtEditRes11);
@@ -78,10 +78,10 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
         Intent intent = getIntent();
         uidRestaurant = intent.getStringExtra("UID");
 
-        //Make previous dates unclickable
+        //Make previous dates not clickable
         calendar.setMinDate((new Date().getTime()));
 
-        //Make dates after one week unclickable
+        //Make dates after one week not clickable
         Date today = new Date();
         Date weekAfter = new Date(today.getTime() + 7*(1000 * 60 * 60 * 24));
         calendar.setMaxDate( weekAfter.getTime());
@@ -131,17 +131,13 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
 
     //METHODS
 
-
-
-
     /**
     Gets the data of restaurant from database and creates a list view accordingly. Prints out
     all of the tables a restaurant have on the related list view.
      */
     public void displaySeats( final int year, final int month, final int dayOfMonth){
+
         //get restaurants uid from previous class
-
-
         reference.child(uidRestaurant).child("seats").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -161,6 +157,7 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
                 }
             }
 
+            //cancel the procedure.
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -170,7 +167,7 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
 
     /*
     This method makes the tables selectable. If a customer selects a table, then they are directed
-    to the next activity. This method passes the data of selected date & table to next acitivity as well.
+    to the next activity. This method passes the data of selected date & table to next activity as well.
      */
     private void selectTime(final int year, final int month, final int dayOfMonth){
         lvTables.setOnItemClickListener(new AdapterView.OnItemClickListener() {
