@@ -39,7 +39,7 @@ Prerequisite: Make sure that you installed AndroidStudio and Emulator (Pixel 2 i
 	2- Open the project in Android Studio.
 	3- Click green triangle(run button) to run the project with your emulator.
 
-PS: If you recieve "Gradle Build failed" error. 
+PS: If you recieve "SDK location not found!" error. 
 To fix it:
 	1- Open Gradle Scripts > settings.gradle
 	2- Comment out "include':app'"(like this //include':app'). 
