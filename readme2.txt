@@ -20,6 +20,9 @@ WHAT REMAINS TO BE DONE:
 	-The view of our app's GUI differs from phone to phone that creates an aesthatic problem (doesn't affect the
 	functions), therefore, enhancing the app's GUI so that it stays the same on all phones.
 	-"Change working hours" is not functional yet. However, this can be made functional easily on future versions.
+	-Restaurant owners cannot make reservations from their accounts, so when someone makes a reservation via a phone call, 
+	our app cannot be informed about that reservation. However, this can be implemented easily on future versions by imitating
+	the customer reservation making process.
 -------------------------------------------------------------------------------------------------------------------------------------
 	-Berkay İnceişçi: I worked on reservation process and I was responsible for making our app time sensitive
 	-Ege Ergül: I worked on manuplating the data on Firebase, connecting it to our app, and I also worked on reservation objects. 
