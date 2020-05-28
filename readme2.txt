@@ -49,6 +49,17 @@ Prerequisite: Make sure that you installed AndroidStudio and its Emulator (Pixel
 	1- Unzip our project.
 	2- Open the project in Android Studio by selecting our project folder.
 	3- After it opens, click the green triangle(run button) to run the project with your emulator.
+	4- On the login screen, you can use some of the accounts we created (listed below) or you can sign up on your own.
+	
+	Some accounts:
+	
+	- Customer account -
+	Username: david@gmail.com
+	Password: 123456
+	
+	-Restaurant Owner account - 
+	Username: groupg3C@gmail.com
+	Password: 123456
 	
 	----------------------------------------------------------------------------------------------------------
 	How to add emulators:
