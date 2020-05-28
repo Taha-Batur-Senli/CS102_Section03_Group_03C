@@ -173,9 +173,13 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
                 String seatName = allSeats.get(position);
                 String seat  = "seat" + seatName.substring(6);
 
-                String date = year + "-" + (month + 1 )+ "-"  + dayOfMonth ;
-                if ( (month + 1) < 10 )
-                    date =  year + "-0" + (month + 1 )+ "-"  + dayOfMonth ;
+                String date = year + "-" + (month + 1) + "-" + dayOfMonth;
+                if ((month + 1) < 10 && dayOfMonth >= 10)
+                    date = year + "-0" + (month + 1) + "-" + dayOfMonth;
+                else if ((month + 1) < 10 && dayOfMonth < 10)
+                    date = year + "-0" + (month + 1) + "-0" + dayOfMonth;
+                else if ((month + 1) > 10 && dayOfMonth < 10)
+                    date = year + "-" + (month + 1) + "-0" + dayOfMonth;
 
                 Intent intent = getIntent();
                 String uidRestaurant = intent.getStringExtra("UID");
