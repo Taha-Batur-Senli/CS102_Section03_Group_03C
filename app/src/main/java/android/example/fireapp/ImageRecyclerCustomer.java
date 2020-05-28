@@ -19,17 +19,22 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- *
- *@date 27.05.2020
- *@author Group 3C
+/**
+ * Gallery part in customer GUI, in restaurant profile
+ * @date 10.05.2020
+ * @author Group_g3C
  */
 
 public class ImageRecyclerCustomer extends AppCompatActivity {
+
+    //Properties
+
     private RecyclerView recyclerView;
     private Adapter adapter;
     private DatabaseReference databaseReference;
     private List<Upload> uploads;
+
+    //Methods
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

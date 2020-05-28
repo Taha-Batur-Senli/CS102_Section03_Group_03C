@@ -23,20 +23,24 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
-/*
- *
- *@date 27.05.2020
- *@author Group 3C
+/**
+ * This class is for displaying reservations on restaurant owner's GUI
+ * @date 11.05.2020
+ * @author Group_g3C
  */
 public class RestaurantReservationsActivity extends AppCompatActivity {
+
     //Properties
+
     ListView lvCurrentReservations, lvPastReservations;
     ArrayAdapter myAdapter, myAdapter2;
-    ArrayList<String> pastReservations = new ArrayList<String>();
-    ArrayList<String> currentReservations = new ArrayList<String>();
+    ArrayList<String> pastReservations = new ArrayList<>();
+    ArrayList<String> currentReservations = new ArrayList<>();
 
     FirebaseUser user;
     DatabaseReference refCurrentReservations, refPastReservations;
+
+    //Methods
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

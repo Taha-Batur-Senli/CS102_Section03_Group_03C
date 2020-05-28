@@ -21,7 +21,7 @@
     /**
      * Adding Money Activity
      *@date 25.05.2020
-     *@author Group 3C
+     *@author Group_g3C
      */
 
     public class AddMoneyActivity extends AppCompatActivity {

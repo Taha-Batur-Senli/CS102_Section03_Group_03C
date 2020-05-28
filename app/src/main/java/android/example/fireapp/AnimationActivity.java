@@ -8,9 +8,9 @@
     import android.view.WindowManager;
 
     /**
-     * creation of the animation in the entrance of the app.
-     *@date 24.05.2020
-     *@author Group 3C
+     * Animation class for the entrance of the app.
+     * @date 24.05.2020
+     * @author Group_g3C
      */
 
     public class AnimationActivity extends AppCompatActivity {

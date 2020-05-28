@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.WindowManager;
 import android.widget.Toast;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,16 +16,22 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-/*
- *
- *@date 27.05.2020
- *@author Group 3C
+
+/**
+ * This class is for displaying it in customer's GUI on restaurant page.
+ * @date 15.05.2020
+ * @author Group_g3C
  */
 public class SeatingPlanPicsRecycler extends AppCompatActivity {
+
+    //Properties
+
     private RecyclerView recyclerView;
     private Adapter adapter;
     private DatabaseReference databaseReference;
     private List<Upload> uploads;
+
+    //Methods
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

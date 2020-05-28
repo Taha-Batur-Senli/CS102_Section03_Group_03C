@@ -2,9 +2,8 @@ package android.example.fireapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -17,7 +16,6 @@ import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,27 +23,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.List;
 
-/*
-* This class is the first page for reservation making process. Here, customers can see the available
-* days that they can make a reservation to. After they select a date, they are asked to select a
-* table as well. If a restaurant has five tables, customers will be asked to choose one from five.
- *@date 27.05.2020
- *@author Group 3C
+/**
+ * This class is the first page for reservation making process. Here, customers can see the available
+ * days that they can make a reservation to. After they select a date, they are asked to select a
+ * table as well. If a restaurant has five tables, customers will be asked to choose one from five.
+ * @date 17.05.2020
+ * @author Group_g3C
  */
 
 public class MakeReservationCustomerP1 extends AppCompatActivity {
 
     //Properties
+
     CalendarView calendar;
     ListView lvTables;
     ArrayAdapter myAdapter;
@@ -56,6 +49,9 @@ public class MakeReservationCustomerP1 extends AppCompatActivity {
     Button showTables;
     String uidRestaurant;
 
+    //Methods
+
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

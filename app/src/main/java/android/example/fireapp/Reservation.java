@@ -1,14 +1,21 @@
 package android.example.fireapp;
 
-/*
+/**
  * This is a class to create reservation objects easily.
- *@date 27.05.2020
- *@author Group 3C
+ * @date 05.05.2020
+ * @author Group 3C
  */
 public class Reservation {
+
+    //Properties
+
     String reservID, cusID, restaurantID, restaurantName, cusName, restaurantPhone, cusPhone,
             preOrder, date, timeSlot, totalPrice, seat, preOrderTxt;
     boolean hasRated;
+
+    //Constructors
+
+    //Empty constructor required for firebase
     public Reservation() { }
 
     public Reservation(String reservID, String cusID, String restaurantID, String cusName,
@@ -31,6 +38,7 @@ public class Reservation {
     }
 
     // GET & SET METHODS
+
     public String getReservID() {
         return reservID;
     }

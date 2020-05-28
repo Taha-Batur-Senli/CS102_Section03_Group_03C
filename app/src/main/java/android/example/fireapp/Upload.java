@@ -2,8 +2,8 @@
 
     /**
      * Upload objects to store the data and retrieve it easily. This object has two main properties to use it.
-     *@date 24.05.2020
-     *@author Group 3C
+     *@date 17.05.2020
+     *@author Group_g3C
      */
     public class Upload {
 

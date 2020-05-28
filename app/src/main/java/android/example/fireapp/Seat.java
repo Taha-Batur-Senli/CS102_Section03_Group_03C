@@ -3,25 +3,30 @@ package android.example.fireapp;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
-/*
- *
- *@date 27.05.2020
- *@author Group 3C
+/**
+ * Seat class for creating seat objects in reservation
+ * @date 30.04.2020
+ * @author Group_g3C
  */
 public class Seat extends HashMap<String, Object>{
+
+    //Properties
 
     public String seatName;
     private Restaurant r;
 
-    public Seat(){
+    //Constructors
 
-    }
+    //Empty constructor required for the firebase
+    public Seat(){}
 
     public Seat( String seatName, Restaurant r){
         this.seatName = seatName;
         this.r = r;
         createWeeklySeatPlan1( r.getWorkingHours() );
     }
+
+    //Methods
 
     private void createWeeklySeatPlan1( String workingHours ) {
         String[] temp = workingHours.split("-");

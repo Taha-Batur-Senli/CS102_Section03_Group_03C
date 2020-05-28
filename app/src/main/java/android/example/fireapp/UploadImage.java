@@ -4,16 +4,13 @@
 
     import android.os.Bundle;
 
-
     import androidx.annotation.NonNull;
     import androidx.annotation.Nullable;
-    import androidx.appcompat.app.AppCompatActivity;
 
     import android.app.ProgressDialog;
     import android.content.ContentResolver;
     import android.content.Intent;
     import android.net.Uri;
-    import android.os.Bundle;
     import android.view.View;
     import android.view.WindowManager;
     import android.webkit.MimeTypeMap;
@@ -37,8 +34,8 @@
 
     /**
      * Uploading image to the gallery
-     *@date 24.05.2020
-     *@author Group 3C
+     *@date 17.05.2020
+     *@author Group_g3C
      */
     public class UploadImage extends AppCompatActivity {
 
@@ -54,7 +51,7 @@
         FirebaseUser user;
         FirebaseAuth mAuth;
 
-
+        //Methods
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {

@@ -24,21 +24,24 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-/*
- *
- *@date 27.05.2020
- *@author Group 3C
+/**
+ * Class for the main menu of restaurant owner
+ * @date 29.04.2020
+ * @author Group_g3C
  */
 
 public class RestaurantProfile extends AppCompatActivity {
 
-    //Variables
+    //Properties
+
     Button logOut, editProfile, help, takeALookAtYourRestaurant, changeMenu, promotions,  myReservations;
     DatabaseReference mRef;
     FirebaseAuth mAuth;
     FirebaseUser user;
     TextView resNameTV;
     private ViewFlipper mViewFlipper;
+
+    //Methods
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +98,6 @@ public class RestaurantProfile extends AppCompatActivity {
 
     }
 
-    //METHODS
     private void myReservationsActivity() {
         myReservations.setOnClickListener(new View.OnClickListener() {
             @Override

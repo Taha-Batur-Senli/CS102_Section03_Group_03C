@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,18 +25,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashMap;
-/*
- *
- *@date 27.05.2020
- *@author Group 3C
+/**
+ * Second part of registration of restaurant owners
+ * @date 16.05.2020
+ * @author Group_g3C
  */
 public class SignUpAsRestaurantP2 extends AppCompatActivity {
 
     //Variables
+
     Button register;
     EditText etNumOfTables, etMinPrice, etMaxDuration, etStartH, etStartM, etFinishH, etFinishM;
     TextView tvGenre;
@@ -46,9 +45,11 @@ public class SignUpAsRestaurantP2 extends AppCompatActivity {
     DatabaseReference mRef, mRefSeatPlans;
 
     //Program code
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up_as_restaurant_p2);
 
 

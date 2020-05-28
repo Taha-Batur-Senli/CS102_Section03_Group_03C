@@ -6,13 +6,11 @@
 
     import android.content.Intent;
     import android.os.Bundle;
-    import android.util.Log;
     import android.view.View;
     import android.view.WindowManager;
     import android.widget.Button;
     import android.widget.EditText;
     import android.widget.TextView;
-    import android.widget.Toast;
 
     import com.google.firebase.auth.FirebaseAuth;
     import com.google.firebase.auth.FirebaseUser;
@@ -20,22 +18,19 @@
     import com.google.firebase.database.DatabaseError;
     import com.google.firebase.database.DatabaseReference;
     import com.google.firebase.database.FirebaseDatabase;
-    import com.google.firebase.database.Query;
     import com.google.firebase.database.ValueEventListener;
-
-    import java.util.Iterator;
 
     /**
      * Changing the information of the food after pen image is pressed in the change menu.
-     *@date 25.05.2020
-     *@author Group 3C
+     * @date 04.05.2020
+     * @author Group_g3C
      */
 
     public class ChangeFoodActivity extends AppCompatActivity {
 
         //Properties
 
-        Button save, delete;
+        Button save;
         EditText etName, etIngredients, etPrice;
         TextView nameTV;
         FirebaseAuth mAuth;

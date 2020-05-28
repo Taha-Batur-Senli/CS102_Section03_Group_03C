@@ -27,15 +27,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-/*
+/**
  * This class is the customer main menu of our app from which a wide variety of tasks can be done.
- *@date 27.05.2020
- *@author Group 3C
+ * @date 15.05.2020
+ * @author Group_g3C
  */
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //Properties
+
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     TextView textView;
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseAuth mAuth;
     CardView steak, sushi, hamburger, chicken, dessert, pizza;
     Button promotions, bestRestaurants;
+
+    //Methods
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

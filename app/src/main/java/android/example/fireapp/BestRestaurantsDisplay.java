@@ -27,8 +27,8 @@
 
         /**
          * Showing the restaurant that is picked as favorite by users.
-         *@date 25.05.2020
-         *@author Group 3C
+         * @date 03.05.2020
+         * @author Group 3C
          */
 
         public class BestRestaurantsDisplay extends AppCompatActivity {

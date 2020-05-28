@@ -12,10 +12,10 @@
 
     import org.w3c.dom.Text;
 
-    /*
+    /**
      * Activity that shows the upload type to the restaurant accounts
-     *@date 23.05.2020
-     *@author Group 3C
+     * @date 03.05.2020
+     * @author Group_g3C
      */
 
     public class ChooseUploadType extends AppCompatActivity {
@@ -25,6 +25,8 @@
         ImageView view,line;
         Button upload_gallery,upload_logo, upload_seating_plan;
 
+        //Methods
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -33,7 +35,7 @@
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
             setContentView(R.layout.activity_choose_upload_type);
 
-            //initalization
+            //Initialize
 
             view = findViewById(R.id.imageView60);
             line = findViewById(R.id.imageView61);
@@ -41,7 +43,7 @@
             upload_logo = findViewById(R.id.upload_logo);
             upload_seating_plan = findViewById(R.id.upload_seating_plan);
 
-            /**
+            /*
              * ClickListener to open the UploadImage to gallery activity.
              */
             upload_gallery.setOnClickListener(new View.OnClickListener(){
@@ -53,7 +55,7 @@
                 }
             });
 
-            /**
+            /*
              * ClickListener to open UploadSeatingPlan activity.
              */
             upload_seating_plan.setOnClickListener(new View.OnClickListener(){
@@ -64,7 +66,7 @@
                 }
             });
 
-            /**
+            /*
              * ClickListener which go to the UploadLogo page.
              */
             upload_logo.setOnClickListener(new View.OnClickListener() {

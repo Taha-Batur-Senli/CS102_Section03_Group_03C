@@ -1,33 +1,28 @@
 package android.example.fireapp;
 
-import android.os.Build;
-
-import java.sql.SQLOutput;
-import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.sql.Date;
 import java.util.HashMap;
-/*
- *
- *@date 27.05.2020
- *@author Group 3C
+
+/**
+ * The calender for seat objects
+ * @date 30.04.2020
+ * @author Group_g3C
  */
 public class SeatCalendar extends HashMap<String, Object>{
 
-    // properties
+    // Properties
+
     private LocalTime availableHoursStart;
     private LocalTime availableHoursEnd;
     private LocalDate currentDate;
     private Restaurant r;
     private int maxSeatingDuration;
 
-    // constructors
-    public SeatCalendar(){
+    // Constructors
 
-    }
+    //Empty constructor required for the firebase
+    public SeatCalendar(){}
 
     public SeatCalendar( int maxSeatingDuration, LocalDate date, LocalTime start, LocalTime end){
         this.maxSeatingDuration = maxSeatingDuration;
@@ -74,7 +69,8 @@ public class SeatCalendar extends HashMap<String, Object>{
         createTimeSlots( availableHoursStart, getLastReservationTime().plusMinutes(1));
     }
 
-    // methods
+    // Methods
+
     private void createTimeSlots( LocalTime start, LocalTime end)
     {
         TimeSlot ts;

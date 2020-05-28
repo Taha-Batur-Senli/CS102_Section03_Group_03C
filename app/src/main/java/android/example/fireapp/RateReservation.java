@@ -23,19 +23,23 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Iterator;
 
-/*
+/**
  * This is a class to create reservation objects easily.
- *@date 27.05.2020
- *@author Group 3C
+ * @date 08.05.2020
+ * @author Group_g3C
  */
 
 public class RateReservation extends AppCompatActivity {
+
     //Properties
+
     TextView tvReserv, tvSetError;
     Button rate;
     EditText etRating;
 
     FirebaseUser user;
+
+    //Methods
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +92,6 @@ public class RateReservation extends AppCompatActivity {
         rateAction( rezID);
     }
 
-    //METHODS
     private void rateAction(final String rezID) {
        rate.setOnClickListener(new View.OnClickListener() {
            @Override
