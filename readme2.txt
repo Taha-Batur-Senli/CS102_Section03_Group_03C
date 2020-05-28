@@ -53,7 +53,8 @@ Prerequisite: Make sure that you installed AndroidStudio and its Emulator (Pixel
 	4- Select R (should already be selected) and click next
 	5- Click finish and wait for its setup.
 
-PS: Hopefully there shouldn't be any errors when you try to open the project, but if you encounter any problems, these might be due to the path differencies on our different computers. Therefore we will also explain how to solve these problems if encountered.
+PS: Hopefully there shouldn't be any errors when you try to open the project, but if you encounter any problems, these might
+be due to the path differencies on our different computers. Therefore we will also explain how to solve these problems if encountered.
 
         If you recieve "SDK location not found!" error; 
 To fix it:
